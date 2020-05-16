@@ -1,0 +1,1487 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>springboot 2.2 集成mybatis-plus | BlackCat</title>
+  <meta name="keywords" content=" Mybatis ">
+  <meta name="description" content="springboot 2.2 集成mybatis-plus | BlackCat">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="strong a {         color: #747474;     }     .player {         text-align: center;         margin: .5em auto 0;         width: 100%;         max-width: 22em;     }     .player br {         displa">
+<meta property="og:type" content="website">
+<meta property="og:title" content="关于我">
+<meta property="og:url" content="https:&#x2F;&#x2F;kylin-blackcat.com&#x2F;about&#x2F;index.html">
+<meta property="og:site_name" content="BlackCat">
+<meta property="og:description" content="strong a {         color: #747474;     }     .player {         text-align: center;         margin: .5em auto 0;         width: 100%;         max-width: 22em;     }     .player br {         displa">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-12-22T03:08:52.000Z">
+<meta property="article:modified_time" content="2020-01-26T02:07:51.239Z">
+<meta property="article:author" content="blackcat">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.0.1" rel="stylesheet">
+
+<link href="/css/hl_theme/gruvbox-light.css?v=1.0.1" rel="stylesheet">
+
+<link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="/js/jquery.autocomplete.min.js?v=1.0.1" ></script>
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.0.1" ></script>
+
+<meta name="generator" content="Hexo 4.1.1"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="false">
+  <input class="theme_blog_path" value="">
+</div>
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/" class="avatar_target">
+    <img class="avatar" src="/img/avatar.jpg" />
+</a>
+<div class="author">
+    <span>blackcat</span>
+</div>
+
+<div class="icon">
+    
+        
+        <a title="github" href="https://github.com/kylin-lawliet" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-github"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="email" href="mailto:kylin_lawliet@163.com" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-email"></use>
+                </svg>
+            
+        </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li><div class="all active">全部文章<small>(32)</small></div></li>
+    
+        
+            
+            <li><div data-rel="前端"><i class="fold iconfont icon-right"></i>前端<small>(5)</small></div>
+                
+                    <ul class="sub hide">
+                        
+                        <li><div data-rel="easyUI">easyUI<small>(1)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="javascript">javascript<small>(2)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="jquery">jquery<small>(1)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="Bootstrap">Bootstrap<small>(1)</small></div>
+                            
+                        </li>
+                            
+                    </ul>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="hexo">hexo<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="工具"><i class="fold iconfont icon-right"></i>工具<small>(5)</small></div>
+                
+                    <ul class="sub hide">
+                        
+                        <li><div data-rel="Idea">Idea<small>(1)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="postman">postman<small>(1)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="docker">docker<small>(3)</small></div>
+                            
+                        </li>
+                            
+                    </ul>
+                
+            </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+            <li><div data-rel="Linux"><i class="fold iconfont icon-right"></i>Linux<small>(2)</small></div>
+                
+                    <ul class="sub hide">
+                        
+                        <li><div data-rel="docker">docker<small>(1)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="VMware">VMware<small>(1)</small></div>
+                            
+                        </li>
+                            
+                    </ul>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="数据库"><i class="fold iconfont icon-right"></i>数据库<small>(3)</small></div>
+                
+                    <ul class="sub hide">
+                        
+                        <li><div data-rel="MySQL">MySQL<small>(2)</small></div>
+                            
+                        </li>
+                            
+                    </ul>
+                
+            </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+            <li><div data-rel="Java"><i class="fold iconfont icon-right"></i>Java<small>(11)</small></div>
+                
+                    <ul class="sub hide">
+                        
+                        <li><div data-rel="ssm">ssm<small>(1)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="SpringBoot">SpringBoot<small>(3)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="MyBatis">MyBatis<small>(1)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="Maven">Maven<small>(1)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="lombok">lombok<small>(1)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="JVM">JVM<small>(1)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="问答">问答<small>(1)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="Shiro">Shiro<small>(1)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="设计模式">设计模式<small>(1)</small></div>
+                            
+                        </li>
+                            
+                    </ul>
+                
+            </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+            <li><div data-rel="网址">网址<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+            <li><div data-rel="SpringBoot">SpringBoot<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    
+    
+    
+    </div>
+    <div><a class="about  hasFriend  site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="32">
+<input type="hidden" id="yelog_site_word_count" value="141.7k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="back-title-list"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="https://yelog.org">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <form onkeydown="if(event.keyCode==13){return false;}">
+        <input class="search" type="text" placeholder="以 in: 开头进行全文搜索" autocomplete="off"id="local-search-input" >
+        <i class="cross"></i>
+        <span>
+            <label for="tagswitch">Tags:</label>
+            <input id="tagswitch" type="checkbox" style="display: none" />
+            <i id="tagsWitchIcon"></i>
+        </span>
+    </form>
+    <div class="tags-list">
+    
+    <li class="article-tag-list-item">
+        <a class="color1">javascript</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">hexo</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">Idea</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color2">easyUI</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">git，hexo</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color2">docker</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color1">MySQL</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">web</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color2">jquery</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color2">spring boot</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color2">spring</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color3">mybatis</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color3">postman</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color1">SpringBoot</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">Java</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color2">VMware</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color3">website</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color3">MyBatis</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color1">MySql</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color1">Maven</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color3">Mybatis</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color2">lombok</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">Bootstrap</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">Solr</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">JVM</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">SQL</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color3">生活</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color1">redis</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color1">Shiro</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">设计模式</a>
+    </li>
+    
+    <div class="clearfix"></div>
+</div>
+
+    
+    <div id="local-search-result">
+
+    </div>
+    
+    <nav id="title-list-nav">
+        
+        <a  class=""
+           href="/2019/12/28/freemaker/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="freemaker学习笔记">freemaker学习笔记</span>
+            <span class="post-date" title="2019-12-28 08:44:41">2019/12/28</span>
+        </a>
+        
+        <a  class="前端 javascript "
+           href="/2019/12/24/javascript/"
+           data-tag="javascript"
+           data-author="" >
+            <span class="post-title" title="javascript使用示例">javascript使用示例</span>
+            <span class="post-date" title="2019-12-24 08:52:35">2019/12/24</span>
+        </a>
+        
+        <a id="top" class="hexo "
+           href="/2019/12/23/hexo-dome/"
+           data-tag="hexo"
+           data-author="" >
+            <span class="post-title" title="hexo文章格式示例">hexo文章格式示例</span>
+            <span class="post-date" title="2019-12-23 10:24:34">2019/12/23</span>
+        </a>
+        
+        <a  class="工具 Idea "
+           href="/2019/12/25/idea/"
+           data-tag="Idea"
+           data-author="" >
+            <span class="post-title" title="Idea笔记">Idea笔记</span>
+            <span class="post-date" title="2019-12-25 08:51:24">2019/12/25</span>
+        </a>
+        
+        <a  class="前端 easyUI "
+           href="/2019/12/24/easyui/"
+           data-tag="easyUI"
+           data-author="" >
+            <span class="post-title" title="easyui记录使用过程中出现的问题">easyui记录使用过程中出现的问题</span>
+            <span class="post-date" title="2019-12-24 16:56:43">2019/12/24</span>
+        </a>
+        
+        <a  class="hexo "
+           href="/2019/12/22/hexo/"
+           data-tag="git，hexo"
+           data-author="" >
+            <span class="post-title" title="hexo建站相关">hexo建站相关</span>
+            <span class="post-date" title="2019-12-22 14:18:18">2019/12/22</span>
+        </a>
+        
+        <a  class="Linux docker "
+           href="/2020/01/03/docker/"
+           data-tag="docker"
+           data-author="" >
+            <span class="post-title" title="Linux安装docker使用及一些问题记录">Linux安装docker使用及一些问题记录</span>
+            <span class="post-date" title="2020-01-03 17:17:35">2020/01/03</span>
+        </a>
+        
+        <a  class="数据库 MySQL "
+           href="/2020/01/03/mysql-quiz/"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="mysql问答">mysql问答</span>
+            <span class="post-date" title="2020-01-03 08:04:03">2020/01/03</span>
+        </a>
+        
+        <a  class="前端 jquery "
+           href="/2019/12/24/jquery/"
+           data-tag="web,jquery"
+           data-author="" >
+            <span class="post-title" title="jquery各种函数使用示例">jquery各种函数使用示例</span>
+            <span class="post-date" title="2019-12-24 16:54:54">2019/12/24</span>
+        </a>
+        
+        <a id="top" class="Java ssm "
+           href="/2020/01/01/ssm/"
+           data-tag="spring boot,spring,mybatis"
+           data-author="" >
+            <span class="post-title" title="ssm项目搭建及后续开发记录">ssm项目搭建及后续开发记录</span>
+            <span class="post-date" title="2020-01-01 12:01:23">2020/01/01</span>
+        </a>
+        
+        <a  class="工具 postman "
+           href="/2020/01/13/postman/"
+           data-tag="postman"
+           data-author="" >
+            <span class="post-title" title="postman相关">postman相关</span>
+            <span class="post-date" title="2020-01-13 18:10:17">2020/01/13</span>
+        </a>
+        
+        <a  class="Java SpringBoot "
+           href="/2020/01/07/SpringBoot-Create/"
+           data-tag="SpringBoot,Java"
+           data-author="" >
+            <span class="post-title" title="创建SpringBoot项目">创建SpringBoot项目</span>
+            <span class="post-date" title="2020-01-07 14:50:44">2020/01/07</span>
+        </a>
+        
+        <a  class="工具 docker "
+           href="/2020/01/07/docker-command/"
+           data-tag="docker"
+           data-author="" >
+            <span class="post-title" title="docker命令">docker命令</span>
+            <span class="post-date" title="2020-01-07 15:50:15">2020/01/07</span>
+        </a>
+        
+        <a  class="Linux VMware "
+           href="/2020/01/03/VMware-CentOS/"
+           data-tag="VMware"
+           data-author="" >
+            <span class="post-title" title="win10下VMware安装Centos">win10下VMware安装Centos</span>
+            <span class="post-date" title="2020-01-03 10:13:22">2020/01/03</span>
+        </a>
+        
+        <a id="top" class="网址 "
+           href="/2020/01/06/website-official/"
+           data-tag="website"
+           data-author="" >
+            <span class="post-title" title="网站收藏（工作）">网站收藏（工作）</span>
+            <span class="post-date" title="2020-01-06 17:25:41">2020/01/06</span>
+        </a>
+        
+        <a  class="Java MyBatis "
+           href="/2020/01/07/mybatis-plus-generator/"
+           data-tag="MyBatis,MySql"
+           data-author="" >
+            <span class="post-title" title="mybatis plus mysql 代码生成器">mybatis plus mysql 代码生成器</span>
+            <span class="post-date" title="2020-01-07 14:45:10">2020/01/07</span>
+        </a>
+        
+        <a  class="Java Maven "
+           href="/2020/01/16/maven-common/"
+           data-tag="Maven"
+           data-author="" >
+            <span class="post-title" title="Maven pom.xml常用">Maven pom.xml常用</span>
+            <span class="post-date" title="2020-01-16 14:49:45">2020/01/16</span>
+        </a>
+        
+        <a  class="Java SpringBoot "
+           href="/2020/01/18/springboot-mybatis-plus/"
+           data-tag="Mybatis"
+           data-author="" >
+            <span class="post-title" title="springboot 2.2 集成mybatis-plus">springboot 2.2 集成mybatis-plus</span>
+            <span class="post-date" title="2020-01-18 13:14:46">2020/01/18</span>
+        </a>
+        
+        <a  class="工具 docker "
+           href="/2020/01/13/docker-mysql/"
+           data-tag="docker,MySql"
+           data-author="" >
+            <span class="post-title" title="docker安装MySql及相关命令">docker安装MySql及相关命令</span>
+            <span class="post-date" title="2020-01-13 13:31:12">2020/01/13</span>
+        </a>
+        
+        <a  class="Java lombok "
+           href="/2020/01/18/lombok-annotation/"
+           data-tag="lombok"
+           data-author="" >
+            <span class="post-title" title="lombok常用注解">lombok常用注解</span>
+            <span class="post-date" title="2020-01-18 13:39:18">2020/01/18</span>
+        </a>
+        
+        <a  class="前端 Bootstrap "
+           href="/2020/01/19/bootstrap/"
+           data-tag="Bootstrap"
+           data-author="" >
+            <span class="post-title" title="Bootstrap相关整理">Bootstrap相关整理</span>
+            <span class="post-date" title="2020-01-19 14:15:31">2020/01/19</span>
+        </a>
+        
+        <a  class="数据库 MySQL "
+           href="/2020/01/19/mysql-konwledge/"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="MySQL相关命令及SQL语句整理">MySQL相关命令及SQL语句整理</span>
+            <span class="post-date" title="2020-01-19 10:43:33">2020/01/19</span>
+        </a>
+        
+        <a  class="前端 javascript "
+           href="/2020/03/05/javascript-menutree/"
+           data-tag="javascript"
+           data-author="" >
+            <span class="post-title" title="实现无限极目录树/下拉框（递归）">实现无限极目录树/下拉框（递归）</span>
+            <span class="post-date" title="2020-03-05 14:14:55">2020/03/05</span>
+        </a>
+        
+        <a  class="SpringBoot "
+           href="/2020/02/16/springboot-solr/"
+           data-tag="SpringBoot,Solr"
+           data-author="" >
+            <span class="post-title" title="springboot 集成 solr">springboot 集成 solr</span>
+            <span class="post-date" title="2020-02-16 14:49:32">2020/02/16</span>
+        </a>
+        
+        <a  class="Java JVM "
+           href="/2020/01/24/jvm-tuning/"
+           data-tag="JVM"
+           data-author="" >
+            <span class="post-title" title="JVM回收与调优">JVM回收与调优</span>
+            <span class="post-date" title="2020-01-24 13:39:18">2020/01/24</span>
+        </a>
+        
+        <a  class="Java SpringBoot "
+           href="/2020/01/16/springboot-error/"
+           data-tag="SpringBoot"
+           data-author="" >
+            <span class="post-title" title="SpringBoot问题记录">SpringBoot问题记录</span>
+            <span class="post-date" title="2020-01-16 12:49:46">2020/01/16</span>
+        </a>
+        
+        <a  class="数据库 "
+           href="/2020/03/05/sql_join/"
+           data-tag="SQL"
+           data-author="" >
+            <span class="post-title" title="SQL中left join,right join,inner join之间的区别">SQL中left join,right join,inner join之间的区别</span>
+            <span class="post-date" title="2020-03-05 16:35:10">2020/03/05</span>
+        </a>
+        
+        <a  class="网址 "
+           href="/2020/02/17/website-life/"
+           data-tag="生活"
+           data-author="" >
+            <span class="post-title" title="收藏网站（生活）">收藏网站（生活）</span>
+            <span class="post-date" title="2020-02-17 13:06:26">2020/02/17</span>
+        </a>
+        
+        <a  class="Java 问答 "
+           href="/2020/01/03/interview/"
+           data-tag="Java"
+           data-author="" >
+            <span class="post-title" title="问答">问答</span>
+            <span class="post-date" title="2020-01-03 08:00:18">2020/01/03</span>
+        </a>
+        
+        <a  class="工具 docker "
+           href="/2020/04/09/docker-redis/"
+           data-tag="redis"
+           data-author="" >
+            <span class="post-title" title="docker安装redis 及相关">docker安装redis 及相关</span>
+            <span class="post-date" title="2020-04-09 16:40:37">2020/04/09</span>
+        </a>
+        
+        <a  class="Java Shiro "
+           href="/2020/02/01/springboot-shiro/"
+           data-tag="Shiro"
+           data-author="" >
+            <span class="post-title" title="Springboot 集成 Shiro">Springboot 集成 Shiro</span>
+            <span class="post-date" title="2020-02-01 12:16:53">2020/02/01</span>
+        </a>
+        
+        <a  class="Java 设计模式 "
+           href="/2020/03/27/design_pattern/"
+           data-tag="设计模式"
+           data-author="" >
+            <span class="post-title" title="设计模式">设计模式</span>
+            <span class="post-date" title="2020-03-27 16:40:06">2020/03/27</span>
+        </a>
+        
+    </nav>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div class="post">
+    <div class="pjax">
+        <article id="post-springboot-mybatis-plus" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">springboot 2.2 集成mybatis-plus</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            
+                <a  data-rel="Java">Java</a>/
+            
+                <a  data-rel="SpringBoot">SpringBoot</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a class="color3">Mybatis</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title='更新时间: 2020-02-01 12:14:38'>2020-01-18 13:14</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字数:2k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读:<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+        <span class="top-comment" title="跳转至评论区">
+            <a href="#comments">
+                评论:<span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </a>
+        </span>
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#项目搭建"><span class="toc-text">项目搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建springboot项目"><span class="toc-text">创建springboot项目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#添加maven依赖"><span class="toc-text">添加maven依赖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#添加业务代码"><span class="toc-text">添加业务代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置文件application-yml"><span class="toc-text">配置文件application.yml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#运行结果"><span class="toc-text">运行结果</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注解"><span class="toc-text">注解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#TableName：数据库表相关"><span class="toc-text">@TableName：数据库表相关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TableId：表主键标识"><span class="toc-text">@TableId：表主键标识</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TableField：表字段标识"><span class="toc-text">@TableField：表字段标识</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TableLogic：表字段逻辑处理注解（逻辑删除）"><span class="toc-text">@TableLogic：表字段逻辑处理注解（逻辑删除）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#问题"><span class="toc-text">问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Unknown-column-‘xxx’-in-‘field-list’"><span class="toc-text">Unknown column ‘xxx’ in ‘field list’</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关于’getBaseMapper-’-in-‘com-baomidou-mybatisplus-extension-service-impl-ServiceImpl’-clashes-with…"><span class="toc-text">关于’getBaseMapper()’ in ‘com.baomidou.mybatisplus.extension.service.impl.ServiceImpl’ clashes with…</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ClassNotFoundException-org-mybatis-logging-LoggerFactory"><span class="toc-text">ClassNotFoundException: org.mybatis.logging.LoggerFactory</span></a></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-4 i,
+    .toc-level-4 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>项目搭建及个人开发遇到相关问题<br><strong><em>源码 简单版</em></strong>：<a href="https://github.com/kylin-lawliet/blackcat-blog-web/tree/master/demo-mybatis-plus" target="_blank" rel="noopener">https://github.com/kylin-lawliet/blackcat-blog-web/tree/master/demo-mybatis-plus</a><br><strong><em>源码 基础版</em></strong>：<a href="https://github.com/kylin-lawliet/blackcat-blog-web/tree/master/demo-mybatis-plus-level2" target="_blank" rel="noopener">https://github.com/kylin-lawliet/blackcat-blog-web/tree/master/demo-mybatis-plus-level2</a></p>
+<a id="more"></a>
+
+<h2 id="项目搭建"><a href="#项目搭建" class="headerlink" title="项目搭建"></a>项目搭建</h2><h3 id="创建springboot项目"><a href="#创建springboot项目" class="headerlink" title="创建springboot项目"></a>创建springboot项目</h3><blockquote>
+<p>可查看这篇文章 : <a href="/2020/01/07/SpringBoot-Create/" title="创建SpringBoot项目">创建SpringBoot项目</a></p>
+</blockquote>
+<h3 id="添加maven依赖"><a href="#添加maven依赖" class="headerlink" title="添加maven依赖"></a>添加maven依赖</h3><pre><code class="java">&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;mysql&lt;/groupId&gt;
+    &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
+    &lt;scope&gt;runtime&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;com.baomidou&lt;/groupId&gt;
+    &lt;artifactId&gt;mybatis-plus-boot-starter&lt;/artifactId&gt;
+    &lt;version&gt;3.1.0&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;!--分页--&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;com.github.pagehelper&lt;/groupId&gt;
+    &lt;artifactId&gt;pagehelper-spring-boot-starter&lt;/artifactId&gt;
+    &lt;version&gt;1.2.12&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;com.alibaba&lt;/groupId&gt;
+    &lt;artifactId&gt;druid&lt;/artifactId&gt;
+    &lt;version&gt;1.1.10&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.projectlombok&lt;/groupId&gt;
+    &lt;artifactId&gt;lombok&lt;/artifactId&gt;
+    &lt;optional&gt;true&lt;/optional&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;
+    &lt;scope&gt;test&lt;/scope&gt;
+&lt;/dependency&gt;</code></pre>
+<h3 id="添加业务代码"><a href="#添加业务代码" class="headerlink" title="添加业务代码"></a>添加业务代码</h3><p>User</p>
+<pre><code class="java">package com.blackcat.mybatis.entity;
+
+import com.baomidou.mybatisplus.annotation.*;
+import com.baomidou.mybatisplus.extension.activerecord.Model;
+import lombok.*;
+
+/**
+ * &lt;p&gt; ：测试用户
+ * @author : blackcat
+ * @date : 2020/1/18 12:58
+ */
+@Data
+@NoArgsConstructor// 生成一个无参数的构造方法
+@AllArgsConstructor// 会生成一个包含所有变量的构造方法
+@TableName(&quot;TB_USER&quot;)
+public class User extends Model&lt;User&gt; {
+    @TableId(value = &quot;USER_ID&quot;, type = IdType.AUTO)
+    private Integer userId;
+
+    @TableField(&quot;USER_NAME&quot;)
+    private String userName;
+}
+</code></pre>
+<p>添加UserMapper</p>
+<pre><code class="java">package com.blackcat.mybatis.mapper;
+
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.blackcat.mybatis.entity.User;
+
+import java.util.List;
+
+/**
+ * &lt;p&gt; ：Mapper
+ * @author : blackcat
+ * @date : 2020/1/18 12:57
+ */
+public interface UserMapper  extends BaseMapper&lt;User&gt; {
+    /**
+     * 获取用户信息
+     */
+    List&lt;User&gt; findAllUser();
+}
+</code></pre>
+<p>添加IUserService</p>
+<pre><code class="java">package com.blackcat.mybatis.service;
+
+import com.baomidou.mybatisplus.extension.service.IService;
+import com.blackcat.mybatis.entity.User;
+
+/**
+ * &lt;p&gt; ：
+ * @author : blackcat
+ * @date : 2020/1/18 12:59
+ */
+public interface IUserService extends IService&lt;User&gt; {
+
+    /**
+     * 添加新用户
+     */
+    Object addUser(String userName);
+
+    /**
+     * 查询用户列表
+     */
+    Object findUserList(Integer pageNo, Integer pageSize);
+}
+</code></pre>
+<p>添加UserServiceImpl</p>
+<pre><code class="java">package com.blackcat.mybatis.service.impl;
+
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.blackcat.mybatis.entity.User;
+import com.blackcat.mybatis.mapper.UserMapper;
+import com.blackcat.mybatis.service.IUserService;
+import lombok.Data;
+import org.springframework.stereotype.Service;
+
+/**
+ * &lt;p&gt; ：
+ * @author : blackcat
+ * @date : 2020/1/18 13:01
+ */
+@Service(&quot;userService&quot;)
+@Data
+public class UserServiceImpl extends ServiceImpl&lt;UserMapper, User&gt; implements IUserService {
+
+    @Override
+    public Object addUser(String userName) {
+        User user = new User(null, userName);
+        int ret = baseMapper.insert(user);
+        return ret;
+    }
+
+    @Override
+    public Object findUserList(Integer pageNo, Integer pageSize) {
+        IPage&lt;User&gt; page = new Page&lt;&gt;(pageNo, pageSize);
+        QueryWrapper&lt;User&gt; wrapper = new QueryWrapper&lt;&gt;();
+        wrapper.orderByAsc(&quot;USER_ID&quot;);
+        IPage&lt;User&gt; userIPage = baseMapper.selectPage(page, wrapper);
+        return userIPage;
+    }
+}
+</code></pre>
+<p>添加MybatisPlusConfig</p>
+<pre><code class="java">package com.blackcat.mybatis;
+
+import com.baomidou.mybatisplus.core.injector.ISqlInjector;
+import com.baomidou.mybatisplus.extension.injector.LogicSqlInjector;
+import com.baomidou.mybatisplus.extension.plugins.*;
+import com.github.pagehelper.PageHelper;
+import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.context.annotation.*;
+
+import java.util.Properties;
+
+/**
+ * &lt;p&gt; ：Mybatis-Plus配置类
+ * @author : blackcat
+ * @date : 2020/1/18 12:44
+ */
+@Configuration
+@MapperScan(&quot;com.blackcat.mybatis.mapper&quot;)//这个注解，作用相当于下面的@Bean MapperScannerConfigurer，2者配置1份即可
+public class MybatisPlusConfig {
+
+    /**
+     * 分页插件
+     */
+    @Bean
+    public PaginationInterceptor paginationInterceptor() {
+        PaginationInterceptor paginationInterceptor = new PaginationInterceptor();
+        paginationInterceptor.setDialectType(&quot;mysql&quot;);
+        return paginationInterceptor;
+    }
+
+    /**
+     * sql注入器  逻辑删除插件
+     *
+     * @return
+     */
+    @Bean
+    public ISqlInjector iSqlInjector() {
+        return new LogicSqlInjector();
+    }
+
+    /**
+     * sql性能分析插件，输出sql语句及所需时间
+     *
+     * @return
+     */
+    @Bean
+    @Profile({&quot;dev&quot;, &quot;test&quot;})// 设置 dev test 环境开启
+    public PerformanceInterceptor performanceInterceptor() {
+        PerformanceInterceptor performanceInterceptor = new PerformanceInterceptor();
+        performanceInterceptor.setFormat(true);
+        return performanceInterceptor;
+    }
+
+    /**
+     * 配置mybatis的分页插件pageHelper
+     * @return
+     */
+    @Bean
+    public PageHelper pageHelper() {
+        PageHelper pageHelper = new PageHelper();
+        Properties properties = new Properties();
+        properties.setProperty(&quot;offsetAsPageNum&quot;, &quot;true&quot;);
+        properties.setProperty(&quot;rowBoundsWithCount&quot;, &quot;true&quot;);
+        properties.setProperty(&quot;reasonable&quot;, &quot;true&quot;);
+        properties.setProperty(&quot;dialect&quot;, &quot;mysql&quot;);
+        pageHelper.setProperties(properties);
+        return pageHelper;
+    }
+
+    /**
+     * 乐观锁插件
+     *
+     * @return
+     */
+    public OptimisticLockerInterceptor optimisticLockerInterceptor() {
+        return new OptimisticLockerInterceptor();
+    }
+}
+</code></pre>
+<p>添加UserController</p>
+<pre><code class="java">package com.blackcat.mybatis.controller;
+
+import com.blackcat.mybatis.service.IUserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+/**
+ * &lt;p&gt; ：Controller
+ * @author : blackcat
+ * @date : 2020/1/18 13:20
+ */
+@RestController
+public class UserController {
+    @Autowired
+    private IUserService userService;
+
+    /**
+     * 新增测试
+     */
+    @RequestMapping(&quot;/addUser&quot;)
+    public Object addUser(String userName) {
+        return userService.addUser(userName);
+    }
+
+    /**
+     * 查询测试
+     */
+    @RequestMapping(&quot;/findUserList&quot;)
+    public Object findUserList(Integer pageNo, Integer pageSize) {
+        return userService.findUserList(pageNo, pageSize);
+    }
+}
+</code></pre>
+<p>添加UserMapper.xml</p>
+<pre><code class="java">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE mapper PUBLIC &quot;-//mybatis.org//DTD Mapper 3.0//EN&quot; &quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;
+&lt;mapper namespace=&quot;com.blackcat.mybatis.mapper.UserMapper&quot;&gt;
+
+    &lt;!-- 通用查询映射结果 --&gt;
+    &lt;resultMap id=&quot;BaseResultMap&quot; type=&quot;com.blackcat.mybatis.entity.User&quot;&gt;
+        &lt;id column=&quot;USER_ID&quot; property=&quot;userId&quot;/&gt;
+        &lt;result column=&quot;USER_NAME&quot; property=&quot;userName&quot;/&gt;
+    &lt;/resultMap&gt;
+&lt;/mapper&gt;</code></pre>
+<h3 id="配置文件application-yml"><a href="#配置文件application-yml" class="headerlink" title="配置文件application.yml"></a>配置文件application.yml</h3><pre><code class="java">server:
+  port: 8090
+
+  #dataSource set
+spring:
+  datasource:
+    name: hejrDataSource
+    url: jdbc:mysql://192.168.31.77:4306/testdata?serverTimezone=GMT%2B8&amp;useUnicode=true&amp;characterEncoding=utf8&amp;characterSetResults=utf8&amp;useSSL=false
+    username: root
+    password: 111111
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    filters: stat
+    maxActive: 20
+    initialSize: 1
+    maxWait: 60000
+    minIdle: 1
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: select &#39;x&#39;
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxOpenPreparedStatements: 20
+
+
+#mybatis plus
+mybatis-plus:
+  mapper-locations: classpath:mapper/*Mapper.xml
+  #实体扫描，多个package用逗号或者分号分隔
+  typeAliasesPackage: com.blackcat.mybatis.entiry
+  #typeEnumsPackage: com.baomidou.springboot.entity.enums
+  global-config:
+    #刷新mapper 调试神器
+    db-config:
+      #主键类型  0:&quot;数据库ID自增&quot;, 1:&quot;用户输入ID&quot;,2:&quot;全局唯一ID (数字类型唯一ID)&quot;, 3:&quot;全局唯一ID UUID&quot;;
+      #idtype: 0
+      #字段策略 0:&quot;忽略判断&quot;,1:&quot;非 NULL 判断&quot;),2:&quot;非空判断&quot;
+      field-strategy: not_empty
+      #驼峰下划线转换
+      column-underline: true
+      #数据库大写下划线转换
+      #capitalmode: true
+      #逻辑删除配置
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+      db-type: mysql
+    refresh: true
+      #自定义填充策略接口实现
+      #metaobjecthandler: com.baomidou.springboot.xxx
+    #自定义SQL注入器
+  #sqlinjector: com.baomidou.mybatisplus.extension.injector.LogicSqlInjector
+  configuration:
+    # 这个配置会将执行的sql打印出来，在开发或测试的时候可以用
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+
+logging.level.com.blackcat.mybaits.mapper: debug</code></pre>
+<h3 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h3><p><img src="/img/ssm/mybatis/1.png" alt=""><br><img src="/img/ssm/mybatis/2.png" alt=""></p>
+<h2 id="注解"><a href="#注解" class="headerlink" title="注解"></a>注解</h2><h3 id="TableName：数据库表相关"><a href="#TableName：数据库表相关" class="headerlink" title="@TableName：数据库表相关"></a>@TableName：数据库表相关</h3><h3 id="TableId：表主键标识"><a href="#TableId：表主键标识" class="headerlink" title="@TableId：表主键标识"></a>@TableId：表主键标识</h3><h3 id="TableField：表字段标识"><a href="#TableField：表字段标识" class="headerlink" title="@TableField：表字段标识"></a>@TableField：表字段标识</h3><ul>
+<li><code>@TableField(exist = false)</code>：表示该属性不为数据库表字段，但又是必须使用的。</li>
+<li><code>@TableField(exist = true)</code>：表示该属性为数据库表字段。</li>
+</ul>
+<h3 id="TableLogic：表字段逻辑处理注解（逻辑删除）"><a href="#TableLogic：表字段逻辑处理注解（逻辑删除）" class="headerlink" title="@TableLogic：表字段逻辑处理注解（逻辑删除）"></a>@TableLogic：表字段逻辑处理注解（逻辑删除）</h3><h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><h3 id="Unknown-column-‘xxx’-in-‘field-list’"><a href="#Unknown-column-‘xxx’-in-‘field-list’" class="headerlink" title="Unknown column ‘xxx’ in ‘field list’"></a>Unknown column ‘xxx’ in ‘field list’</h3><p>该错误一般情况下是实体类与数据库字段不匹配导致。例如：名称有下划线之类的，与实体类不一致。<br>也还有其他情况出现：<br><strong>例如：</strong><br>实体类中使用<code>@Transient</code>注解，数据库中并不会存在该字段，但是又是必须使用字段。<br>这时当时用当使用mybatis-plus自带的查询时，如<code>selectById(key)</code>之类的就会报标题标注错误。<br><strong>解决方式：</strong><br>在字段上方加入<code>@TableField(exist = false)</code>注解(表示该属性不为数据库表字段，但又是必须使用的。)</p>
+<h3 id="关于’getBaseMapper-’-in-‘com-baomidou-mybatisplus-extension-service-impl-ServiceImpl’-clashes-with…"><a href="#关于’getBaseMapper-’-in-‘com-baomidou-mybatisplus-extension-service-impl-ServiceImpl’-clashes-with…" class="headerlink" title="关于’getBaseMapper()’ in ‘com.baomidou.mybatisplus.extension.service.impl.ServiceImpl’ clashes with…"></a>关于’getBaseMapper()’ in ‘com.baomidou.mybatisplus.extension.service.impl.ServiceImpl’ clashes with…</h3><p>问题原因：mapper类没有继承BaseMapper<br>示例：</p>
+<pre><code class="java">// Mapper类
+public interface UserMapper{// 没有继承extends BaseMapper&lt;User&gt; 
+
+}
+// Service类
+public interface IUserService extends IService&lt;User&gt; {
+}
+// ServiceImpl类
+public class UserServiceImpl extends ServiceImpl&lt;UserMapper, User&gt; implements IUserService {// 此处会报错
+}</code></pre>
+<p>解决：UserMapper类继承BaseMapper</p>
+<h3 id="ClassNotFoundException-org-mybatis-logging-LoggerFactory"><a href="#ClassNotFoundException-org-mybatis-logging-LoggerFactory" class="headerlink" title="ClassNotFoundException: org.mybatis.logging.LoggerFactory"></a>ClassNotFoundException: org.mybatis.logging.LoggerFactory</h3><p>依赖冲突，查看自己依赖是否错误</p>
+<ul>
+<li>spring boot整合mybatis  maven 依赖<pre><code class="java">&lt;dependency&gt;
+  &lt;groupId&gt;org.mybatis.spring.boot&lt;/groupId&gt;
+  &lt;artifactId&gt;mybatis-spring-boot-starter&lt;/artifactId&gt;
+  &lt;version&gt;2.1.1&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+  &lt;groupId&gt;com.github.pagehelper&lt;/groupId&gt;
+  &lt;artifactId&gt;pagehelper&lt;/artifactId&gt;
+  &lt;version&gt;5.1.4&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+  &lt;groupId&gt;com.github.pagehelper&lt;/groupId&gt;
+  &lt;artifactId&gt;pagehelper-spring-boot-autoconfigure&lt;/artifactId&gt;
+  &lt;version&gt;1.2.5&lt;/version&gt;
+&lt;/dependency&gt;</code></pre>
+</li>
+<li>spring boot整合mybatis-plus  maven 依赖<pre><code class="java">&lt;!-- mybatisPlus 核心库 --&gt;
+&lt;dependency&gt;
+  &lt;groupId&gt;com.baomidou&lt;/groupId&gt;
+  &lt;artifactId&gt;mybatis-plus-boot-starter&lt;/artifactId&gt;
+  &lt;version&gt;3.1.0&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;!--分页--&gt;
+&lt;dependency&gt;
+  &lt;groupId&gt;com.github.pagehelper&lt;/groupId&gt;
+  &lt;artifactId&gt;pagehelper-spring-boot-starter&lt;/artifactId&gt;
+  &lt;version&gt;1.2.12&lt;/version&gt;
+&lt;/dependency&gt;</code></pre>
+</li>
+</ul>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 kylin_lawliet@163.com </span>
+    </div>
+</article>
+
+
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>springboot 2.2 集成mybatis-plus</p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">2k</span></p>
+    <p><span class="copy-title">本文作者:</span><a  title="blackcat">blackcat</a></p>
+    <p><span class="copy-title">发布时间:</span>2020-01-18, 13:14:46</p>
+    <p><span class="copy-title">最后更新:</span>2020-02-01, 12:14:38</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2020/01/18/springboot-mybatis-plus/" title="springboot 2.2 集成mybatis-plus">https://kylin-blackcat.com/2020/01/18/springboot-mybatis-plus/</a>
+    <p>
+        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+    </p>
+</div>
+
+
+
+    <div id="comments"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+<script type="text/javascript">
+    $.getScript('/js/gitalk.js', function () {
+        var gitalk = new Gitalk({
+            clientID: '312730c94e34ee10b19d',
+            clientSecret: '5e87bc5a90b6723fd6495ebe7ffde8e0f69caceb',
+            repo: 'gitalk-commnet',
+            owner: 'kylin-lawliet',
+            admin: ['kylin-lawliet'],
+            id: decodeURI(location.pathname),
+            distractionFreeMode: 'true',
+            language: 'zh-CN',
+            perPage: parseInt('10',10)
+        })
+        gitalk.render('comments')
+    })
+</script>
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">©2019 blackcat</p>
+<!--
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+-->
+
+    </div>
+    <div class="full-toc">
+        <button class="full"><span class="min "></span></button>
+<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
+<div class="post-toc"><span class="post-toc-title">目录</span>
+    <div class="post-toc-content">
+
+    </div>
+</div>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+<div class="acParent"></div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.0.1" ></script>
+
+<script src="/js/script.js?v=1.0.1" ></script>
+<script>
+    var img_resize = 'default';
+    /*作者、标签的自动补全*/
+    $(function () {
+        $('.search').AutoComplete({
+            'data': ['#javascript','#hexo','#Idea','#easyUI','#git，hexo','#docker','#MySQL','#web','#jquery','#spring boot','#spring','#mybatis','#postman','#SpringBoot','#Java','#VMware','#website','#MyBatis','#MySql','#Maven','#Mybatis','#lombok','#Bootstrap','#Solr','#JVM','#SQL','#生活','#redis','#Shiro','#设计模式',],
+            'itemHeight': 20,
+            'width': 418
+        }).AutoComplete('show');
+    })
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $(".post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+        .nav .hide-list.fullscreen {
+            left: 492px
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+    .post .pjax article .article-entry>ol, .post .pjax article .article-entry>ul, .post .pjax article>ol, .post .pjax article>ul{
+        border: #e2dede solid 1px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    .post .pjax article .article-entry li>ol, .post .pjax article .article-entry li>ul,.post .pjax article li>ol, .post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .post .pjax article .article-entry>ol>li, .post .pjax article .article-entry>ul>li,.post .pjax article>ol>li, .post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    .post .pjax article .article-entry li>ol>li, .post .pjax article .article-entry li>ul>li,.post .pjax article li>ol>li, .post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("https://i.loli.net/2019/07/22/5d3521411f3f169375.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+    .post .pjax article :not(pre) > code {
+        color: #24292e;
+        font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+        background-color: rgba(27,31,35,.05);
+        border-radius: 3px;
+        font-size: 85%;
+        margin: 0;
+        padding: .2em .4em;
+    }
+    
+</style>
+
+
+
+
+
+
+
+</html>

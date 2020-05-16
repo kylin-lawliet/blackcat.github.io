@@ -1,0 +1,4377 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>设计模式 | BlackCat</title>
+  <meta name="keywords" content=" 设计模式 ">
+  <meta name="description" content="设计模式 | BlackCat">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="strong a {         color: #747474;     }     .player {         text-align: center;         margin: .5em auto 0;         width: 100%;         max-width: 22em;     }     .player br {         displa">
+<meta property="og:type" content="website">
+<meta property="og:title" content="关于我">
+<meta property="og:url" content="https:&#x2F;&#x2F;kylin-blackcat.com&#x2F;about&#x2F;index.html">
+<meta property="og:site_name" content="BlackCat">
+<meta property="og:description" content="strong a {         color: #747474;     }     .player {         text-align: center;         margin: .5em auto 0;         width: 100%;         max-width: 22em;     }     .player br {         displa">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-12-22T03:08:52.000Z">
+<meta property="article:modified_time" content="2020-01-26T02:07:51.239Z">
+<meta property="article:author" content="blackcat">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.0.1" rel="stylesheet">
+
+<link href="/css/hl_theme/gruvbox-light.css?v=1.0.1" rel="stylesheet">
+
+<link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="/js/jquery.autocomplete.min.js?v=1.0.1" ></script>
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.0.1" ></script>
+
+<meta name="generator" content="Hexo 4.1.1"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="false">
+  <input class="theme_blog_path" value="">
+</div>
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/" class="avatar_target">
+    <img class="avatar" src="/img/avatar.jpg" />
+</a>
+<div class="author">
+    <span>blackcat</span>
+</div>
+
+<div class="icon">
+    
+        
+        <a title="github" href="https://github.com/kylin-lawliet" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-github"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="email" href="mailto:kylin_lawliet@163.com" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-email"></use>
+                </svg>
+            
+        </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li><div class="all active">全部文章<small>(32)</small></div></li>
+    
+        
+            
+            <li><div data-rel="前端"><i class="fold iconfont icon-right"></i>前端<small>(5)</small></div>
+                
+                    <ul class="sub hide">
+                        
+                        <li><div data-rel="easyUI">easyUI<small>(1)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="javascript">javascript<small>(2)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="jquery">jquery<small>(1)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="Bootstrap">Bootstrap<small>(1)</small></div>
+                            
+                        </li>
+                            
+                    </ul>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="hexo">hexo<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="工具"><i class="fold iconfont icon-right"></i>工具<small>(5)</small></div>
+                
+                    <ul class="sub hide">
+                        
+                        <li><div data-rel="Idea">Idea<small>(1)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="postman">postman<small>(1)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="docker">docker<small>(3)</small></div>
+                            
+                        </li>
+                            
+                    </ul>
+                
+            </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+            <li><div data-rel="Linux"><i class="fold iconfont icon-right"></i>Linux<small>(2)</small></div>
+                
+                    <ul class="sub hide">
+                        
+                        <li><div data-rel="docker">docker<small>(1)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="VMware">VMware<small>(1)</small></div>
+                            
+                        </li>
+                            
+                    </ul>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="数据库"><i class="fold iconfont icon-right"></i>数据库<small>(3)</small></div>
+                
+                    <ul class="sub hide">
+                        
+                        <li><div data-rel="MySQL">MySQL<small>(2)</small></div>
+                            
+                        </li>
+                            
+                    </ul>
+                
+            </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+            <li><div data-rel="Java"><i class="fold iconfont icon-right"></i>Java<small>(11)</small></div>
+                
+                    <ul class="sub hide">
+                        
+                        <li><div data-rel="ssm">ssm<small>(1)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="SpringBoot">SpringBoot<small>(3)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="MyBatis">MyBatis<small>(1)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="Maven">Maven<small>(1)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="lombok">lombok<small>(1)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="JVM">JVM<small>(1)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="问答">问答<small>(1)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="Shiro">Shiro<small>(1)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="设计模式">设计模式<small>(1)</small></div>
+                            
+                        </li>
+                            
+                    </ul>
+                
+            </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+            <li><div data-rel="网址">网址<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+            <li><div data-rel="SpringBoot">SpringBoot<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    
+    
+    
+    </div>
+    <div><a class="about  hasFriend  site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="32">
+<input type="hidden" id="yelog_site_word_count" value="141.7k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="back-title-list"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="https://yelog.org">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <form onkeydown="if(event.keyCode==13){return false;}">
+        <input class="search" type="text" placeholder="以 in: 开头进行全文搜索" autocomplete="off"id="local-search-input" >
+        <i class="cross"></i>
+        <span>
+            <label for="tagswitch">Tags:</label>
+            <input id="tagswitch" type="checkbox" style="display: none" />
+            <i id="tagsWitchIcon"></i>
+        </span>
+    </form>
+    <div class="tags-list">
+    
+    <li class="article-tag-list-item">
+        <a class="color1">javascript</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">hexo</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">Idea</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color2">easyUI</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">git，hexo</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color2">docker</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color1">MySQL</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">web</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color2">jquery</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color2">spring boot</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color2">spring</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color3">mybatis</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color3">postman</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color1">SpringBoot</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">Java</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color2">VMware</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color3">website</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color3">MyBatis</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color1">MySql</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color1">Maven</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color3">Mybatis</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color2">lombok</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">Bootstrap</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">Solr</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">JVM</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">SQL</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color3">生活</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color1">redis</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color1">Shiro</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">设计模式</a>
+    </li>
+    
+    <div class="clearfix"></div>
+</div>
+
+    
+    <div id="local-search-result">
+
+    </div>
+    
+    <nav id="title-list-nav">
+        
+        <a  class=""
+           href="/2019/12/28/freemaker/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="freemaker学习笔记">freemaker学习笔记</span>
+            <span class="post-date" title="2019-12-28 08:44:41">2019/12/28</span>
+        </a>
+        
+        <a  class="前端 javascript "
+           href="/2019/12/24/javascript/"
+           data-tag="javascript"
+           data-author="" >
+            <span class="post-title" title="javascript使用示例">javascript使用示例</span>
+            <span class="post-date" title="2019-12-24 08:52:35">2019/12/24</span>
+        </a>
+        
+        <a id="top" class="hexo "
+           href="/2019/12/23/hexo-dome/"
+           data-tag="hexo"
+           data-author="" >
+            <span class="post-title" title="hexo文章格式示例">hexo文章格式示例</span>
+            <span class="post-date" title="2019-12-23 10:24:34">2019/12/23</span>
+        </a>
+        
+        <a  class="工具 Idea "
+           href="/2019/12/25/idea/"
+           data-tag="Idea"
+           data-author="" >
+            <span class="post-title" title="Idea笔记">Idea笔记</span>
+            <span class="post-date" title="2019-12-25 08:51:24">2019/12/25</span>
+        </a>
+        
+        <a  class="前端 easyUI "
+           href="/2019/12/24/easyui/"
+           data-tag="easyUI"
+           data-author="" >
+            <span class="post-title" title="easyui记录使用过程中出现的问题">easyui记录使用过程中出现的问题</span>
+            <span class="post-date" title="2019-12-24 16:56:43">2019/12/24</span>
+        </a>
+        
+        <a  class="hexo "
+           href="/2019/12/22/hexo/"
+           data-tag="git，hexo"
+           data-author="" >
+            <span class="post-title" title="hexo建站相关">hexo建站相关</span>
+            <span class="post-date" title="2019-12-22 14:18:18">2019/12/22</span>
+        </a>
+        
+        <a  class="Linux docker "
+           href="/2020/01/03/docker/"
+           data-tag="docker"
+           data-author="" >
+            <span class="post-title" title="Linux安装docker使用及一些问题记录">Linux安装docker使用及一些问题记录</span>
+            <span class="post-date" title="2020-01-03 17:17:35">2020/01/03</span>
+        </a>
+        
+        <a  class="数据库 MySQL "
+           href="/2020/01/03/mysql-quiz/"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="mysql问答">mysql问答</span>
+            <span class="post-date" title="2020-01-03 08:04:03">2020/01/03</span>
+        </a>
+        
+        <a  class="前端 jquery "
+           href="/2019/12/24/jquery/"
+           data-tag="web,jquery"
+           data-author="" >
+            <span class="post-title" title="jquery各种函数使用示例">jquery各种函数使用示例</span>
+            <span class="post-date" title="2019-12-24 16:54:54">2019/12/24</span>
+        </a>
+        
+        <a id="top" class="Java ssm "
+           href="/2020/01/01/ssm/"
+           data-tag="spring boot,spring,mybatis"
+           data-author="" >
+            <span class="post-title" title="ssm项目搭建及后续开发记录">ssm项目搭建及后续开发记录</span>
+            <span class="post-date" title="2020-01-01 12:01:23">2020/01/01</span>
+        </a>
+        
+        <a  class="工具 postman "
+           href="/2020/01/13/postman/"
+           data-tag="postman"
+           data-author="" >
+            <span class="post-title" title="postman相关">postman相关</span>
+            <span class="post-date" title="2020-01-13 18:10:17">2020/01/13</span>
+        </a>
+        
+        <a  class="Java SpringBoot "
+           href="/2020/01/07/SpringBoot-Create/"
+           data-tag="SpringBoot,Java"
+           data-author="" >
+            <span class="post-title" title="创建SpringBoot项目">创建SpringBoot项目</span>
+            <span class="post-date" title="2020-01-07 14:50:44">2020/01/07</span>
+        </a>
+        
+        <a  class="工具 docker "
+           href="/2020/01/07/docker-command/"
+           data-tag="docker"
+           data-author="" >
+            <span class="post-title" title="docker命令">docker命令</span>
+            <span class="post-date" title="2020-01-07 15:50:15">2020/01/07</span>
+        </a>
+        
+        <a  class="Linux VMware "
+           href="/2020/01/03/VMware-CentOS/"
+           data-tag="VMware"
+           data-author="" >
+            <span class="post-title" title="win10下VMware安装Centos">win10下VMware安装Centos</span>
+            <span class="post-date" title="2020-01-03 10:13:22">2020/01/03</span>
+        </a>
+        
+        <a id="top" class="网址 "
+           href="/2020/01/06/website-official/"
+           data-tag="website"
+           data-author="" >
+            <span class="post-title" title="网站收藏（工作）">网站收藏（工作）</span>
+            <span class="post-date" title="2020-01-06 17:25:41">2020/01/06</span>
+        </a>
+        
+        <a  class="Java MyBatis "
+           href="/2020/01/07/mybatis-plus-generator/"
+           data-tag="MyBatis,MySql"
+           data-author="" >
+            <span class="post-title" title="mybatis plus mysql 代码生成器">mybatis plus mysql 代码生成器</span>
+            <span class="post-date" title="2020-01-07 14:45:10">2020/01/07</span>
+        </a>
+        
+        <a  class="Java Maven "
+           href="/2020/01/16/maven-common/"
+           data-tag="Maven"
+           data-author="" >
+            <span class="post-title" title="Maven pom.xml常用">Maven pom.xml常用</span>
+            <span class="post-date" title="2020-01-16 14:49:45">2020/01/16</span>
+        </a>
+        
+        <a  class="Java SpringBoot "
+           href="/2020/01/18/springboot-mybatis-plus/"
+           data-tag="Mybatis"
+           data-author="" >
+            <span class="post-title" title="springboot 2.2 集成mybatis-plus">springboot 2.2 集成mybatis-plus</span>
+            <span class="post-date" title="2020-01-18 13:14:46">2020/01/18</span>
+        </a>
+        
+        <a  class="工具 docker "
+           href="/2020/01/13/docker-mysql/"
+           data-tag="docker,MySql"
+           data-author="" >
+            <span class="post-title" title="docker安装MySql及相关命令">docker安装MySql及相关命令</span>
+            <span class="post-date" title="2020-01-13 13:31:12">2020/01/13</span>
+        </a>
+        
+        <a  class="Java lombok "
+           href="/2020/01/18/lombok-annotation/"
+           data-tag="lombok"
+           data-author="" >
+            <span class="post-title" title="lombok常用注解">lombok常用注解</span>
+            <span class="post-date" title="2020-01-18 13:39:18">2020/01/18</span>
+        </a>
+        
+        <a  class="前端 Bootstrap "
+           href="/2020/01/19/bootstrap/"
+           data-tag="Bootstrap"
+           data-author="" >
+            <span class="post-title" title="Bootstrap相关整理">Bootstrap相关整理</span>
+            <span class="post-date" title="2020-01-19 14:15:31">2020/01/19</span>
+        </a>
+        
+        <a  class="数据库 MySQL "
+           href="/2020/01/19/mysql-konwledge/"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="MySQL相关命令及SQL语句整理">MySQL相关命令及SQL语句整理</span>
+            <span class="post-date" title="2020-01-19 10:43:33">2020/01/19</span>
+        </a>
+        
+        <a  class="前端 javascript "
+           href="/2020/03/05/javascript-menutree/"
+           data-tag="javascript"
+           data-author="" >
+            <span class="post-title" title="实现无限极目录树/下拉框（递归）">实现无限极目录树/下拉框（递归）</span>
+            <span class="post-date" title="2020-03-05 14:14:55">2020/03/05</span>
+        </a>
+        
+        <a  class="SpringBoot "
+           href="/2020/02/16/springboot-solr/"
+           data-tag="SpringBoot,Solr"
+           data-author="" >
+            <span class="post-title" title="springboot 集成 solr">springboot 集成 solr</span>
+            <span class="post-date" title="2020-02-16 14:49:32">2020/02/16</span>
+        </a>
+        
+        <a  class="Java JVM "
+           href="/2020/01/24/jvm-tuning/"
+           data-tag="JVM"
+           data-author="" >
+            <span class="post-title" title="JVM回收与调优">JVM回收与调优</span>
+            <span class="post-date" title="2020-01-24 13:39:18">2020/01/24</span>
+        </a>
+        
+        <a  class="Java SpringBoot "
+           href="/2020/01/16/springboot-error/"
+           data-tag="SpringBoot"
+           data-author="" >
+            <span class="post-title" title="SpringBoot问题记录">SpringBoot问题记录</span>
+            <span class="post-date" title="2020-01-16 12:49:46">2020/01/16</span>
+        </a>
+        
+        <a  class="数据库 "
+           href="/2020/03/05/sql_join/"
+           data-tag="SQL"
+           data-author="" >
+            <span class="post-title" title="SQL中left join,right join,inner join之间的区别">SQL中left join,right join,inner join之间的区别</span>
+            <span class="post-date" title="2020-03-05 16:35:10">2020/03/05</span>
+        </a>
+        
+        <a  class="网址 "
+           href="/2020/02/17/website-life/"
+           data-tag="生活"
+           data-author="" >
+            <span class="post-title" title="收藏网站（生活）">收藏网站（生活）</span>
+            <span class="post-date" title="2020-02-17 13:06:26">2020/02/17</span>
+        </a>
+        
+        <a  class="Java 问答 "
+           href="/2020/01/03/interview/"
+           data-tag="Java"
+           data-author="" >
+            <span class="post-title" title="问答">问答</span>
+            <span class="post-date" title="2020-01-03 08:00:18">2020/01/03</span>
+        </a>
+        
+        <a  class="工具 docker "
+           href="/2020/04/09/docker-redis/"
+           data-tag="redis"
+           data-author="" >
+            <span class="post-title" title="docker安装redis 及相关">docker安装redis 及相关</span>
+            <span class="post-date" title="2020-04-09 16:40:37">2020/04/09</span>
+        </a>
+        
+        <a  class="Java Shiro "
+           href="/2020/02/01/springboot-shiro/"
+           data-tag="Shiro"
+           data-author="" >
+            <span class="post-title" title="Springboot 集成 Shiro">Springboot 集成 Shiro</span>
+            <span class="post-date" title="2020-02-01 12:16:53">2020/02/01</span>
+        </a>
+        
+        <a  class="Java 设计模式 "
+           href="/2020/03/27/design_pattern/"
+           data-tag="设计模式"
+           data-author="" >
+            <span class="post-title" title="设计模式">设计模式</span>
+            <span class="post-date" title="2020-03-27 16:40:06">2020/03/27</span>
+        </a>
+        
+    </nav>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div class="post">
+    <div class="pjax">
+        <article id="post-design_pattern" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">设计模式</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            
+                <a  data-rel="Java">Java</a>/
+            
+                <a  data-rel="设计模式">设计模式</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a class="color5">设计模式</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title='更新时间: 2020-03-28 16:33:45'>2020-03-27 16:40</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字数:54.5k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读:<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+        <span class="top-comment" title="跳转至评论区">
+            <a href="#comments">
+                评论:<span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </a>
+        </span>
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#设计模式"><span class="toc-text">设计模式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#三大特性"><span class="toc-text">三大特性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#封装"><span class="toc-text">封装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#继承"><span class="toc-text">继承</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#多态"><span class="toc-text">多态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#示例"><span class="toc-text">示例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#单例（Singleton）"><span class="toc-text">单例（Singleton）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#初步理解"><span class="toc-text">初步理解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#定义说明"><span class="toc-text">定义说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#深入学习"><span class="toc-text">深入学习</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#单例模式的对象长时间不用会被jvm垃圾收集器收集吗"><span class="toc-text">单例模式的对象长时间不用会被jvm垃圾收集器收集吗</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#在一个jvm中会出现多个单例吗"><span class="toc-text">在一个jvm中会出现多个单例吗</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#在getInstance-方法上同步有优势还是仅同步必要的块更优优势？"><span class="toc-text">在getInstance()方法上同步有优势还是仅同步必要的块更优优势？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#单例类可以被继承吗"><span class="toc-text">单例类可以被继承吗</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#原型（Prototype）"><span class="toc-text">原型（Prototype）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#初步理解-1"><span class="toc-text">初步理解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#定义说明-1"><span class="toc-text">定义说明</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#策略（Strategy）"><span class="toc-text">策略（Strategy）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#初步理解-2"><span class="toc-text">初步理解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#定义说明-2"><span class="toc-text">定义说明</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#状态（State）"><span class="toc-text">状态（State）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#初步理解-3"><span class="toc-text">初步理解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#定义说明-3"><span class="toc-text">定义说明</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模板方法（Template）"><span class="toc-text">模板方法（Template）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#初步理解-4"><span class="toc-text">初步理解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#定义说明-4"><span class="toc-text">定义说明</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#门面-外观（Facade）"><span class="toc-text">门面&#x2F;外观（Facade）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#初步理解-5"><span class="toc-text">初步理解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#定义说明-5"><span class="toc-text">定义说明</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#组合（Combinations）"><span class="toc-text">组合（Combinations）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#初步理解-6"><span class="toc-text">初步理解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#定义说明-6"><span class="toc-text">定义说明</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#中介（Intermediary）"><span class="toc-text">中介（Intermediary）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#初步理解-7"><span class="toc-text">初步理解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#定义说明-7"><span class="toc-text">定义说明</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#备忘录（Memorandum）"><span class="toc-text">备忘录（Memorandum）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#初步理解-8"><span class="toc-text">初步理解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#定义说明-8"><span class="toc-text">定义说明</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#迭代器（Iterator）"><span class="toc-text">迭代器（Iterator）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#初步理解-9"><span class="toc-text">初步理解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#定义说明-9"><span class="toc-text">定义说明</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#责任链"><span class="toc-text">责任链</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#初步理解-10"><span class="toc-text">初步理解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#定义说明-10"><span class="toc-text">定义说明</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#观察者"><span class="toc-text">观察者</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#初步理解-11"><span class="toc-text">初步理解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#定义说明-11"><span class="toc-text">定义说明</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代理"><span class="toc-text">代理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#初步理解-12"><span class="toc-text">初步理解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#定义说明-12"><span class="toc-text">定义说明</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#工厂方法"><span class="toc-text">工厂方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#初步理解-13"><span class="toc-text">初步理解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#定义说明-13"><span class="toc-text">定义说明</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#桥接（Bridge）"><span class="toc-text">桥接（Bridge）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#初步理解-14"><span class="toc-text">初步理解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#定义说明-14"><span class="toc-text">定义说明</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#抽象工厂"><span class="toc-text">抽象工厂</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#初步理解-15"><span class="toc-text">初步理解</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#建造者-生成器"><span class="toc-text">建造者&#x2F;生成器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#初步理解-16"><span class="toc-text">初步理解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#定义说明-15"><span class="toc-text">定义说明</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命令模式"><span class="toc-text">命令模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#初步理解-17"><span class="toc-text">初步理解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#定义说明-16"><span class="toc-text">定义说明</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#访问者"><span class="toc-text">访问者</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#初步理解-18"><span class="toc-text">初步理解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#定义说明-17"><span class="toc-text">定义说明</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解释器"><span class="toc-text">解释器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#初步理解-19"><span class="toc-text">初步理解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#定义说明-18"><span class="toc-text">定义说明</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#相关"><span class="toc-text">相关</span></a></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-4 i,
+    .toc-level-4 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>设计模式相关整理</p>
+<a id="more"></a>
+
+
+
+<h1 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h1><blockquote>
+<p>设计模式分为三大类：</p>
+</blockquote>
+<p><strong>创建型模式</strong>（五种）：工厂方法模式、抽象工厂模式、单例模式、建造者模式、原型模式</p>
+<p><strong>结构型模式</strong>（七种）：适配器模式、装饰器模式、代理模式、外观(门面)模式、桥接模式、组合模式、享元模式</p>
+<p><strong>行为型模式</strong>（十一种）：策略模式、模板方法模式、观察者模式、迭代子模式、责任链模式、命令模式、备忘录模式、状态模式、访问者模式、中介者模式、解释器模式。</p>
+<h2 id="三大特性"><a href="#三大特性" class="headerlink" title="三大特性"></a>三大特性</h2><h3 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h3><p><strong>一杯可乐</strong>：是被盖子给封起来的，只留了一个孔可以插吸管才能喝。这其实就是封装，封装隐藏了内部的可乐，对外留有一个接口来访问，这样有啥好处？干净！防止外部随便访问，比如灰尘落入弄脏内部数据。</p>
+<p>对外暴露的习惯是非常容易使用的，你根本无需关心内部实现细节，你喝个可乐还在乎气压怎么增大减小导致可乐杯吸出来？非常简单，一个字：“吸”！</p>
+<h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3><p><strong>DNA</strong>：生物一代代的延续下来是靠什么保持其父辈的特征？遗传基因，正所谓龙生龙凤生凤，老鼠儿子会打洞，没有这个机制那代码量会急剧上升，很多功能，资源都是重复的在定义，这样造成极大的冗余和浪费！</p>
+<p>所以就有了继承机制，儿子从父亲那继承下来一些东西，不需要自己再去拼搏了，比如富二代继承家产，再比如天生好嗓子，妈妈是王菲。当然，只是单单继承是没有意义的，否则不如直接用父类了，所以得有自己的特色，比如增加属性啊，重写方法之类。</p>
+<h3 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h3><p>没有继承就没有多态，这个多态其实跟上面的继承是有关系的。中华美食博大精深，菜品众多，色香味俱全，形态各异，但是万变不离其宗，他们都是食品，也就是说，他们都继承自食品类，食材都是来自自然界生长出来的有机生物。</p>
+<p>这不就是继承么？多态其实是很巧妙地利用了继承这个特性实现了另一种机制。</p>
+<p>我们人类可以吃塑料么？显而易见不能，因为我们的接口只接收上面的天然有机食品类，对于铁啊什么的金属无机物是不能消化的。</p>
+<p>所以说，我们人类只接受食品类的多态，比如肉，蛋，蔬菜，水果，而决不能是塑料。来看一个多态的具体例子。</p>
+<p><strong>个人电脑</strong>:  越是古老的电脑越是高度集成，某天显示器坏掉了我们会发现麻烦来了，我们只能去送修，然后把整个壳子拆开进行更换，也许它是焊接在主板上的那就惨了，模块间的过度依赖造成了极大的耦合度，而更糟的是这种显示器已经停产了根本买不到新的来匹配，那只能扔掉了。</p>
+<p>为了解决这个问题设计人员提出了模块化的概念，各种设备如雨后春笋般涌现。如：鼠标，键盘，摄像头，打印机，存储设备……但又有一个问题，每种设备都有一种接口，那电脑主机上得有多少种接口啊？这不坑爹么？于是出现了接口标准化。</p>
+<p>在各种接口百花齐放的时候，有一种接口胜出了，它就是<code>USB</code>。它提供了一种接口标准，电压5V，双工数据传输， 供电…… 最重要的是物理上形状是不一样的，所以别乱插、别乱捅。</p>
+<p>话说有一个<code>Computer</code>类，一个<code>USB</code>接口，还有各种<code>USB</code>设备，故事就这样开始了。</p>
+<p><code>Computer</code>：“我上面装有一个<code>USB</code>接口，我只认识这个接口传递过来的数据，谁要跟我沟通你就去找它吧。”</p>
+<p><code>USB</code>：“要接驳我的设备是什么我不关心，但我规定设备必须有<code>readData()</code>这个方法，但是怎么实现我不管，总之你得通过这个方法把数据给我。”</p>
+<p><code>Keyboard</code>：“我有<code>readData()</code>这个方法，我已经实现好了，用户一敲键盘我就读过来传给你。”</p>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><p>早期的枪设计非常原始简陋，打一发子弹要很长时间去准备，装填时要先把火药倒入枪管内，然后装入铅弹，最后用棍子戳实后才能发射。 射击时士兵扣动扳机冲击火药爆炸，子弹被冲击出去射杀敌方，然后再循环往复进行装填这一过程，费时费力，所以我们能看到19世纪战场上的士兵方阵前后排轮换射击，后排的士兵实际上在装填弹药以节省时间。</p>
+<p>为了解决这个问题，我们开始思考了，既然弹药装填困难，那么不如把弹丸和火药组合起来，然后封装在弹壳里，只要撞击底火弹头就会被爆炸的火药崩出去，这样直接装入枪膛一触即发，杀人方便多了，这个就是“封装”。</p>
+<p>那么问题又来了，虽然封装弹药节省了很多时间，但一次打一发子弹还是很麻烦不是？那就在子弹之上再包装一层弹夹吧，这相当于压栈，最早压入（push）的子弹最后弹出（pop），先进后出（<strong>栈数据结构</strong>），这样子弹打完了只要换弹夹就好了。总之只要枪接收子弹就对了，我们都是子弹的继承。</p>
+<p>然后设计师做了一件更丧心病狂的事情，他造了个外挂弹夹箱来实现弹夹接口的标准方法，背在身上不停地突突，多态发生了，冷兵器时代结束了，以上<code>UML</code>图正描述了这种嗜杀如狂的疯狂设计模式。</p>
+<h2 id="单例（Singleton）"><a href="#单例（Singleton）" class="headerlink" title="单例（Singleton）"></a>单例（Singleton）</h2><h3 id="初步理解"><a href="#初步理解" class="headerlink" title="初步理解"></a>初步理解</h3><p>单例，顾名思义，整个系统其实就只有一个实例存在，不能再多，否则就不叫单例。那我们把整个宇宙看做是一个庞大的系统，这宇宙里有各种对象存在，人啊，动物啊，植物啊不胜枚举，这些都是实例。</p>
+<p>就以宗教示例：</p>
+<p>单印度一个国家就有几百个神，人们各信各的，风俗各异，各邦文化冲突不断，语言不通，办事效率极低。为了让幸福美好洒满人间，那我们就定义一位神吧，独一无二的神。</p>
+<p>先写一个God类</p>
+<pre><code class="java">public class God {
+}</code></pre>
+<p>首先我们得保证任何人都不能去创建神的实例，否则如：<code>new God()</code>，这样世界又要陷入战争的灾难，各种造神运动。那就不写构造方法吧？不行，因为有默认的无参构造器！那就把构造方法改成<code>private</code>吧，也就是神可以自己创造自己，但别人不能。</p>
+<pre><code class="java">public class God {
+    private God(){}//构造方法私有化
+}</code></pre>
+<p>God类里面封装一个God自己，对，一切都是神创造的，包括我们人类。谁也不能造上帝，神自己造自己。</p>
+<pre><code class="java">public class God {
+    private static final God god = new God();//自有永有的神单例
+    private God(){}//构造方法私有化
+}</code></pre>
+<p>以上<code>private</code>关键字保证了上帝的私有性，不可见性，不可访问性，我想没有活人见过上帝吧？<code>static</code>关键字保证上帝的静态性，他与类同在，不依赖于类的实例化就自有永有，他将在内存中永生，<code>GC</code>垃圾回收器也回收不了他。<code>final</code>关键字则保证这位神是和常量，衡量，他是终极上帝，不能再改。</p>
+<p>正如同静态方法<code>main()</code>，不需要实例化类就能运行的入口，同样我们需要一个静态方法<code>getInstance()</code>来请神，方法体内我们就返回这个在唯一的真神，当然方法它必须是<code>public</code>公开的，不然谁都访问不了。</p>
+<pre><code class="java">public class God {
+    private static final God god = new God();//自有永有的神单例
+    private God(){}//构造方法私有化
+    public static God getInstance(){//请神方法公开化
+        return god;
+    }
+}</code></pre>
+<p>以上的神类雏形已经写好了，当然你还可以加其他的功能方法，比如说创世纪神造了光，造了世界、动物、人、亚当夏娃等等功能，我们这里就不在赘述了。那对于外部来说只要调用<code>God.getInstance();</code>就可以拿到神了，而且不管谁拿，拿几次，都是同一个神，这样就保证了整个系统中神的唯一性，不可伪造性，至于其他先知那也只是神的代理人，只能帮请神而已。</p>
+<p>好了，其实我们已经学会了单例模式的“<strong>痴汉模式（Eager load）</strong>”，代码第一行一开始就造出了神（new God那一句），已经准备好了随时给你请神，这样就有了一个问题，如果没人请神那不是白造了？提前备货如果价格跌了不是很惨？反应在系统中的问题就是占用了内存空间。于是又有了“<strong>懒汉模式（Lazy load）</strong>”</p>
+<pre><code class="java">public class God {
+    private static God god;//这里不进行实例化
+    private God(){}
+    public static God getInstance() {
+        if (god == null) {//如果无神才造神
+            god = new God();
+        }
+        return god;
+    }
+}</code></pre>
+<p>这我们看到一开始就没有造神，只有某人第一次求神时才实例化，之后再求的就直接返回了。这样的好处是省了一段时间的内存（无求神期间），坏处是第一次请神的时候速度相较之前的痴汉模式会慢，因为要消耗CPU去造神。</p>
+<p>其实这么写是在多线程模式下是有陷阱的，试想多人同时并发请神的话，依然会造成多神，好吧我们再来改良一下，把请神方法加上<code>synchronized</code>，声明为同步方法，某线程调用前必须获取同步锁，调用完后会释放锁给其他线程用，也就是请神的必须排队，大家一个一个按顺序来。</p>
+<pre><code class="java">public class God {
+    private static God god;//这里不进行实例化
+    private God(){}
+    public static synchronized God getInstance() {//此处加入同步
+        if (god == null) {//如果无神才造神
+            god = new God();
+        }
+        return god;
+    }
+}</code></pre>
+<p>然而，这样做是要付出代价的，还没进庙呢不管三七二十一请神的直接给加锁排队，结果队伍从北边的庙排到了南天门，人们都要来一个一个拜佛求神，这造成了巨大时间浪费，没有充分利用CPU资源并发优势（特别是多核情况）。好吧，那还是让人们抢好了，但依然得保证单例神的情况下。</p>
+<p>这里我们去掉方法上的同步关键字，换到方法体内部做同步，整个方法开放并发大家都可以同时入庙，当然起早贪黑的虔诚信徒们要抢头香是必须要入堂排队的。一旦头香诞生，那其他抢香的都白早起，白排队了。再之后的事情我们都可以预见了，头注香被抢后堂内排队再无必要来了，大家可以在堂外同时并发拜佛求神，这就极大的利用了CPU资源。简而言之：只有第一批抢头香的在排队，之后大家都不必排队了，代码如下:</p>
+<pre><code class="java">public class God {
+    private volatile static God god;
+    private God(){} 
+    public static God getInstance() {//庙是开放的不用排队进入
+        if (god == null) {//如果头柱香未产生，这批抢香人进入堂内排队。
+            synchronized(God.class){
+                if (god == null) {//只有头香造了神，其他抢香的白排队了
+                    god = new God();
+                }
+            }
+        }
+        //此处头柱香产生后不必再排队
+        return god;
+    }
+}</code></pre>
+<p>其实在这之上还发展出了各种各样的单例模式变种，我们这里只讲了最基础的两种，其实他们都各有优缺，我们要做到灵活运用，各取所需。对于我个人来讲倾向于懒汉模式，现在内存成本根本不算问题，况且迟早要被实例化占用内存，加锁解锁更是一种浪费，还有同步效率低等问题，如果上帝不是很占空间那就没必要去懒汉延迟加载，越复杂问题越多，风险越大。</p>
+<h3 id="定义说明"><a href="#定义说明" class="headerlink" title="定义说明"></a>定义说明</h3><p><strong>定义</strong>：</p>
+<p> 单例模式，是一种常用的软件设计模式。在它的核心结构中只包含一个被称为单例的特殊类。通过单例模式可以保证系统中一个类只有一个实例。即一个类只有一个对象实例。</p>
+<p><strong>特点</strong>：</p>
+<ul>
+<li>单例类只能有一个实例。</li>
+<li>单例类必须自己自己创建自己的唯一实例。</li>
+<li>单例类必须给所有其他对象提供这一实例</li>
+</ul>
+<p><strong>单例模式的要点：</strong></p>
+<ul>
+<li>私有的构造方法</li>
+<li>指向自己实例的私有静态引用</li>
+<li>以自己实例为返回值的静态的公有的方法</li>
+</ul>
+<p><strong>单例模式根据实例化对象时机的不同分为两种：</strong></p>
+<p>一种是饿汉式单例，一种是懒汉式单例。</p>
+<p>饿汉式单例在单例类被加载时候，就实例化一个对象交给自己的引用；</p>
+<p>而懒汉式在调用取得实例方法的时候才会实例化对象。</p>
+<p><strong>单例模式的优点：</strong></p>
+<ul>
+<li>在内存中只有一个对象，节省内存空间。</li>
+<li>避免频繁的创建销毁对象，可以提高性能。</li>
+<li>避免对共享资源的多重占用。</li>
+<li>可以全局访问。</li>
+</ul>
+<p><strong>单例模式的优点：</strong></p>
+<ul>
+<li>扩展困难，由于<code>getInstance</code>静态函数没有办法生成子类的实例。如果要拓展，只有重写那个类。</li>
+<li>隐式使用引起类结构不清晰。</li>
+<li>导致程序内存泄露的问题。</li>
+</ul>
+<p><strong>适用场景：</strong></p>
+<p>​    由于单例模式的以上优点，所以是编程中用的比较多的一种设计模式。以下为使用单例模式的场景：</p>
+<ul>
+<li><p>需要频繁实例化然后销毁的对象。</p>
+</li>
+<li><p>创建对象时耗时过多或者耗资源过多，但又经常用到的对象。</p>
+</li>
+<li><p>资源共享的情况下，避免由于资源操作时导致的性能或损耗等</p>
+</li>
+<li><p>控制资源的情况下，方便资源之间的互相通信。</p>
+</li>
+</ul>
+<p><strong>单例模式注意事项：</strong></p>
+<p>只能使用单例类提供的方法得到单例对象，不要使用反射，否则将会实例化一个新对象。</p>
+<p>不要做断开单例类对象与类中静态引用的危险操作。</p>
+<p>多线程使用单例使用共享资源时，注意线程安全问题。</p>
+<h3 id="深入学习"><a href="#深入学习" class="headerlink" title="深入学习"></a>深入学习</h3><blockquote>
+<p>关于Java中单例模式的一些常见问题：</p>
+</blockquote>
+<h4 id="单例模式的对象长时间不用会被jvm垃圾收集器收集吗"><a href="#单例模式的对象长时间不用会被jvm垃圾收集器收集吗" class="headerlink" title="单例模式的对象长时间不用会被jvm垃圾收集器收集吗"></a>单例模式的对象长时间不用会被jvm垃圾收集器收集吗</h4><p>除非人为地断开单例中静态引用到单例对象的联接，否则<code>jvm</code>垃圾收集器是不会回收单例对象的。</p>
+<p><code>jvm</code>卸载类的判定条件如下：</p>
+<ul>
+<li><p>该类所有的实例都已经被回收，也就是<code>java</code>堆中不存在该类的任何实例。</p>
+</li>
+<li><p>加载该类的<code>ClassLoader</code>已经被回收。</p>
+</li>
+<li><p>该类对应的<code>java.lang.Class</code>对象没有任何地方被引用，无法在任何地方通过反射访问该类的方法。</p>
+</li>
+</ul>
+<p>​    只有三个条件都满足，<code>jvm</code>才会在垃圾收集的时候卸载类。显然，单例的类不满足条件一，因此单例类也不会被回收。</p>
+<h4 id="在一个jvm中会出现多个单例吗"><a href="#在一个jvm中会出现多个单例吗" class="headerlink" title="在一个jvm中会出现多个单例吗"></a>在一个jvm中会出现多个单例吗</h4><p>​    在分布式系统、多个类加载器、以及序列化的的情况下，会产生多个单例，这一点是无庸置疑的。那么在同一个<code>jvm</code>中，会不会产生单例呢？使用单例提供的<code>getInstance()</code>方法只能得到同一个单例，除非是使用反射方式，将会得到新的单例。代码如下：</p>
+<pre><code class="java">Class c = Class.forName(Singleton.class.getName());  
+Constructor ct = c.getDeclaredConstructor();  
+ct.setAccessible(true);  
+Singleton singleton = (Singleton)ct.newInstance();</code></pre>
+<p>这样，每次运行都会产生新的单例对象。所以运用单例模式时，一定注意不要使用反射产生新的单例对象。</p>
+<h4 id="在getInstance-方法上同步有优势还是仅同步必要的块更优优势？"><a href="#在getInstance-方法上同步有优势还是仅同步必要的块更优优势？" class="headerlink" title="在getInstance()方法上同步有优势还是仅同步必要的块更优优势？"></a>在<code>getInstance()</code>方法上同步有优势还是仅同步必要的块更优优势？</h4><p>因为锁定仅仅在创建实例时才有意义，然后其他时候实例仅仅是只读访问的，因此只同步必要的块的性能更优，并且是更好的选择。</p>
+<p>缺点：只有在第一次调用的时候，才会出现生成2个对象，才必须要求同步。而一旦singleton 不为null，系统依旧花费同步锁开销，有点得不偿失。</p>
+<h4 id="单例类可以被继承吗"><a href="#单例类可以被继承吗" class="headerlink" title="单例类可以被继承吗"></a>单例类可以被继承吗</h4><p>根据单例实例构造的时机和方式不同，单例模式还可以分成几种。但对于这种通过私有化构造函数，静态方法提供实例的单例类而言，是不支持继承的。</p>
+<p>这种模式的单例实现要求每个具体的单例类自身来维护单例实例和限制多个实例的生成。但可以采用另外一种实现单例的思路：登记式单例，来使得单例对继承开放。</p>
+<h2 id="原型（Prototype）"><a href="#原型（Prototype）" class="headerlink" title="原型（Prototype）"></a>原型（Prototype）</h2><h3 id="初步理解-1"><a href="#初步理解-1" class="headerlink" title="初步理解"></a>初步理解</h3><p>原型是什么意思？工业生产中通常是指在量产之前研发出的概念实现，如果可行性满足即可参照原型进行量产。有人说了，那不就是印章？其实这并不怎么贴切，印章并不是最终实例，我更愿意称其为“<strong>类</strong>”！</p>
+<p>大家一定见过这种印章吧，就是皮带轮可以转动，可随意调整成自己需要的文字，其实跟我们的四大发明活字印刷同出一辙，我们填完表格签好字，行政人员拿这个往上一盖，一个日期便出现在落款出。</p>
+<p>其实当行政人员调整好了文字，照纸上盖下去那一刹那，其实就类似于实例化的过程了，<code>new Stamp();</code>每个盖出的印都可以不一样，例如我们更换了日期，那么每天都有不同日期的实例了，那有人意识到了，同一天的那些实例们，其实是完全一模一样的实例拷贝，那这就比较麻烦，每个文档都要用章子（类）去盖（实例化）一下。</p>
+<p>好了，让我们忘掉盖章实例化模式吧。通常我们都是怎样做协议书的呢？搞一个Word文档吧，写好后复制给别人修改就好了。</p>
+<p>注意了，行政人员要新建一个word文档了，这个过程其实是在实例化，我们暂且叫它“零号”文件，那当写好了文档后，把这个文件复制给其他公司员工去填写，那么这个零号文件我们就称之为“原型”。</p>
+<p>想必我们已经搞明白了，原型模式，实际上是从原型实例复制克隆出新实例，而绝不是从类去实例化，这个过程的区别一定要搞清楚！OK，那开始我们的实战部分。</p>
+<p>假设我们要做一个打飞机游戏，游戏设定位纵版移动，单打。</p>
+<p>既然是单打，那我们的主角飞机当然只有一架，于是我们写一个<a href="#单例(singleton)">单例(singleton)</a>，此处我们省略主角代码。那么敌机呢？当然有很多架了，好，为了说明问题我们去繁就简，先写一个敌机类。</p>
+<pre><code class="java">public class EnemyPlane {
+    private int x;//敌机横坐标
+    private int y = 0;//敌机纵坐标
+    public EnemyPlane(int x) {//构造器
+        this.x = x;
+    }
+    public int getX() {
+       return x;
+    }
+    public int getY() {
+        return y;
+    }
+    public void fly(){//让敌机飞
+        y++;//每调用一次，敌机飞行时纵坐标＋1
+    }
+}</code></pre>
+<p>代码第5行，初始化只接收x坐标，因为敌机一开始是从顶部出来所以纵坐标y必然是0。此类只提供<code>getter</code>而没有<code>setter</code>，也就是说只能在初始化时确定敌机的横坐标x，后续是不需要更改坐标了，只要连续调用第17行的fly方法即可让飞机跟雨点一样往下砸。</p>
+<p>好了，我们开始绘制敌机动画了，先实例化出50架吧。</p>
+<pre><code class="java">public class Client {
+     public static void main(String[] args) {
+         List&lt;EnemyPlane&gt; enemyPlanes = new ArrayList&lt;EnemyPlane&gt;();
+         for (int i = 0; i &lt; 50; i++) {
+             //此处随机位置产生敌机
+             EnemyPlane ep = new EnemyPlane(new Random().nextInt(200));
+             enemyPlanes.add(ep);
+         }
+    }
+}</code></pre>
+<p>注意代码第7行，觉不觉得每个迭代都实例化new出一个对象存在性能问题呢？答案是肯定的，这个实例化的过程是得不偿失的，构造方法会被调用50次，cpu被极大浪费了，内存被极大浪费了，尤其对于游戏来说性能瓶颈绝对是大忌，这会造成用户体验问题，谁也不希望玩游戏会卡帧吧。</p>
+<p>那到底什么时候去new？游戏场景初始化就new敌机（如以上代码）？这关会出现500个敌机那我们一次都new出来吧？浪费内存！那我们实时的去new，每到一个地方才new出来一个！浪费CPU！如果敌机线程过多造成CPU资源耗尽，每出一个敌机游戏会卡一下，试想一下这种极端情况下，游戏对象实例很多的话就是在作死。</p>
+<p>解决方案到底是什么呢？好，原型模式Prototype！上代码！我们把上面的敌机类改造一下，让它支持原型拷贝。</p>
+<pre><code class="java">public class EnemyPlane implements Cloneable{//此处实现克隆接口
+    private int x;//敌机横坐标
+    private int y = 0;//敌机纵坐标
+    public EnemyPlane(int x) {//构造器
+        this.x = x;
+    }
+    public int getX() {
+        return x;
+    }
+    public int getY() {
+        return y;
+    }
+    public void fly(){//让敌机飞
+        y++;//每调用一次，敌机飞行时纵坐标＋1
+    }
+    //此处开放setX，为了让克隆后的实例重新修改x坐标
+    public void setX(int x) {
+        this.x = x;
+    }
+    //为了保证飞机飞行的连贯性
+    //这里我们关闭setY方法，不支持随意更改Y纵坐标
+//    public void setY(int y) {
+//        this.y = y;
+//    }
+    //重写克隆方法
+    @Override
+    public EnemyPlane clone() throws CloneNotSupportedException {
+        return (EnemyPlane)super.clone();
+    }
+}</code></pre>
+<p>注意看从第21行开始的修改，<code>setX()</code>方法为了保证克隆飞机的个性化，因为它们出现的位置是不同的。第34行的克隆方法重写我们调用了父类<code>Object</code>的克隆方法，这里<code>JVM</code>会进行内存操作直接拷贝原始数据流，简单粗暴，不会有其他更多的复杂操作（类加载，实例化，初始化等等），速度远远快于实例化操作。OK，我们看怎么克隆这些敌机，做一个造飞机的工厂吧。</p>
+<pre><code class="java">public class EnemyPlaneFactory {
+     //此处用懒汉模式造一个敌机原型
+     private static EnemyPlane protoType = new EnemyPlane(200);
+
+     //获取敌机克隆实例
+     public static EnemyPlane getInstance(int x){
+         EnemyPlane clone = protoType.clone();//复制原型机
+         clone.setX(x);//重新设置克隆机的x坐标
+         return clone;
+    }
+}</code></pre>
+<p>此处我们省去抓异常，随后的事情就非常简单了，我们只需要很简单地调用<code>EnemyPlaneFactory.getInstance(int x)</code>并声明x坐标位置，一架敌机很快地就做好了，并且我们保证是在敌机出现的时候再去克隆，确保不要一开局就全部克隆出来，如此一来，既保证了实时性节省了内存空间，又保证了敌机实例化的速度，游戏绝不会卡帧！至于此处代码中的懒汉原型还可以怎样优化那就要根据具体场景了，交给大家自由发挥吧，这里只说明主要问题。</p>
+<p>最后，还要强调一点就是浅拷贝和深拷贝的问题。假如我们的敌机类里有一颗子弹<code>bullet</code>可以射击我们的主角，如下:</p>
+<pre><code class="java">public class EnemyPlane implements Cloneable{
+    private Bullet bullet = new Bullet();
+    private int x;//敌机横坐标
+    private int y = 0;//敌机纵坐标
+    //之后代码省略……
+}</code></pre>
+<p>我们都知道Java中的变量分为原始类型和引用类型，所谓浅拷贝只是拷贝原始类型的指，比如坐标x, y的指会被拷贝到克隆对象中，对于对象<code>bullet</code>也会被拷贝，但是请注意拷贝的只是地址而已，那么多个地址其实真正指向的对象还是同一个<code>bullet</code>。</p>
+<p>由于我们调用父类<code>Object</code>的<code>clone</code>方法进行的是浅拷贝，所以此处的<code>bullet</code>并没有被克隆成功，比如我们每架敌机必须携带的子弹是不同的实例，那么我们就必须进行深拷贝，于是我们的代码就得做这样的改动。</p>
+<pre><code class="java">public class EnemyPlane implements Cloneable{
+    private Bullet bullet = new Bullet();
+    public void setBullet(Bullet bullet) {
+        this.bullet = bullet;
+    }
+    @Override
+    protected EnemyPlane clone() throws CloneNotSupportedException {
+        EnemyPlane clonePlane = (EnemyPlane) super.clone();//先克隆出敌机，其中子弹还未进行克隆。
+        clonePlane.setBullet(this.bullet.clone());//对子弹进行深拷贝
+        return clonePlane;
+    }
+    //之后代码省略……
+}</code></pre>
+<p>对于<code>Bullet</code>类也同样实现了克隆接口，代码不用再写了吧？相信大家都学会了举一反三。至此，我们的每个敌机携带的弹药也同样被克隆完毕了，再也不必担心游戏的流畅性了。</p>
+<h3 id="定义说明-1"><a href="#定义说明-1" class="headerlink" title="定义说明"></a>定义说明</h3><p><strong>定义：</strong></p>
+<p>​    通过复制现有的对象实例来创建新的对象实例。</p>
+<p><strong>实现：</strong></p>
+<p>实现<code>Cloneable</code>接口：<code>Cloneable</code>接口的作用是在运行时通知虚拟机可以安全地在实现了此接口的类上使用<code>clone</code>方法。在Java虚拟机中，只有实现了这个接口的类才可以被拷贝，否则在运行时会抛出<code>CloneNotSupportedException</code>异常。</p>
+<p>重写<code>Object</code>类中的<code>clone</code>方法：Java中，所有类的父类都是<code>Object</code>类，<code>Object</code>类中有一个<code>clone</code>方法，作用是返回对象的一个拷贝，但是其作用域<code>protected</code>类型的，一般的类无法调用，因此，原型类需要将<code>clone</code>方法的作用域修改为<code>public</code>类型。</p>
+<p><strong>优点：</strong></p>
+<ul>
+<li><p>使用原型模型创建一个对象比直接new一个对象更有效率，因为它直接操作内存中的二进制流，特别是复制大对象时，性能的差别非常明显。</p>
+</li>
+<li><p>隐藏了制造新实例的复杂性，使得创建对象就像我们在编辑文档时的复制粘贴一样简单。</p>
+</li>
+</ul>
+<p><strong>缺点：</strong></p>
+<ul>
+<li><p>由于使用原型模式复制对象时不会调用类的构造方法，所以原型模式无法和单例模式组合使用，因为原型类需要将<code>clone</code>方法的作用域修改为<code>public</code>类型，那么单例模式的条件就无法满足了。</p>
+</li>
+<li><p>使用原型模式时不能有final对象。</p>
+</li>
+<li><p><code>Object</code>类的<code>clone</code>方法只会拷贝对象中的基本数据类型，对于数组，引用对象等只能另行拷贝。这里涉及到深拷贝和浅拷贝的概念。</p>
+</li>
+</ul>
+<p><strong>深拷贝与浅拷贝：</strong></p>
+<p>浅拷贝：将一个对象复制后，基本数据类型的变量都会重新创建，而引用类型，指向的还是原对象所指向的（这样不安全）。</p>
+<p>深拷贝：将一个对象复制后，不论是基本数据类型还有引用类型，都是重新创建的。</p>
+<p><strong>适用场景：</strong></p>
+<ul>
+<li><p>复制对象的结构和数据。</p>
+</li>
+<li><p>希望对目标对象的修改不影响既有的原型对象。</p>
+</li>
+<li><p>创建一个对象的成本比较大。</p>
+</li>
+</ul>
+<h2 id="策略（Strategy）"><a href="#策略（Strategy）" class="headerlink" title="策略（Strategy）"></a>策略（Strategy）</h2><h3 id="初步理解-2"><a href="#初步理解-2" class="headerlink" title="初步理解"></a>初步理解</h3><blockquote>
+<p>策略，古时也称“计”，为了达成某个目标的方案，目标不同，方案也随之更改。</p>
+</blockquote>
+<p>例如特工执行任务时总要准备好几套方案以应对突如其来的变化，A计划实施过程中情况突变导致预案无法继续实施，则马上更换为B计划，正所谓计划不如变化快，提前策划固然非常重要，而随机应变更是不可或缺，只有保证这种可变的灵活性才能立于不败之地。世界永远都在变，唯一不变的就是变本身。</p>
+<p>就拿游戏机来举个例子，早期的俄罗斯方块风靡全球，后来国内流行一种掌机，只能玩俄罗斯方块这一个游戏，可过不了多久大家就玩腻了，于是热度降低这种游戏机很快就退出市场了，显然这是一种失败的设计模式。</p>
+<p>后来任天堂出品的<code>Game Boy</code>以及<code>Sony</code>的<code>PSP</code>则完全带来了不同的用户体验，系统提供了统一的卡槽接口，玩家只要更换卡带或MD就可以达到更换游戏的目的，做到了一机多用。各种游戏卡带，更换游戏方便多了。</p>
+<p>好了，开始实战部分，为了说明问题，我们继续发扬极简主义的优良传统，我们就做一个最简单的计算器好了，假设我们的计算器只能进行加减法，代码如下：</p>
+<pre><code class="java">public class Calculator {//违反设计模式原则的做法
+    public int add(int a, int b){//加法
+        return a + b;
+    }
+    public int sub(int a, int b){//减法
+        return a - b;
+    }
+}</code></pre>
+<p>这样写可以吗？我们往后的扩展想想，如果随着我们的算法不断增加，如乘法、除法、次方、开方等等，那么这个计算器类就得不断的改啊改啊，每次升级算法我们都要把机器给拆开然后更改类代码，这岂不是作死？</p>
+<p>我们来换个思路，先思考一下，既然不能把算法给写死在这里面，那一定要把这个算法给抽象一下，把实现细节从这个类里抽离出来，独立出来成为n个策略，就当下来讲我们一共有俩个策略，一个是加法策略，一个是减法策略，他们实现的都是同一个算法接口，接收参数为操作数a，以及被操作数b。</p>
+<pre><code class="java">public interface Strategy {//算法标准
+    public int calculate(int a, int b);//操作数，被操作数
+}</code></pre>
+<p>下来实现加法策略、减法策略。</p>
+<pre><code class="java">public class Addition implements Strategy{//实现算法接口
+    @Override
+    public int calculate(int a, int b) {//加数与被加数
+        return a + b;//这里我们做加法运算
+    }
+}
+public class Subtraction implements Strategy{//实现算法接口
+    @Override
+    public int calculate(int a, int b) {//减数与被减数
+        return a - b;//这里我们做减法运算
+    }
+}</code></pre>
+<p>算法写好了，开始写计算器。</p>
+<pre><code class="java">public class Calculator {//计算器类
+    private Strategy strategy;//拥有某种算法策略
+    public void setStrategy(Strategy strategy) {//接入算法策略
+        this.strategy = strategy;
+    }
+    public int getResult(int a, int b){
+        return this.strategy.calculate(a, b);//返回具体策略的结果
+    }
+}</code></pre>
+<p>可以看到，计算器类里已经把之前的具体加减算法实现代码给剥离出去了，要用哪个算法，只需要注入进来，然后获得计算结果<code>getResult</code>实际上调用的是具体算法的<code>calculate</code>，我们来看怎样使用这个计算器。</p>
+<pre><code class="java">public class Client {
+    public static void main(String[] args) {
+        Calculator calculator = new Calculator();//实例化计算器
+        calculator.setStrategy(new Addition());//接入加法实现
+        int result = calculator.getResult(1, 1);//计算！
+        System.out.println(result);//得到的是加法结果2
+        calculator.setStrategy(new Subtraction());//再次接入减法实现
+        result = calculator.getResult(1, 1);//计算！
+        System.out.println(result);//得到的是减法结果0
+    }
+}</code></pre>
+<p>注释已经写得非常明白了，相信大家都看懂了吧。那么我们这个计算器可以说是具有算法策略扩展性的，以后要有新的算法是不需要再更改任何现有代码的，只需要新写一个算法比如乘法<code>Multiplication</code>，并实现<code>calculate</code>方法，接下来要做的只是组装上去便可以使用了。</p>
+<h3 id="定义说明-2"><a href="#定义说明-2" class="headerlink" title="定义说明"></a>定义说明</h3><p><strong>定义：</strong>定义一组算法，将每个算法都封装起来，并且使他们之间可以互换。</p>
+<p>策略模式是对算法的封装，把一系列的算法分别封装到对应的类中，并且这些类实现相同的接口，相互之间可以替换。在前面说过的行为类模式中，有一种模式也是关注对算法的封装——模版方法模式。</p>
+<p>它与模版方法模式的区别在于：在模版方法模式中，调用算法的主体在抽象的父类中，而在策略模式中，调用算法的主体则是封装到了封装类<code>Context</code>中，抽象策略一般是一个接口，目的只是为了定义规范，里面一般不包含逻辑。</p>
+<p>其实，这只是通用实现，而在实际编程中，因为各个具体策略实现类之间难免存在一些相同的逻辑，为了避免重复的代码，我们常常使用抽象类来担任<code>Strategy</code>的角色，在里面封装公共的代码，因此，在很多应用的场景中，在策略模式中一般会看到模版方法模式的影子。</p>
+<p><strong>策略模式的结构</strong></p>
+<ul>
+<li><strong>封装类：</strong>也叫上下文，对策略进行二次封装，目的是避免高层模块对策略的直接调用。</li>
+<li><strong>抽象策略：</strong>通常情况下为一个接口，当各个实现类中存在着重复的逻辑时，则使用抽象类来封装这部分公共的代码，此时，策略模式看上去更像是模版方法模式。</li>
+<li><strong>具体策略：</strong>具体策略角色通常由一组封装了算法的类来担任，这些类之间可以根据需要自由替换。</li>
+</ul>
+<p><strong>策略模式的优缺点</strong></p>
+<p>​    策略模式的主要优点有：</p>
+<ul>
+<li>策略类之间可以自由切换，由于策略类实现自同一个抽象，所以他们之间可以自由切换。</li>
+<li>易于扩展，增加一个新的策略对策略模式来说非常容易，基本上可以在不改变原有代码的基础上进行扩展。</li>
+<li>避免使用多重条件，如果不使用策略模式，对于所有的算法，必须使用条件语句进行连接，通过条件判断来决定使用哪一种算法，在上一篇文章中我们已经提到，使用多重条件判断是非常不容易维护的。</li>
+</ul>
+<p>​    策略模式的缺点主要有两个：</p>
+<ul>
+<li>维护各个策略类会给开发带来额外开销，可能大家在这方面都有经验：一般来说，策略类的数量超过5个，就比较令人头疼了。</li>
+<li>必须对客户端（调用者）暴露所有的策略类，因为使用哪种策略是由客户端来决定的，因此，客户端应该知道有什么策略，并且了解各种策略之间的区别，否则，后果很严重。例如，有一个排序算法的策略模式，提供了快速排序、冒泡排序、选择排序这三种算法，客户端在使用这些算法之前，是不是先要明白这三种算法的适用情况？再比如，客户端要使用一个容器，有链表实现的，也有数组实现的，客户端是不是也要明白链表和数组有什么区别？就这一点来说是有悖于迪米特法则的。 </li>
+</ul>
+<p><strong>适用场景</strong></p>
+<p>做面向对象设计的，对策略模式一定很熟悉，因为它实质上就是面向对象中的继承和多态，在看完策略模式的通用代码后，我想，即使之前从来没有听说过策略模式，在开发过程中也一定使用过它吧？至少在在以下两种情况下，大家可以考虑使用策略模式：</p>
+<ul>
+<li>几个类的主要逻辑相同，只在部分逻辑的算法和行为上稍有区别的情况。</li>
+<li>有几种相似的行为，或者说算法，客户端需要动态地决定使用哪一种，那么可以使用策略模式，将这些算法封装起来供客户端调用。</li>
+</ul>
+<p>策略模式是一种简单常用的模式，我们在进行开发的时候，会经常有意无意地使用它，一般来说，策略模式不会单独使用，跟模版方法模式、工厂模式等混合使用的情况比较多。</p>
+<h2 id="状态（State）"><a href="#状态（State）" class="headerlink" title="状态（State）"></a>状态（State）</h2><h3 id="初步理解-3"><a href="#初步理解-3" class="headerlink" title="初步理解"></a>初步理解</h3><p>状态，指某事物所处的状况或形态，比如水的三态，零下会变成固态冰，常温会是液态水，100℃会蒸发成气态的水蒸气。</p>
+<p>想必每个人家里都有开关吧，其暴露出两个<code>UI</code>可操作接口（对接你的手指）：开，关。很简单吧？</p>
+<p>好我们来分析一下，首先得定义一个类吧，就叫它：<code>Switcher</code>好了，对外暴露两个方法：<code>switchOn()</code>以及<code>switchOff()</code>，以便用户调用，OK，开始我们的代码。</p>
+<pre><code class="java"> public class Switcher {
+    //false代表关，true代表开
+    private boolean state = false;//初始状态是关
+    public void switchOn(){
+         state = !state;
+         System.out.println(&quot;OK...灯亮&quot;);
+    }
+    public void switchOff(){
+        state = !state;
+        System.out.println(&quot;OK...灯灭&quot;);
+    }
+}</code></pre>
+<p>完成了？没问题了？这也太简单了吧？当然说这个没问题是在前端UI壳子设计精妙的前提下，但这并不能代表我们的程序设计没问题。试想如果<code>UI</code>可以重复调用开或者关会出现什么情况？状态乱套了！这个设计是非常不可靠的，我们不能因为表面设计上的完美就忽略了后端代码功能的逻辑正确性，表里不一。这就是为什么我们做应用时不但要做好前端校验（用户体验），更要保证后端校验（功能正确性）不可缺失。</p>
+<p>现在改一下我们之前的设计，这里一定要加入针对当前状态的条件判断，也就是说，开的状态不能再开，关的状态不能再关！</p>
+<pre><code class="java">public class Switcher {
+    //false代表关，true代表开
+    boolean state = false;//初始状态是关
+    public void switchOn(){
+        if(state == false){//当前是关状态
+            state = true;
+            System.out.println(&quot;OK...灯亮&quot;);
+        }else{//当前是开状态
+            System.out.println(&quot;WARN!!!通电状态无需再开&quot;);
+        }
+    }
+    public void switchOff(){
+        if(state == true){//当前是开状态
+            state = false;
+            System.out.println(&quot;OK...灯灭&quot;);
+        }else{//当前是关状态
+            System.out.println(&quot;WARN!!!断电状态无需再关&quot;);
+        }
+    }
+}</code></pre>
+<p>我们可以看到这里加入了逻辑判断，如果重复开或者重复关的话是会告警的，当然这里也可以抛异常出去，我们就不搞那么复杂化了。那对于这样的设计没有问题吧？很显然，逻辑上是跑的通的，写个<code>Client</code>类测试一下。</p>
+<pre><code class="java">public class Client {
+    public static void main(String[] args) {
+        Switcher s = new Switcher();
+        s.switchOff();//WARN!!!断电状态无需再关
+        s.switchOn();//OK...灯亮
+        s.switchOff();//OK...灯灭
+        s.switchOn();//OK...灯亮
+        s.switchOn();//WARN!!!通电状态无需再开
+    }
+}</code></pre>
+<p>不管熊孩子怎么开开关关都不会有问题了。可惜我还是要很遗憾地告诉你，这样的设计仍然是糟糕的。试想，如果状态不止一种，并且状态切换有及其复杂的逻辑，例如，之前那个精神病患者，或者汽车的自动挡。</p>
+<p>如果按照这种设计的结果会是？码农一定要有一种打破砂锅问到底的精神，不撞南墙不回头，Lu起袖子马上干！我们写一小段代码来看看先。</p>
+<pre><code class="java">public class Car {
+    //0：Park驻车档，1：Reverse倒退挡，
+    //2：Neutral空挡，3：Drive前进档。
+    String state = &quot;P&quot;;//初始状态是P档
+    public void push(){//向上推档杆
+        switch (state) {
+        case &quot;P&quot;://驻车档状态
+            System.out.println(&quot;WARN!!!到头了推不动了！&quot;);
+            break;
+        case &quot;R&quot;://倒挡状态
+            state = &quot;P&quot;;
+            System.out.println(&quot;OK...切P档&quot;);
+            break;
+        case &quot;N&quot;://空档状态
+            System.out.println(&quot;OK...切R档&quot;);
+            break;
+        case &quot;D&quot;://前进档状态
+            System.out.println(&quot;OK...切N档&quot;);
+            break;
+        default:
+            break;
+        }
+    }
+    public void pull(){//向下拉档杆
+        //这里省略，逻辑同上类似
+    }
+}</code></pre>
+<p>不用多说什么了吧，这个是在作死了，那一大堆逻辑判断写在宿主类里会越来越像蜘蛛网！我们必须想方设法把这个设计给模块化，把状态模块给独立出来！还记得我们曾经讲过的 <a href="#策略（Strategy）">策略</a> 吧，算法策略被抽离出来，这里举一反三，把状态也给抽离出来，好了办法有了，我们忘掉自动挡，继续用我们大道至简的开关例子。</p>
+<pre><code class="java">public interface State {
+    public void switchOn(Switcher switcher);//开
+    public void switchOff(Switcher switcher);//关
+}</code></pre>
+<p>以上我们首先了定义一个状态State接口，两个方法开与关，注意这里与策略模式不同的是，我们为了与宿主<code>Switcher</code>对接所以把它作为参数传入。然后是开状态与关状态的实现。</p>
+<pre><code class="java">public class On implements State {
+    @Override
+    public void switchOn(Switcher switcher) {
+        System.out.println(&quot;WARN!!!通电状态无需再开&quot;);
+        return;
+    }
+    @Override
+    public void switchOff(Switcher switcher) {
+        switcher.setState(new Off());
+        System.out.println(&quot;OK...灯灭&quot;);
+    }
+}</code></pre>
+<pre><code class="java">public class Off implements State {
+    @Override
+    public void switchOn(Switcher switcher) {
+        switcher.setState(new On());
+        System.out.println(&quot;OK...灯亮&quot;);
+    }
+    @Override
+    public void switchOff(Switcher switcher) {
+        System.out.println(&quot;WARN!!!断电状态无需再关&quot;);
+        return;
+    }
+}</code></pre>
+<p>显而易见，注意看第10行代码，开状态不能做开行为，只告警并返回，关状态反之亦然。而第4行代码则是合法的行为，所以可以进行状态切换并实施相应行为，也就是说，开状态可关，关状态可开。注意这里是把宿主对象传入进来用于切换其当前状态，亦或是调用宿主的具体功能方法（这里省略用打印输出代替），比如宿主里的一盏灯提供的方法。</p>
+<p>至此，一切看起来非常优雅，我们已经成功的将状态从宿主中抽离了，最后再来看宿主开关类是什么样子。</p>
+<pre><code class="java">public class Switcher {
+    //开关的初始状态设置为“关”
+    private State state = new Off();
+    public State getState() {
+        return state;
+    }
+    public void setState(State state) {
+        this.state = state;
+    }
+    public void switchOn(){
+        state.switchOn(this);//这里调用的是当前状态的开方法
+    }
+    public void switchOff(){
+        state.switchOff(this);//这里调用的是当前状态的关方法
+    }
+}</code></pre>
+<p>甚至我们还可以给里面加一盏灯，像之前我们提到的那样，在<code>State</code>状态接口实现里去调用。</p>
+<pre><code class="java">public class Switcher {
+    //...之上代码略...
+    private Lamp lamp;
+    public void lampOn(){
+    lamp.on();
+    }
+    public void lampOff(){
+    lamp.off();
+    }
+}</code></pre>
+<p>看明白了吧？是不是很像策略模式？其实它就是策略的一个变种，只不过状态模式会更好的根据当前的状态去实施不同的行为，并且自主切换到另一个正确的状态，开变关，关变开。</p>
+<p>就好似电梯（虽然是嵌入式面向过程，这里只是举例），用户根本无法随意强制更改其状态以及行为，你让它上，它不一定马上就能上，否则会造成事故。电梯内部封装了多个状态以及对应的逻辑产生不同的行为，它会根据当前状态去自我调整并实施最优方案，以达到安全、高效的目的，这才是可靠的设计。</p>
+<h3 id="定义说明-3"><a href="#定义说明-3" class="headerlink" title="定义说明"></a>定义说明</h3><p><strong>概述</strong></p>
+<p>  当系统中某个对象存在多个状态，这些状态之间可以进行转换，而且对象在不同状态下行为不相同时可以使用状态模式。状态模式将一个对象的状态从该对象中分离出来，封装到专门的状态类中，使得对象状态可以灵活变化。状态模式是一种对象行为型模式。</p>
+<p><strong>适用场景</strong></p>
+<p>用于解决系统中复杂对象的多种状态转换以及不同状态下行为的封装问题。简单说就是处理对象的多种状态及其相互转换</p>
+<p><strong>参与者</strong></p>
+<p><strong>1&gt;、AbstractState(抽象状态类):</strong></p>
+<p>​    在抽象状态类中定义申明了不同状态下的行为抽象方法，而由子类(不同的状态子类)中实现不同的行为操作。</p>
+<p><strong>2&gt;、ConcreteState(实现具体状态下行为的状态子类):</strong></p>
+<p>​    抽象状态类的子类，每一个子类实现一个与环境类(<code>Context</code>)的一个状态相关的行为，每一个具体的状态类对应环境的一种具体状态，不同的具体状态其行为有所不同。</p>
+<p><strong>3&gt;、Context(拥有状态对象的环境类):</strong></p>
+<p>​    拥有状态属性，因环境的多样性，它可拥有不同的状态，且在不同状态下行为也不一样。在环境类中维护一个抽象的状态实例，这个实例定义当前环境的状态(<code>setState()</code>方法)，而将具体的状态行为分离出来由不同的状态子类去完成。</p>
+<h2 id="模板方法（Template）"><a href="#模板方法（Template）" class="headerlink" title="模板方法（Template）"></a>模板方法（Template）</h2><h3 id="初步理解-4"><a href="#初步理解-4" class="headerlink" title="初步理解"></a>初步理解</h3><p>面向对象，是对事物属性与行为的封装，方法，指的就是行为。模板方法，显而易见是说某个方法充当了模板的作用，其充分利用了抽象类虚实结合的特性，虚部抽象预留，实部固定延续，以达到将某种固有行为延续至子类的目的。反观接口，则达不到这种目的。要搞明白模板方法，首先我们从接口与抽象类的区别切入，这也是面试官经常会问到的问题。</p>
+<p>汽车上的接口最常见的就是点烟器，USB，AUX等等，很明显这些都是接口，它们都预留了某种标准，暴露在系统外部，并与外设对接。就拿点烟器接口来说吧，它原本是专门用于给点烟器供电的，后来由于这个接口在汽车上的通用性，于是衍生出了各种外部设备，只要是符合这个标准大小的，带正负极簧片的，直流12V的，那就可以使用，比如导航、行车记录仪、吸尘器什么的，以及其他各种车载电子设备。</p>
+<pre><code class="java">public interface CigarLighterInterface {//点烟器接口
+    //供电方法，16V直流电
+    public void electrifyDC16V();
+}</code></pre>
+<pre><code class="java">public class GPS implements CigarLighterInterface {
+    //导航的实现
+    @Override
+    public void electrifyDC16V() {
+        System.out.println(&quot;连接卫星&quot;);
+        System.out.println(&quot;定位。。。&quot;);
+    }
+}
+public class CigarLighter implements CigarLighterInterface {
+    //点烟器的实现
+    @Override
+    public void electrifyDC16V() {
+        int time = 1000;
+        while(--time&gt;0){
+            System.out.println(&quot;加热电炉丝&quot;);
+        }
+        System.out.println(&quot;点烟器弹出&quot;);
+    }
+}</code></pre>
+<p>对于点烟器接口来说，它根本不在乎也不知道对接的外设是什么鬼，它只是定义了一种规范，一种标准，只要符合的都可以对接。</p>
+<p>以上我们可以体会到接口的抽象是淋漓尽致的，实现是空无的，也就是说其方法都是无实现的。然而这样在某些场景下会存在一些问题，例如有时候我们在父类中只需抽象出一些方法，并且同时也有一些实体方法，以供子类直接继承，这怎么办？答案就是抽象类。举个例子，哺乳动物类，我们人类就是哺乳动物。</p>
+<p>什么？鲸鱼是哺乳类？是的，凡是喂奶的都是哺乳类，不要以为会游泳的都是鱼，会飞的都是鸟，蝙蝠同样是哺乳类，只不过是老鼠中的飞行员而已。</p>
+<p>既然如此这哺乳动物肯定是都能喂奶了，但是到底是跑还是游，或是飞呢还真不好说，但至少可以确认它们都是可以移动的。言归正传，我们开始定义哺乳动物抽象类。</p>
+<pre><code class="java">public abstract class Mammal {
+    //既然是哺乳动物当然会喂奶了，但这里约束为只能母的喂奶
+    protected final void feedMilk(){
+        if(female){//如果是母的……
+            System.out.println(&quot;喂奶&quot;);
+        }else{//如果是公的……或者可以抛个异常出去。
+            System.out.println(&quot;公的不会&quot;);
+        }
+    }
+    //哺乳动物当然可以移动，但具体怎么移动还不知道。
+    public abstract void move();
+}</code></pre>
+<p>这里我们省略了female属性，其作用是为了控制喂奶行为，大家可以自行添加。可以看到的是，抽象类不同于接口，其自身是可以有具体实现的，也就是说抽象类是虚实结合的，虚部抽象行为，实部遗传给子类，虚虚实实，飘忽不定。OK，我们看下人、鲸、蝠的子类实现。</p>
+<pre><code class="java">public class Human extends Mammal {
+    @Override
+    public void move() {
+        System.out.println(&quot;两条腿走路……&quot;);
+    }
+}
+public class Whale extends Mammal {
+    @Override
+    public void move() {
+        System.out.println(&quot;游泳……&quot;);
+    }
+}
+public class Bat extends Mammal {
+    @Override
+    public void move() {
+        System.out.println(&quot;用翅膀飞……&quot;);
+    }
+}</code></pre>
+<p>可以看到子类的各路实现都是自己独有的行为方式，而喂奶那个行为是不需要自己实现的，它是属于抽象哺乳类的共有行为，哺乳子类不能进行任何干涉。这便是接口与抽象的最大区别了，接口是虚的，抽象类可以有虚有实，接口不在乎实现类是什么，抽象类会延续其基因给子类。</p>
+<p>其实到这里我们已经说了一大半了，理解了以上部分，剩下的部分就非常简单了，利用抽象类的这个特性，便有了“模板方法”。举例说明，我们做软件项目管理，按瀑布式简单来讲分为：需求分析、设计、编码、测试、发布，先不管是用何种方式去实现各个细节，我们就抽象成这五个步骤。</p>
+<pre><code class="java">public abstract class PM {
+    protected abstract void analyze();//需求分析
+    protected abstract void design();//设计
+    protected abstract void develop();//开发
+    protected abstract boolean test();//测试
+    protected abstract void release();//发布
+}</code></pre>
+<p>那么问题来了，有个程序员在需求不明确或者设计不完善的情况下，一上来二话不说直接写代码，这样就会造成资源的浪费，后期改动太大还会影响项目进度。那么项目经理这时就应该规范一下这个任务流程，这里我们加入kickoff()方法实现。</p>
+<pre><code class="java">public abstract class PM {
+    protected abstract void analyze();//需求分析
+    protected abstract void design();//设计
+    protected abstract void develop();//开发
+    protected abstract boolean test();//测试
+    protected abstract void release();//发布
+    protected final void kickoff(){
+        analyze();
+        design();
+        develop();
+        test();
+        release();
+    }
+}</code></pre>
+<p>这样就限制了整个项目周期的任务流程，注意这里要用final声明此方法子类不可以重写，只能乖乖的继承下去用。至于其他的抽象方法，子类可以自由发挥，比如测试方法<code>test()</code>，子类可以用人工测试，自动化测试，我们不关心，我们是站在项目管理的抽象高度，只把控流程进度。这里甚至我们还可以加入一些逻辑如下。</p>
+<pre><code class="java">public abstract class PM {
+    protected abstract void analyze();//需求分析
+    protected abstract void design();//设计
+    protected abstract void develop();//开发
+    protected abstract boolean test();//测试
+    protected abstract void release();//发布
+    protected final void kickoff(){
+        analyze();
+        design();
+        do {
+            develop();
+        } while (!test());//如果测试失败，则继续开发改Bug。
+        release();
+    }
+}</code></pre>
+<p>以下子类只需实现抽象方法，而不用实现固有的模板方法kickoff()，因为它已经被父类PM实现了，并且子类也不能进行重写。</p>
+<pre><code class="java">public class AutoTestPM extends PM{
+    @Override
+    protected void analyze() {
+        System.out.println(&quot;进行业务沟通，需求分析&quot;);     
+    }
+    //design();develop();test();release();实现省略
+}</code></pre>
+<p>至此，我们的模板方法就完成了，抽象类<code>PM</code>中的实方法<code>kickoff()</code>中，以某种逻辑编排调用了其他各个抽象方法，提供了一种固定模式的行为方式或是指导方针，以此达到虚实结合、柔中带刚、刚柔并济，灵活中不失规范的目的。</p>
+<p>当然大部分情况我们使用接口会多于抽象类，因为接口灵活啊，抽象类不允许多继承啊等等，其实我们还是要看应用场景，在某种无规矩不成方圆，或者规范比较明确，的情况下抽象类的应用是有必要的，世间万物没有最好的，只有最合适的。</p>
+<h3 id="定义说明-4"><a href="#定义说明-4" class="headerlink" title="定义说明"></a>定义说明</h3><p><strong>定义：</strong>定义一个操作中算法的框架，而将一些步骤延迟到子类中，使得子类可以不改变算法的结构即可重定义该算法中的某些特定步骤。</p>
+<p><strong>模版方法模式的结构</strong></p>
+<p>模版方法模式由一个抽象类和一个（或一组）实现类通过继承结构组成，抽象类中的方法分为三种：</p>
+<ul>
+<li><p><strong>抽象方法：</strong>父类中只声明但不加以实现，而是定义好规范，然后由它的子类去实现。</p>
+</li>
+<li><p><strong>模版方法：</strong>由抽象类声明并加以实现。一般来说，模版方法调用抽象方法来完成主要的逻辑功能，并且，模版方法大多会定义为final类型，指明主要的逻辑功能在子类中不能被重写。</p>
+</li>
+<li><p><strong>钩子方法：</strong>由抽象类声明并加以实现。但是子类可以去扩展，子类可以通过扩展钩子方法来影响模版方法的逻辑。</p>
+</li>
+</ul>
+<p>抽象类的任务是搭建逻辑的框架，通常由经验丰富的人员编写，因为抽象类的好坏直接决定了程序是否稳定性。</p>
+<p>实现类用来实现细节。抽象类中的模版方法正是通过实现类扩展的方法来完成业务逻辑。只要实现类中的扩展方法通过了单元测试，在模版方法正确的前提下，整体功能一般不会出现大的错误。</p>
+<p><strong>模版方法的优点及适用场景</strong></p>
+<p><strong>容易扩展。</strong>一般来说，抽象类中的模版方法是不易反生改变的部分，而抽象方法是容易反生变化的部分，因此通过增加实现类一般可以很容易实现功能的扩展，符合开闭原则。</p>
+<p><strong>便于维护。</strong>对于模版方法模式来说，正是由于他们的主要逻辑相同，才使用了模版方法，假如不使用模版方法，任由这些相同的代码散乱的分布在不同的类中，维护起来是非常不方便的。</p>
+<p><strong>比较灵活。</strong>因为有钩子方法，因此，子类的实现也可以影响父类中主逻辑的运行。但是，在灵活的同时，由于子类影响到了父类，违反了里氏替换原则，也会给程序带来风险。这就对抽象类的设计有了更高的要求。</p>
+<p>在多个子类拥有相同的方法，并且这些方法逻辑相同时，可以考虑使用模版方法模式。在程序的主框架相同，细节不同的场合下，也比较适合使用这种模式。</p>
+<h2 id="门面-外观（Facade）"><a href="#门面-外观（Facade）" class="headerlink" title="门面/外观（Facade）"></a>门面/外观（Facade）</h2><h3 id="初步理解-5"><a href="#初步理解-5" class="headerlink" title="初步理解"></a>初步理解</h3><p>开门见山，门，建筑物的入口，面，脸也。门面，通常指店铺的门头外表部分，当然一定要临街才是好的商铺，在人流量大的地方营造更好的视觉冲击，这样会有更多等等机会暴露给潜在顾客，否则只能是靠“酒香不怕巷子深”，靠味道来吸引人了。</p>
+<p>当然除了光鲜亮丽的外表，更重要的是门店提供的服务了。就拿餐饮来举例吧，如果没有这些门店我们都怎样吃饭呢？我们自己做又不会，算了还是找女友下厨吧。很简单分三步走，首先找菜贩买菜，其次女友下厨，最后吃完洗碗，打完收工代码如下:</p>
+<pre><code class="java">public class VegVendor {//菜贩子
+    public void sell(){
+    System.out.println(&quot;菜贩子卖菜。。。&quot;);
+    }
+}
+public class GirlFriend {//女友
+    public void cook(){
+    System.out.println(&quot;女友烹饪。。。&quot;);
+    }
+}
+public class Me {
+    public void eat(){
+    System.out.println(&quot;我只会吃。。。&quot;);
+    }
+    public static void main(String[] args) {
+        //找菜贩子买菜
+        VegVendor vv = new VegVendor();
+        vv.sell();
+        //找女友做饭
+        GirlFriend gf = new GirlFriend();
+        gf.cook();
+        //我只会吃
+        Me me = new Me();
+        me.eat();
+        //谁洗碗呢？一场战场一触即发……
+    }
+}</code></pre>
+<p>其实我们不该找女友做饭的，而是应该雇一个专业厨师，可这下来得多大花费啊，太划不来了，也许还得我们自己洗碗……哎。其实我们也不想麻烦，还是找门店来解决吧，至于那些买菜啊，烹饪啊，洗碗收拾桌子啊我们统统都不用管了，门店可以进行资源整合与调度，这样我们吃饭就变得如此简单了，只需要付钱就行了，毕竟我们只会吃。</p>
+<pre><code class="java">public class Facade {
+    private VegVendor vv;
+    private Chef chef;
+    private Waiter waiter;
+    private Cleaner cleaner;
+    public Facade() {
+        this.vv = new VegVendor();
+        //开门前就找菜贩子准备好蔬菜
+        vv.sell();
+        //当然还得雇佣好各类饭店服务人员
+        this.chef = new Chef();
+        this.waiter = new Waiter();
+        this.cleaner = new Cleaner();
+    }
+    public void provideService(){
+        //接待，入座，点菜
+        waiter.order();
+        //找厨师做饭
+        chef.cook();
+        //上菜
+        waiter.serve();
+        //收拾桌子，洗碗，以及其他工序……
+        cleaner.clean();
+        cleaner.wash();
+    }
+}</code></pre>
+<p>这下可爽了，我们再也不用去花费时间去调动那么多资源，又是出门买菜，又是找女友做菜，洗碗擦桌什么的。所以我们急需一个门面来解决这些问题，如果没有门面的话，试想每家每户每顿都做饭的话，于是我们放弃我们的专业优势，整天花很长时间做饭才能不饿肚子。</p>
+<p>其实这就是门面模式的用法了，门面就是一个大系统，里面封装了很多的子部件（或子系统），部件之间也许有复杂的逻辑关系，对于我们旁观者来说，直接使用这些子部件是非常麻烦的一件事情，所以门面就充当了一个包装类的角色，并且对外暴露一个接口，达到简化客户操作的目的，同时也是对客户端与子系统之间的解耦。</p>
+<h3 id="定义说明-5"><a href="#定义说明-5" class="headerlink" title="定义说明"></a>定义说明</h3><p><strong>定义：</strong></p>
+<p>为子系统中的一组接口提供一个一致的界面，<code>Facade</code>模式定义了一个高层接口，这个接口使得这一子系统更加容易使用。</p>
+<p><strong>角色：</strong></p>
+<ul>
+<li><p>外观(<code>Facade</code>)角色 ：客户端可以调用这个角色的方法。此角色知晓相关子系统的功能和责任。在正常情况下，本角色会将所有从客户端发来的请求委派到相应的子系统去。</p>
+</li>
+<li><p>子系统(<code>SubSystem</code>)角色 ：可以同时有一个或者多个子系统。每个子系统都不是一个单独的类，而是一个类的集合。每个子系统都可以被客户端直接调用，或者被外观角色调用。子系统并不知道外观角色的存在，对于子系统而言，外观角色仅仅是另外一个客户端而已。</p>
+<p><code>Facade</code>类其实相当于子系统中<code>SubClass</code>类的外观界面，有了这个<code>Facade</code>类，那么客户端就不需要亲自调用子系统中的那些具体实现的子类了，也不需要知道系统内部的实现细节，甚至都不需要知道这些子类的存在，客户端只需要跟<code>Facade</code>类交互就好了，从而更好地实现了客户端和子系统中具体类的解耦，让客户端更容易地使用系统。</p>
+</li>
+</ul>
+<p>同时，这样定义一个<code>Facade</code>类可以有效地屏蔽内部的细节，免得客户端去调用<code>Module</code>类时，发现一些不需要它知道的方法。如上代码，我的所有子类中的方法二都是方法一调用的方法，是配合方法一的，他们不需要被客户端调用，而且具有一定的保密性，这样使用外观模式时就可以不被客户端知道。</p>
+<p><strong>优点：</strong></p>
+<p>实现了子系统与客户端之间的松耦合关系。</p>
+<p>客户端屏蔽了子系统组件，减少了客户端所需处理的对象数目，并使得子系统使用起来更加容易。</p>
+<p><strong>适用场景：</strong></p>
+<p>设计初期阶段，应该有意识的将不同层分离，层与层之间建立外观模式。</p>
+<p>开发阶段，子系统越来越复杂，增加外观模式提供一个简单的调用接口。</p>
+<p>维护一个大型遗留系统的时候，可能这个系统已经非常难以维护和扩展，但又包含非常重要的功能，为其开发一个外观类，以便新系统与其交互。</p>
+<p><strong>外观模式总结：</strong></p>
+<ul>
+<li><p>外观模式为复杂子系统提供了一个简单接口，并不为子系统添加新的功能和行为。</p>
+</li>
+<li><p>外观模式实现了子系统与客户端之间的松耦合关系。 </p>
+</li>
+<li><p>外观模式没有封装子系统的类，只是提供了简单的接口。 如果应用需要，它并不限制客户使用子系统类。因此可以灵活的在系统易用性与通用性之间选择。</p>
+</li>
+<li><p>外观模式注重的是简化接口，它更多的时候是从架构的层次去看整个系统，而并非单个类的层次。</p>
+</li>
+</ul>
+<h2 id="组合（Combinations）"><a href="#组合（Combinations）" class="headerlink" title="组合（Combinations）"></a>组合（Combinations）</h2><h3 id="初步理解-6"><a href="#初步理解-6" class="headerlink" title="初步理解"></a>初步理解</h3><p>组合，由于事物与事物之间存在某种关系，进而组织起来并形成某种结构并且可以共同发挥作用。组合模式所应用的就是树形结构以表达“部分/整体”的层次结构。相信我们都知道“二叉树”结构吧，根部分出来两个枝杈（左节点，右节点），每个枝杈上又可以继续分叉，直到末端的叶子为止。</p>
+<p>当然，二叉树算是最简单的树了，其实大自然中更多的是多叉树结构，一片简单的叶子。仔细观察我们会发现叶子上又有小的枝叶，一个小的枝叶上又有更小的枝叶。我们不管从宏观还是微观维度上看都是类似的结构，这正取决于植物的DNA，无论在哪个维度上都是相同的生长方式。冥冥之中，好似存在着某种大自然的规律，类似的结构总是在重复、迭代地显现出某种自似性。</p>
+<p>从简单到复杂，或是复杂到简单，我们抽出任意一个“部分”，其与“整体”的结构是类似的。所以，上面提到的“树”结构，无论是根、枝、还是叶子，我们都统统把他们抽象地称为“节点”，模糊他们的行为差异，这样我们便可以达到模糊简单元素与复杂元素的目的。好了，开始代码部分，这里我们就拿类似树结构的文件系统目录结构来举例吧。</p>
+<p>从根目录开始分支，下面可以包含文件夹或者文件，文件夹下面可以继续存放子文件夹或文件，而文件则属于“叶子”节点，下面不再有延续分支。不管三七二十一，我们笼统地把他们都抽象成”节点“。</p>
+<pre><code class="java">public abstract class Node {
+    protected String name;//节点命名
+    public Node(String name) {//构造节点，传入节点名。
+        this.name = name;
+    }
+    //增加后续子节点方法
+    protected abstract void add(Node child);
+}</code></pre>
+<p>每个文件夹或文件都应该有一个名字，并且新建时必须声明，所以在构造的时候必须传入名字。第9行添加子节点方法我们做成抽象的，模糊其添加行为并留给子类去实现。下面添加文件夹类并继承自抽象节点。</p>
+<pre><code class="java">public class Folder extends Node{
+    //文件夹可以包含子节点（文件夹或者文件）。
+    private List&lt;Node&gt; childrenNodes = new ArrayList&lt;&gt;();
+    public Folder(String name) {
+        super(name);//调用父类“节点”的构造方法命名。
+    }
+    @Override
+    protected void add(Node child) {
+        childrenNodes.add(child);//可以添加子节点。
+    }
+}</code></pre>
+<p>作为文件夹类，我们承载着树型结构的重任，所以这里第3行我们的文件夹类封装了一个子节点的List，重点在于这里模糊了其下文件夹或文件的概念，也就是说这个文件夹既可以包含子文件夹，又可以包含文件。第5行的构造方法我们则交给父类构造完成，至于第10行的添加子节点方法，作为文件夹类当然是需要实现的。反之作为叶子节点的文件类，是不具备添加子节点功能的，看代码。</p>
+<pre><code class="java">public class File extends Node{
+    public File(String name) {
+        super(name);
+    }
+    @Override
+    protected void add(Node child) {
+        System.out.println(&quot;不能添加子节点。&quot;);
+    }
+}</code></pre>
+<p>可以看到第9行我们在这里实现了添加子节点方法并打印输出一句错误信息告知用户“不能添加子节点”，其实更合适的做法是在此处抛出异常信息。一切就绪，我们可以构建目录并添加文件了。</p>
+<pre><code class="java">public class Client {
+    public static void main(String[] args) {
+        Node driveD = new Folder(&quot;D盘&quot;);
+        Node doc = new Folder(&quot;文档&quot;);
+        doc.add(new File(&quot;简历.doc&quot;));
+        doc.add(new File(&quot;项目介绍.ppt&quot;));
+        driveD.add(doc);
+        Node music = new Folder(&quot;音乐&quot;);
+        Node jay = new Folder(&quot;周杰伦&quot;);
+        jay.add(new File(&quot;双截棍.mp3&quot;));
+        jay.add(new File(&quot;告白气球.mp3&quot;));
+        jay.add(new File(&quot;听妈妈的话.mp3&quot;));
+        Node jack = new Folder(&quot;张学友&quot;);
+        jack.add(new File(&quot;吻别.mp3&quot;));
+        jack.add(new File(&quot;一千个伤心的理由.mp3&quot;));
+        music.add(jay);
+        music.add(jack);
+        driveD.add(music);
+    }
+}</code></pre>
+<p>至此，我们已经告一段落了，我们将目录结构规划的非常好，以便对各种文件进行分类管理以便日后查找。不止于此，我们这里再做一些扩展，比如用户需要列出当前目录下的所有子目录及文件。</p>
+<pre><code class="java">public abstract class Node {
+    protected String name;//节点命名
+    public Node(String name) {//构造节点，传入节点名。
+        this.name = name;
+    }
+    //增加后续子节点方法
+    protected abstract void add(Node child);
+    protected void ls(int space){
+        for (int i = 0; i &lt; space; i++) {
+            System.out.print(&quot;　&quot;);//先循环输出n个空格；
+        }
+        System.out.println(name);//然后再打印自己的名字。
+    }
+}</code></pre>
+<p>这里从第11行开始加入的ls方法不做抽象，而只实现出文件夹与文件相同的行为片段，至于“不同”的行为片段则在子类中实现。</p>
+<pre><code class="java">public class File extends Node{
+    public File(String name) {
+        super(name);
+    }
+    @Override
+    protected void add(Node child) {
+        System.out.println(&quot;不能添加子节点。&quot;);
+    }
+    @Override
+    public void ls(int space){
+        super.ls(space);
+    }
+}</code></pre>
+<p>文件类的实现与父类完全一致，第13行开始直接调用父类继承下来的ls方法即可。而文件夹类则比较特殊了，不但要列出自己的名字，还要列出子节点的名字。</p>
+<pre><code class="java">public class Folder extends Node{
+    //文件夹可以包含子节点（文件夹或者文件）。
+    private List&lt;Node&gt; childrenNodes = new ArrayList&lt;&gt;();
+    public Folder(String name) {
+        super(name);//调用父类“节点”的构造方法命名。
+    }
+    @Override
+    protected void add(Node child) {
+        childrenNodes.add(child);//可以添加子节点。
+    }
+    @Override
+    public void ls(int space){
+        super.ls(space);//调用父类共通的ls方法列出自己的名字。
+        space++;//之后列出的子节点前，空格数要增加一个了。
+        for (Node node : childrenNodes) {
+           node.ls(space);//调用子节点的ls方法。
+        }
+    }
+}</code></pre>
+<p>自第15行开始，文件夹的<code>ls</code>方法先调用父类共通的<code>ls</code>方法列出自己的名字，然后再把空格数加1并传给下一级的所有子节点，循环迭代，直至抵达叶子则返回调用之初，完美的抽象递归。</p>
+<p>最后，我们的<code>client</code>在任何一级节点上只要调用<code>ls(int space)</code>，并传入当前目录的偏移量（空格数）即可出现之前的树形列表了，比如挨着左边框显示：<code>ls(0)</code>。或者我们干脆给用户再增加一个无参数重载方法，内部直接调用<code>ls(0)</code>即可。</p>
+<pre><code class="java">public abstract class Node {
+    protected String name;//节点命名
+    public Node(String name) {//构造节点，传入节点名。
+        this.name = name;
+    }
+    //增加后续子节点方法
+    protected abstract void add(Node child);
+    protected void ls(int space){
+        for (int i = 0; i &lt; space; i++) {
+            System.out.print(&quot;　&quot;);//先循环输出n个空格；
+        }
+        System.out.println(name);//然后再打印自己的名字。
+    }
+    //无参重载方法，默认从第0列开始显示。
+    protected void ls(){
+        this.ls(0);
+    }
+}</code></pre>
+<p>这样用户可以抛开烦扰，直接调用<code>ls()</code>便是。</p>
+<h3 id="定义说明-6"><a href="#定义说明-6" class="headerlink" title="定义说明"></a>定义说明</h3><p><strong>介绍</strong></p>
+<p>组合模式又叫做部分-整体模式,它使我们树型结构的问题中,模糊了简单元素和复杂元素的概念,客户程序可以向处理简单元素一样来处理复杂元素,从而使得客户程序与复杂元素的内部结构解藕。</p>
+<p>组合模式可以优化处理递归或分级数据结构.有许多关于分级数据结构的例子,使得组合模式非常有用武之地。</p>
+<p><strong>组成部分：</strong><br><code>Component</code>: 为参加组合的对象声明一个公共接口, 不管是组合还是叶结点。<br><code>Leaf</code>: 在组合中表示叶子结点对象,叶子结点没有子结点。<br><code>Composite</code>: 表示参加组合的有子对象的对象, 并给出树枝购件的行为。</p>
+<p><strong>使用场景</strong></p>
+<p>以下情况下适用<code>Composite</code>模式：</p>
+<ul>
+<li><p>你想表示对象的部分-整体层次结构</p>
+</li>
+<li><p>你希望用户忽略组合对象与单个对象的不同，用户将统一地使用组合结构中的所有对象。</p>
+</li>
+</ul>
+<p><strong>总结</strong></p>
+<p>组合模式解耦了客户程序与复杂元素内部结构，从而使客户程序可以向处理简单元素一样来处理复杂元素。</p>
+<p>如果你想要创建层次结构，并可以在其中以相同的方式对待所有元素，那么组合模式就是最理想的选择。本章使用了一个文件</p>
+<p>系统的例子来举例说明了组合模式的用途。在这个例子中，文件和目录都执行相同的接口，这是组合模式的关键。通过执行相同的接口，你就可以用相同的方式对待文件和目录，从而实现将文件或者目录储存为目录的子级元素。</p>
+<h2 id="中介（Intermediary）"><a href="#中介（Intermediary）" class="headerlink" title="中介（Intermediary）"></a>中介（Intermediary）</h2><h3 id="初步理解-7"><a href="#初步理解-7" class="headerlink" title="初步理解"></a>初步理解</h3><p>中介，作用于多个事物之间充当交互沟通的媒介。我们的生活中有各种各样的媒介，比如一些传统媒体，书刊杂志，报纸，把信息传递给读者。再比如利用电子信息技术的互联网，作为一种新媒体，不单可以更高效地把信息传递给用户，而且可以反向地获得用户反馈评论，用户与用户之间亦可以进行沟通，这种全终端双向互通是传统媒体所不能及的。</p>
+<p>除此之外，再如婚介所、房产中介、交换机组网、现代电子商务、C2C购物平台、手机、即时通软件等等，这些都与我们的生活息息相关，离开它们我们将举步维艰。其实不管是任何中介，其本质都是相同的，都是充当中间媒介的角色，并达成多方业务互通的目的。</p>
+<p>首先我们以最简单的模型来解决问题，以两个人交谈为例，其实他们之间并不需要任何第三方媒介，而是一对一直接沟通，看代码。</p>
+<pre><code class="java">public class People {
+  private String name;//用名字来区别人。
+  private People other;//持有对方的引用。
+  public String getName() {
+    return this.name;
+  }
+  public People(String name) {
+    this.name = name;//初始化必须起名。
+  }
+  public void connect(People other) {
+    this.other = other;//连接方法中注入对方引用。
+  }
+  public void talk(String msg) {
+    other.listen(msg);//我方说话时，对方聆听。
+  }
+  public void listen(String msg) {
+    //聆听来自对方的声音
+    System.out.println(
+        other.getName() + &quot; 对 &quot; + this.name + &quot; 说：&quot; + msg
+    );
+  }
+}</code></pre>
+<p>一切就绪，两人开始沟通。</p>
+<pre><code class="java">public class Main {
+  public static void main(String args[]) {
+    People p3 = new People(&quot;张三&quot;);
+    People p4 = new People(&quot;李四&quot;);
+    p3.connect(p4);
+    p4.connect(p3);
+    p3.talk(&quot;你好。&quot;);
+    p4.talk(&quot;早上好，三哥。&quot;);
+  }
+  /****************************
+  输出结果：
+    张三 对 李四 说：你好。
+    李四 对 张三 说：早上好，三哥。
+  *****************************/
+}</code></pre>
+<p>从People类中我们可以看到，沟通只只能在两人之间进行，而且各自都持有对方对象的引用，以便把消息传递给对方的监听方法。这种模式虽然简单，但耦合性太强，你中有我，我中有你，谁也离不开谁。试想如果再有多个人加入交谈，那每个人都要持有其他所有人的引用了，这时会陷入一种多对多的关联陷阱，对象关系变得复杂不堪，如蛛网般难以维护。</p>
+<p>我们就拿群聊天室举例，每当有人加入或离开，都要把每个人持有的其他人的引用关系更新一遍，发消息时更是繁琐不堪，重复工作显得非常多余。那么如何解决这个问题呢？我们开始进行思考，为何不把重复的部分抽离出来呢，也就是把对方的引用放在一个中介类里面去统一维护起来，于是设计更改如下。</p>
+<pre><code class="java">public class User {
+    private String name;//名字
+    private ChatRoom chatRoom;//聊天室引用
+    public User(String name) {
+        this.name = name;//初始化必须起名字
+    }
+    public String getName() {
+        return this.name;
+    }
+    public void login(ChatRoom chatRoom) {//用户登陆
+        chatRoom.connect(this);//调用聊天室连接方法
+        this.chatRoom = chatRoom;//注入聊天室引用
+    }
+    public void talk(String msg) {//用户发言
+        chatRoom.sendMsg(this, msg);//给聊天室发消息
+    }
+    public void listen(User fromWhom, String msg) {//且听风吟
+        System.out.print(&quot;【&quot;+this.name+&quot;的对话框】&quot;);
+        System.out.println(fromWhom.getName() + &quot; 说： &quot; + msg);
+    }
+}</code></pre>
+<p>可以看到第14行，用户登陆聊天室时不再是连接对方了，而是连接通知聊天室并告知：“有人进来了请进行注册”，然后记录下来用户当前所在聊天室的引用。第19行，用户发言时也不是直接找对方了，而是把消息扔给聊天室处理。第23行，聆听方法同样也是，将来会接受来自聊天室的声音。很显然，一切沟通都与是中介聊天室进行，这样用户之间就实现了解耦的目的。当然，用户当然还需要注销离开聊天室，请读者可自行练习添加，下面接着写我们的聊天室中介类。</p>
+<pre><code class="java">public class ChatRoom {
+    private String name;//聊天室命名
+    public ChatRoom(String name) {
+        this.name = name;//初始化必须命名聊天室
+    }
+    List&lt;User&gt; users = new ArrayList&lt;&gt;();//聊天室里的用户们
+    public void connect(User user) {
+        this.users.add(user);//用户进入聊天室加入列表。
+        System.out.print(&quot;欢迎【&quot;);
+        System.out.print(user.getName());
+        System.out.println(&quot;】加入聊天室【&quot; + this.name + &quot;】&quot;);
+    }
+    public void sendMsg(User fromWhom, String msg) {
+        // 循环所有用户，只发消息给非发送方fromWhom。
+        users.stream()
+        .filter(user -&gt; !user.equals(fromWhom))//过滤掉发送方fromWhom
+        .forEach(toWhom -&gt; toWhom.listen(fromWhom, msg));//发送消息给剩下的所有人
+    }
+}</code></pre>
+<p>这里我们新建一个聊天室作为中介类，所有参与者登陆时调用第10行的connect方法进入聊天室，并记录其引用到users列表中。第17行，当用户发消息到平台我们再转发给其他人，这里利用Java8的流和Lambda表达式进行过滤（User类的equals方法请自行加入），并循环调用所有接收方的listen方法即可。</p>
+<p>为了说明问题，我们这里只是保持最简单的方式，如果某天情况变得复杂，有了不同的用户，或是聊天室也各不相同并加入了各自的特性，那我们就需要继续重构，抽象聊天室类，抽象用户类，读者可以灵活运用，这里就不做赘述了。</p>
+<p>其实中介模式不止是在生活中广泛应用，在软件架构中也非常常见，当下流行的微服务分布式软件架构所用到的注册中心，例如最常用到的云组件Eureka Server，其作用就是为众多分布式服务提供注册发现服务，它正是充当像中介一样的角色。</p>
+<p>还记得之前讲到的<a href="#组合（Combinations）">组合模式</a>中的树型结构吧，它主要描述的是子节点与父节点的关系。</p>
+<p>而中介模式更像是网络拓扑中的星型结构，它描述了众节点与中心点的关系。</p>
+<p>对像之间显式地互相引用越多，意味着依赖性越强，独立性越差，不利于代码维护与扩展，同时多方沟通的任务也应交由中间平台来完成，每个类应只具备各自该有的功能，这便是高内聚低耦合的设计标准。中介模式符合迪米特法则，它解决了对象间过度耦合、复杂频繁交互的问题，打破了你中有我，我中有你的相互依赖，第三方的介入有助于双方调停，打破如胶似漆、纠缠不休的关系，让他们之间变得松散、自由、独立。</p>
+<h3 id="定义说明-7"><a href="#定义说明-7" class="headerlink" title="定义说明"></a>定义说明</h3><p><strong>定义：</strong>用一个中介者对象封装一系列的对象交互，中介者使各对象不需要显示地相互作用，从而使耦合松散，而且可以独立地改变它们之间的交互。</p>
+<p><strong>中介者模式的结构</strong></p>
+<p>中介者模式又称为调停者模式</p>
+<ul>
+<li><p><strong>抽象中介者：</strong>定义好同事类对象到中介者对象的接口，用于各个同事类之间的通信。一般包括一个或几个抽象的事件方法，并由子类去实现。</p>
+</li>
+<li><p><strong>中介者实现类：</strong>从抽象中介者继承而来，实现抽象中介者中定义的事件方法。从一个同事类接收消息，然后通过消息影响其他同时类。</p>
+</li>
+<li><p><strong>同事类：</strong>如果一个对象会影响其他的对象，同时也会被其他对象影响，那么这两个对象称为同事类。在类图中，同事类只有一个，这其实是现实的省略，在实际应用中，同事类一般由多个组成，他们之间相互影响，相互依赖。同事类越多，关系越复杂。并且，同事类也可以表现为继承了同一个抽象类的一组实现组成。在中介者模式中，同事类之间必须通过中介者才能进行消息传递。</p>
+</li>
+</ul>
+<p><strong>中介者模式的优点</strong></p>
+<ul>
+<li><p>适当地使用中介者模式可以避免同事类之间的过度耦合，使得各同事类之间可以相对独立地使用。</p>
+</li>
+<li><p>使用中介者模式可以将对象间一对多的关联转变为一对一的关联，使对象间的关系易于理解和维护。</p>
+</li>
+<li><p>使用中介者模式可以将对象的行为和协作进行抽象，能够比较灵活的处理对象间的相互作用。</p>
+</li>
+</ul>
+<p><strong>适用场景</strong></p>
+<p>在面向对象编程中，一个类必然会与其他的类发生依赖关系，完全独立的类是没有意义的。一个类同时依赖多个类的情况也相当普遍，既然存在这样的情况，说明，一对多的依赖关系有它的合理性，适当的使用中介者模式可以使原本凌乱的对象关系清晰，但是如果滥用，则可能会带来反的效果。一般来说，只有对于那种同事类之间是网状结构的关系，才会考虑使用中介者模式。可以将网状结构变为星状结构，使同事类之间的关系变的清晰一些。</p>
+<p>中介者模式是一种比较常用的模式，也是一种比较容易被滥用的模式。对于大多数的情况，同事类之间的关系不会复杂到混乱不堪的网状结构，因此，大多数情况下，将对象间的依赖关系封装的同事类内部就可以的，没有必要非引入中介者模式。滥用中介者模式，只会让事情变的更复杂。</p>
+<h2 id="备忘录（Memorandum）"><a href="#备忘录（Memorandum）" class="headerlink" title="备忘录（Memorandum）"></a>备忘录（Memorandum）</h2><h3 id="初步理解-8"><a href="#初步理解-8" class="headerlink" title="初步理解"></a>初步理解</h3><p>备忘录，备份曾经发生过的历史记录，以防忘记，之后便可以轻松回溯过往。</p>
+<p>在计算机世界里，人类便是神一般的存在，各种回滚，倒退，载入历史显得稀松平常，例如数据库恢复、游戏存盘载入、操作系统快照恢复、打开备份文档、手机恢复出厂设置……为了保证极简风格，我们这里以文档操作来举例说明这个设计模式。</p>
+<p>假设某位作者要写一部科幻小说，当他打开编辑器软件以及创建文档开始创作的时候，我们来思考下这个场景需要哪些类。很简单，首先我们得有一个文档类Doc。</p>
+<pre><code class="java">public class Doc {
+    private String title;//文章标题
+    private String body;//文章内容
+    public Doc(String title){//新建文档先命名
+        this.title = title;
+        this.body = &quot;&quot;;
+    }
+    public void setTitle(String title) {
+        this.title = title;
+    }
+    public String getTitle() {
+        return title;
+    }
+    public String getBody() {
+        return body;
+    }
+    public void setBody(String body) {
+        this.body = body;
+    }
+}</code></pre>
+<p>没什么好说的，一个简单的Java Bean，包括标题与内容。有了文档那一定要有编辑器去修改它了，看代码。</p>
+<pre><code class="java">public class Editor {//编辑器
+    private Doc doc;//文档引用
+    public Editor(Doc doc) {
+        System.out.println(&quot;&lt;&lt;&lt;打开文档&quot; + doc.getTitle());
+        this.doc = doc;
+        show();
+    }
+    public void append(String txt) {
+        System.out.println(&quot;&lt;&lt;&lt;插入操作&quot;);
+        doc.setBody(doc.getBody() + txt);
+        show();
+    }
+    public void save(){
+        System.out.println(&quot;&lt;&lt;&lt;存盘操作&quot;);
+    }
+    public void delete(){
+        System.out.println(&quot;&lt;&lt;&lt;删除操作&quot;);
+        doc.setBody(&quot;&quot;);
+        show();
+    }
+    private void show(){//显示当前文本内容
+        System.out.println(doc.getBody());
+        System.out.println(&quot;文章结束&gt;&gt;&gt;n&quot;);
+    }
+}</code></pre>
+<p>当编辑器打开一个文档后会持有其引用，这里我们写在编辑器构造方法里。编辑器主要的功能当然是对文档进行更改了，依然保持简单的操作模拟，我们只加入append插入功能、delete清空功能，以及save存盘方法和最后的show方法用于显示文档内容。</p>
+<pre><code class="java">public class Author {
+    public static void main(String[] args) {
+        Editor editor = new Editor(new Doc(&quot;《AI的觉醒》&quot;));
+        /*
+        &lt;&lt;&lt;打开文档《AI的觉醒》
+
+        文章结束&gt;&gt;&gt;
+        */
+        editor.append(&quot;第一章 混沌初开&quot;);
+        /*
+        &lt;&lt;&lt;插入操作
+        第一章 混沌初开
+        文章结束&gt;&gt;&gt;
+        */
+        editor.append(&quot;n  正文2000字……&quot;);
+        /*
+        &lt;&lt;&lt;插入操作
+        第一章 混沌初开
+          正文2000字……
+        文章结束&gt;&gt;&gt;
+        */
+        editor.append(&quot;n第二章 荒漠之花n  正文3000字……&quot;);
+        /*
+        &lt;&lt;&lt;插入操作
+        第一章 混沌初开
+          正文2000字……
+        第二章 荒漠之花
+          正文3000字……
+        文章结束&gt;&gt;&gt;
+        */
+        editor.delete();
+        /*
+        &lt;&lt;&lt;删除操作
+
+        文章结束&gt;&gt;&gt; 
+        */
+    }
+}</code></pre>
+<p>鬼才作者开始了创作，一切进行地非常顺利，一气呵成写完了二章内容（第22行操作），于是他离开电脑去倒了杯咖啡，噩耗在此间发生了，他的熊孩子不知怎么就按下了Ctr+A，Delete触发了第31行的操作，导致全文丢失，从内存里被清空，而且离开前作者疏忽大意也没有进行存盘操作，这下彻底完了，5000字的心血付诸东流。</p>
+<p>此场景该如何是好？大家都想到了Ctr+z的操作吧？它可以瞬间撤销上一步操作并回退到前一个版本，不但让我们有吃后悔药的机会，而且还不需要频繁的去存盘备份。那么这个机制是怎样实现的呢？既然可以回溯历史，那一定得有一个历史备忘类来记录每步操作后的文本状态记录了，它同样是一个简单的Java Bean。</p>
+<pre><code class="java">public class History {
+    private String body;//用于备忘文章内容
+    public History(String body){
+        this.body = body;
+    }
+    public String getBody() {
+        return body;
+    }
+}</code></pre>
+<p>有了这个类，我们便可以记录文档的内容快照了，在初始化时把文档内容传进来。那谁来生成这些历史记录呢？我们可以放在文档类里，让文档类具备创建与恢复历史记录的功能，我们对Doc文档类做如下修改。</p>
+<pre><code class="java">public class Doc {
+    private String title;//文章名字
+    private String body;//文章内容
+    public Doc(String title){//新建文档先命名
+        this.title = title;
+        this.body = &quot;&quot;;
+    }
+    public void setTitle(String title) {
+        this.title = title;
+    }
+    public String getTitle() {
+        return title;
+    }
+    public String getBody() {
+        return body;
+    }
+    public void setBody(String body) {
+        this.body = body;
+    }
+    public History createHistory() {
+        return new History(body);//创建历史记录
+    }
+    public void restoreHistory(History history){
+        this.body = history.getBody();//恢复历史记录
+    }
+}</code></pre>
+<p>可以看到自第26行开始我们加入了这两个功能，只要简单的调用，便可以生成当下的历史记录，以及来去自如的恢复内容到任一历史时刻。接下来得有对历史记录的逻辑控制，也就是我们期待已久的撤销功能了，继续对编辑器类做如下修改。</p>
+<pre><code class="java">public class Editor {
+    private Doc doc;
+    private List&lt;History&gt; historyRecords;// 历史记录列表
+    private int historyPosition = -1;// 历史记录当前位置
+    public Editor(Doc doc) {
+        System.out.println(&quot;&lt;&lt;&lt;打开文档&quot; + doc.getTitle());
+        this.doc = doc; // 注入文档
+        historyRecords = new ArrayList&lt;&gt;();// 初始化历史记录
+        backup();// 保存一份历史记录
+        show();//显示内容
+    }
+    public void append(String txt) {
+        System.out.println(&quot;&lt;&lt;&lt;插入操作&quot;);
+        doc.setBody(doc.getBody() + txt);
+        backup();//操作完成后保存历史记录
+        show();
+    }
+    public void save(){
+        System.out.println(&quot;&lt;&lt;&lt;存盘操作&quot;);
+    }
+    public void delete(){
+        System.out.println(&quot;&lt;&lt;&lt;删除操作&quot;);
+        doc.setBody(&quot;&quot;);
+        backup();//操作完成后保存历史记录
+        show();
+    }
+    private void backup() {
+        historyRecords.add(doc.createHistory());
+        historyPosition++;
+    }
+    private void show() {// 显示当前文本内容
+        System.out.println(doc.getBody());
+        System.out.println(&quot;文章结束&gt;&gt;&gt;n&quot;);
+    }
+    public void undo() {// 撤销操作：如按下Ctr+Z，回到过去。
+        System.out.println(&quot;&gt;&gt;&gt;撤销操作&quot;);
+        if (historyPosition == 0) {
+            return;//到头了，不能再撤销了。
+        }
+        historyPosition--;//历史记录位置回滚一笔
+        History history = historyRecords.get(historyPosition);
+        doc.restoreHistory(history);//取出历史记录并恢复至文档
+        show();
+    }
+    // public void redo(); 省略实现代码
+}</code></pre>
+<p>在第3行我们加入了一个历史记录列表，它就像是时间轴一样按顺序地按index记录每个时间点的历史事件，从某种意义上看它更像是一本历史书。接下来加入的第32行backup方法会从文档中拿出快照并插入历史书，并于每个暴露给客户端作者的操作方法内被调用，做好历史的传承。最后我们加入第42行的撤销操作，让时间点回溯一个单位并恢复此处的快照至文档。</p>
+<pre><code class="java">public class Author {
+    public static void main(String[] args) {
+        Editor editor = new Editor(new Doc(&quot;《AI的觉醒》&quot;));
+        /*
+        &lt;&lt;&lt;打开文档《AI的觉醒》
+        文章结束&gt;&gt;&gt;
+        */
+        editor.append(&quot;第一章 混沌初开&quot;);
+        /*
+        &lt;&lt;&lt;插入操作
+        第一章 混沌初开
+        文章结束&gt;&gt;&gt;
+        */
+        editor.append(&quot;n  正文2000字……&quot;);
+        /*
+        &lt;&lt;&lt;插入操作
+        第一章 混沌初开
+          正文2000字……
+        文章结束&gt;&gt;&gt;
+        */
+        editor.append(&quot;n第二章 荒漠之花n  正文3000字……&quot;);
+        /*
+        &lt;&lt;&lt;插入操作
+        第一章 混沌初开
+          正文2000字……
+        第二章 荒漠之花
+          正文3000字……
+        文章结束&gt;&gt;&gt;
+        */
+        editor.delete();
+        /*
+        &lt;&lt;&lt;删除操作
+        文章结束&gt;&gt;&gt; 
+        */
+        //吃下后悔药，我的世界又完整了。
+        editor.undo();
+        /*
+        &gt;&gt;&gt;撤销操作
+        第一章 混沌初开
+          正文2000字……
+        第二章 荒漠之花
+          正文3000字……
+        文章结束&gt;&gt;&gt;
+        */
+    }
+}</code></pre>
+<p>可以看到，熊孩子做了delete操作后，作者轻松淡定地按下了Ctr+z，一切恢复如初，世界依旧美好，挽回那逝去的青葱岁月。当然，代码中我们略去了一些功能，比如读者还可以加入重做redo操作，弹指之间，让历史在时间轴上来去自如，我的电脑我做主，时空穿梭，逆天之做。</p>
+<p>诚然，任何模式都有其优缺点，备忘录虽然看起来完美，但如果历史状态内容过大，会导致内存消耗严重，别忘了那边历史书的list是在内存中的哦，所以我们一定要依场景灵活运用，切不可生搬硬套。</p>
+<h3 id="定义说明-8"><a href="#定义说明-8" class="headerlink" title="定义说明"></a>定义说明</h3><p><strong>定义：</strong>在不破坏封装性的前提下，捕获一个对象的内部状态，并在该对象之外保存这个状态。这样就可以将该对象恢复到原先保存的状态。</p>
+<p>我们在编程的时候，经常需要保存对象的中间状态，当需要的时候，可以恢复到这个状态。</p>
+<p>比如，我们使用Idea进行编程时，假如编写失误（例如不小心误删除了几行代码），我们希望返回删除前的状态，便可以使用<code>Ctrl+Z</code>来进行返回。这时我们便可以使用备忘录模式来实现。</p>
+<p><strong>备忘录模式的结构</strong></p>
+<p><strong>发起人：</strong>记录当前时刻的内部状态，负责定义哪些属于备份范围的状态，负责创建和恢复备忘录数据。</p>
+<p><strong>备忘录：</strong>负责存储发起人对象的内部状态，在需要的时候提供发起人需要的内部状态。</p>
+<p><strong>管理角色：</strong>对备忘录进行管理，保存和提供备忘录。</p>
+<p><strong>备忘录模式的优缺点和适用场景</strong></p>
+<p>备忘录模式的<strong>优点</strong>有：当发起人角色中的状态改变时，有可能这是个错误的改变，我们使用备忘录模式就可以把这个错误的改变还原。备份的状态是保存在发起人角色之外的，这样，发起人角色就不需要对各个备份的状态进行管理。</p>
+<p>备忘录模式的<strong>缺点</strong>有：在实际应用中，备忘录模式都是多状态和多备份的，发起人角色的状态需要存储到备忘录对象中，对资源的消耗是比较严重的。</p>
+<p> 如果有需要提供回滚操作的需求，使用备忘录模式非常适合，比如<code>jdbc</code>的事务操作，文本编辑器的<code>Ctrl+Z</code>恢复等。</p>
+<h2 id="迭代器（Iterator）"><a href="#迭代器（Iterator）" class="headerlink" title="迭代器（Iterator）"></a>迭代器（Iterator）</h2><h3 id="初步理解-9"><a href="#初步理解-9" class="headerlink" title="初步理解"></a>初步理解</h3><p>方法迭代，代的更迭，从初代到末代的遍历，指对某类集合中的每个元素按顺序取出的行为。举个例子，通常我们读小说是从前往后翻，一页接着一页地读，这样我们才可以了解一个连续完整的故事，那这就需要我们顺序地迭代整本书的每一页内容。</p>
+<p>相信大家都用过集合类吧，最常用的比如List，Set，Map以及各种各样不同数据表示实现，总之是把某一批类似的元素按某种数据结构集合起来作为一个整体来引用，不至于元素丢的到处都是难以维护，当要用到每个元素的时候，我们需要将它们一个个的取出来，但是对不同的数据类型访问方式各有不同，于是我们就需要定义统一的迭代器来标准化这种遍历行为。</p>
+<p>为何会有各种各样的遍历方式呢？比如说弹夹，装填子弹的时候要一颗一颗的进行压栈，等到射击的时候就需要迭代操作，先出栈拿出最后装填的子弹再进行射击，然后反向往前遍历直到最初装填的子弹直到射完为止，此刻也代表着迭代的结束，整个过程像是内存栈的操作，先进后出，后进先出，当然这并不代表其迭代器非要先进后出，这里只是举例说明针对不同数据类型进行不同的迭代方式。</p>
+<p>以上数据结构及迭代器其实都有现成的类去实现，我们就以行车记录仪举例，大家先想想怎么来记录一段一段的视频呢？如果我们简单的利用ArrayList去记录，那它得有多大空间去支持一直拍摄视频？</p>
+<p>我们知道其实它是循环覆写的，待空间不够用时，最新的视频总会去覆盖掉最老的视频，以首尾相接的环形结构解决空间有限的问题。好，开始代码实战，首先我们定义一个行车记录仪类。</p>
+<pre><code class="java">public class DrivingRecorder {
+    private int index = -1;// 当前记录位置
+    private String[] records = new String[10];// 假设只能记录10条视频
+    public void append(String record) {
+        if (index == 9) {// 循环覆盖
+            index = 0;
+        } else {
+            index++;
+        }
+        records[index] = record;
+    }
+    public void display() {// 循环数组并显示所有10条记录
+        for (int i = 0; i &lt; 10; i++) {
+            System.out.println(i + &quot;: &quot; + records[i]);
+        }
+    }
+    public void displayInOrder() {//按顺序从新到旧显示10条记录
+        for (int i = index, loopCount = 0; loopCount &lt; 10; i = i == 0 ? i = 9 : i - 1,loopCount++) {
+            System.out.println(records[i]);
+        }
+    }
+}</code></pre>
+<p>假设我们的记录仪存储空间只够录10段视频，我们定义一个原始的字符串数组（第3行）来模拟记录，并且用一个游标（第2行）来记录当前记录所在位置。当插入视频的时候（第5行）我们得先看有没有录满到头了，如果是的话就要把游标调整到头以后再记录视频。视频目前可以循环记录了，但总得给用户显示出来看吧，于是我们又提供了两个显示方法，一个是按默认数组顺序显示，一个是按用户习惯从新到旧地显示内容（逻辑稍微复杂了点但这里不是重点，读者可以略过），开始写用户类来使用这个记录仪。</p>
+<pre><code class="java">public class Client {
+    public static void main(String[] args) {
+        DrivingRecorder dr = new DrivingRecorder();
+        //假设记录了12条视频
+        for (int i = 0; i &lt; 12; i++) {
+            dr.append(&quot;视频_&quot; + i);
+        }
+        dr.display();
+        /*按原始顺序显示,视频0与1分别被10与11覆盖了。
+            0: 视频_10
+            1: 视频_11
+            2: 视频_2
+            3: 视频_3
+            4: 视频_4
+            5: 视频_5
+            6: 视频_6
+            7: 视频_7
+            8: 视频_8
+            9: 视频_9
+        */
+        dr.displayInOrder();
+        /*按顺序从新到旧显示
+            视频_11
+            视频_10
+            视频_9
+            视频_8
+            视频_7
+            视频_6
+            视频_5
+            视频_4
+            视频_3
+            视频_2
+        */
+    }
+}</code></pre>
+<p>我们以视频_0开始，假设空间已经记录到视频_11，一共12条视频会不会撑爆空间呢？我们来运行以下看会发生什么。奇迹出现了，视频_10和视频_11分别覆盖了最早记录的视频_0和视频_1，完美！产品可以量产了！</p>
+<p>正当我们要举杯欢庆的时候客户开始吐槽了，你只是简单在屏幕上显示一下就完事了么？功能也太差了点！我要的是把原始视频拿出来给我，我好上报交警作为证据，总之你甭管我怎么加工处理，你总得把原始数据拿出来给我。</p>
+<p>这可把我们难住了，这些数据都是在记录仪内部封装好的私有数据，如果直接改成public暴露出去，试想用户随意增加删除，完全不管游标位置，这会破坏掉内部逻辑机制，数据封装的意义何在？我们鬼斧神工设计将瞬间崩塌，用户数据安全无法保证，bug肆虐。</p>
+<p>所以，我们绝不能更改数据的私有化封装，而之前暴露给用户的显示方法显得非常死板，扩展性极差，我们决定以迭代器取而代之，如此提供给用户遍历数据的功能，拿出去的数据用户便可以随意使用，这样就避免了用户染指内部机件的危险。首先我们需要定义一个迭代器接口标准来规范抽象，看代码:</p>
+<pre><code class="java">public interface Iterator&lt;E&gt; {
+    E next();//返回下一个元素
+    boolean hasNext();//是否还有下一个元素
+}</code></pre>
+<p>很简单吧？此接口标准定义了两个方法，next方法用于返回下一个数据元素，而hasNext用于询问迭代器是否还有下一个元素，当然我们也可以不定义这个接口，而是直接用JDK中util包自带的。接下来更改我们的行车记录仪，加入iterator方法用于获取迭代器，开始我们的迭代器实现。</p>
+<pre><code class="java">public class DrivingRecorder {
+    private int index = -1;// 当前记录位置
+    private String[] records = new String[10];// 假设只能记录10条视频
+    public void append(String record) {
+        if (index == 9) {// 循环覆盖
+            index = 0;
+        } else {
+            index++;
+        }
+        records[index] = record;
+    }
+    public Iterator&lt;String&gt; iterator() {
+        return new Itr();
+    }
+    private class Itr implements Iterator&lt;String&gt; {
+        int cursor = index;// 迭代器游标，不染指原始游标。
+        int loopCount = 0;
+        @Override
+        public boolean hasNext() {
+            return loopCount &lt; 10;
+        }
+        @Override
+        public String next() {
+            int i = cursor;// 记录即将返回的游标位置
+            if (cursor == 0) {
+                cursor = 9;
+            } else {
+                cursor--;
+            }
+            loopCount++;
+            return records[i];
+        }
+    }
+}</code></pre>
+<p>这里我们加入内部类（第18行）来定义迭代器实现，为的是能轻松访问到记录仪私有数据集。内部类实现了两个标配方法<code>hasNext</code>与<code>next</code>，内部逻辑看起来简单多了，大家可以自行理解，这里就不做讲解了。最后重点来了，用户可以进行如下操作了。</p>
+<pre><code class="java">public class Client {
+    public static void main(String[] args) {
+        DrivingRecorder dr = new DrivingRecorder();
+        // 假设记录了12条视频
+        for (int i = 0; i &lt; 12; i++) {
+            dr.append(&quot;视频_&quot; + i);
+        }
+        //用户要获取交通事故视频，定义事故列表。
+        List&lt;String&gt; accidents = new ArrayList&lt;&gt;();
+        //用户拿到迭代器
+        Iterator&lt;String&gt; it = dr.iterator();
+        while (it.hasNext()) {//如果还有下一条则继续迭代
+            String video = it.next();
+            System.out.println(video);
+            //用户翻看视频发现10和8可作为证据。
+            if(&quot;视频_10&quot;.equals(video) || &quot;视频_8&quot;.equals(video)){
+                accidents.add(video);
+            }
+        }
+        //拿到两个视频集accidents交给交警查看。
+        System.out.println(&quot;事故证据：&quot; + accidents);
+        /*
+        视频_11
+        视频_10
+        视频_9
+        视频_8
+        视频_7
+        视频_6
+        视频_5
+        视频_4
+        视频_3
+        视频_2 
+        事故证据：[视频_10, 视频_8]
+        */
+    }
+}</code></pre>
+<p>用户拿到迭代器进行遍历查看，注意第18行，用户将这12条视频中的10和8拿出来拷贝U盘并交给交警作为呈堂证供判对方碰瓷，以证明自己的清白。</p>
+<p>当然，我们这里只是保持极简说明问题，读者可以自行重构代码，尤其是实现迭代器的remove方法非常重要（注意游标的调整），这样用户便可以删除数据了。</p>
+<p>总之，对于任何的集合类，既要保证内部数据表示不暴露给外部以防搞乱内部机制，还要提供给用户遍历并访问到每个数据的权限，迭代器模式则成就了鱼与熊掌兼得的可能，它提供了所有集合对外开放的统一标准接口，内政容不得干涉，但是经济依旧要开放。</p>
+<h3 id="定义说明-9"><a href="#定义说明-9" class="headerlink" title="定义说明"></a>定义说明</h3><p><strong>定义：</strong>提供一种方法访问一个容器对象中各个元素，而又不暴露该对象的内部细节。</p>
+<p><strong>迭代器模式的结构</strong></p>
+<ul>
+<li><p><strong>抽象容器：</strong>一般是一个接口，提供一个<code>iterator()</code>方法，例如Java中的<code>Collection</code>接口，<code>List</code>接口，<code>Set</code>接口等。</p>
+</li>
+<li><p><strong>具体容器：</strong>就是抽象容器的具体实现类，比如<code>List</code>接口的有序列表实现<code>ArrayList</code>，<code>List</code>接口的链表实现<code>LinkList</code>，<code>Set</code>接口的哈希列表的实现<code>HashSet</code>等。</p>
+</li>
+<li><p><strong>抽象迭代器：</strong>定义遍历元素所需要的方法，一般来说会有这么三个方法：取得第一个元素的方法<code>first()</code>，取得下一个元素的方法<code>next()</code>，判断是否遍历结束的方法<code>isDone()</code>（或者叫<code>hasNext()</code>），移出当前对象的方法<code>remove()</code></p>
+</li>
+<li><p><strong>迭代器实现：</strong>实现迭代器接口中定义的方法，完成集合的迭代。</p>
+</li>
+</ul>
+<p><strong>迭代器模式的优点：</strong></p>
+<p>简化了遍历方式，对于对象集合的遍历，还是比较麻烦的，对于数组或者有序列表，我们尚可以通过游标来取得，但用户需要在对集合了解很清楚的前提下，自行遍历对象，但是对于<code>hash</code>表来说，用户遍历起来就比较麻烦了。而引入了迭代器方法后，用户用起来就简单的多了。</p>
+<p>可以提供多种遍历方式，比如说对有序列表，我们可以根据需要提供正序遍历，倒序遍历两种迭代器，用户用起来只需要得到我们实现好的迭代器，就可以方便的对集合进行遍历了。</p>
+<p>封装性良好，用户只需要得到迭代器就可以遍历，而对于遍历算法则不用去关心。</p>
+<p><strong>迭代器模式的缺点：</strong></p>
+<p>对于比较简单的遍历（像数组或者有序列表），使用迭代器方式遍历较为繁琐，大家可能都有感觉，像<code>ArrayList</code>，我们宁可愿意使用<code>for</code>循环和<code>get</code>方法来遍历集合。</p>
+<p><strong>迭代器模式的适用场景</strong></p>
+<p>迭代器模式是与集合共生共死的，一般来说，我们只要实现一个集合，就需要同时提供这个集合的迭代器，就像Java中的<code>Collection</code>，<code>List</code>、<code>Set</code>、<code>Map</code>等，这些集合都有自己的迭代器。假如我们要实现一个这样的新的容器，当然也需要引入迭代器模式，给我们的容器实现一个迭代器。</p>
+<p>但是，由于容器与迭代器的关系太密切了，所以大多数语言在实现容器的时候都给提供了迭代器，并且这些语言提供的容器和迭代器在绝大多数情况下就可以满足我们的需要，所以现在需要我们自己去实践迭代器模式的场景还是比较少见的，我们只需要使用语言中已有的容器和迭代器就可以了。</p>
+<h2 id="责任链"><a href="#责任链" class="headerlink" title="责任链"></a>责任链</h2><h3 id="初步理解-10"><a href="#初步理解-10" class="headerlink" title="初步理解"></a>初步理解</h3><p>曾经有这么一些零散的功能节点，他们各自承担各自的义务，分工明确，各司其职。为了更高效，更完整地解决客户的问题，他们发扬团队精神，互相串联起来形成一个有序的责任传递链表，于是责任链模式诞生了。当然，它的结构也不一定非得是链表，甚至可以是树型分叉结构，这要根据业务场景看怎样去灵活运用，但其核心意义是为了处理某种连续的流程，并确保业务一定能走到相应的责任节点上并得到相应的处理。</p>
+<p>说到这里想必大家已经想到了工作流吧？对，企事业单位中通常为了完成某项日常任务，通常要制定一些工作流程，按步骤拆分，并组织好各个环节中的逻辑关系及走向，这样才能更高效、更规范地完成任务。</p>
+<p>假设某公司针对出差报销业务制定审批流程，有三个审批角色分别是员工（1000元权限）、经理（5000元权限）、以及CEO（10000元权限），各审批人代码如下。</p>
+<pre><code class="java">public class Staff {
+    private String name;
+    public Staff(String name) {
+        this.name = name;
+    }
+    public boolean approve(int amount) {
+        if (amount &lt;= 1000) {
+            System.out.println(&quot;审批通过。【员工：&quot; + name + &quot;】&quot;);
+            return true;
+        } else {
+            System.out.println(&quot;无权审批，请找上级。【员工：&quot; + name + &quot;】&quot;);
+            return false;
+        }
+    }
+}
+public class Manager {
+    private String name;
+    public Manager(String name) {
+        this.name = name;
+    }
+    public boolean approve(int amount) {
+        if (amount &lt;= 5000) {
+            System.out.println(&quot;审批通过。【经理：&quot; + name + &quot;】&quot;);
+            return true;
+        } else {
+            System.out.println(&quot;无权审批，请找上级。【经理：&quot; + name + &quot;】&quot;);
+            return false;
+        }
+    }
+}
+public class CEO {
+    private String name;
+    public CEO(String name) {
+        this.name = name;
+    }
+    public boolean approve(int amount) {
+        if (amount &lt;= 10000) {
+            System.out.println(&quot;审批通过。【CEO：&quot; + name + &quot;】&quot;);
+            return true;
+        } else {
+            System.out.println(&quot;驳回申请。【CEO：&quot; + name + &quot;】&quot;);
+            return false;
+        }
+    }
+}</code></pre>
+<p>好了，审批人们定义完毕，逻辑非常简单缜密，如果超过审批金额最大权限则打回去，开始写申请人客户端类。</p>
+<pre><code class="java">public class Client {
+    public static void main(String[] args) {
+        int amount = 10000;//出差花费10000元
+        // 先找员工张飞审批
+        Staff staff = new Staff(&quot;张飞&quot;);
+        if (!staff.approve(amount)) {
+            //被拒，找关二爷问问。
+            Manager manager = new Manager(&quot;关羽&quot;);
+            if (!manager.approve(amount)) {
+                //还是被拒，只能找老大了。
+                CEO ceo = new CEO(&quot;刘备&quot;);
+                ceo.approve(amount);
+            }
+        }
+        /***********************
+        无权审批，请找上级。【员工：张飞】
+        无权审批，请找上级。【经理：关羽】
+        审批通过。【CEO：刘备】
+        ***********************/
+    }
+}</code></pre>
+<p>功夫不负有心人，跑了三个地方找了三个人，一万元的大额报销单终于被大老板审批了。然而，大家有没有发现问题？我们走的审批流程好像有点过于复杂了，找这个不行那个不同意，跑来跑去的好像自己有点像是被踢皮球的感觉。此外，如果我们后期要优化完善此工作流程，或是添加新的审批角色进来，那就得不停地修改此处的逻辑，最终的修改结果会是？</p>
+<p>乱了，全乱套了，我们终将被淹没在一堆复杂的审批流程中，跑断腿也找不到门路。这显然是违反设计模式原则的，我们必须进行重构。我们观察此类中的审批逻辑，这显然就是一个链式结构，审批人之间环环相扣，对于自己无法处理的申请，会像被踢皮球似的传给上级，直到某人解决此申请，对员工张飞来说，他只知道自己传球给关羽了，仅此而已。</p>
+<p>进一步分析，审批人肯定是不同的角色，并且每个角色的审批逻辑会有区别，所以我们得把这些角色的审批逻辑分开来写，对每个角色的责任范围我们进行定义，我只懂自己怎么审批（责任），我处理不了的我递交给上层（链条），开始重构，先抽象出一个审批人类。</p>
+<pre><code class="java">public abstract class Approver {// 审批人抽象类
+    protected String name;// 抽象出审批人的姓名。
+    protected Approver nextApprover;// 下一个审批人，更高级别领导。
+    public Approver(String name) {
+        this.name = name;
+    }
+    protected Approver setNextApprover(Approver nextApprover) {
+        this.nextApprover = nextApprover;
+        return this.nextApprover;// 返回下个审批人，链式编程。
+    }
+    public abstract void approve(int amount);// 抽象审批方法由具体审批人子类实现
+}</code></pre>
+<p>注意第4行，审批人只认识自己的领导，所以会持有下一级领导的引用，同时第10行的代码用于把领导注入进来。第15行是我们的审批方法了，但每个角色审批逻辑会有区别，所以这里进行抽象，并由具体的审批角色子类去实现，先从员工看起。</p>
+<pre><code class="java">public class Staff extends Approver {
+    public Staff(String name) {
+        super(name);
+    }
+    @Override
+    public void approve(int amount) {
+        if (amount &lt;= 1000) {
+            System.out.println(&quot;审批通过。【员工：&quot; + name + &quot;】&quot;);
+        } else {
+            System.out.println(&quot;无权审批，升级处理。【员工：&quot; + name + &quot;】&quot;);
+            this.nextApprover.approve(amount);
+        }
+    }
+}</code></pre>
+<p>很简单，员工类继承了审批角色类，第9行申明审批权限为1000元，重点在于第13行这里调用了自己上级领导的审批方法，显然这里是自己处理不了的申请单了。大同小异，再重构经理及CEO审批角色类。</p>
+<pre><code class="java">public class Manager extends Approver {
+    public Manager(String name) {
+        super(name);
+    }
+    @Override
+    public void approve(int amount) {
+        if (amount &lt;= 5000) {
+            System.out.println(&quot;审批通过。【经理：&quot; + name + &quot;】&quot;);
+        } else {
+            System.out.println(&quot;无权审批，升级处理。【经理：&quot; + name + &quot;】&quot;);
+            this.nextApprover.approve(amount);
+        }
+    }
+}
+public class CEO extends Approver {
+
+    public CEO(String name) {
+        super(name);
+    }
+    @Override
+    public void approve(int amount) {
+        if (amount &lt;= 10000) {
+            System.out.println(&quot;审批通过。【CEO：&quot; + name + &quot;】&quot;);
+        } else {
+            System.out.println(&quot;驳回申请。【CEO：&quot; + name + &quot;】&quot;);
+        }
+    }
+}</code></pre>
+<p>CEO类作为链条的尾巴，也就是最高级别，第12行的越权逻辑会最终拒绝申请单。很简单吧？我们生成一下这个链条，并从员工开始传递申请单。</p>
+<pre><code class="java">public class Client {
+    public static void main(String[] args) {
+        Approver flightJohn = new Staff(&quot;张飞&quot;);
+        flightJohn.setNextApprover(new Manager(&quot;关羽&quot;)).setNextApprover(new CEO(&quot;刘备&quot;));
+        //高层接触不到也没必要接触，直接找员工张飞审批。
+        flightJohn.approve(1000);
+        /***********************
+        审批通过。【员工：张飞】
+        ***********************/
+        flightJohn.approve(4000);
+        /***********************
+        无权审批，升级处理。【员工：张飞】
+        审批通过。【经理：关羽】
+        ***********************/
+        flightJohn.approve(9000);
+        /***********************
+        无权审批，升级处理。【员工：张飞】
+        无权审批，升级处理。【经理：关羽】
+        审批通过。【CEO：刘备】
+        ***********************/
+        flightJohn.approve(88000);
+        /***********************
+        无权审批，升级处理。【员工：张飞】
+        无权审批，升级处理。【经理：关羽】
+        驳回申请。【CEO：刘备】
+        ***********************/
+    }
+}</code></pre>
+<p>这里注意第4行的代码对责任链进行构造（其实这里我们还可以交由工作流工厂去构造完成，读者可以自己实践练习），从员工开始一直到CEO结束。之后的业务就非常简单了，直接递单给员工张飞，审批流程便魔法般地启动了，审批单在这个责任链条上层层递交，最终给出结果。</p>
+<p>至此，申请人与审批人实现了解耦，我们只需递单送给责任链即可，申请人不必再关心每个处理细节，只需交给接口人张飞处理就妥了。使用了责任链模式后的代码看起来非常简洁，各个角色的责任划分非常明确并且被分开定义到了每个角色类中，再把他们串起来去调用，一气呵成。后期如果再继续添加新的角色只需要添加新角色类并加入链条即可，链条的随意伸缩，灵活的可伸缩性，完美的可扩展性。</p>
+<p>在实际应用中，我们切勿生搬硬套，还需根据实际需求场景进行灵活运用，就拿工业现代化生产线举例，这个其实也类似责任链模式，但不同之处在于其组装工作是必须经过每个组装节点处理的，从头到尾的全链处理而不能中途退出，读者朋友可以自己写代码练习，实践与思考要相结合并循环往复，二者都非常重要。</p>
+<h3 id="定义说明-10"><a href="#定义说明-10" class="headerlink" title="定义说明"></a>定义说明</h3><p><strong>定义：</strong>使多个对象都有机会处理请求，从而避免了请求的发送者和接收者之间的耦合关系。将这些对象连成一条链，并沿着这条链传递该请求，直到有对象处理它为止。</p>
+<p><strong>责任链模式的结构</strong></p>
+<p>责任链模式的类图非常简单，它由一个抽象地处理类和它的一组实现类组成：</p>
+<ul>
+<li><p><strong>抽象处理类：</strong>抽象处理类中主要包含一个指向下一处理类的成员变量<code>nextHandler</code>和一个处理请求的方法<code>handRequest</code>，<code>handRequest</code>方法的主要主要思想是，如果满足处理的条件，则有本处理类来进行处理，否则由<code>nextHandler</code>来处理。</p>
+</li>
+<li><p><strong>具体处理类：</strong>具体处理类主要是对具体的处理逻辑和处理的适用条件进行实现。</p>
+</li>
+</ul>
+<p><strong>责任链模式的优缺点</strong></p>
+<p>责任链模式与<code>if…else…</code>相比，他的耦合性要低一些，因为它把条件判定都分散到了各个处理类中，并且这些处理类的优先处理顺序可以随意设定。责任链模式也有缺点，这与<code>if…else…</code>语句的缺点是一样的，那就是在找到正确的处理类之前，所有的判定条件都要被执行一遍，当责任链比较长时，性能问题比较严重。</p>
+<p><strong>责任链模式的适用场景</strong></p>
+<p>就像开始的例子那样，假如使用<code>if…else…</code>语句来组织一个责任链时感到力不从心，代码看上去很糟糕时，就可以使用责任链模式来进行重构。</p>
+<p><strong>总结</strong></p>
+<p>责任链模式其实就是一个灵活版的<code>if…else…</code>语句，它就是将这些判定条件的语句放到了各个处理类中，这样做的优点是比较灵活了，但同样也带来了风险，比如设置处理类前后关系时，一定要特别仔细，搞对处理类前后逻辑的条件判断关系，并且注意不要在链中出现循环引用的问题。</p>
+<h2 id="观察者"><a href="#观察者" class="headerlink" title="观察者"></a>观察者</h2><h3 id="初步理解-11"><a href="#初步理解-11" class="headerlink" title="初步理解"></a>初步理解</h3><p>眼观六路，耳听八方，观察者很忙，随时监控着关注对象的一举一动。记者、摄影师、重症监护的护士，被套的股民，无不为了完成任务疲于奔命，而观察者模式正是为了解决这个问题而诞生。</p>
+<p>观察者的痛点到底在哪里呢？让我们用购物来做例程，假设某件商品（水果手机）卖得非常火爆，长期处于脱销的状态。由于供不应求，师徒四人也加入了抢购的队伍，不时的去商店询问是否有货，先看商店类代码。</p>
+<pre><code class="java">public class Shop {
+    private String product;//商品
+    //初始商店无货
+    public Shop() {
+        this.product = &quot;无商品&quot;;
+    }
+    //商店出货
+    public String getProduct() {
+        return product;
+    }
+    //商店进货
+    public void setProduct(String product) {
+        this.product = product;
+    }
+}</code></pre>
+<p>简单易懂，然后是买家类，充当观察者角色。</p>
+<pre><code class="java">public class Buyer {// 买家
+    private String name;// 买家姓名
+    private Shop shop;// 商店引用
+    public Buyer(String name, Shop shop) {
+        this.name = name;
+        this.shop = shop;
+    }
+    public void buy() {// 买家购买商品
+        System.out.print(name + &quot;购买：&quot;);
+        System.out.println(shop.getProduct());
+    }
+}</code></pre>
+<p>注意第3行买家持有商店的引用，用来在第10行的购买行为中获取商品，最后是客户端类来模拟买家与商家的互动。</p>
+<pre><code class="java">public class Client {
+    public static void main(String[] args) {
+        Shop shop = new Shop();
+        Buyer wukong = new Buyer(&quot;悟空&quot;, shop);
+        Buyer shaseng = new Buyer(&quot;沙僧&quot;, shop);
+        Buyer bajie = new Buyer(&quot;八戒&quot;, shop);
+        wukong.buy();// 悟空购买：无商品
+        bajie.buy();// 八戒购买：无商品
+        shaseng.buy();// 沙僧购买：无商品
+        bajie.buy();// 八戒购买：无商品
+        // 师傅忍不住了，也加入了购买行列。
+        Buyer tangseng = new Buyer(&quot;唐僧&quot;, shop);
+        tangseng.buy();// 唐僧购买：无商品
+        // 除了八戒其他人都放弃了
+        bajie.buy();// 八戒购买：无商品
+        bajie.buy();// 八戒购买：无商品
+        // 商店终于进货了
+        shop.setProduct(&quot;最新旗舰手机&quot;);
+        bajie.buy();// 八戒购买：最新旗舰手机
+    }
+}</code></pre>
+<p>看到这些买家的疯狂行为没有？一开始师傅命三位徒弟去抢购，商店一直处于无货状态，师傅坐立难安，也加入了抢购大军，最终徒儿刚鬣脱颖而出，终于抢到了梦寐以求的手机，整个过程堪比九九八十一难。</p>
+<p>大家有没有发现问题？除了最后一步目的达成之外，之前的部分都是在做无用功，并且此处代码只是模拟了师徒四人而已，真实情况并非如此简单，可能会有成千上万的疯狂粉丝不断询问有没有到货，商家的店员可能会被逼疯。</p>
+<p>到这里大家肯定已经想到了，与其让观察者不断的询问不如当到货的时候让商家主动通知观察者们来买吧，换个角度分析问题马上迎刃而解，醍醐灌顶般清爽，开始设计优雅观察者的模式，首先从商家类开始重构。</p>
+<pre><code class="java">public class Shop {
+    private String product;
+    private List&lt;Buyer&gt; buyers;// 持有买家的引用
+    public Shop() {
+        this.product = &quot;无商品&quot;;
+        this.buyers = new ArrayList&lt;&gt;();
+    }
+    // 为了主动通知买家，买家得来店里注册。
+    public void register(Buyer buyer) {
+        this.buyers.add(buyer);
+    }
+    public String getProduct() {
+        return product;
+    }
+    public void setProduct(String product) {
+        this.product = product;// 到货了
+        notifyBuyers();// 到货后通知买家
+    }
+    // 通知所有注册买家
+    public void notifyBuyers() {
+        buyers.stream().forEach(b -&gt; b.inform());
+    }
+}</code></pre>
+<p>注意第12行的注册方法，所有关注商品的买家都应先注册（订阅），比如告知商家手机号以便第20行到货后可以接到通知，以及第26行的通知方法对所有买家进行迭代，并调用买家的<code>inform</code>进行告知。所以这里我们规定，对于Buyer买家必须要有<code>inform</code>方法，这是对各类形形色色买家的定制行为，故我们对买家类进行抽象如下。</p>
+<pre><code class="java">public abstract class Buyer {
+    protected String name;
+    protected Shop shop;
+    public Buyer(String name, Shop shop) {
+        this.name = name;
+        this.shop = shop;
+//        shop.register(this);
+    }
+    public abstract void inform();
+}</code></pre>
+<p>很简单，我们对买家进行了抽象，其中第11行inform方法必须得到实现，通知到你了怎样处理自己看着办咯。注意第8行注掉的代码，构造时强制将自己注册入商家名单，但为了灵活起见我们暂让买家自行决定是否注册。接下来我们来看众买家都是些什么样的人，首先是果粉买家。</p>
+<pre><code class="java">public class PhoneFans extends Buyer {
+    public PhoneFans(String name, Shop shop) {
+        super(name, shop);//调用父类进行构造
+    }
+    @Override
+    public void inform() {
+        String product = shop.getProduct();
+        if(product.contains(&quot;水果手机&quot;)){//此买家只买水果牌手机
+            System.out.print(name);
+            System.out.println(&quot;购买：&quot; + product);
+        }
+    }
+}</code></pre>
+<p>买家的行为各式各样，在第8行实现了父类抽象行为，接到通知后他做了逻辑判断，很明显这类买家只稀罕水果牌手机，别的商品不是他的菜。再来看另一类剁手党买家。</p>
+<pre><code class="java">public class HandChopper extends Buyer {
+    public HandChopper(String name, Shop shop) {
+        super(name, shop);
+    }
+    @Override
+    public void inform() {
+        System.out.print(name);
+        String product = shop.getProduct();
+        System.out.println(&quot;购买：&quot; + product);
+    }
+}</code></pre>
+<p>与果粉不同，他是来者不拒，只要有货就买买买！最后来看客户端的神操作。</p>
+<pre><code class="java">public class Client {
+    public static void main(String[] args) {
+        Shop shop = new Shop();
+        Buyer tanSir = new PhoneFans(&quot;果粉唐僧&quot;, shop);
+        Buyer barJeet = new HandChopper(&quot;剁手族八戒&quot;, shop);
+        shop.register(tanSir);
+        shop.register(barJeet);
+        //商店到货
+        shop.setProduct(&quot;猪肉炖粉条&quot;);
+        shop.setProduct(&quot;水果手机【爱疯叉】&quot;);
+        /*输出结果
+            剁手族八戒购买：猪肉炖粉条
+            果粉唐僧购买：水果手机【爱疯叉】
+            剁手族八戒购买：水果手机【爱疯叉】 
+        */
+    }
+}</code></pre>
+<p>无与伦比地优雅，第6行开始对疯狂买家师徒二人进行注册，于是他们再也不见他们终日徘徊于店门之外苦苦等待的身影了。接下来某日商店到货（第10行），至此购买过程就这样神奇地结束了，不信？看输出结果，嗯，不单买家很奇葩，连店都很奇葩。总之，商家只要到货就会马上打电话给这些订阅买家告知可以购买了。</p>
+<p>其实，最初商家与买家之间的互动行为非常类似于<code>Web</code>应用中的Poll行为，由于<code>Http</code>无状态连接协议的安全特性，服务端（商家）无法主动推送（Push）消息给客户端（买家），所以有时会用到Poll技术，也就是不断的轮询服务端，有没有更新？有没有更新？有没有更新？严重时，成千上万的客户端会造成服务器瘫痪，所以之后诞生的<code>WebSocket</code>正是为了解决这个问题，这便类似于我们的观察者模式。</p>
+<p>观察者模式解决了基于一对多对象结构关系间的互动问题，使观察者（多方买家）专主动为被动，被观察者（单方商家）转被动为主动，此情此景，需动静结合，先后有序，以【一方动多方静】取代【多方动一方静】的模式，大大的提高了沟通效率，别再偷窥了，我show给你好看。</p>
+<h3 id="定义说明-11"><a href="#定义说明-11" class="headerlink" title="定义说明"></a>定义说明</h3><p><strong>定义：</strong>定义对象间一种一对多的依赖关系，使得当每一个对象改变状态，则所有依赖于它的对象都会得到通知并自动更新。</p>
+<p><strong>观察者模式的结构</strong></p>
+<p>在最基础的观察者模式中，包括以下四个角色：</p>
+<ul>
+<li><p><strong>被观察者：</strong>从类图中可以看到，类中有一个用来存放观察者对象的<code>Vector</code>容器（之所以使用<code>Vector</code>而不使用<code>List</code>，是因为多线程操作时，<code>Vector</code>在是安全的，而<code>List</code>则是不安全的），这个<code>Vector</code>容器是被观察者类的核心，另外还有三个方法：<code>attach</code>方法是向这个容器中添加观察者对象；<code>detach</code>方法是从容器中移除观察者对象；<code>notify</code>方法是依次调用观察者对象的对应方法。这个角色可以是接口，也可以是抽象类或者具体的类，因为很多情况下会与其他的模式混用，所以使用抽象类的情况比较多。</p>
+</li>
+<li><p><strong>观察者：</strong>观察者角色一般是一个接口，它只有一个<code>update</code>方法，在被观察者状态发生变化时，这个方法就会被触发调用。</p>
+</li>
+<li><p><strong>具体的被观察者：</strong>使用这个角色是为了便于扩展，可以在此角色中定义具体的业务逻辑。</p>
+</li>
+<li><p><strong>具体的观察者：</strong>观察者接口的具体实现，在这个角色中，将定义被观察者对象状态发生变化时所要处理的逻辑。</p>
+</li>
+</ul>
+<p><strong>观察者模式的优点</strong></p>
+<p>观察者与被观察者之间是属于轻度的关联关系，并且是抽象耦合的，这样，对于两者来说都比较容易进行扩展。</p>
+<p>观察者模式是一种常用的触发机制，它形成一条触发链，依次对各个观察者的方法进行处理。但同时，这也算是观察者模式一个缺点，由于是链式触发，当观察者比较多的时候，性能问题是比较令人担忧的。并且，在链式结构中，比较容易出现循环引用的错误，造成系统假死。</p>
+<p><strong>总结</strong></p>
+<p>Java语言中，有一个接口<code>Observer</code>，以及它的实现类<code>Observable</code>，对观察者角色常进行了实现。我们可以在<code>JDK</code>的<code>API</code>文档具体查看这两个类的使用方法。</p>
+<p>做过<code>VC++</code>、<code>javascript DOM</code>或者<code>AWT</code>开发的朋友都对它们的事件处理感到神奇，了解了观察者模式，就对事件处理机制的原理有了一定的了解了。如果要设计一个事件触发处理机制的功能，使用观察者模式是一个不错的选择，<code>AWT</code>中的事件处理<code>DEM</code>（委派事件模型Delegation Event Model）就是使用观察者模式实现的。</p>
+<h2 id="代理"><a href="#代理" class="headerlink" title="代理"></a>代理</h2><h3 id="初步理解-12"><a href="#初步理解-12" class="headerlink" title="初步理解"></a>初步理解</h3><p>代理，代表打理，以他人的名义代表委托人打理其本职工作之外或不所能及的事务，达成合作关系并更高效地促成事务完成的目的。比如机票销售代理商既不造飞机也不提供乘机服务，他们只负责卖票，代理律师并不会因胜诉获得赔偿金或者败诉受到法律制裁，他们只负责代理打官司，等等等等。</p>
+<p>以网络代理举例：</p>
+<p>首先，我们上网前得去网络服务提供商<code>（ISP）</code>申请互联网宽带业务，于是顺理成章光纤入户，并拿到一个调制解调器，也就是我们俗称的“猫”。好，“猫”实现了互联网访问接口，看代码：</p>
+<pre><code class="java">public interface Internet {//互联网访问接口
+    public void access(String url);
+}</code></pre>
+<pre><code class="java">public class Modem implements Internet {//调制解调器
+    @Override
+    public void access(String url){//实现互联网访问接口
+        System.out.println(&quot;正在访问：&quot; + url);
+    }
+}</code></pre>
+<p>作为调制解调器，一定有上网功能了，用户的电脑只需要用网线连接这只“猫”便接入互联网了。就这么简单么？然而某天我们发现孩子学习时总是偷偷上网看电影玩游戏，于是我们决定对某些网站进行过滤，拒绝黄赌毒侵害未成年。那么，我们需要在客户终端电脑与猫之间加一层代理，用于过滤某些不良网站，最终我们决定购买一款有过滤功能的路由器。</p>
+<pre><code class="java">public class RouterProxy implements Internet {//路由器代理类
+    private Internet modem;//持有被代理类引用
+    private List&lt;String&gt; blackList = Arrays.asList(&quot;电影&quot;, &quot;游戏&quot;, &quot;音乐&quot;, &quot;小说&quot;);
+    public RouterProxy() {
+        this.modem = new Modem();//实例化被代理类
+        System.out.println(&quot;拨号上网...连接成功！&quot;);
+    }
+    @Override
+    public void access(String url) {//同样实现互联网访问接口方法
+        for (String keyword : blackList) {//循环黑名单
+            if (url.contains(keyword)) {//是否包含黑名单字眼
+                System.out.println(&quot;禁止访问：&quot; + url);
+                return;
+            }
+        }
+        modem.access(url);//正常访问互联网
+    }
+}</code></pre>
+<p>注意看，在这里路由器代理主要充当代理的角色，和之前的“猫”一样，它同样实现了互联网接口，看似也是有上网功能的，其实不然。第12行代码对于互联网访问功能的实现一开始就做了个过滤，如果地址中带有黑名单中的敏感字眼则禁止访问并直接退出，反之则于第19行调用“猫”的互联网访问方法，看到了吧，最终还是调用“猫”的上网功能。注意此处为了对“猫”进行控制，代理专为此而生，我们直接于第7行实例化它而不是需要别人把它注入进来。好了，孩子现在来上网了，迫不及待运行之。</p>
+<pre><code class="java">public class Client {
+    public static void main(String[] args) {
+        Internet proxy = new RouterProxy();//实例化的是代理
+        proxy.access(&quot;http://www.电影.com&quot;);
+        proxy.access(&quot;http://www.游戏.com&quot;);
+        proxy.access(&quot;ftp://www.学习.com/java&quot;);
+        proxy.access(&quot;http://www.工作.com&quot;);
+        /* 运行结果
+            拨号上网...连接成功！
+            禁止访问：http://www.电影.com
+            禁止访问：http://www.游戏.com
+            正在访问：ftp://www.学习.com/java
+            正在访问：http://www.工作.com
+        */
+    }
+}</code></pre>
+<p>在第3行处，孩子实例化的不再是“猫”，而是被偷梁换柱的替换为路由器代理了，也就是说大家上网都连接路由器了，而不是直接去连“猫”，这样不但省去了我们拨号的麻烦（路由器帮助拨号）而且孩子再也访问不到乱七八糟的网站了。而这个代理自身其实并不具备访问互联网的能力，它只是简单的调用“猫”上网功能，其存在目的只是为了控制对”猫“的互联访问，对其进行代理而已。</p>
+<p>说到这里大家有没有发现这个代理模式是不是与<strong>装饰器模式</strong>很类似？如果观察<code>UML</code>类图关系你会发现几乎一模一样，那这个模式存在的意义何在？其实，代理模式更强调的是对被代理对象的控制，而不是仅限于去装饰目标对象并增强其原有的功能。就像明星的例子一样，如果钱没给够，合同未达成，则不让明星随意作秀。</p>
+<p>相信大家已经理解地很通透了吧，这也是我们最常用的代理模式了。其实还有一种叫动态代理，不同之处在于其实例化过程是在运行时完成的，也就是说我们不需要专门针对某个接口去写这么一个代理类，而是根据接口动态生成。</p>
+<p>举个例子，让我们先忘掉之前的路由器代理，当我们内网中的上网设备越来越多，路由器的<code>Lan</code>口已被占满不够用了，于是我们决定换成交换机，看代码:</p>
+<pre><code class="java">public interface Intranet {//局域网访问接口
+    public void fileAccess(String path);
+}</code></pre>
+<p>为了保持简单，我们假设这个交换机Switch实现了局域网访问接口<code>Intranet</code>，请注意这里不是互联网接口<code>Internet</code>。</p>
+<pre><code class="java">public class Switch implements Intranet {
+    @Override
+    public void fileAccess(String path){
+        System.out.println(&quot;访问内网：&quot; + path);
+    }
+}</code></pre>
+<p>这里进行的是局域网文件访问，比如说是拷贝另一台内网机器上的共享文件，并且我们想保证与之前一样的关键字过滤控制功能，也就是说不管是什么地址都要先通过过滤，怎么复用呢？</p>
+<p>到这里让我们思考一下，猫实现的是互联网访问接口，交换机实现的是局域网访问接口，那我们的过滤器代理类到底该怎么写？是实现<code>Internet</code>接口呢还是实现<code>Intranet</code>接口呢？要么两个都实现？再加进来新的类接口又要不停地改实现类吗？这显然行不通，过滤器无非就是一段过滤逻辑不必来回改动，这违反了设计模式开闭原则。动态代理应时而生，我们来看代码:</p>
+<pre><code class="java">public class KeywordFilter implements InvocationHandler {
+    private List&lt;String&gt; blackList = Arrays.asList(&quot;电影&quot;, &quot;游戏&quot;, &quot;音乐&quot;, &quot;小说&quot;);
+    // 被代理的真实对象,猫、交换机、或是别的什么都是。
+    private Object origin;
+    public KeywordFilter(Object origin) {
+        this.origin = origin;//注入被代理对象
+        System.out.println(&quot;开启关键字过滤模式...&quot;);
+    }
+    @Override
+    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+        //要被切入方法面之前的业务逻辑
+        String arg = args[0].toString();
+        for (String keyword : blackList) {
+            if (arg.toString().contains(keyword)) {
+                System.out.println(&quot;禁止访问：&quot; + arg);
+                return null;
+            }
+        }
+        //调用真实的被代理对象方法
+        return method.invoke(origin, arg);
+    }
+}</code></pre>
+<p>对于这个关键字过滤功能我们不再写到代理类里面了，而是另外写个类并实现<code>JDK</code>反射包中提供的<code>InvocationHandler</code>接口，于第9行注入即将被代理的对象，不管是猫还是交换机什么的它总归是个<code>Object</code>，然后在第14行实现这个<code>invoke</code>调用方法，之后生成的动态代理将来会调进来跑这块的逻辑，很显然我们这里依然保持不变的逻辑，在真实对象方法被执行之前运行了过滤逻辑加以控制。由于传入的参数是被代理对象的方法<code>method</code>，以及一堆参数<code>args</code>，所以注意这里第24行我们要用反射去调用被代理对象<code>origin</code>了，最后来看我们如何运行。</p>
+<pre><code class="java">public class Client {
+    public static void main(String[] args) {
+        //访问外网（互联网）,生成猫代理。
+        Internet internet = (Internet) Proxy.newProxyInstance(
+                Modem.class.getClassLoader(),
+                Modem.class.getInterfaces(), 
+                new KeywordFilter(new Modem()));
+        internet.access(&quot;http://www.电影.com&quot;);
+        internet.access(&quot;http://www.游戏.com&quot;);
+        internet.access(&quot;http://www.学习.com&quot;);
+        internet.access(&quot;http://www.工作.com&quot;);
+        //访问内网（局域网），生成交换机代理。
+        Intranet intranet = (Intranet) Proxy.newProxyInstance(
+                Switch.class.getClassLoader(),
+                Switch.class.getInterfaces(), 
+                new KeywordFilter(new Switch()));
+        intranet.fileAccess(&quot;\\\\192.68.1.2\\共享\\电影\\IronHuman.mp4&quot;);
+        intranet.fileAccess(&quot;\\\\192.68.1.2\\共享\\游戏\\Hero.exe&quot;);
+        intranet.fileAccess(&quot;\\\\192.68.1.4\\shared\\Java学习资料.zip&quot;);
+        intranet.fileAccess(&quot;\\\\192.68.1.6\\Java知音\\设计模式是什么鬼.doc&quot;);
+        /*
+            开启关键字过滤模式...
+            禁止访问：http://www.电影.com
+            禁止访问：http://www.游戏.com
+            正在访问：http://www.学习.com
+            正在访问：http://www.工作.com
+            开启关键字过滤模式...
+            禁止访问：\\192.68.1.2\共享\电影\IronHuman.mp4
+            禁止访问：\\192.68.1.2\共享\游戏\Hero.exe
+            访问内网：\\192.68.1.4\shared\Java学习资料.zip
+            访问内网：\\192.68.1.6\Java知音\设计模式是什么鬼.doc
+        */
+    }
+}</code></pre>
+<p>可以看到，我们不管是访问互联网还是局域网，只需要分别生成相应的代理并调用即可，相同的过滤器逻辑被执行了。如此一来，我们并不需要再写任何的代理类了，只需要实现一次<code>InvocationHandler</code>就一劳永逸了，在运行时去动态地生成代理，达到兼容任何接口的目的。</p>
+<p>其实在很多框架中大量应用到了动态代理模式，比如<code>Spring</code>的面向切面<code>AOP</code>，我们只需要定义好一个切面类<code>@Aspect</code>，声明其切入点<code>@Pointcut</code>（被代理的哪些对象的哪些方法，也就是这里的猫和交换机的<code>access</code>以及<code>accessFile</code>），以及被切入的代码块（要增加上去的逻辑，比如这里的过滤功能代码，可分为前置执行<code>@Before</code>，后置执行<code>@After</code>，以及异常处理<code>@AfterThrowing</code>等），于是框架自动帮我们生成代理并切入目标执行。正如给每给方法前后加入日志的例子，或者更经典的事务控制的例子，在所有业务代码之前先切入“事务开始”，执行过后再切入“事务提交”，如果抛异常被捕获则执行“事务回滚”，如此就不必要在每个业务类中去写这些重复代码了，一劳永逸，冗余代码大量减少，开发效率惊人提升。</p>
+<h3 id="定义说明-12"><a href="#定义说明-12" class="headerlink" title="定义说明"></a>定义说明</h3><p><strong>定义：</strong></p>
+<p>为其他对象提供一种代理以控制对这个对象的访问。在某些情况下，一个对象不适合或者不能直接引用另一个对象，而代理对象可以在客户端和目标对象之间起到中介的作用</p>
+<p><strong>角色：</strong></p>
+<ul>
+<li><p><strong>抽象角色：</strong>声明真实对象和代理对象的共同接口。</p>
+</li>
+<li><p><strong>代理角色：</strong>代理对象角色内部含有对真实对象的引用，从而可以操作真实对象，同时代理对象提供与真实对象相同的接口以便在任何时刻都能代替真实对象。同时，代理对象可以在执行真实对象操作时，附加其他的操作，相当于对真实对象进行封装。</p>
+</li>
+<li><p><strong>真实角色：</strong>代理角色所代表的真实对象，是我们最终要引用的对象。</p>
+</li>
+</ul>
+<p><strong>分类：</strong></p>
+<p><strong>静态代理</strong></p>
+<p>静态代理也就是在程序运行前就已经存在代理类的字节码文件，代理类和委托类的关系在运行前就确定了。</p>
+<p><strong>动态代理</strong></p>
+<p>动态代理类的源码是程序在运行期间由<code>JVM</code>根据反射等机制动态生成的，所以不存在代理类的字节码文件。代理角色和真实角色的联系在程序运行时确定。</p>
+<p><strong>优点：</strong></p>
+<p>业务类只需要关注业务逻辑本身，保证了业务类的重用性。这是代理的共有优点。</p>
+<p>能够协调调用者和被调用者，在一定程度上降低了系统的耦合度。</p>
+<p><strong>缺点：</strong></p>
+<p>由于在客户端和真实主题之间增加了代理对象，因此有些类型的代理模式可能会造成请求的处理速度变慢，例如保护代理。</p>
+<p>实现代理模式需要额外的工作，而且有些代理模式的实现过程较为复杂，例如远程代理。</p>
+<h2 id="工厂方法"><a href="#工厂方法" class="headerlink" title="工厂方法"></a>工厂方法</h2><h3 id="初步理解-13"><a href="#初步理解-13" class="headerlink" title="初步理解"></a>初步理解</h3><p>工厂是对对象构造、实例化、初始化过程的一种封装，以提供给其他需要对象的地方去使用，以降低耦合，提高系统的扩展性，重用性。众所周知，当我们需要把类实例化成对象的时候，需要用到关键字<code>new</code>，比如<code>Plane = new Plane()</code>，这也是我们最常用的方式了。</p>
+<p>然而，这样做的结果就是会把这个对象的诞生过程死死捆绑在我们的代码里，宿主类与实例化过程强耦合。对于一些庞大复杂的系统来说，过多的实例化逻辑于宿主类中会给其后期的维护与扩展带来很多麻烦。</p>
+<p>而事实是我们根本不关心到底使用哪个对象；怎样生产出它的实例；制造过程是怎样，我们只在乎谁能给我产品来完成我的任务。为了满足用户需求，解决用户的痛点，工厂粉墨登场。</p>
+<p>相信大家都玩过打飞机游戏吧，虽然这个主题的游戏版本繁杂但大同小异，都逃不出主角强大的武器系统，以及敌众我寡的战斗形式，所以敌人的种类就得花样百出以带来丰富多样的游戏体验。那么就从这款游戏入手，开始代码。</p>
+<p>首先来定义所有敌人的总抽象，我们想想，敌人们统统都得有一对坐标用来表达位置状态，以便可以把敌人绘制到地图上。为了让子类继承坐标，这里我们使用抽象类来定义敌人。</p>
+<pre><code class="java">public abstract class Enemy {
+    //敌人的坐标，会被子类继承。
+    protected int x;
+    protected int y;
+    //初始化坐标
+    public Enemy(int x, int y){
+        this.x = x;
+        this.y = y;
+    }
+    //抽象方法，在地图上绘制。
+    public abstract void show();
+
+}</code></pre>
+<p>这里我们只定义一个抽象方法<code>show</code>，可以把敌人绘制在地图上（下一帧会擦除重绘到下一个坐标以实现动画），当然真正的游戏或许还会有<code>move</code>（移动）、<code>attack</code>（攻击）、<code>die</code>（死亡）等等方法我们这里保持简单就忽略掉了。接下来是具体子类，我们这里假设只有两种，敌机类和坦克类。</p>
+<pre><code class="java">public class Airplane extends Enemy {
+    public Airplane(int x, int y){
+        super(x, y);//调用父类构造子初始化坐标
+    }
+    @Override
+    public void show() {
+        System.out.println(&quot;飞机出现坐标：&quot; + x + &quot;,&quot; + y);
+        System.out.println(&quot;飞机向玩家发起攻击……&quot;);
+    }
+}</code></pre>
+<pre><code class="java">public class Tank extends Enemy {
+    public Tank(int x, int y){
+        super(x, y);
+    }
+    @Override
+    public void show() {
+        System.out.println(&quot;坦克出现坐标：&quot; + x + &quot;,&quot; + y);
+        System.out.println(&quot;坦克向玩家发起攻击……&quot;);
+    }
+}</code></pre>
+<p>一如既往地简单，飞机和坦克分别实现不同的show()方法。接下来开始运行游戏并实例化敌人了，重点在于怎样去实例化这些敌人，毋庸置疑要使它们出现在屏幕最上方，也就是纵坐标y等于0，但对于横坐标x我们怎样去初始化呢？写个死值么？这对于游戏可玩性来说是非常糟糕的，玩家会对每次在同一位置出现的敌人烂熟于心，长期下来会觉得无聊，游戏性大打折扣。我们来看是怎样解决这个问题，看客户端代码。</p>
+<pre><code class="java">public class Client {
+    public static void main(String[] args) {
+        int screenWidth = 100;//屏幕宽度
+        System.out.println(&quot;游戏开始&quot;);
+        Random random = new Random();//准备随机数
+        int x = random.nextInt(screenWidth);//生成敌机横坐标随机数
+        Enemy airplan = new Airplane(x, 0);//实例化飞机
+        airplan.show();//显示飞机
+        x = random.nextInt(screenWidth);//坦克同上
+        Enemy tank = new Tank(x, 0);
+        tank.show();
+        /*输出结果：
+            游戏开始
+            飞机出现坐标：94,0
+            飞机向玩家发起攻击……
+            坦克出现坐标：89,0
+            坦克向玩家发起攻击……
+        */
+}</code></pre>
+<p>对，我们在第8行获取了一个从0到屏幕宽度（为了不让敌人出现在屏幕之外）的随机数，作为敌人的横坐标并初始化了敌人，这样每次出现的位置就会不一样了，游戏随机性增强，问题解决了（我们保持简单不考虑敌人自身的宽度）。我们发现从第8行和第12行是在做同样的事情，如果其他地方也需要实例化会出现重复的逻辑，尤其我们还进行了代码省略，实际的逻辑会更复杂，重复代码会更多。如此耗时费力，何不把这些实例化逻辑抽离出来作为一个工厂类？好，开始简单工厂的开发。</p>
+<pre><code class="java">public class SimpleFactory {
+    private int screenWidth;
+    private Random random;//随机数
+    public SimpleFactory(int screenWidth) {
+        this.screenWidth = screenWidth;
+        this.random = new Random();
+    }
+    public Enemy create(String type){
+        int x = random.nextInt(screenWidth);//生成敌人横坐标随机数
+        Enemy enemy = null;
+        switch (type) {
+        case &quot;Airplane&quot;:
+            enemy = new Airplane(x, 0);//实例化飞机
+            break;
+        case &quot;Tank&quot;:
+            enemy = new Tank(x, 0);//实例化坦克
+            break;
+        }
+        return enemy;
+    }
+}</code></pre>
+<p>其实这就是简单工厂了，为客户端省去了很多烦扰，于是我们的代码变得异常简单。</p>
+<pre><code class="java">public class Client {
+    public static void main(String[] args) {
+        System.out.println(&quot;游戏开始&quot;);
+        SimpleFactory factory = new SimpleFactory(100);
+        factory.create(&quot;Airplane&quot;).show();
+        factory.create(&quot;Tank&quot;).show();
+    }
+}</code></pre>
+<p>然而，这个简单工厂并不是一种设计模式，它只是对实例化逻辑进行了一层简单包裹而已，客户端依然是要告诉工厂我要的是哪个产品，虽然没有出现对产品实例化的关键字new，但这依然无疑是另一种形式的耦合。虽然我们在简单工厂中巧妙利用了坐标随机化来丰富游戏性，但又一个问题出现了，虽然坐标随机变化，但敌人的种类总是不变，游戏又开始变得无聊起来，于是随机生产敌人的工厂迫在眉睫。</p>
+<p>我们开始思考，需要再在简单工厂里加个方法<code>createRandomEnemy()</code>？然后也许还需要其他生产方式再继续添加方法？随着之后版本升级，敌人种类的增多，我们再回来继续修改这个工厂类？于是这个工厂会越来越大，变得难以维护，简单工厂不简单，这显然违反了设计模式原则。</p>
+<p>从另一方面来讲，用户的需求是多变的，我们要满足各种复杂情况，其实有些时候客户端目的很明确单纯，就是简单的需要工厂生产一个坦克而已，那么我们还有必要加载实例化这么臃肿一个简单工厂类么？问题显而易见了，简单工厂应对简单情况，而针对我们的场景，简单工厂需要多态化，我们应该对生产方式（工厂方法）进行抽象化。首先，定义一个工厂接口。</p>
+<pre><code class="java">public interface Factory {
+    public Enemy create(int screenWidth);
+}</code></pre>
+<p>这个工厂接口就是工厂方法的核心了，它具备这么一个功能（第3行），可以在屏宽之内来产出一个敌人，这就是我们抽象出来的工厂方法。然后我们来定义这个工厂方法的子类实现，随机工厂。</p>
+<pre><code class="java">public class RandomFactory implements Factory {
+    private Random random = new Random();
+    @Override
+    public Enemy create(int screenWidth){
+        Enemy enemy = null;
+        if(random.nextBoolean()){
+            enemy = new Airplane(random.nextInt(screenWidth), 0);//实例化飞机
+        }else{
+            enemy = new Tank(random.nextInt(screenWidth), 0);//实例化坦克
+        }
+        return enemy;
+    }
+}</code></pre>
+<p>代码非常简洁明了，这个随机工厂无疑具备生产实力，也就是在第6行实现的工厂方法，但其产出方式是随机产出，拒不退换，我只管努力制造，但出来的是飞机还是坦克，这个由天定。</p>
+<p>这也许有点霸权主义，我们也许需要加一些其他工厂，比如某局出现了太多的坦克，一个飞机都没有，这是工厂的随机机制造成的，于是我们可以增加一个平衡工厂让飞机和坦克交替生成，这就好比大型网站上的负载均衡的平衡策略一样，让服务器轮流接受请求。</p>
+<p>除了以上工厂，我们或许可以为每关做一个脚本工厂，根据主角关卡进度生产该出现的敌人，又或许更具体点为每个产品做一个工厂，总之，我们可以灵活地根据自己的具体需求去实现不同的工厂，每个工厂的生产策略和方式是不同的，最终是由客户端去决定用哪个工厂生产产品。比如，玩家抵达关底，boss要出现了。</p>
+<pre><code class="java">public class Boss extends Enemy {
+    public Boss(int x, int y){
+        super(x, y);
+    }
+    @Override
+    public void show() {
+        System.out.println(&quot;Boss出现坐标：&quot; + x + &quot;,&quot; + y);
+        System.out.println(&quot;Boss向玩家发起攻击……&quot;);
+    }
+}</code></pre>
+<p>接着来实现Boss的工厂方法，此处要注意Boss出现坐标是在屏幕中央，在第6行处设置横坐标为屏幕的一半。</p>
+<pre><code class="java">public class BossFactory implements Factory {
+    @Override
+    public Enemy create(int screenWidth) {
+        // boss应该出现在屏幕中央
+        return new Boss(screenWidth / 2, 0);
+    }
+}</code></pre>
+<p>完美，万事俱备，只欠东风，开始运行游戏。</p>
+<pre><code class="java">public class Client {
+    public static void main(String[] args) {
+        int screenWidth = 100;
+        System.out.println(&quot;游戏开始&quot;);
+        Factory factory = new RandomFactory();
+        for (int i = 0; i &lt; 10; i++) {
+            factory.create(screenWidth).show();
+        }
+        System.out.println(&quot;抵达关底&quot;);
+        factory = new BossFactory();
+        factory.create(screenWidth).show();
+        /*
+            游戏开始
+            飞机出现坐标：27,0
+            飞机向玩家发起攻击……
+            坦克出现坐标：40,0
+            坦克向玩家发起攻击……
+            飞机出现坐标：30,0
+            飞机向玩家发起攻击……
+            坦克出现坐标：53,0
+            坦克向玩家发起攻击……
+            坦克出现坐标：19,0
+            坦克向玩家发起攻击……
+            飞机出现坐标：18,0
+            飞机向玩家发起攻击……
+            坦克出现坐标：27,0
+            坦克向玩家发起攻击……
+            飞机出现坐标：89,0
+            飞机向玩家发起攻击……
+            飞机出现坐标：24,0
+            飞机向玩家发起攻击……
+            飞机出现坐标：31,0
+            飞机向玩家发起攻击……
+            抵达关底
+            Boss出现坐标：50,0
+            Boss向玩家发起攻击……
+        */
+    }
+}</code></pre>
+<p>此处我们于第7行循环10次调用随机工厂生成随机敌人，有时出飞机，有时出坦克，玩家永远猜不透。抵达关底后于第11行换成Boss工厂，并生成Boss，如此一来，我们有产品需要就直接问工厂索要便是，至此客户端与敌人的实例化解耦脱钩。</p>
+<p>相比简单工厂，工厂方法可以被看做是一个升级为设计模式的变种，其工厂方法的抽象化带来了极大好处，与其把所有生产方式堆积在一个简单工厂类中，不如把生产方式被推迟到具体的子类工厂中实现，工厂本身也是需要分类的，这样后期的代码维护以及对新产品的扩展都会更加方便直观，而不是对单一工厂类翻来覆去地不停改动。</p>
+<p>工厂不是万能的，方便面工厂不能生产汽车，手机工厂更不能生产辣条，这本身就看起来很荒诞，妄想吞噬兼备所有产品的工厂不是好的专业工厂。</p>
+<h3 id="定义说明-13"><a href="#定义说明-13" class="headerlink" title="定义说明"></a>定义说明</h3><p><strong>定义</strong>：</p>
+<p>工厂模式是 Java 中最常用的设计模式之一。这种类型的设计模式属于创建型模式，它提供了一种创建对象的最佳方式。</p>
+<p>工厂模式主要是为创建对象提供过渡接口，以便将创建对象的具体过程屏蔽隔离起来，达到提高灵活性的目的。</p>
+<p><strong>工厂模式根据抽象程度的不同分为三种：</strong></p>
+<ul>
+<li><p>简单工厂模式（也叫静态工厂模式）</p>
+</li>
+<li><p>工厂方法模式（也叫多形性工厂）</p>
+</li>
+<li><p>抽象工厂模式（也叫工具箱）</p>
+</li>
+</ul>
+<p><strong>简单工厂模式</strong></p>
+<p>实质是由一个工厂类根据传入的参数，动态决定应该创建哪一个产品类（这些产品类继承自一个父类或接口）的实例。简单工厂模式的创建目标，所有创建的对象都是充当这个角色的某个具体类的实例。 </p>
+<p><strong>工厂方法模式</strong></p>
+<p>工厂方法是粒度很小的设计模式，因为模式的表现只是一个抽象的方法。 提前定义用于创建对象的接口，让子类决定实例化具体的某一个类，即在工厂和产品中间增加接口，工厂不再负责产品的创建，由接口针对不同条件返回具体的类实例，由具体类实例去实现。</p>
+<p><strong>抽象工厂模式</strong></p>
+<p>当有多个抽象角色时使用的一种工厂模式。抽象工厂模式可以向客户端提供一个接口，使客户端在不必指定产品的具体的情况下，创建多个产品对象。它有多个抽象产品类，每个抽象产品类可以派生出多个具体产品类，一个抽象工厂类，可以派生出多个具体工厂类，每个具体工厂类可以创建多个具体产品类的实例。</p>
+<p><strong>工厂模式的优点：</strong></p>
+<ul>
+<li><p>一个调用者想创建一个对象，只要知道其名称就可以了，降低了耦合度。</p>
+</li>
+<li><p>扩展性高，如果想增加一个产品，只要扩展一个工厂类就可以。使得代码结构更加清晰。</p>
+</li>
+<li><p>屏蔽产品的具体实现，调用者只关心产品的接口。</p>
+</li>
+</ul>
+<p><strong>工厂模式的缺点：</strong></p>
+<p>每次增加一个产品时，都需要增加一个具体类和对象实现工厂（这里可以使用反射机制来避免），使得系统中类的个数成倍增加，在一定程度上增加了系统的复杂度，同时也增加了系统具体类的依赖。所以对于简单对象来说，使用工厂模式反而增加了复杂度。</p>
+<p><strong>工厂模式的适用场景：</strong></p>
+<ul>
+<li><p>一个对象拥有很多子类。</p>
+</li>
+<li><p>创建某个对象时需要进行许多额外的操作。</p>
+</li>
+<li><p>系统后期需要经常扩展，它把对象实例化的任务交由实现类完成，扩展性好。</p>
+</li>
+</ul>
+<p><strong>总结：</strong></p>
+<p>无论是简单工厂模式、工厂模式还是抽象工厂模式，它们本质上都是将不变的部分提取出来，将可变的部分留作接口，以达到最大程度上的复用。究竟用哪种设计模式更适合，这要根据具体的业务需求来决定。</p>
+<h2 id="桥接（Bridge）"><a href="#桥接（Bridge）" class="headerlink" title="桥接（Bridge）"></a>桥接（Bridge）</h2><h3 id="初步理解-14"><a href="#初步理解-14" class="headerlink" title="初步理解"></a>初步理解</h3><p>桥接，用桥梁连接，英文叫Bridge，其实就是桥梁之意。</p>
+<p>现在假设我们要作一幅抽象画，用各种形状的色块来表达世界文化的多样性，起名《形形色色》。</p>
+<p>需要什么工具来作画呢？一堆彩笔和一堆尺子。嗯，据我所知，这两种工具分别产于两个孤岛，北岛有很多颜料，擅长制造画笔，南岛则擅长生产尺子，各种形状的尺子，这是劳动分工的最佳典范，下来我们就要去促进南北文具经济合作了，先来看看南岛生产的尺子产品。</p>
+<p>这些尺子不管是什么形状，其实都是对绘画线条提供一种规范，那我们就先定义一个尺子的接口，用于规则化笔触的走向。</p>
+<pre><code class="java">public interface Ruler {// 尺子
+    // 规则化笔触走向
+    public void regularize();
+}</code></pre>
+<p>对于具体的尺子类，我们暂且忽略其大小，一种形状就对应一个类，分别是方形、三角形、还有圆形，它们统统实现尺子的规则接口。</p>
+<pre><code class="java">public class SquareRuler implements Ruler {
+  @Override
+  public void regularize() {//尺子模板画出正方形
+    System.out.println(&quot;□&quot;);
+  }
+}</code></pre>
+<pre><code class="java">public class TriangleRuler implements Ruler {
+  @Override
+  public void regularize() {//尺子模板画出三角形
+    System.out.println(&quot;△&quot;);
+  }
+}</code></pre>
+<pre><code class="java">public class CircleRuler implements Ruler {
+  @Override
+  public void regularize() {//尺子模板画出圆形
+    System.out.println(&quot;○&quot;);
+  }
+}</code></pre>
+<p>南岛经济很简单，下来看北岛产品，他们生产的是五颜六色的彩色画笔。</p>
+<p>我们对画笔进行抽象，此处我们用抽象类。</p>
+<pre><code class="java">public abstract class Pen {//画笔
+  protected Ruler ruler;//尺子的引用
+  public Pen(Ruler ruler) {
+    this.ruler = ruler;
+  }
+  public abstract void draw();//抽象方法
+}</code></pre>
+<p>注意这里的抽象画笔（第3行）引用了尺子接口，并且声明为protected，得以让彩笔子类进行继承，并由第5行构造子注入尺子，此处便是桥梁对接的重点。最后就是第9行的draw方法了，这个需要具体的彩笔子类进行实现。</p>
+<p>接下来看彩笔类，我们依旧保持简约，只实现黑色和白色两种画笔。</p>
+<pre><code class="java">public class BlackPen extends Pen {
+  public BlackPen(Ruler ruler) {
+    super(ruler);
+  }
+  @Override
+  public void draw() {
+      System.out.print(&quot;黑&quot;);
+      ruler.regularize();
+  }
+}</code></pre>
+<pre><code class="java">public class WhitePen extends Pen {
+  public WhitePen(Ruler ruler) {
+    super(ruler);
+  }
+  @Override
+  public void draw() {
+      System.out.print(&quot;白&quot;);
+      ruler.regularize();
+  }
+}</code></pre>
+<p>我们在第4行的构造子中调用了抽象画笔的构造子注入传入的尺子，建立桥梁的连接，在第9行选用自己的颜色进行绘画并于第10行调用尺子进行笔触规范。一切就绪，我们开始绘制史诗巨著。</p>
+<pre><code class="java">public class Client {
+    public static void main(String args[]) {
+        //白色画笔对应的所有形状
+        new WhitePen(new CircleRuler()).draw();
+        new WhitePen(new SquareRuler()).draw();
+        new WhitePen(new TriangleRuler()).draw();
+        //黑色画笔对应的所有形状
+        new BlackPen(new CircleRuler()).draw();
+        new BlackPen(new SquareRuler()).draw();
+        new BlackPen(new TriangleRuler()).draw();
+        /*运行结果：
+            白○
+            白□
+            白△
+            黑○
+            黑□
+            黑△
+        */
+    }
+}</code></pre>
+<p>注意看我们是怎样进行实例化的，初始化彩笔确定其颜色并注入并确定其形状，紧接着画出来的就是相应的形色组合了。简单吧？接下来就交给南北岛的工人们去做各种形状的尺子和颜色的画笔了，画家会利用这些工具随意组合创作出自己想要的画作。</p>
+<p>试想如果有更多的颜色和形状，且没有这种松散分离的结构要多少个类来实现？那将会是一场噩梦。有没有发现这就是笛卡儿积的组合，来看我们的代码中的两个集合：</p>
+<p><strong>颜色集合</strong>=<em>{黑，白}</em></p>
+<p>  <strong>形状集合</strong>=<em>{圆形，方形，三角}</em></p>
+<p>  那么这两个集合的笛卡尔积为</p>
+<p>  {</p>
+<p>​    <em>(黑，圆形)， (黑，方形)， (黑，三角)，</em></p>
+<p>​    <em>(白，圆形)， (白，方形)， (白，三角)</em></p>
+<p>  }</p>
+<p>我们发现这个结构是不是有点像<strong>策略模式</strong>？其实策略更强调的是行为的替换，就像是之前例子中我们可以随意替换<code>USB</code>接口上接入的各种设备而改变输入输出行为，那对于宿主（电脑主机）本身是耦合了<code>USB</code>接口的，我们无法进行替换，只能重新写个全新的宿主并重新焊接<code>USB</code>接口了。但对于桥接模式而言，它巧妙运用了抽象类（抽象画笔类）植入接口（尺子接口），这样我们不但能替换各种形状的尺子实现类，还能替换各种颜色的画笔子类，这就是对抽象、实现的双边解耦、分离、脱钩。</p>
+<h3 id="定义说明-14"><a href="#定义说明-14" class="headerlink" title="定义说明"></a>定义说明</h3><p><strong>介绍</strong></p>
+<p>桥接模式 (Bridge)将抽象部分与实现部分分离，使它们都可以独立的变化。桥接模式是一种结构式模式。</p>
+<p><strong>应用场景</strong></p>
+<ul>
+<li>如果你不希望在抽象和实现部分采用固定的绑定关系，可以采用桥接模式，来把抽象和实现部分分开，</li>
+</ul>
+<p>然后在程序运行期间来动态的设置抽象部分需要用到的具体的实现，还可以动态切换具体的实现。</p>
+<ul>
+<li>如果出现抽象部分和实现部分都应该可以扩展的情况，可以采用桥接模式，让抽象部分和实现部分可以</li>
+</ul>
+<p>独立的变化，从而可以灵活的进行单独扩展，而不是搅在一起，扩展一边会影响到另一边。</p>
+<ul>
+<li>如果希望实现部分的修改，不会对客户产生影响，可以采用桥接模式，客户是面向抽象的接口在运行，</li>
+</ul>
+<p>实现部分的修改，可以独立于抽象部分，也就不会对客户产生影响了，也可以说对客户是透明的。</p>
+<ul>
+<li>如果采用继承的实现方案，会导致产生很多子类，对于这种情况，可以考虑采用桥接模式，分析功能变化的原因，看看是否能分离成不同的纬度，然后通过桥接模式来分离它们，从而减少子类的数目。</li>
+</ul>
+<p><strong>要点</strong></p>
+<p>如果一个系统需要在构件的抽象化角色和具体化角色之间增加更多的灵活性，避免在两个层次之间建立静态的联系。<br>抽象化角色和具体化角色都应该可以被子类扩展。在这种情况下，桥接模式可以灵活地组合不同的抽象化角色和具体化角色，并独立化地扩展。<br>设计要求实现化角色的任何改变不应当影响客户端，或者说实现化角色的改变对客户端是完全透明的。</p>
+<h2 id="抽象工厂"><a href="#抽象工厂" class="headerlink" title="抽象工厂"></a>抽象工厂</h2><h3 id="初步理解-15"><a href="#初步理解-15" class="headerlink" title="初步理解"></a>初步理解</h3><p>抽象工厂，意味着工厂的泛化，也就是说对多个工厂共通行为的抽取及概括。这和我们之前讲过的工厂方法模式十分类似，不同之处在于抽象工厂定义了更多的抽象行为，也就是多个工厂方法于抽象工厂中，其实它就是工厂方法的变种而已，所以建议读者先理解好<strong>工厂方法模式</strong>再回来看本章。</p>
+<p>我们都知道，在工厂方法模式中的每个实际的工厂只定义了一个工厂方法，如果产品种类繁多，并且能进行归类分族的话，那么我们便可以顺理成章的定义多个工厂方法，如此可以避免过多的产品造成工厂泛滥的问题。比如宝驹汽车有轿车、SUV、跑车三个等级的产品，而奔痴汽车也同样包括以上三类等级产品，如此便形成了两个产品族，分别由宝驹工厂和奔痴工厂生产，每个工厂都有三个等级的生产线，以及后加入的四环汽车产品族同样可以符合这个规范模式。</p>
+<p>我们以一款即时战略游戏来举例，假设游戏中有两个种族，地球人类与外星异形族，其中人类族拥有各种高科技军工制造技术，而怪兽异形族则是以血肉之躯的不断进化与人类抗衡。</p>
+<p>在开始代码之前我们先对两族兵种进行分析归纳，我们看到人类兵工厂和怪兽兵工厂（母巢）产出兵种都可以被简单归纳为初、中、高三个等级，如下表所示。</p>
+<p>好了，产品族已经定义清楚了，开始建立数据模型。首先定义产品的父类抽象兵种Unit，这里我们使用抽象类以达到属性延申遗传给子类的目的。</p>
+<pre><code class="java">public abstract class Unit {// 兵种
+    protected int attack;// 攻击力
+    protected int defence;// 防御力
+    protected int health;// 血量
+    protected int x;// 横坐标
+    protected int y;// 纵坐标
+    public Unit(int attack, int defence, int health, int x, int y) {
+        this.attack = attack;
+        this.defence = defence;
+        this.health = health;
+        this.x = x;
+        this.y = y;
+    }
+    public abstract void show();
+    public abstract void attack();
+}</code></pre>
+<p>不管是什么兵种必然会具有攻击力、防御力、血量体力值、坐标方位等等属性，我们都定义为<code>protected</code>以供子类继承，除此之外还有两个抽象方法显示和攻击。接下来是人类的产品族海军陆战队士兵、变形坦克和巨型战舰，它们分别对应初、中、高级兵种。</p>
+<pre><code class="java">public class Marine extends Unit {// 海军陆战队士兵
+    public Marine(int x, int y) {
+        super(6, 5, 40, x, y);
+    }
+    @Override
+    public void show() {
+        System.out.println(&quot;士兵出现在坐标：[&quot; + x + &quot;,&quot; + y + &quot;]&quot;);
+    }
+    @Override
+    public void attack() {
+        System.out.println(&quot;士兵用机关枪射击，攻击力：&quot; + attack);
+    }
+17}</code></pre>
+<pre><code class="java">public class Tank extends Unit {// 坦克
+    public Tank(int x, int y) {
+        super(25, 100, 150, x, y);
+    }
+    @Override
+    public void show() {
+        System.out.println(&quot;坦克出现在坐标：[&quot; + x + &quot;,&quot; + y + &quot;]&quot;);
+    }
+    @Override
+    public void attack() {
+        System.out.println(&quot;坦克用炮轰击，攻击力：&quot; + attack);
+    }
+}</code></pre>
+<pre><code class="java">public class Battleship extends Unit {// 巨型战舰
+    public Battleship(int x, int y) {
+        super(25, 200, 500, x, y);
+    }
+    @Override
+    public void show() {
+        System.out.println(&quot;战舰出现在坐标：[&quot; + x + &quot;,&quot; + y + &quot;]&quot;);
+    }
+    @Override
+    public void attack() {
+        System.out.println(&quot;战舰用激光炮打击，攻击力：&quot; + attack);
+    }
+}</code></pre>
+<p>可以看到每个兵种的属性值都不同，我们在第4行的构造方法中调用了父类构造，直接赋值给遗传下来的属性，兵种越高攻击防御越高（当然制造成本也更高，这里我们忽略价格），而且都重写了自己的展示和攻击方法，行为差异化，当然也许坦克会具备其他特有的行为比如变形什么的（异形也许会打洞钻地），我们此处依然忽略，保持简约。然后定义外星生物家族的三级兵种，分别是：蟑螂、毒液、猛犸。</p>
+<pre><code class="java">public class Roach extends Unit {// 外星蟑螂兵
+    public Roach(int x, int y) {
+        super(5, 2, 35, x, y);
+    }
+    @Override
+    public void show() {
+        System.out.println(&quot;蟑螂兵出现在坐标：[&quot; + x + &quot;,&quot; + y + &quot;]&quot;);
+    }
+    @Override
+    public void attack() {
+        System.out.println(&quot;蟑螂兵用爪子挠，攻击力：&quot; + attack);
+    }
+}</code></pre>
+<pre><code class="java">public class Spitter extends Unit {// 外星毒液口水兵
+    public Spitter(int x, int y) {
+         super(10, 8, 80, x, y);
+    }
+    @Override
+    public void show() {
+        System.out.println(&quot;口水兵出现在坐标：[&quot; + x + &quot;,&quot; + y + &quot;]&quot;);
+    }
+    @Override
+    public void attack() {
+        System.out.println(&quot;口水兵用毒液喷射，攻击力：&quot; + attack);
+    }
+}</code></pre>
+<pre><code class="java">public class Mammoth extends Unit {// 外星猛犸巨兽
+    public Mammoth(int x, int y) {
+        super(20, 100, 400, x, y);
+    }
+    @Override
+    public void show() {
+        System.out.println(&quot;猛犸巨兽兵出现在坐标：[&quot; + x + &quot;,&quot; + y + &quot;]&quot;);
+    }
+    @Override
+    public void attack() {
+        System.out.println(&quot;猛犸巨兽用獠牙顶，攻击力：&quot; + attack);
+    }
+}</code></pre>
+<p>没什么好说的，大同小异。重点来了，接下来是我们的抽象工厂，概括出三个等级兵种的标准制造方法，我们这里以接口来定义它。</p>
+<pre><code class="java">public interface AbstractFactory {
+    public Unit createLowClass();// 工厂方法：制造低级兵种
+    public Unit createMidClass();// 工厂方法：制造中级兵种
+    public Unit createHighClass();// 工厂方法：制造高级兵种
+}</code></pre>
+<p>可以看到，三个等级的接口意味着子类具体工厂必须具备初、中、高级三条生产线，它们同属一个家族，或者说是一个品牌的不同型号系列。理解了这一点后我们可以开始定义人类兵工厂的实现。</p>
+<pre><code class="java">public class HumanFactory implements AbstractFactory{
+    //人族工厂坐标
+    private int x;
+    private int y;
+    public HumanFactory(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+    @Override
+    public Unit createLowClass() {
+        Unit unit = new Marine(x, y);
+        System.out.println(&quot;制造海军陆战队员成功。&quot;);
+        return unit;
+    }
+    @Override
+    public Unit createMidClass() {
+        Unit unit = new Tank(x, y);
+        System.out.println(&quot;制造变形坦克成功。&quot;);
+        return unit;
+    }
+    @Override
+    public Unit createHighClass() {
+        Unit unit = new Battleship(x, y);
+        System.out.println(&quot;制造巨型战舰成功。&quot;);
+        return unit;
+    }
+}</code></pre>
+<p>可以看到，这个兵工厂实现了人类兵种产品族的制造方法，分别对应三个等级兵种的制造方法，注意第14行的坐标初始化意思是在工厂的坐标位置上出兵。接下来是异形母巢的工厂实现。</p>
+<pre><code class="java">public class AlienFactory implements AbstractFactory{
+    //外星虫族工厂坐标
+    private int x;
+    private int y;
+    public AlienFactory(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+    @Override
+    public Unit createLowClass() {
+        Unit unit = new Roach(x, y);
+        System.out.println(&quot;制造蟑螂兵成功。&quot;);
+        return unit;
+    }
+    @Override
+    public Unit createMidClass() {
+        Unit unit = new Spitter(x, y);
+        System.out.println(&quot;制造毒液兵成功。&quot;);
+        return unit;
+    }
+    @Override
+    public Unit createHighClass() {
+        Unit unit = new Mammoth(x, y);
+        System.out.println(&quot;制造猛犸巨兽成功。&quot;);
+        return unit;
+    }
+}</code></pre>
+<p>显而易见，同样地分三级制造异形家族的产品系列，工厂准备完毕可以造兵打架了，运行游戏客户端。</p>
+<pre><code class="java">public class Client {
+    public static void main(String[] args) {
+        System.out.println(&quot;游戏开始。。。&quot;);
+        System.out.println(&quot;双方挖矿攒钱。。。&quot;);
+        //第一位玩家选择了地球人族
+        System.out.println(&quot;工人建造人族工厂。。。&quot;);
+        AbstractFactory factory = new HumanFactory(10, 10);
+        Unit marine = factory.createLowClass();
+        marine.show();
+        Unit tank = factory.createMidClass();
+        tank.show();
+        Unit ship = factory.createHighClass();
+        ship.show();
+        //另一位玩家选择了外星族
+        System.out.println(&quot;工蜂建造外星虫族工厂。。。&quot;);
+        factory = new AlienFactory(200, 200);
+        Unit roach = factory.createLowClass();
+        roach.show();
+        Unit spitter = factory.createMidClass();
+        spitter.show();
+        Unit mammoth = factory.createHighClass();
+        mammoth.show();
+        System.out.println(&quot;两族开始大混战。。。&quot;);
+        marine.attack();
+        roach.attack();
+        spitter.attack();
+        tank.attack();
+        mammoth.attack();
+        ship.attack();
+        /*
+            游戏开始。。。
+            双方挖矿攒钱。。。
+            工人建造人族工厂。。。
+            制造海军陆战队员成功。
+            士兵出现在坐标：[10,10]
+            制造变形坦克成功。
+            坦克出现在坐标：[10,10]
+            制造巨型战舰成功。
+            战舰出现在坐标：[10,10]
+            工蜂建造外星虫族工厂。。。
+            制造蟑螂兵成功。
+            蟑螂兵出现在坐标：[200,200]
+            制造毒液兵成功。
+            口水兵出现在坐标：[200,200]
+            制造猛犸巨兽成功。
+            猛犸巨兽兵出现在坐标：[200,200]
+            两族开始大混战。。。
+            士兵用机关枪射击，攻击力：6
+            蟑螂兵用爪子挠，攻击力：5
+            口水兵用毒液喷射，攻击力：10
+            坦克用炮轰击，攻击力：25
+            猛犸巨兽用獠牙顶，攻击力：20
+            战舰用激光炮打击，攻击力：25 
+         */
+    }
+}</code></pre>
+<p>这里我们可以看到，不管玩家选择哪个种族，只要替换工厂实现就可以完成不同兵种的制造，假设玩家又需要一个新的种族，依然按照这种模式去实现一个新族工厂就可以了。</p>
+<p>至此，我们用各族工厂对种类繁多的产品进行了划分、归类，产品虽然繁多，但总得有品牌、型号之分，以各族工厂和产品线划界，分而治之，横向拆分产品家族，纵向则拆分产品等级。</p>
+<h2 id="建造者-生成器"><a href="#建造者-生成器" class="headerlink" title="建造者/生成器"></a>建造者/生成器</h2><h3 id="初步理解-16"><a href="#初步理解-16" class="headerlink" title="初步理解"></a>初步理解</h3><p>建造者，用于对复杂对象的构造、初始化，与工厂模式不同的是，建造者的目的在于把复杂构造过程从不同对象展现中抽离出来，使得同样的构造工序可以展现出不同的产品对象。</p>
+<p>打个比方，我们知道角色扮演类游戏中玩家可以选择不同的职业，各职业攻击力、防御力等等属性设定是不同的，比如战士的力量和体力强，法师的灵力强而体力弱，以及穿戴各种装备引起的属性附加。</p>
+<p>假设我们用同一个类来描述这些角色，那么应该怎样新建人物并配备初始武器？交给客户端去完成，把法师配成战士的力量并给脑袋上装备一把屠龙刀吗？诚然，客户端根本不知道怎样去配置（更没有必要知道），游戏人设应该交给专业的团队（建造者模式）去完成，否则会造成不可预知的混乱角色，如同怪物一般的bug存在。</p>
+<p>好了，让我们来规划一下专业的建造团队。既然是建造者，那就应该造点建造物了，我们就以盖房子举例。</p>
+<p>房子本身有很多个组成部分，各组件息息相关缺一不可，否则房倒屋塌。而其构造过程也是相当复杂的，但大家不必担心，为响应我们简约直观的一贯宗旨，这里只将其简化拆分成地基、墙体、屋顶三部分，首先来看建筑物类。</p>
+<pre><code class="java">public class Building {// 建筑物
+    // 用来模拟房子组件的堆叠
+    private List&lt;String&gt; buildingComponents = new ArrayList&lt;&gt;();
+    public void setBasement(String basement) {// 地基
+        this.buildingComponents.add(basement);
+    }
+    public void setWall(String wall) {// 墙体
+        this.buildingComponents.add(wall);
+    }
+    public void setRoof(String roof) {// 房顶
+        this.buildingComponents.add(roof);
+    }
+    @Override
+    public String toString() {
+        String buildingStr = &quot;&quot;;
+        for (int i = buildingComponents.size() - 1; i &gt;= 0; i--) {
+            buildingStr += buildingComponents.get(i);
+        }
+        return buildingStr;
+    }
+}</code></pre>
+<p>为了模拟建筑物通用类中各组件的建造顺序，我们在第4行以List来模拟三个组件的堆叠，之后是它们对应的三个建造方法，最后于第19行的toString方法自下而上的打印出最终完成的房子。看起来是不难，但怎样从这个类直接构造出一个房子呢？怎样去设置这些字符串的组件属性呢？此时客户端一头雾水，还是找个专业施工方吧，先定义个施工方接口。</p>
+<pre><code class="java">public interface Builder {//施工方接口
+    public void buildBasement();
+    public void buildWall();
+    public void buildRoof();
+    public Building getBuilding();
+}</code></pre>
+<p>既然是施工方的接口，那一定有实现类了，先来写一个高端别墅施工队。</p>
+<pre><code class="java">public class HouseBuilder implements Builder {//别墅施工方
+    private Building house;
+    public HouseBuilder() {
+        house = new Building();
+    }
+    @Override
+    public void buildBasement() {
+        System.out.println(&quot;挖地基，部署管道、线缆，水泥加固，搭建围墙、花园。&quot;);
+        house.setBasement(&quot;╬╬╬╬╬╬╬╬\n&quot;);
+    }
+    @Override
+    public void buildWall() {
+        System.out.println(&quot;搭建木质框架，石膏板封墙并粉饰内外墙。&quot;);
+        house.setWall(&quot;｜田｜田 田|\n&quot;);
+    }
+    @Override
+    public void buildRoof() {
+        System.out.println(&quot;建造木质屋顶、阁楼，安装烟囱，做好防水。&quot;);
+        house.setRoof(&quot;╱◥███◣\n&quot;);
+    }
+    @Override
+    public Building getBuilding() {
+        return house;
+    }
+}</code></pre>
+<p>嗯，这个施工方看起来是有施工资质的，不管是地基、墙体还是屋顶都讲得（第11行等）头头是道，虽然我们不懂，但建造工艺（第12行等）看起来也都是非常有考究，总之是极其专业的施工方并统统实现了每个组件的建造方法，下来我们同样地再请一个公寓楼的施工队。</p>
+<pre><code class="java">public class ApartmentBuilder implements Builder {// 高层公寓楼施工方
+    private Building apartment;
+    public ApartmentBuilder() {
+        apartment = new Building();
+    }
+    @Override
+    public void buildBasement() {
+        System.out.println(&quot;深挖地基，修建地下车库，部署管道、线缆、风道。&quot;);
+        apartment.setBasement(&quot;╚═════════╝\n&quot;);
+    }
+    @Override
+    public void buildWall() {
+        System.out.println(&quot;搭建多层建筑框架，建造电梯井，钢筋混凝土浇灌。&quot;);
+        for (int i = 0; i &lt; 8; i++) {// 此处假设固定8层
+            apartment.setWall(&quot;║ □ □ □ □ ║\n&quot;);
+        }
+    }
+    @Override
+    public void buildRoof() {
+        System.out.println(&quot;封顶，部署通风井，做防水层，保温层。&quot;);
+        apartment.setRoof(&quot;╔═════════╗\n&quot;);
+    }
+    @Override
+    public Building getBuilding() {
+        return apartment;
+    }
+}</code></pre>
+<p>大同小异，公寓楼施工方也是一样的专业，只不过建造工艺好像有些不同，尤其是第16行的建造墙体方法，好像是循环8次造了8层楼的样子，这一定是八层公寓小高层了。到这里，我们好像还是不能交给客户端去亲自调用这三个组件的建造方法，造房子可不是开玩笑的，我们还是得找一个有资质的工程总监去控制整个建造工序流程。</p>
+<pre><code class="java">public class Director {//工程总监
+    private Builder builder;
+    public Director(Builder builder) {
+        this.builder = builder;
+    }
+    public void setBuilder(Builder builder) {
+        this.builder = builder;
+    }
+    public Building direct() {
+        System.out.println(&quot;=====工程项目启动=====&quot;);
+        // 第一步，打好地基；
+        builder.buildBasement();
+        // 第二步，建造框架、墙体；
+        builder.buildWall();
+        // 第三步，封顶；
+        builder.buildRoof();
+        System.out.println(&quot;=====工程项目竣工=====&quot;);
+        return builder.getBuilding();
+    }
+}</code></pre>
+<p>我们可以看到，工程总监在宏观上操控着整个施工队的建造流程，在第13行的指导方法中以自下而上的顺序建造房屋，他并不在乎是哪个施工队来造房子，但施工步骤是由他来控制的。是时候满足客户的住房刚需了，组建团队，运行程序。</p>
+<pre><code class="java">public class Client {
+    public static void main(String[] args) {
+        //招工，建别墅。
+        Builder builder = new HouseBuilder();
+        //交给工程总监
+        Director director = new Director(builder);
+        System.out.println(director.direct());
+        //替换施工方，建公寓。
+        director.setBuilder(new ApartmentBuilder());
+        System.out.println(director.direct());
+    }
+}</code></pre>
+<p>可以看到客户端先找了个别墅施工队（第5行），并且安排给总监（第7行），于是造出了别墅，接着又替换了另一个公寓楼施工队（第10行），最终顺利地建了一栋八层公寓。</p>
+<p>项目终于竣工了，对于复杂对象的构建，专业的建造团队显然是不可或缺的，尤其是产品内部组件间有某种关联性，构建的顺序性，所以我们把制造工序抽离出来交给了工程总监（Director），而产品各种制造工艺则被多态化交给不同的施工方（Builder）去各显神通，最终达成以相同的构造过程生产不同产品的展现的目的，工序不可乱，工艺不可缺。</p>
+<h3 id="定义说明-15"><a href="#定义说明-15" class="headerlink" title="定义说明"></a>定义说明</h3><p><strong>定义：</strong></p>
+<p>将一个复杂对象的构建与它的表示分离，使得同样的构建过程可以创建不同的表示。生成器模式利用一个导演者对象和具体建造者对象一个一个地建造出所有的零件，从而建造出完整的对象。</p>
+<p><strong>四个要素：</strong></p>
+<ul>
+<li><p><strong><code>Builder：</code></strong>生成器接口，定义创建一个Product对象所需要的各个部件的操作。</p>
+</li>
+<li><p><strong><code>ConcreteBuilder</code>：</strong>具体的生成器实现，实现各个部件的创建，并负责组装Product对象的各个部件，同时还提供一个让用户获取组装完成后的产品对象的方法。</p>
+</li>
+<li><p><strong><code>Director</code>：</strong>指导者，也被称导向者，主要用来使用Builder接口，以一个统一的过程来构建所需要的Product对象。</p>
+</li>
+<li><p><strong><code>Product</code>：</strong>产品，表示被生成器构建的复杂对象，包含多个部件。</p>
+</li>
+</ul>
+<p><strong>优点：</strong></p>
+<ul>
+<li><p>使用生成器模式可以使客户端不必知道产品内部组成的细节。</p>
+</li>
+<li><p>具体的建造者类之间是相互独立的，对系统的扩展非常有利。</p>
+</li>
+<li><p>由于具体的建造者是独立的，因此可以对建造过程逐步细化，而不对其他的模块产生任何影响。</p>
+</li>
+</ul>
+<p><strong>缺点：</strong></p>
+<p>建造者模式的“加工工艺”是暴露的，这样使得建造者模式更加灵活，也使得工艺变得对客户不透明。（待考证，笔者这里不是很理解，欢迎说自己的见解）</p>
+<p><strong>应用场景：</strong></p>
+<ul>
+<li><p>需要生成一个产品对象有复杂的内部结构。每一个内部成分本身可以是对象，也可以使一个对象的一个组成部分。</p>
+</li>
+<li><p>需要生成的产品对象的属性相互依赖。建造模式可以强制实行一种分步骤进行的建造过程。</p>
+</li>
+<li><p>在对象创建过程中会使用到系统中的其他一些对象，这些对象在产品对象的创建过程中不易得到</p>
+</li>
+</ul>
+<h2 id="命令模式"><a href="#命令模式" class="headerlink" title="命令模式"></a>命令模式</h2><h3 id="初步理解-17"><a href="#初步理解-17" class="headerlink" title="初步理解"></a>初步理解</h3><p>命令模式，通常指的是一个对象向另一个对象发送信息指令的行为模型，比如父母命令孩子写作业、将军命令士兵进攻等。我们经过分析拆解方法会得到三个模块，首先得有命令发送方，接着是被传递的命令本身，最后就是命令的接收执行方了。那么，这样拆解到底有什么好处？让我们先来看一个最简单的例子，电灯泡。</p>
+<p>既然是电灯那一定对应通电和断电的行为接口了，两个接口方法互斥，我们就叫它Switchable吧。</p>
+<pre><code class="java">public interface Switchable {//电器接口
+    //通电
+    public void on();
+    //断电
+    public void off();
+}</code></pre>
+<p>对于具体的灯泡实现类，必然是通电亮，断电灭。</p>
+<pre><code class="java">public class Bulb implements Switchable {
+    @Override
+    public void on(){
+        System.out.println(&quot;通电，灯亮。&quot;);
+    }   
+    @Override
+    public void off(){
+        System.out.println(&quot;断电，灯灭。&quot;);
+    }
+}</code></pre>
+<p>同样地，我们再增加一个设备，如果是风扇的话则是通电转，断电停。</p>
+<pre><code class="java">public class Fan implements Switchable{
+    @Override
+    public void on() {
+        System.out.println(&quot;通电，风扇转动。&quot;);
+    }
+    @Override
+    public void off() {
+        System.out.println(&quot;断电，风扇停止。&quot;);
+    }
+}</code></pre>
+<p>我们该如何操作呢？来吧，直接用电线接通电源。</p>
+<pre><code class="java">public class Client {
+    public static void main(String[] args) {
+        System.out.println(&quot;===客户端用【电线】直接操作灯泡===&quot;);
+        Bulb bulb = new Bulb();
+        bulb.on();
+        bulb.off();
+        /*打印输出：
+            ===客户端用【电线】直接操作灯泡===
+            通电，灯亮。
+            断电，灯灭。 
+        */
+    }
+}</code></pre>
+<p>也许用户是个糙人，直接用导线给通电了，简单粗暴，虽然没有错，但这看上去与设计模式没有任何瓜葛。为了体现出模式的优越性，我们需要让系统进化得更高级一些，于是我们决定加入另一个模块，开关控制。</p>
+<pre><code class="java">public class Switcher {
+    // 此开关与灯耦合，无法替换为其他电器。
+    // private Bulb bulb = new Bulb();
+    // 此开关与电器接口耦合，可任意替换电器。
+    private Switchable switchable;
+    // 替换电器方法
+    public void setSwitchable(Switchable switchable) {
+        this.switchable = switchable;
+    }
+    // 按键事件绑定
+    // 按钮“开”按下
+    public void buttonOnClick() {
+        System.out.println(&quot;按下开……&quot;);
+        switchable.on();
+    }
+    // 按钮“关”按下
+    public void buttonOffClick() {
+        System.out.println(&quot;按下关……&quot;);
+        switchable.off();
+    }
+}</code></pre>
+<p>这里的开关就类似一个控制器了，有“开”和“关”两个按键分别绑定了设备的“通电”与“断电”行为方法。需要特别注意的是，如果在第4行我们声明地是灯泡，那么无疑这个开关与灯泡就绑定死了，也就是强耦合了，所以第7行我们声明的是Switchable接口引用，并提供第10行的替换电器方法给外界注入任何的设备。好了，我们换个方式运行程序。</p>
+<pre><code class="java">public class Client {
+    public static void main(String[] args) {
+        System.out.println(&quot;===客户端用【开关】操作电器===&quot;);
+        Switcher switcher = new Switcher();
+        switcher.setSwitchable(new Bulb());//灯泡接入开关。
+        switcher.buttonOnClick();
+        switcher.buttonOffClick();
+        switcher.setSwitchable(new Fan());//风扇接入开关。
+        switcher.buttonOnClick();
+        switcher.buttonOffClick();
+        /*打印输出：
+            ===客户端用【开关】操作电器===
+            按下开……
+            通电，灯亮。
+            按下关……
+            断电，灯灭。
+            按下开……
+            通电，风扇转动。
+            按下关……
+            断电，风扇停止。
+         */
+    }
+}</code></pre>
+<p>这次看上去功能强大多了，开关可以随意地接入灯泡或者风扇，注入的是谁那么开关按钮直接就作用于谁，对于设备我们还可以继续扩展，设计模式开始体现优势了。等等，这个模式好像似曾相识的感觉，没错，这正是之前讲过的<strong>策略模式</strong>，可这跟命令模式有什么关系？不要着急，我们先看下这个开关策略模式是否满足了我们的需求。</p>
+<p>假设我们的设备不断扩展，比如有了电视机，收音机等等设备，它们不止是开关通电这种简单行为模式了，还可以有转换频道、变音量等等更多的行为。</p>
+<p>那么我们的简单开关还能满足对接电视机的琳琅满目的功能吗？注意之前我们的开关Switcher类中第7行代码：<em>private Switchable switchable;</em> 虽然可以替换设备，但只能是Switchable设备对象，这就与”可开关设备接口“强耦合了，也就是说它只能控制“灯泡或风扇”，并不能控制”电视或收音机”。</p>
+<p>同时另一端我们的开关控制器也在不断进化，发展出了更多功能控制器、无线遥控器、甚至是手机App控制。</p>
+<p>所以，如何把控制器与设备完全给拆解开势在必行，此时命令模式粉墨登场。现在我们得新定义出一组”命令“模块把控制器（发令者）与设备（执行者）彻底解耦，就以电视机和遥控器举例说明吧。</p>
+<pre><code class="java">public interface Device extends Switchable{
+    // 频道+
+    public void channelUp();
+    // 频道-
+    public void channelDown();
+    // 音量+
+    public void volumeUp();
+    // 音量-
+    public void volumeDown();
+}</code></pre>
+<p>注意代码第1行的接口继承，我们的高级设备接口则遗传了之前的简单通断电接口，并新增了调节频道和音量4个功能。接下来是电视机与收音机实现类。</p>
+<pre><code class="java">public class TV implements Device {
+    @Override
+    public void on(){
+        System.out.println(&quot;电视机启动&quot;);
+    }   
+    @Override
+    public void off(){
+        System.out.println(&quot;电视机关闭&quot;);
+    }
+    @Override
+    public void channelUp() {
+        System.out.println(&quot;电视机频道+&quot;);
+    }
+    @Override
+    public void channelDown() {
+        System.out.println(&quot;电视机频道-&quot;);
+    }
+    @Override
+    public void volumeUp() {
+        System.out.println(&quot;电视机音量+&quot;);
+    }
+    @Override
+    public void volumeDown() {
+        System.out.println(&quot;电视机音量-&quot;);
+    }
+}</code></pre>
+<pre><code class="java"> 1public class Radio implements Device {
+ 2
+ 3    @Override
+ 4    public void on(){
+ 5        System.out.println(&quot;收音机启动&quot;);
+ 6    }   
+ 7
+ 8    @Override
+ 9    public void off(){
+10        System.out.println(&quot;收音机关闭&quot;);
+11    }
+12
+13    @Override
+14    public void channelUp() {
+15        System.out.println(&quot;收音机调频+&quot;);
+16    }
+17
+18    @Override
+19    public void channelDown() {
+20        System.out.println(&quot;收音机调频-&quot;);
+21    }
+22
+23    @Override
+24    public void volumeUp() {
+25        System.out.println(&quot;收音机音量+&quot;);
+26    }
+27
+28    @Override
+29    public void volumeDown() {
+30        System.out.println(&quot;收音机音量-&quot;);
+31    }
+32}</code></pre>
+<p>没什么好说的，下来是解耦的重点了，我们在策略模式的基础上又增加一层中间模块，开始编写命令模块代码，首先是命令接口。</p>
+<pre><code class="java">public interface Command {
+    //执行命令操作
+    public void exe();
+    //反执行命令操作
+    public void unexe();
+}</code></pre>
+<p>命令接口有执行操作与反执行操作两个标准功能，然后定义其命令实现类，开关机命令、频道转换命令、以及音量调节命令。</p>
+<pre><code class="java">public class SwitchCommand implements Command {
+    private Device device;// 此处持有高级设备接口。
+    public SwitchCommand(Device device) {
+        this.device = device;
+    }
+    @Override
+    public void exe() {
+        device.on();// 执行命令调用开机操作
+    }
+    @Override
+    public void unexe() {
+        device.off();// 反执行命令调用关机操作
+    }
+}</code></pre>
+<pre><code class="java">public class ChannelCommand implements Command{
+    private Device device;
+    public ChannelCommand(Device device) {
+        this.device = device;
+    }
+    @Override
+    public void exe() {
+        device.channelUp();
+    }
+    @Override
+    public void unexe() {
+        device.channelDown();
+    }
+}</code></pre>
+<pre><code class="java">public class VolumeCommand implements Command{
+    private Device device;
+    public VolumeCommand(Device device) {
+        this.device = device;
+    }
+    @Override
+    public void exe() {
+        device.volumeUp();
+    }
+    @Override
+    public void unexe() {
+        device.volumeDown();
+    }
+}</code></pre>
+<p>代码很简单，但是系统模组相对复杂，所以一定要搞清楚各模块间关系再继续。最后一个模块是遥控器类，也就是命令发送方了。我们保持简单，遥控器集成了OK按键以及上下左右方向键。</p>
+<pre><code class="java">public class Controller {
+    private Command okCommand;
+    private Command verticalCommand;
+    private Command horizontalCommand;
+    // 绑定OK键命令
+    public void bindOKCommand(Command okCommand) {
+        this.okCommand = okCommand;
+    }
+    // 绑定上下方向键命令
+    public void bindVerticalCommand(Command verticalCommand) {
+        this.verticalCommand = verticalCommand;
+    }
+    // 绑定左右方向键命令
+    public void bindHorizontalCommand(Command horizontalCommand) {
+        this.horizontalCommand = horizontalCommand;
+    }
+    // 开始按键映射命令
+    public void buttonOKHold() {
+        System.out.print(&quot;长按OK按键……&quot;);
+        okCommand.exe();
+    }
+    public void buttonOKClick() {
+        System.out.print(&quot;单击OK按键……&quot;);
+        okCommand.unexe();
+    }
+    public void buttonUpClick() {
+        System.out.print(&quot;单击↑按键……&quot;);
+        verticalCommand.exe();
+    }
+    public void buttonDownClick() {
+        System.out.print(&quot;单击↓按键……&quot;);
+        verticalCommand.unexe();
+    }
+    public void buttonLeftClick() {
+        System.out.print(&quot;单击←按键……&quot;);
+        horizontalCommand.unexe();
+    }
+    public void buttonRightClick() {
+        System.out.print(&quot;单击→按键……&quot;);
+        horizontalCommand.exe();
+    }
+}</code></pre>
+<p>这个遥控器持有三个命令组件，并且于第7行开始定义命令绑定方法，最后从第22行开始定义各按键触发方法并映射到相应的命令操作上。可以看到，控制器对设备一无所知，也就是它上面不再绑定有任何设备了，而是只绑定命令。最后，客户端又换了一种方式运行程序。</p>
+<pre><code class="java">public class Client {
+    public static void main(String[] args) {
+        System.out.println(&quot;===客户端用【可编程式遥控器】操作电器===&quot;);
+        Device tv = new TV();
+        Device radio = new Radio();
+        Controller controller = new Controller();
+        //绑定【电视机】的【命令】到【控制器按键】
+        controller.bindOKCommand(new SwitchCommand(tv));
+        controller.bindVerticalCommand(new ChannelCommand(tv));//上下调台
+        controller.bindHorizontalCommand(new VolumeCommand(tv));//左右调音
+        controller.buttonOKHold();
+        controller.buttonUpClick();
+        controller.buttonUpClick();
+        controller.buttonDownClick();
+        controller.buttonRightClick();
+        /*打印输出：
+            ===客户端用【可编程式遥控器】操作电器===
+            长按OK按键……电视机启动
+            单击↑按键……电视机频道+
+            单击↑按键……电视机频道+
+            单击↓按键……电视机频道-
+            单击→按键……电视机音量+
+        */
+        //绑定【收音机】的【命令】到【控制器按键】
+        controller.bindOKCommand(new SwitchCommand(radio));
+        controller.bindVerticalCommand(new VolumeCommand(radio));//上下调音
+        controller.bindHorizontalCommand(new ChannelCommand(radio));//左右调台
+        controller.buttonOKHold();
+        controller.buttonUpClick();
+        controller.buttonUpClick();
+        controller.buttonRightClick();
+        controller.buttonDownClick();
+        /*打印输出：
+            长按OK按键……收音机启动
+            单击↑按键……收音机音量+
+            单击↑按键……收音机音量+
+            单击→按键……收音机调频+
+            单击↓按键……收音机音量-
+        */
+    }
+}</code></pre>
+<p>很显然，客户端可以肆意妄为地组装各个模块了，也就是说可以遥控电视，也可以遥控收音机，或许绑定上下键调音量，或许是换成左右键调音量，甚至可以定义一个宏命令去控制灯泡的切换开关实现一种霓虹灯闪烁的效果（读者可以思考怎样实现），而对于控制器端本身，同样可以继续扩展，或许干脆替换个游戏手柄或者键盘，一样可以发号施令。</p>
+<p>至此，发令控制方与接受执行方完全被拆解开，这让我们实现了对各模块的自由扩展，对指令映射、设备绑定的灵活操控，松散的系统得以成就繁多模块解耦的最终目的。</p>
+<h3 id="定义说明-16"><a href="#定义说明-16" class="headerlink" title="定义说明"></a>定义说明</h3><p><strong>定义：</strong>将一个请求封装成一个对象，从而让你使用不同的请求把客户端参数化，对请求排队或者记录请求日志，可以提供命令的撤销和恢复功能。</p>
+<p><strong>命令模式的结构</strong></p>
+<p>顾名思义，命令模式就是对命令的封装，首先来看一下命令模式类图中的基本结构：</p>
+<ul>
+<li><p><strong><code>Command类</code>：</strong>是一个抽象类，类中对需要执行的命令进行声明，一般来说要对外公布一个execute方法用来执行命令。</p>
+</li>
+<li><p><strong><code>ConcreteCommand类</code>：</strong>Command类的实现类，对抽象类中声明的方法进行实现。</p>
+</li>
+<li><p><strong><code>Client类</code>：</strong>最终的客户端调用类。</p>
+<p>以上三个类的作用应该是比较好理解的，下面我们重点说一下Invoker类和Recevier类。</p>
+</li>
+<li><p><strong><code>Invoker类</code>：</strong>调用者，负责调用命令。</p>
+</li>
+<li><p><strong><code>Receiver类</code>：</strong>接收者，负责接收命令并且执行命令。</p>
+</li>
+</ul>
+<p><strong>命令模式的优缺点</strong></p>
+<p>首先，命令模式的封装性很好：每个命令都被封装起来，对于客户端来说，需要什么功能就去调用相应的命令，而无需知道命令具体是怎么执行的。比如有一组文件操作的命令：新建文件、复制文件、删除文件。如果把这三个操作都封装成一个命令类，客户端只需要知道有这三个命令类即可，至于命令类中封装好的逻辑，客户端则无需知道。</p>
+<p>其次，命令模式的扩展性很好，在命令模式中，在接收者类中一般会对操作进行最基本的封装，命令类则通过对这些基本的操作进行二次封装，当增加新命令的时候，对命令类的编写一般不是从零开始的，有大量的接收者类可供调用，也有大量的命令类可供调用，代码的复用性很好。比如，文件的操作中，我们需要增加一个剪切文件的命令，则只需要把复制文件和删除文件这两个命令组合一下就行了，非常方便。</p>
+<p>最后说一下命令模式的缺点，那就是命令如果很多，开发起来就要头疼了。特别是很多简单的命令，实现起来就几行代码的事，而使用命令模式的话，不用管命令多简单，都需要写一个命令类来封装。</p>
+<p><strong>命令模式的适用场景</strong></p>
+<p>对于大多数请求-响应模式的功能，比较适合使用命令模式，正如命令模式定义说的那样，命令模式对实现记录日志、撤销操作等功能比较方便。</p>
+<p> <strong>总结</strong></p>
+<p>对于一个场合到底用不用模式，这对所有的开发人员来说都是一个很纠结的问题。有时候，因为预见到需求上会发生的某些变化，为了系统的灵活性和可扩展性而使用了某种设计模式，但这个预见的需求偏偏没有，相反，没预见到的需求倒是来了不少，导致在修改代码的时候，使用的设计模式反而起了相反的作用，以至于整个项目组怨声载道。这样的例子，我相信每个程序设计者都遇到过。所以，基于敏捷开发的原则，我们在设计程序的时候，如果按照目前的需求，不使用某种模式也能很好地解决，那么我们就不要引入它，因为要引入一种设计模式并不困难，我们大可以在真正需要用到的时候再对系统进行一下，引入这个设计模式。</p>
+<p>拿命令模式来说吧，我们开发中，请求-响应模式的功能非常常见，一般来说，我们会把对请求的响应操作封装到一个方法中，这个封装的方法可以称之为命令，但不是命令模式。到底要不要把这种设计上升到模式的高度就要另行考虑了，因为，如果使用命令模式，就要引入调用者、接收者两个角色，原本放在一处的逻辑分散到了三个类中，设计时，必须考虑这样的代价是否值得。</p>
+<h2 id="访问者"><a href="#访问者" class="headerlink" title="访问者"></a>访问者</h2><h3 id="初步理解-18"><a href="#初步理解-18" class="headerlink" title="初步理解"></a>初步理解</h3><p>众所周知，对于数据的封装我们通常会用到<code>POJO</code>类，它除了<code>getter</code>和<code>setter</code>之外是不包含任何业务逻辑的，也就是说它只对应一组数据并不包含任何功能。举个最常见的例子，比如数据库对应的实体类，一般我们不会在类里封装上业务逻辑，而是放在专门的<code>Service</code>类里去处理，也就是<code>Service</code>作为拜访者去访问实体类封装的数据。</p>
+<p>现在假设有这么一个场景，我们有很多的实体数据封装类（各类食品）都要进行一段相同的业务处理（计算价格），而每个实体类对应着不同的业务逻辑（水果按斤卖，啤酒论瓶卖），但我们又不想每个类对应一个业务逻辑类（类太繁多），而是汇总到一处业务处理（结账台），那我们应该如何设计呢？</p>
+<p>我们就以超市结账举例，首先是各种商品的实体类，包括糖、酒、和水果，它们都应该共享一些共通属性，那就先抽象出一个商品类吧。</p>
+<pre><code class="java">public abstract class Product {
+    protected String name;// 品名
+    protected LocalDate producedDate;// 生产日期
+    protected float price;// 价格
+    public Product(String name, LocalDate producedDate, float price) {
+        this.name = name;
+        this.producedDate = producedDate;
+        this.price = price;
+    }
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public LocalDate getProducedDate() {
+        return producedDate;
+    }
+    public void setProducedDate(LocalDate producedDate) {
+        this.producedDate = producedDate;
+    }
+    public float getPrice() {
+        return price;
+    }
+    public void setPrice(float price) {
+        this.price = price;
+    }
+}</code></pre>
+<p>我们抽象出来的都是些最基本的商品属性，简单的数据封装，标准的<code>POJO</code>类，接下来我们把这些属性和方法都继承下来给具体商品类，它们依次是糖果、酒、和水果。</p>
+<pre><code class="java">public class Candy extends Product {// 糖果类
+    public Candy(String name, LocalDate producedDate, float price) {
+        super(name, producedDate, price);
+    }
+}
+public class Wine extends Product {// 酒类
+    public Wine(String name, LocalDate producedDate, float price) {
+        super(name, producedDate, price);
+    }
+}
+public class Fruit extends Product {// 水果
+    private float weight;
+    public Fruit(String name, LocalDate producedDate, float price, float weight) {
+        super(name, producedDate, price);
+        this.weight = weight;
+    }
+    public float getWeight() {
+        return weight;
+    }
+    public void setWeight(float weight) {
+        this.weight = weight;
+    }
+}</code></pre>
+<p>基本没什么特别的，除了水果是论斤销售，所以我们加了个重量属性，仅此而已。接下来就是我们的结算业务逻辑了，超市规定即将过期的给予一定打折优惠，日常促销可以吸引更多顾客。</p>
+<p>我们思考一下怎样设计，针对不同商品的折扣力度显然是不一样的，其实不止是打折，我们知道过期商品超市不准继续售卖，但这对于酒类商品又不存在过期问题。这个业务很明显是针对不同的类要有不同的逻辑反应了，那对于我们所访问的商品应该加以区分，用<code>instanceof</code>判断并分流？这显然太混乱了，代码里会充斥着大量<code>if else</code>！那我们定义多个同名方法，以不同的商品参数去分流？没错，我们就用重载，首先定义访问者接口，为的是日后对访问者的扩展。</p>
+<pre><code class="java">public interface Visitor {// 访问者接口
+    public void visit(Candy candy);// 糖果重载方法
+    public void visit(Wine wine);// 酒类重载方法
+    public void visit(Fruit fruit);// 水果重载方法
+}</code></pre>
+<p>三个重载方法会响应不同的商品类对象，这是一种功能上的多态性。下面来看具体的业务实现类，我们这里实现一个日常打折并计算最终价格的业务类<code>DiscountVisitor</code>。</p>
+<pre><code class="java">public class DiscountVisitor implements Visitor {
+    private LocalDate billDate;
+    public DiscountVisitor(LocalDate billDate) {
+        this.billDate = billDate;
+        System.out.println(&quot;结算日期：&quot; + billDate);
+    }
+    @Override
+    public void visit(Candy candy) {
+        System.out.println(&quot;=====糖果【&quot; + candy.getName() + &quot;】打折后价格=====&quot;);
+        float rate = 0;
+        long days = billDate.toEpochDay() - candy.getProducedDate().toEpochDay();
+        if (days &gt; 180) {
+            System.out.println(&quot;超过半年过期糖果，请勿食用！&quot;);
+        } else {
+            rate = 0.9f;
+        }
+        float discountPrice = candy.getPrice() * rate;
+        System.out.println(NumberFormat.getCurrencyInstance().format(discountPrice));
+    }
+    @Override
+    public void visit(Wine wine) {
+        System.out.println(&quot;=====酒品【&quot; + wine.getName() + &quot;】无折扣价格=====&quot;);
+        System.out.println(NumberFormat.getCurrencyInstance().format(wine.getPrice()));
+    }
+    @Override
+    public void visit(Fruit fruit) {
+        System.out.println(&quot;=====水果【&quot; + fruit.getName() + &quot;】打折后价格=====&quot;);
+        float rate = 0;
+        long days = billDate.toEpochDay() - fruit.getProducedDate().toEpochDay();
+        if (days &gt; 7) {
+            System.out.println(&quot;￥0.00元（超过一周过期水果，请勿食用！）&quot;);
+        } else if (days &gt; 3) {
+            rate = 0.5f;
+        } else {
+            rate = 1;
+        }
+        float discountPrice = fruit.getPrice() * fruit.getWeight() * rate;
+        System.out.println(NumberFormat.getCurrencyInstance().format(discountPrice));
+    }
+}</code></pre>
+<p>业务看上去也许有些复杂，其中构造方法传入初始化结单日期（第4行），糖果（第10行）的过期日设置为半年否则按9折出售，酒品（第24行）则没有过期限制，一律按原价出售，对于水果（第30行）有效期设置为一周，如果超过3天按半价出售，总之就是三种商品对应不同的计算逻辑。其实我们可以完全忽略业务实现，这里应该着重于模式的思考，让我们看看怎样客户端访问数据。</p>
+<pre><code class="java">public class Client {
+    public static void main(String[] args) {
+        //小黑兔奶糖，生产日期：2018-10-1，原价：￥20.00
+        Candy candy = new Candy(&quot;小黑兔奶糖&quot;, LocalDate.of(2018, 10, 1), 20.00f);
+        Visitor discountVisitor = new DiscountVisitor(LocalDate.of(2019, 1, 1));
+        discountVisitor.visit(candy);
+        /*打印输出：
+            结算日期：2019-01-01
+            =====糖果【小黑兔奶糖】打折后价格=====
+            ￥18.00
+        */
+    }
+}</code></pre>
+<p>貌似程序运行地很好，业务逻辑没有问题，最后打了9折。但是，请注意第4行客户选了一包奶糖并以糖果类定义引用了糖果对象，这么做当然无可厚非，但试想我们如果选购多种产品并加入购物车<code>List&lt;Product&gt;</code>，购物车只认识泛化的<code>Product</code>，对具体品类不得而知，所以这里应该进行泛化处理，以产品<code>Product</code>定义引用，让我们选购多件商品实验下。</p>
+<pre><code class="java">public class Client {
+    public static void main(String[] args) {
+        // 三件商品加入购物车
+        List&lt;Product&gt; products = Arrays.asList(
+            new Candy(&quot;小黑兔奶糖&quot;, LocalDate.of(2018, 10, 1), 20.00f),
+            new Wine(&quot;猫泰白酒&quot;, LocalDate.of(2017, 1, 1), 1000.00f),
+            new Fruit(&quot;草莓&quot;, LocalDate.of(2018, 12, 26), 10.00f, 2.5f)
+        );
+        Visitor discountVisitor = new DiscountVisitor(LocalDate.of(2018, 1, 1));
+        // 迭代购物车轮流结算
+        for (Product product : products) {
+            discountVisitor.visit(product);// 此处报错
+        }
+    }
+}</code></pre>
+<p>注意重点来了，我们顺利地加入购物车并迭代轮流结算每个产品，可是第13行会报错，编译器对泛化后的<code>product</code>很是茫然，这到底是糖还是酒？该调用哪个<code>visit</code>方法呢？很多朋友疑问为什么不能在运行时根据对象类型动态地派发给对应的重载方法？试想，如果我们新加一个蔬菜产品类<code>Vegetable</code>，但没有在<code>Visitor</code>里加入其重载方法<code>visit(Vegetable vegetable)</code>，那运行起来岂不是更糟糕？所以编译器提前就应该禁止此种情形通过编译。</p>
+<p>难道我们设计思路错了？有没有办法把产品派发到相应的重载方法？答案是肯定的，这里涉及到一个新的概念，我们需要利用<strong>“双派发”（double dispatch）</strong>巧妙地绕过这个错误，既然访问者访问不了，我们从被访问者（产品资源）入手，来看代码，先定义一个接待者接口。</p>
+<pre><code class="java">public interface Acceptable {
+    // 主动接受拜访者
+    public void accept(Visitor visitor);
+}</code></pre>
+<p>可以看到这个“接待者”定义了一个接待方法，凡是“来访者”身份的都予以接受。我们先用糖果类实现这个接口，并主动接受来访者的拜访。</p>
+<pre><code class="java">public class Candy extends Product implements Acceptable{// 糖果类
+    public Candy(String name, LocalDate producedDate, float price) {
+        super(name, producedDate, price);
+    }
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);// 把自己交给拜访者。
+    }
+}</code></pre>
+<p>糖果类顺理成章地成为了“接待者”（其他品类雷同，此处忽略代码），并把自己（this）交给了来访者（第9行），这样绕来绕去起到什么作用呢？别急，我们先来看双派发到底是怎样实现的。</p>
+<pre><code class="java">public class Client {
+    public static void main(String[] args) {
+        // 三件商品加入购物车
+        List&lt;Acceptable&gt; products = Arrays.asList(
+            new Candy(&quot;小黑兔奶糖&quot;, LocalDate.of(2018, 10, 1), 20.00f),
+            new Wine(&quot;猫泰白酒&quot;, LocalDate.of(2017, 1, 1), 1000.00f),
+            new Fruit(&quot;草莓&quot;, LocalDate.of(2018, 12, 26), 10.00f, 2.5f)
+        );
+        Visitor discountVisitor = new DiscountVisitor(LocalDate.of(2019, 1, 1));
+        // 迭代购物车轮流结算
+        for (Acceptable product : products) {
+            product.accept(discountVisitor);
+        }
+        /*打印输出：
+            结算日期：2019-01-01
+            =====糖果【小黑兔奶糖】打折后价格=====
+            ￥18.00
+            =====酒品【猫泰白酒】无折扣价格=====
+            ￥1,000.00
+            =====水果【草莓】打折后价格=====
+            ￥12.50
+         */
+    }
+}</code></pre>
+<p>注意看第4行的购物车<code>List&lt;Product&gt;</code>已经被改为泛型<code>Acceptable</code>了，也就是说所有商品统统被泛化且当作“接待者”了，由于泛型化后的商品像是被打了包裹一样让拜访者无法识别品类，所以在迭代里面我们让这些商品对象主动去“接待”来访者（第13行）。这类似于警察（访问者）办案时嫌疑人（接待者）需主动接受调查并出示自己的身份证给警察，如此就可以基于个人信息查询前科并展开相关调查。</p>
+<p>如此一来，在运行时的糖果自己是认识自己的，它就把自己递交给来访者，此时的<code>this</code>必然就属糖果类了，所以能得偿所愿地派发到<code>Visitor</code>的<code>visit(Fruit fruit)</code>重载方法，这样便实现了“双派发”，也就是说我们先派发给商品去主动接待，然后又把自己派发回给访问者，我不认识你，你告诉我你是谁。</p>
+<p>终于，我们巧妙地用双派发解决了方法重载的多态派发问题，如虎添翼，访问者模式框架至此搭建竣工，之后再添加业务逻辑不必再改动数据实体类了，比如我们再增加一个针对六一儿童节打折业务，加大对糖果类、玩具类的打折力度，而不需要为每个<code>POJO</code>类添加对应打折方法，数据资源（实现接待者接口）与业务（实现访问者接口）被分离开来，且业务处理集中化、多态化、亦可扩展。纯粹的数据，不应该多才多艺。</p>
+<h3 id="定义说明-17"><a href="#定义说明-17" class="headerlink" title="定义说明"></a>定义说明</h3><p><strong>定义：</strong>封装某些作用于某种数据结构中各元素的操作，它可以在不改变数据结构的前提下定义作用于这些元素的新的操作。</p>
+<p><strong>访问者模式的优点</strong></p>
+<ul>
+<li><p><strong>符合单一职责原则：</strong>凡是适用访问者模式的场景中，元素类中需要封装在访问者中的操作必定是与元素类本身关系不大且是易变的操作，使用访问者模式一方面符合单一职责原则，另一方面，因为被封装的操作通常来说都是易变的，所以当发生变化时，就可以在不改变元素类本身的前提下，实现对变化部分的扩展。</p>
+</li>
+<li><p><strong>扩展性良好：</strong>元素类可以通过接受不同的访问者来实现对不同操作的扩展。</p>
+</li>
+</ul>
+<p><strong>访问者模式的适用场景</strong></p>
+<p>假如一个对象中存在着一些与本对象不相干（或者关系较弱）的操作，为了避免这些操作污染这个对象，则可以使用访问者模式来把这些操作封装到访问者中去。</p>
+<p>假如一组对象中，存在着相似的操作，为了避免出现大量重复的代码，也可以将这些重复的操作封装到访问者中去。</p>
+<p>但是，访问者模式并不是那么完美，它也有着致命的缺陷：增加新的元素类比较困难。通过访问者模式的代码可以看到，在访问者类中，每一个元素类都有它对应的处理方法，也就是说，每增加一个元素类都需要修改访问者类（也包括访问者类的子类或者实现类），修改起来相当麻烦。也就是说，在元素类数目不确定的情况下，应该慎用访问者模式。所以，访问者模式比较适用于对已有功能的重构，比如说，一个项目的基本功能已经确定下来，元素类的数据已经基本确定下来不会变了，会变的只是这些元素内的相关操作，这时候，我们可以使用访问者模式对原有的代码进行重构一遍，这样一来，就可以在不修改各个元素类的情况下，对原有功能进行修改。</p>
+<p><strong>总结</strong></p>
+<p>正如《设计模式》的作者<code>GoF</code>对访问者模式的描述：大多数情况下，你并需要使用访问者模式，但是当你一旦需要使用它时，那你就是真的需要它了。当然这只是针对真正的大牛而言。在现实情况下（至少是我所处的环境当中），很多人往往沉迷于设计模式，他们使用一种设计模式时，从来不去认真考虑所使用的模式是否适合这种场景，而往往只是想展示一下自己对面向对象设计的驾驭能力。编程时有这种心理，往往会发生滥用设计模式的情况。所以，在学习设计模式时，一定要理解模式的适用性。必须做到使用一种模式是因为了解它的优点，不使用一种模式是因为了解它的弊端；而不是使用一种模式是因为不了解它的弊端，不使用一种模式是因为不了解它的优点。</p>
+<h2 id="解释器"><a href="#解释器" class="headerlink" title="解释器"></a>解释器</h2><h3 id="初步理解-19"><a href="#初步理解-19" class="headerlink" title="初步理解"></a>初步理解</h3><p>解释，一定是针对某种语言的拆解、释意，并按照文法翻译、转换成另一种表达形式以达到目标能够理解的目的。比如我们都知道Java编程语言是人类可以理解的语言，程序写好后要先进行编译生成字节码（class文件），然后对此文件解释成机器码，最终机器才可以理解并执行，这就是解释器存在的意义。</p>
+<p>就拿我们人类的自然语言来举例，比如我们要进行英文翻译工作，首先要对一句话（表达式）进行拆解，而拆开后的单词就成了不可再分的终极表达式，例如说对英语句子“I love you”（非终极表达式）进行拆解，按空格分割为单词“I”、“love”、“you”（终极表达式），然后翻译每个单词再合并成“我爱你”，貌似很简单的样子。再看句子“I love that you love”，翻译成“我爱你那个你爱”。</p>
+<p>这简直太荒谬了，这句明明是“我爱你所爱”的意思，貌似这里的拆解方式是有讲究的。“that you love”在这里应该是作为从句出现，所以它应该属于一个特殊的“非终极表达式”，有自己独特的翻译方式，而不是简单的单词拼接了。我们意识到语言的翻译绝非易事，但至少我们通过思考搞明白了终极与非终极表达式的区别、表达式的多态性、以及表达式的自包含关系结构。</p>
+<p>开个玩笑，所以呢我们研发了一款挂机程序并起名”耗子精“，它可以直接发送指令给鼠标驱动来实现点击、移动操作，从此解放我们的双手让游戏人物自动打怪升级。既然不操作鼠标，那就需要一段脚本告诉“耗子精”怎样去操作鼠标指针，于是我们发明了一种脚本语言“精神食粮”，像是下面这样：</p>
+<pre><code class="java">BEGIN                // 脚本开始
+MOVE 500,600;        // 鼠标移动到坐标(500, 600)
+    BEGIN LOOP 5     // 开始循环5次
+        LEFT_CLICK;  // 循环体内单击左键
+        DELAY 1;     // 每次延时1秒
+    END;             // 循环体结束
+RIGHT_DOWN;          // 按下右键
+DELAY 7200;          // 延时2小时
+END;                 // 脚本结束</code></pre>
+<p>看注释很容易就能理解这是要干什么了，玩家先让鼠标挪动到地图的某个点上，然后不停地点击了n次（比如此处简化为5次）过后人物便到达了刷怪地点了（计算好延时时间），最后按下右键触发技能并一直不松开，直到挂机2小时后结束，这样便实现了自动打怪升级。</p>
+<p>我们现在来对这个语言的表达式进行拆解、抽象、建模，可以看到除了循环（非终极表达式）以外其他的都是单个命令不可以拆了，也就是我们之前讲过的终极表达式，按照这个脚本我们先看一张结构图。</p>
+<p>可以看到从始发节点“指令序列表达式”（根）开始被拆解成三个分支，第一步和第三步都是执行鼠标动作的终极表达式了（叶），而第二步的“循环”则属于非终极表达式（枝），它的循环体内可以包含多步指令，所以它包括一个子指令集（枝），然后继续往下延续出“左键单击表达式”（枝）和“系统延时表达式”（叶），最后“单击”其实就是“按下”与“松开”的组合了。有没有这个语义树结构好像似曾相识？没错，这就是之前讲过的“<strong>组合模式</strong>”，我们正是利用了“组合模式”（强调结构型）的结构模型构建了这个<strong>语义树（Syntax Tree）</strong>，来完成我们的翻译工作（这里强调行为型）。</p>
+<p>开始写代码，这么多表达式到底应该从哪里开始定义呢？不管三七二十一它们统统都是表达式，先写个表达式总抽象。</p>
+<pre><code class="java">public interface Expression { // 表达式接口
+    public void interpret(); // 解释方法
+}</code></pre>
+<p>可以看到这个接口定义了表达式的通用解释方法标准，一切表达式都得符合这个规则。接下来我们先从最基本的原子操作（终极表达式）开始定义实现类，它们应该依次是移动鼠标、左（右）键按下（松开）、系统延时表达式等，雷同的我们不做赘述，读者可以自己实现。</p>
+<pre><code class="java">public class Move implements Expression {
+    // 鼠标位置坐标
+    private int x, y;
+    public Move(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+    public void interpret() {
+        System.out.println(&quot;移动鼠标：【&quot; + x + &quot;,&quot; + y + &quot;】&quot;);
+    }
+}</code></pre>
+<pre><code class="java">public class LeftDown implements Expression {
+    public void interpret() {
+        System.out.println(&quot;按下鼠标：左键&quot;);
+    }
+}</code></pre>
+<pre><code class="java">public class LeftUp implements Expression {
+    public void interpret() {
+        System.out.println(&quot;松开鼠标：左键&quot;);
+    }
+}</code></pre>
+<pre><code class="java">public class Delay implements Expression {
+    private int seconds;// 延时秒数
+    public Delay(int seconds) {
+        this.seconds = seconds;
+    }
+    public int getSeconds() {
+        return seconds;
+    }
+    public void interpret() {
+        System.out.println(&quot;系统延迟：&quot; + seconds + &quot;秒钟&quot;);
+        try {
+            Thread.sleep(seconds * 1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+<p>很简单，它们都实现了interpret方法，并进行了相关操作的模拟。照猫画虎，下来实现非终极表达式：左（右）键单击表达式、循环表达式、以及指令集序列表达式等。</p>
+<pre><code class="java">public class LeftClick implements Expression {
+    private Expression leftDown;
+    private Expression leftUp;
+    public LeftClick() {
+        this.leftDown = new LeftDown();
+        this.leftUp = new LeftUp();
+    }
+    public void interpret() {
+        //单击=先按下再松开
+        leftDown.interpret();
+        leftUp.interpret();
+    }
+}</code></pre>
+<p>这里有点意思了，单击表达式被我们继续拆分成“按下”及“松开”两个原子操作，由于点击是个固定的死操作，并不需要提供给客户端任何灵活性把它们传入进来，所以我们在构造时（第7行）主动实例化了它们。接下来是循环表达式，我们需要知道循环次数，以及循环体内要执行的表达式。</p>
+<pre><code class="java">public class Repetition implements Expression {
+    private int loopCount;// 循环次数
+    private Expression expression;// 循环体表达式
+
+    public Repetition(Expression expression, int loopCount) {
+        this.expression = expression;
+        this.loopCount = loopCount;
+    }
+    public void interpret() {
+        while (loopCount &gt; 0) {
+            expression.interpret();
+            loopCount--;
+        }
+   }
+
+}</code></pre>
+<p>清晰明了，循环表达式被初始化后用这些参数进行循环、并调用循环体表达式的解释方法，继续向下传递，至于这个表达式里具体还有什么子表达式我们根本不关心，这里主要负责循环调用，仅此而已。最后就是指令集序列表达式的实现了。</p>
+<pre><code class="java">public class Sequence implements Expression {
+    // 指令集序列
+    private List&lt;Expression&gt; expressions;
+    public Sequence(List&lt;Expression&gt; expressions) {
+        this.expressions = expressions;
+    }
+    public void interpret() {
+        // 循环挨个解析每条指令
+        expressions.forEach(exp -&gt; exp.interpret());
+    }
+}</code></pre>
+<p>我们要运行的脚本一定是有先后顺序的，所以这个指令集表达式里包含一个List<Expression>，在构造时（第5行）由客户端传入，并于第11行挨个顺序调用解释方法。貌似脚本用到的表达式已经定义完毕，客户端开始调用。</p>
+<pre><code class="java">public class Client {
+    public static void main(String[] args) {
+        /*
+         * BEGIN             // 脚本开始
+         * MOVE 500,600;     // 鼠标移动到坐标(500, 600)
+         *  BEGIN LOOP 5     // 开始循环5次
+         *      LEFT_CLICK;  // 循环体内单击左键
+         *      DELAY 1;     // 每次延时1秒
+         *  END;             // 循环体结束
+         * RIGHT_DOWN;       // 按下右键
+         * DELAY 7200;       // 延时2小时
+         * END;              // 脚本结束
+         */
+        // 构造指令集语义树，实际情况会交给语法解析器（Evaluator or Parser）。
+        Expression sequence = new Sequence(Arrays.asList(
+            new Move(500, 600), 
+            new Repetition(
+                new Sequence(
+                    Arrays.asList(new LeftClick(), 
+                    new Delay(1))
+                ),
+                5
+            ), 
+            new RightDown(),
+            new Delay(7200)
+        ));
+        sequence.interpret();
+        /*打印输出
+            移动鼠标：【500,600】
+            按下鼠标：左键
+            松开鼠标：左键
+            系统延迟：1秒钟
+            按下鼠标：左键
+            松开鼠标：左键
+            系统延迟：1秒钟
+            按下鼠标：左键
+            松开鼠标：左键
+            系统延迟：1秒钟
+            按下鼠标：左键
+            松开鼠标：左键
+            系统延迟：1秒钟
+            按下鼠标：左键
+            松开鼠标：左键
+            系统延迟：1秒钟
+            按下鼠标：右键
+            系统延迟：7200秒钟
+         */
+    }
+}</code></pre>
+<p>注意看第16行，仔细参照注释中的脚本并实例化我们的语义树结构，最后只需调用根节点的interpret()方法即可完成整个解释工作。其实对于这个脚本转语义树的工作我们完全可以自己实现一个Evaluator来分析这段脚本并生成语义树（类似于编译的过程），由于这并不属于解释器模式的范畴，所以我们就不混淆进来了，这里我们留给读者朋友自己实现。</p>
+<p>终于，“耗子精”有了脚本识别的能力，并顺利对接鼠标驱动，帮我们自动完成升级，玩家再也不用没日没夜地做那些无聊至极的重复动作了，并且后期如果需要更多的功能还可以对表达式继续进行扩展（比如对键盘指令的解释），我们只需优雅地植入语义树即可，就这么简单。正是因为我们对语言的语法解析、表达式抽象化，关系结构化，使得让翻译工作变得即插即用，解释器模式不但提高了代码的易读性、易用性、可维护性，更重要的是对未来语言变化的可扩展性。</p>
+<p>语言是可以拆解的，句子是可以包括从句（子句）或单词的，单词是具有终极原子性的，它们统统重复出现。</p>
+<h3 id="定义说明-18"><a href="#定义说明-18" class="headerlink" title="定义说明"></a>定义说明</h3><p><strong>定义：</strong>给定一种语言，定义他的文法的一种表示，并定义一个解释器，该解释器使用该表示来解释语言中句子。</p>
+<p><strong>解释器模式的结构</strong></p>
+<p><strong>抽象解释器：</strong>声明一个所有具体表达式都要实现的抽象接口（或者抽象类），接口中主要是一个<code>interpret()</code>方法，称为解释操作。具体解释任务由它的各个实现类来完成，具体的解释器分别由终结符解释器<code>TerminalExpression</code>和非终结符解释器<code>NonterminalExpression</code>完成。</p>
+<p><strong>终结符表达式：</strong>实现与文法中的元素相关联的解释操作，通常一个解释器模式中只有一个终结符表达式，但有多个实例，对应不同的终结符。终结符一半是文法中的运算单元，比如有一个简单的公式<code>R=R1+R2</code>，在里面<code>R1</code>和<code>R2</code>就是终结符，对应的解析<code>R1</code>和<code>R2</code>的解释器就是终结符表达式。 </p>
+<p><strong>非终结符表达式：</strong>文法中的每条规则对应于一个非终结符表达式，非终结符表达式一般是文法中的运算符或者其他关键字，比如公式<code>R=R1+R2</code>中，+就是非终结符，解析+的解释器就是一个非终结符表达式。非终结符表达式根据逻辑的复杂程度而增加，原则上每个文法规则都对应一个非终结符表达式。</p>
+<p><strong>环境角色：</strong>这个角色的任务一般是用来存放文法中各个终结符所对应的具体值，比如<code>R=R1+R2</code>，我们给<code>R1</code>赋值100，给<code>R2</code>赋值200。这些信息需要存放到环境角色中，很多情况下我们使用Map来充当环境角色就足够了。</p>
+<p><strong>解释器模式的优缺点</strong></p>
+<p>解释器是一个简单的语法分析工具，它最显著的优点就是扩展性，修改语法规则只需要修改相应的非终结符就可以了，若扩展语法，只需要增加非终结符类就可以了。</p>
+<p>但是，解释器模式会引起类的膨胀，每个语法都需要产生一个非终结符表达式，语法规则比较复杂时，就可能产生大量的类文件，为维护带来非常多的麻烦。同时，由于采用递归调用方法，每个非终结符表达式只关心与自己相关的表达式，每个表达式需要知道最终的结果，必须通过递归方式，无论是面向对象的语言还是面向过程的语言，递归都是一个不推荐的方式。由于使用了大量的循环和递归，效率是一个不容忽视的问题。特别是用于解释一个解析复杂、冗长的语法时，效率是难以忍受的。</p>
+<p><strong>解释器模式的适用场景</strong></p>
+<p>在以下情况下可以使用解释器模式：</p>
+<p>有一个简单的语法规则，比如一个sql语句，如果我们需要根据sql语句进行rm转换，就可以使用解释器模式来对语句进行解释。</p>
+<p>一些重复发生的问题，比如加减乘除四则运算，但是公式每次都不同，有时是a+b-c<em>d，有时是a</em>b+c-d，等等等等个，公式千变万化，但是都是由加减乘除四个非终结符来连接的，这时我们就可以使用解释器模式。</p>
+<p><strong>注意事项</strong></p>
+<p>解释器模式真的是一个比较少用的模式，因为对它的维护实在是太麻烦了，想象一下，一坨一坨的非终结符解释器，假如不是事先对文法的规则了如指掌，或者是文法特别简单，则很难读懂它的逻辑。解释器模式在实际的系统开发中使用的很少，因为他会引起效率、性能以及维护等问题。</p>
+<h2 id="相关"><a href="#相关" class="headerlink" title="相关"></a>相关</h2><p>本文主要整理于：<a href="https://www.javazhiyin.com/topic/设计模式是什么鬼" target="_blank" rel="noopener">设计模式是什么鬼</a>      <a href="https://mp.weixin.qq.com/s/--Mnh-VWhcmskh1J3yU7CA" target="_blank" rel="noopener">java设计模式【全】</a></p>
+<p>其中示例代码：<a href="https://github.com/kylin-lawliet/design-pattern.git" target="_blank" rel="noopener">https://github.com/kylin-lawliet/design-pattern.git</a></p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 kylin_lawliet@163.com </span>
+    </div>
+</article>
+
+
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>设计模式</p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">54.5k</span></p>
+    <p><span class="copy-title">本文作者:</span><a  title="blackcat">blackcat</a></p>
+    <p><span class="copy-title">发布时间:</span>2020-03-27, 16:40:06</p>
+    <p><span class="copy-title">最后更新:</span>2020-03-28, 16:33:45</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2020/03/27/design_pattern/" title="设计模式">https://kylin-blackcat.com/2020/03/27/design_pattern/</a>
+    <p>
+        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+    </p>
+</div>
+
+
+
+    <div id="comments"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+<script type="text/javascript">
+    $.getScript('/js/gitalk.js', function () {
+        var gitalk = new Gitalk({
+            clientID: '312730c94e34ee10b19d',
+            clientSecret: '5e87bc5a90b6723fd6495ebe7ffde8e0f69caceb',
+            repo: 'gitalk-commnet',
+            owner: 'kylin-lawliet',
+            admin: ['kylin-lawliet'],
+            id: decodeURI(location.pathname),
+            distractionFreeMode: 'true',
+            language: 'zh-CN',
+            perPage: parseInt('10',10)
+        })
+        gitalk.render('comments')
+    })
+</script>
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">©2019 blackcat</p>
+<!--
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+-->
+
+    </div>
+    <div class="full-toc">
+        <button class="full"><span class="min "></span></button>
+<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
+<div class="post-toc"><span class="post-toc-title">目录</span>
+    <div class="post-toc-content">
+
+    </div>
+</div>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+<div class="acParent"></div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.0.1" ></script>
+
+<script src="/js/script.js?v=1.0.1" ></script>
+<script>
+    var img_resize = 'default';
+    /*作者、标签的自动补全*/
+    $(function () {
+        $('.search').AutoComplete({
+            'data': ['#javascript','#hexo','#Idea','#easyUI','#git，hexo','#docker','#MySQL','#web','#jquery','#spring boot','#spring','#mybatis','#postman','#SpringBoot','#Java','#VMware','#website','#MyBatis','#MySql','#Maven','#Mybatis','#lombok','#Bootstrap','#Solr','#JVM','#SQL','#生活','#redis','#Shiro','#设计模式',],
+            'itemHeight': 20,
+            'width': 418
+        }).AutoComplete('show');
+    })
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $(".post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+        .nav .hide-list.fullscreen {
+            left: 492px
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+    .post .pjax article .article-entry>ol, .post .pjax article .article-entry>ul, .post .pjax article>ol, .post .pjax article>ul{
+        border: #e2dede solid 1px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    .post .pjax article .article-entry li>ol, .post .pjax article .article-entry li>ul,.post .pjax article li>ol, .post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .post .pjax article .article-entry>ol>li, .post .pjax article .article-entry>ul>li,.post .pjax article>ol>li, .post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    .post .pjax article .article-entry li>ol>li, .post .pjax article .article-entry li>ul>li,.post .pjax article li>ol>li, .post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("https://i.loli.net/2019/07/22/5d3521411f3f169375.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+    .post .pjax article :not(pre) > code {
+        color: #24292e;
+        font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+        background-color: rgba(27,31,35,.05);
+        border-radius: 3px;
+        font-size: 85%;
+        margin: 0;
+        padding: .2em .4em;
+    }
+    
+</style>
+
+
+
+
+
+
+
+</html>

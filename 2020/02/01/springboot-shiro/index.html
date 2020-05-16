@@ -1,0 +1,2406 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Springboot 集成 Shiro | BlackCat</title>
+  <meta name="keywords" content=" Shiro ">
+  <meta name="description" content="Springboot 集成 Shiro | BlackCat">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="strong a {         color: #747474;     }     .player {         text-align: center;         margin: .5em auto 0;         width: 100%;         max-width: 22em;     }     .player br {         displa">
+<meta property="og:type" content="website">
+<meta property="og:title" content="关于我">
+<meta property="og:url" content="https:&#x2F;&#x2F;kylin-blackcat.com&#x2F;about&#x2F;index.html">
+<meta property="og:site_name" content="BlackCat">
+<meta property="og:description" content="strong a {         color: #747474;     }     .player {         text-align: center;         margin: .5em auto 0;         width: 100%;         max-width: 22em;     }     .player br {         displa">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-12-22T03:08:52.000Z">
+<meta property="article:modified_time" content="2020-01-26T02:07:51.239Z">
+<meta property="article:author" content="blackcat">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.0.1" rel="stylesheet">
+
+<link href="/css/hl_theme/gruvbox-light.css?v=1.0.1" rel="stylesheet">
+
+<link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="/js/jquery.autocomplete.min.js?v=1.0.1" ></script>
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.0.1" ></script>
+
+<meta name="generator" content="Hexo 4.1.1"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="false">
+  <input class="theme_blog_path" value="">
+</div>
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/" class="avatar_target">
+    <img class="avatar" src="/img/avatar.jpg" />
+</a>
+<div class="author">
+    <span>blackcat</span>
+</div>
+
+<div class="icon">
+    
+        
+        <a title="github" href="https://github.com/kylin-lawliet" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-github"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="email" href="mailto:kylin_lawliet@163.com" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-email"></use>
+                </svg>
+            
+        </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li><div class="all active">全部文章<small>(32)</small></div></li>
+    
+        
+            
+            <li><div data-rel="前端"><i class="fold iconfont icon-right"></i>前端<small>(5)</small></div>
+                
+                    <ul class="sub hide">
+                        
+                        <li><div data-rel="easyUI">easyUI<small>(1)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="javascript">javascript<small>(2)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="jquery">jquery<small>(1)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="Bootstrap">Bootstrap<small>(1)</small></div>
+                            
+                        </li>
+                            
+                    </ul>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="hexo">hexo<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="工具"><i class="fold iconfont icon-right"></i>工具<small>(5)</small></div>
+                
+                    <ul class="sub hide">
+                        
+                        <li><div data-rel="Idea">Idea<small>(1)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="postman">postman<small>(1)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="docker">docker<small>(3)</small></div>
+                            
+                        </li>
+                            
+                    </ul>
+                
+            </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+            <li><div data-rel="Linux"><i class="fold iconfont icon-right"></i>Linux<small>(2)</small></div>
+                
+                    <ul class="sub hide">
+                        
+                        <li><div data-rel="docker">docker<small>(1)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="VMware">VMware<small>(1)</small></div>
+                            
+                        </li>
+                            
+                    </ul>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="数据库"><i class="fold iconfont icon-right"></i>数据库<small>(3)</small></div>
+                
+                    <ul class="sub hide">
+                        
+                        <li><div data-rel="MySQL">MySQL<small>(2)</small></div>
+                            
+                        </li>
+                            
+                    </ul>
+                
+            </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+            <li><div data-rel="Java"><i class="fold iconfont icon-right"></i>Java<small>(11)</small></div>
+                
+                    <ul class="sub hide">
+                        
+                        <li><div data-rel="ssm">ssm<small>(1)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="SpringBoot">SpringBoot<small>(3)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="MyBatis">MyBatis<small>(1)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="Maven">Maven<small>(1)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="lombok">lombok<small>(1)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="JVM">JVM<small>(1)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="问答">问答<small>(1)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="Shiro">Shiro<small>(1)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="设计模式">设计模式<small>(1)</small></div>
+                            
+                        </li>
+                            
+                    </ul>
+                
+            </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+            <li><div data-rel="网址">网址<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+            <li><div data-rel="SpringBoot">SpringBoot<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    
+    
+    
+    </div>
+    <div><a class="about  hasFriend  site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="32">
+<input type="hidden" id="yelog_site_word_count" value="141.7k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="back-title-list"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="https://yelog.org">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <form onkeydown="if(event.keyCode==13){return false;}">
+        <input class="search" type="text" placeholder="以 in: 开头进行全文搜索" autocomplete="off"id="local-search-input" >
+        <i class="cross"></i>
+        <span>
+            <label for="tagswitch">Tags:</label>
+            <input id="tagswitch" type="checkbox" style="display: none" />
+            <i id="tagsWitchIcon"></i>
+        </span>
+    </form>
+    <div class="tags-list">
+    
+    <li class="article-tag-list-item">
+        <a class="color1">javascript</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">hexo</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">Idea</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color2">easyUI</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">git，hexo</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color2">docker</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color1">MySQL</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">web</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color2">jquery</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color2">spring boot</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color2">spring</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color3">mybatis</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color3">postman</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color1">SpringBoot</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">Java</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color2">VMware</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color3">website</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color3">MyBatis</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color1">MySql</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color1">Maven</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color3">Mybatis</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color2">lombok</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">Bootstrap</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">Solr</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">JVM</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">SQL</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color3">生活</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color1">redis</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color1">Shiro</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">设计模式</a>
+    </li>
+    
+    <div class="clearfix"></div>
+</div>
+
+    
+    <div id="local-search-result">
+
+    </div>
+    
+    <nav id="title-list-nav">
+        
+        <a  class=""
+           href="/2019/12/28/freemaker/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="freemaker学习笔记">freemaker学习笔记</span>
+            <span class="post-date" title="2019-12-28 08:44:41">2019/12/28</span>
+        </a>
+        
+        <a  class="前端 javascript "
+           href="/2019/12/24/javascript/"
+           data-tag="javascript"
+           data-author="" >
+            <span class="post-title" title="javascript使用示例">javascript使用示例</span>
+            <span class="post-date" title="2019-12-24 08:52:35">2019/12/24</span>
+        </a>
+        
+        <a id="top" class="hexo "
+           href="/2019/12/23/hexo-dome/"
+           data-tag="hexo"
+           data-author="" >
+            <span class="post-title" title="hexo文章格式示例">hexo文章格式示例</span>
+            <span class="post-date" title="2019-12-23 10:24:34">2019/12/23</span>
+        </a>
+        
+        <a  class="工具 Idea "
+           href="/2019/12/25/idea/"
+           data-tag="Idea"
+           data-author="" >
+            <span class="post-title" title="Idea笔记">Idea笔记</span>
+            <span class="post-date" title="2019-12-25 08:51:24">2019/12/25</span>
+        </a>
+        
+        <a  class="前端 easyUI "
+           href="/2019/12/24/easyui/"
+           data-tag="easyUI"
+           data-author="" >
+            <span class="post-title" title="easyui记录使用过程中出现的问题">easyui记录使用过程中出现的问题</span>
+            <span class="post-date" title="2019-12-24 16:56:43">2019/12/24</span>
+        </a>
+        
+        <a  class="hexo "
+           href="/2019/12/22/hexo/"
+           data-tag="git，hexo"
+           data-author="" >
+            <span class="post-title" title="hexo建站相关">hexo建站相关</span>
+            <span class="post-date" title="2019-12-22 14:18:18">2019/12/22</span>
+        </a>
+        
+        <a  class="Linux docker "
+           href="/2020/01/03/docker/"
+           data-tag="docker"
+           data-author="" >
+            <span class="post-title" title="Linux安装docker使用及一些问题记录">Linux安装docker使用及一些问题记录</span>
+            <span class="post-date" title="2020-01-03 17:17:35">2020/01/03</span>
+        </a>
+        
+        <a  class="数据库 MySQL "
+           href="/2020/01/03/mysql-quiz/"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="mysql问答">mysql问答</span>
+            <span class="post-date" title="2020-01-03 08:04:03">2020/01/03</span>
+        </a>
+        
+        <a  class="前端 jquery "
+           href="/2019/12/24/jquery/"
+           data-tag="web,jquery"
+           data-author="" >
+            <span class="post-title" title="jquery各种函数使用示例">jquery各种函数使用示例</span>
+            <span class="post-date" title="2019-12-24 16:54:54">2019/12/24</span>
+        </a>
+        
+        <a id="top" class="Java ssm "
+           href="/2020/01/01/ssm/"
+           data-tag="spring boot,spring,mybatis"
+           data-author="" >
+            <span class="post-title" title="ssm项目搭建及后续开发记录">ssm项目搭建及后续开发记录</span>
+            <span class="post-date" title="2020-01-01 12:01:23">2020/01/01</span>
+        </a>
+        
+        <a  class="工具 postman "
+           href="/2020/01/13/postman/"
+           data-tag="postman"
+           data-author="" >
+            <span class="post-title" title="postman相关">postman相关</span>
+            <span class="post-date" title="2020-01-13 18:10:17">2020/01/13</span>
+        </a>
+        
+        <a  class="Java SpringBoot "
+           href="/2020/01/07/SpringBoot-Create/"
+           data-tag="SpringBoot,Java"
+           data-author="" >
+            <span class="post-title" title="创建SpringBoot项目">创建SpringBoot项目</span>
+            <span class="post-date" title="2020-01-07 14:50:44">2020/01/07</span>
+        </a>
+        
+        <a  class="工具 docker "
+           href="/2020/01/07/docker-command/"
+           data-tag="docker"
+           data-author="" >
+            <span class="post-title" title="docker命令">docker命令</span>
+            <span class="post-date" title="2020-01-07 15:50:15">2020/01/07</span>
+        </a>
+        
+        <a  class="Linux VMware "
+           href="/2020/01/03/VMware-CentOS/"
+           data-tag="VMware"
+           data-author="" >
+            <span class="post-title" title="win10下VMware安装Centos">win10下VMware安装Centos</span>
+            <span class="post-date" title="2020-01-03 10:13:22">2020/01/03</span>
+        </a>
+        
+        <a id="top" class="网址 "
+           href="/2020/01/06/website-official/"
+           data-tag="website"
+           data-author="" >
+            <span class="post-title" title="网站收藏（工作）">网站收藏（工作）</span>
+            <span class="post-date" title="2020-01-06 17:25:41">2020/01/06</span>
+        </a>
+        
+        <a  class="Java MyBatis "
+           href="/2020/01/07/mybatis-plus-generator/"
+           data-tag="MyBatis,MySql"
+           data-author="" >
+            <span class="post-title" title="mybatis plus mysql 代码生成器">mybatis plus mysql 代码生成器</span>
+            <span class="post-date" title="2020-01-07 14:45:10">2020/01/07</span>
+        </a>
+        
+        <a  class="Java Maven "
+           href="/2020/01/16/maven-common/"
+           data-tag="Maven"
+           data-author="" >
+            <span class="post-title" title="Maven pom.xml常用">Maven pom.xml常用</span>
+            <span class="post-date" title="2020-01-16 14:49:45">2020/01/16</span>
+        </a>
+        
+        <a  class="Java SpringBoot "
+           href="/2020/01/18/springboot-mybatis-plus/"
+           data-tag="Mybatis"
+           data-author="" >
+            <span class="post-title" title="springboot 2.2 集成mybatis-plus">springboot 2.2 集成mybatis-plus</span>
+            <span class="post-date" title="2020-01-18 13:14:46">2020/01/18</span>
+        </a>
+        
+        <a  class="工具 docker "
+           href="/2020/01/13/docker-mysql/"
+           data-tag="docker,MySql"
+           data-author="" >
+            <span class="post-title" title="docker安装MySql及相关命令">docker安装MySql及相关命令</span>
+            <span class="post-date" title="2020-01-13 13:31:12">2020/01/13</span>
+        </a>
+        
+        <a  class="Java lombok "
+           href="/2020/01/18/lombok-annotation/"
+           data-tag="lombok"
+           data-author="" >
+            <span class="post-title" title="lombok常用注解">lombok常用注解</span>
+            <span class="post-date" title="2020-01-18 13:39:18">2020/01/18</span>
+        </a>
+        
+        <a  class="前端 Bootstrap "
+           href="/2020/01/19/bootstrap/"
+           data-tag="Bootstrap"
+           data-author="" >
+            <span class="post-title" title="Bootstrap相关整理">Bootstrap相关整理</span>
+            <span class="post-date" title="2020-01-19 14:15:31">2020/01/19</span>
+        </a>
+        
+        <a  class="数据库 MySQL "
+           href="/2020/01/19/mysql-konwledge/"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="MySQL相关命令及SQL语句整理">MySQL相关命令及SQL语句整理</span>
+            <span class="post-date" title="2020-01-19 10:43:33">2020/01/19</span>
+        </a>
+        
+        <a  class="前端 javascript "
+           href="/2020/03/05/javascript-menutree/"
+           data-tag="javascript"
+           data-author="" >
+            <span class="post-title" title="实现无限极目录树/下拉框（递归）">实现无限极目录树/下拉框（递归）</span>
+            <span class="post-date" title="2020-03-05 14:14:55">2020/03/05</span>
+        </a>
+        
+        <a  class="SpringBoot "
+           href="/2020/02/16/springboot-solr/"
+           data-tag="SpringBoot,Solr"
+           data-author="" >
+            <span class="post-title" title="springboot 集成 solr">springboot 集成 solr</span>
+            <span class="post-date" title="2020-02-16 14:49:32">2020/02/16</span>
+        </a>
+        
+        <a  class="Java JVM "
+           href="/2020/01/24/jvm-tuning/"
+           data-tag="JVM"
+           data-author="" >
+            <span class="post-title" title="JVM回收与调优">JVM回收与调优</span>
+            <span class="post-date" title="2020-01-24 13:39:18">2020/01/24</span>
+        </a>
+        
+        <a  class="Java SpringBoot "
+           href="/2020/01/16/springboot-error/"
+           data-tag="SpringBoot"
+           data-author="" >
+            <span class="post-title" title="SpringBoot问题记录">SpringBoot问题记录</span>
+            <span class="post-date" title="2020-01-16 12:49:46">2020/01/16</span>
+        </a>
+        
+        <a  class="数据库 "
+           href="/2020/03/05/sql_join/"
+           data-tag="SQL"
+           data-author="" >
+            <span class="post-title" title="SQL中left join,right join,inner join之间的区别">SQL中left join,right join,inner join之间的区别</span>
+            <span class="post-date" title="2020-03-05 16:35:10">2020/03/05</span>
+        </a>
+        
+        <a  class="网址 "
+           href="/2020/02/17/website-life/"
+           data-tag="生活"
+           data-author="" >
+            <span class="post-title" title="收藏网站（生活）">收藏网站（生活）</span>
+            <span class="post-date" title="2020-02-17 13:06:26">2020/02/17</span>
+        </a>
+        
+        <a  class="Java 问答 "
+           href="/2020/01/03/interview/"
+           data-tag="Java"
+           data-author="" >
+            <span class="post-title" title="问答">问答</span>
+            <span class="post-date" title="2020-01-03 08:00:18">2020/01/03</span>
+        </a>
+        
+        <a  class="工具 docker "
+           href="/2020/04/09/docker-redis/"
+           data-tag="redis"
+           data-author="" >
+            <span class="post-title" title="docker安装redis 及相关">docker安装redis 及相关</span>
+            <span class="post-date" title="2020-04-09 16:40:37">2020/04/09</span>
+        </a>
+        
+        <a  class="Java Shiro "
+           href="/2020/02/01/springboot-shiro/"
+           data-tag="Shiro"
+           data-author="" >
+            <span class="post-title" title="Springboot 集成 Shiro">Springboot 集成 Shiro</span>
+            <span class="post-date" title="2020-02-01 12:16:53">2020/02/01</span>
+        </a>
+        
+        <a  class="Java 设计模式 "
+           href="/2020/03/27/design_pattern/"
+           data-tag="设计模式"
+           data-author="" >
+            <span class="post-title" title="设计模式">设计模式</span>
+            <span class="post-date" title="2020-03-27 16:40:06">2020/03/27</span>
+        </a>
+        
+    </nav>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div class="post">
+    <div class="pjax">
+        <article id="post-springboot-shiro" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">Springboot 集成 Shiro</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            
+                <a  data-rel="Java">Java</a>/
+            
+                <a  data-rel="Shiro">Shiro</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a class="color1">Shiro</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title='更新时间: 2020-02-21 16:24:46'>2020-02-01 12:16</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字数:10.5k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读:<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+        <span class="top-comment" title="跳转至评论区">
+            <a href="#comments">
+                评论:<span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </a>
+        </span>
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#简单登陆跳转"><span class="toc-text">简单登陆跳转</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#maven依赖"><span class="toc-text">maven依赖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#表Sql"><span class="toc-text">表Sql</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#entity，mapper，service，serviceImpl"><span class="toc-text">entity，mapper，service，serviceImpl</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LoginController"><span class="toc-text">LoginController</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ShiroConfig"><span class="toc-text">ShiroConfig</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ShiroRealm"><span class="toc-text">ShiroRealm</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#application-yml"><span class="toc-text">application.yml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#index-ftl"><span class="toc-text">index.ftl</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#login-ftl"><span class="toc-text">login.ftl</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#unauthorized-ftl"><span class="toc-text">unauthorized.ftl</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#记住我"><span class="toc-text">记住我</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ShiroConfig-添加"><span class="toc-text">ShiroConfig 添加</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改访问首页访问权限"><span class="toc-text">修改访问首页访问权限</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置redis缓存管理器"><span class="toc-text">配置redis缓存管理器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis配置文件"><span class="toc-text">Redis配置文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#redis属性配置文件"><span class="toc-text">redis属性配置文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ShiroConfig-配置"><span class="toc-text">ShiroConfig 配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis-command-timed-out-nested-exception-is-io-lettuce-core-RedisCommandTimeoutException-Command-timed-out-after-no-timeout"><span class="toc-text">Redis command timed out; nested exception is io.lettuce.core.RedisCommandTimeoutException: Command timed out after no timeout</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#密码加密及登录次数验证"><span class="toc-text">密码加密及登录次数验证</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Shiro-密码凭证匹配器"><span class="toc-text">Shiro-密码凭证匹配器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Shiro-密码输入错误的状态下重试次数的匹配管理"><span class="toc-text">Shiro-密码输入错误的状态下重试次数的匹配管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ShiroRealm-身份认证修改"><span class="toc-text">ShiroRealm 身份认证修改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Shiro-配置修改"><span class="toc-text">Shiro 配置修改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改数据库密码"><span class="toc-text">修改数据库密码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用说明"><span class="toc-text">使用说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#相关注解"><span class="toc-text">相关注解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#RequiresAuthentication"><span class="toc-text">@RequiresAuthentication</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RequiresUser"><span class="toc-text">@RequiresUser</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RequiresGuest"><span class="toc-text">@RequiresGuest</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RequiresRoles"><span class="toc-text">@RequiresRoles</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RequiresPermissions"><span class="toc-text">@RequiresPermissions</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#相关文章"><span class="toc-text">相关文章</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-4 i,
+    .toc-level-4 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Springboot 2.2 + mybatis-plus 3.3.0 + Shiro 1.4.0.<br>写该文章的用意主要是很多博客使用springboot版本过低有些方法并不适用或没有示例或说的过于简洁或过于深入，不适用与初学者。<br>自己了解尚浅，文章只是给出主要方法。后附有示例源码可参考。密码加密及登录次数验证需看博客代码。<br>参考的博客后附有相关文章。</p>
+<a id="more"></a>
+
+<h2 id="简单登陆跳转"><a href="#简单登陆跳转" class="headerlink" title="简单登陆跳转"></a>简单登陆跳转</h2><h3 id="maven依赖"><a href="#maven依赖" class="headerlink" title="maven依赖"></a>maven依赖</h3><pre><code class="java">&lt;!--web--&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+&lt;/dependency&gt;
+&lt;!--日志--&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-starter-logging&lt;/artifactId&gt;
+&lt;/dependency&gt;
+&lt;!-- Shiro 核心依赖 --&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.apache.shiro&lt;/groupId&gt;
+    &lt;artifactId&gt;shiro-spring&lt;/artifactId&gt;
+&lt;/dependency&gt;
+&lt;!--shiro freemarker页面标签--&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;net.mingsoft&lt;/groupId&gt;
+    &lt;artifactId&gt;shiro-freemarker-tags&lt;/artifactId&gt;
+&lt;/dependency&gt;
+&lt;!--shiro redis--&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.crazycake&lt;/groupId&gt;
+    &lt;artifactId&gt;shiro-redis&lt;/artifactId&gt;
+&lt;/dependency&gt;
+&lt;!-- Redis --&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-starter-data-redis&lt;/artifactId&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-starter-data-redis-reactive&lt;/artifactId&gt;
+&lt;/dependency&gt;
+&lt;!-- mysql --&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;mysql&lt;/groupId&gt;
+    &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
+    &lt;scope&gt;runtime&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;!--druid--&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;com.alibaba&lt;/groupId&gt;
+    &lt;artifactId&gt;druid&lt;/artifactId&gt;
+&lt;/dependency&gt;
+&lt;!-- mybatisPlus 核心库 --&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;com.baomidou&lt;/groupId&gt;
+    &lt;artifactId&gt;mybatis-plus-boot-starter&lt;/artifactId&gt;
+&lt;/dependency&gt;
+&lt;!--分页--&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;com.github.pagehelper&lt;/groupId&gt;
+    &lt;artifactId&gt;pagehelper-spring-boot-starter&lt;/artifactId&gt;
+&lt;/dependency&gt;
+&lt;!-- mybatisPlus 代码生成器插件--&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;com.baomidou&lt;/groupId&gt;
+    &lt;artifactId&gt;mybatis-plus-generator&lt;/artifactId&gt;
+&lt;/dependency&gt;
+&lt;!-- 代码生成器模板--&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.freemarker&lt;/groupId&gt;
+    &lt;artifactId&gt;freemarker&lt;/artifactId&gt;
+&lt;/dependency&gt;
+&lt;!--java持久化API--&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;javax.persistence&lt;/groupId&gt;
+    &lt;artifactId&gt;persistence-api&lt;/artifactId&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-starter-aop&lt;/artifactId&gt;
+&lt;/dependency&gt;</code></pre>
+<h3 id="表Sql"><a href="#表Sql" class="headerlink" title="表Sql"></a>表Sql</h3><pre><code class="sql">SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for sys_menu
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_menu`;
+CREATE TABLE `sys_menu` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) DEFAULT NULL COMMENT &#39;权限名称&#39;,
+  `type`  enum(&#39;menu&#39;,&#39;button&#39;) DEFAULT &#39;menu&#39; COMMENT &#39;权限类型（菜单，按钮）&#39;,
+  `url` varchar(200) DEFAULT NULL COMMENT &#39;资源路径&#39;,
+  `permission` varchar(100) DEFAULT NULL COMMENT &#39;权限标识(多个用逗号分隔，如：user:list,user:create)&#39;,
+  `parent_id` bigint(20) unsigned DEFAULT &#39;0&#39; COMMENT &#39;父节点&#39;,
+  `sort` int(10) unsigned DEFAULT NULL COMMENT &#39;排序&#39;,
+  `external` tinyint(1) unsigned DEFAULT NULL COMMENT &#39;是否外部链接&#39;,
+  `available` tinyint(1) unsigned DEFAULT &#39;0&#39; COMMENT &#39;是否可用&#39;,
+  `icon` varchar(100) DEFAULT NULL COMMENT &#39;菜单图标&#39;,
+  `create_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT &#39;添加时间&#39;,
+  `update_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT &#39;更新时间&#39;,
+  PRIMARY KEY (`id`) USING BTREE,
+  KEY `idx_sys_resource_parent_id` (`parent_id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COMMENT = &#39;权限表&#39; ROW_FORMAT=COMPACT;
+
+INSERT INTO `sys_menu` VALUES (&#39;1&#39;, &#39;用户管理&#39;, &#39;menu&#39;, null, null, &#39;0&#39;, &#39;1&#39;, &#39;0&#39;, &#39;1&#39;, &#39;fa fa-users&#39;, &#39;2018-05-16 17:02:54&#39;, &#39;2018-05-16 17:02:54&#39;);
+INSERT INTO `sys_menu` VALUES (&#39;2&#39;, &#39;用户列表&#39;, &#39;menu&#39;, &#39;/user/index&#39;, &#39;users&#39;, &#39;1&#39;, &#39;1&#39;, &#39;0&#39;, &#39;1&#39;, null, &#39;2017-12-22 13:56:15&#39;, &#39;2018-05-16 14:44:20&#39;);
+INSERT INTO `sys_menu` VALUES (&#39;3&#39;, &#39;新增用户&#39;, &#39;button&#39;, null, &#39;user:add&#39;, &#39;2&#39;, &#39;2&#39;, &#39;0&#39;, &#39;1&#39;, null, &#39;2018-05-16 14:07:43&#39;, &#39;2018-05-16 14:16:23&#39;);
+INSERT INTO `sys_menu` VALUES (&#39;4&#39;, &#39;批量删除用户&#39;, &#39;button&#39;, null, &#39;user:batchDelete&#39;, &#39;2&#39;, &#39;3&#39;, &#39;0&#39;, &#39;1&#39;, null, &#39;2018-05-16 14:12:23&#39;, &#39;2018-05-16 14:16:35&#39;);
+INSERT INTO `sys_menu` VALUES (&#39;5&#39;, &#39;编辑用户&#39;, &#39;button&#39;, null, &#39;user:edit&#39;, &#39;2&#39;, &#39;4&#39;, &#39;0&#39;, &#39;1&#39;, null, &#39;2018-05-16 14:12:50&#39;, &#39;2018-05-16 14:16:43&#39;);
+INSERT INTO `sys_menu` VALUES (&#39;6&#39;, &#39;删除用户&#39;, &#39;button&#39;, null, &#39;user:delete&#39;, &#39;2&#39;, &#39;5&#39;, &#39;0&#39;, &#39;1&#39;, null, &#39;2018-05-16 14:13:09&#39;, &#39;2018-05-16 14:51:50&#39;);
+INSERT INTO `sys_menu` VALUES (&#39;7&#39;, &#39;分配用户角色&#39;, &#39;button&#39;, null, &#39;user:allotRole&#39;, &#39;2&#39;, &#39;6&#39;, &#39;0&#39;, &#39;1&#39;, null, &#39;2018-05-16 14:15:28&#39;, &#39;2018-05-16 14:16:54&#39;);
+INSERT INTO `sys_menu` VALUES (&#39;8&#39;, &#39;系统配置&#39;, &#39;menu&#39;, null, null, &#39;0&#39;, &#39;2&#39;, &#39;0&#39;, &#39;1&#39;, &#39;fa fa-cogs&#39;, &#39;2017-12-20 16:40:06&#39;, &#39;2017-12-20 16:40:08&#39;);
+INSERT INTO `sys_menu` VALUES (&#39;9&#39;, &#39;资源管理&#39;, &#39;menu&#39;, &#39;/menu/index&#39;, &#39;resources&#39;, &#39;8&#39;, &#39;1&#39;, &#39;0&#39;, &#39;1&#39;, null, &#39;2017-12-22 15:31:05&#39;, &#39;2017-12-22 15:31:05&#39;);
+INSERT INTO `sys_menu` VALUES (&#39;10&#39;, &#39;新增资源&#39;, &#39;button&#39;, null, &#39;resource:add&#39;, &#39;9&#39;, &#39;2&#39;, &#39;0&#39;, &#39;1&#39;, null, &#39;2018-05-16 14:07:43&#39;, &#39;2018-05-16 14:16:23&#39;);
+INSERT INTO `sys_menu` VALUES (&#39;11&#39;, &#39;批量删除资源&#39;, &#39;button&#39;, null, &#39;resource:batchDelete&#39;, &#39;9&#39;, &#39;3&#39;, &#39;0&#39;, &#39;1&#39;, null, &#39;2018-05-16 14:12:23&#39;, &#39;2018-05-16 14:16:35&#39;);
+INSERT INTO `sys_menu` VALUES (&#39;12&#39;, &#39;编辑资源&#39;, &#39;button&#39;, null, &#39;resource:edit&#39;, &#39;9&#39;, &#39;4&#39;, &#39;0&#39;, &#39;1&#39;, null, &#39;2018-05-16 14:12:50&#39;, &#39;2018-05-16 14:16:43&#39;);
+INSERT INTO `sys_menu` VALUES (&#39;13&#39;, &#39;删除资源&#39;, &#39;button&#39;, null, &#39;resource:delete&#39;, &#39;9&#39;, &#39;5&#39;, &#39;0&#39;, &#39;1&#39;, null, &#39;2018-05-16 14:13:09&#39;, &#39;2018-05-16 14:51:50&#39;);
+INSERT INTO `sys_menu` VALUES (&#39;14&#39;, &#39;角色管理&#39;, &#39;menu&#39;, &#39;/role/index&#39;, &#39;roles&#39;, &#39;8&#39;, &#39;2&#39;, &#39;0&#39;, &#39;1&#39;, &#39;&#39;, &#39;2017-12-22 15:31:27&#39;, &#39;2018-05-17 12:51:06&#39;);
+INSERT INTO `sys_menu` VALUES (&#39;15&#39;, &#39;新增角色&#39;, &#39;button&#39;, null, &#39;role:add&#39;, &#39;14&#39;, &#39;2&#39;, &#39;0&#39;, &#39;1&#39;, null, &#39;2018-05-16 14:07:43&#39;, &#39;2018-05-16 14:16:23&#39;);
+INSERT INTO `sys_menu` VALUES (&#39;16&#39;, &#39;批量删除角色&#39;, &#39;button&#39;, null, &#39;role:batchDelete&#39;, &#39;14&#39;, &#39;3&#39;, &#39;0&#39;, &#39;1&#39;, null, &#39;2018-05-16 14:12:23&#39;, &#39;2018-05-16 14:16:35&#39;);
+INSERT INTO `sys_menu` VALUES (&#39;17&#39;, &#39;编辑角色&#39;, &#39;button&#39;, null, &#39;role:edit&#39;, &#39;14&#39;, &#39;4&#39;, &#39;0&#39;, &#39;1&#39;, null, &#39;2018-05-16 14:12:50&#39;, &#39;2018-05-16 14:16:43&#39;);
+INSERT INTO `sys_menu` VALUES (&#39;18&#39;, &#39;删除角色&#39;, &#39;button&#39;, null, &#39;role:delete&#39;, &#39;14&#39;, &#39;5&#39;, &#39;0&#39;, &#39;1&#39;, null, &#39;2018-05-16 14:13:09&#39;, &#39;2018-05-16 14:51:50&#39;);
+INSERT INTO `sys_menu` VALUES (&#39;19&#39;, &#39;分配角色资源&#39;, &#39;button&#39;, null, &#39;role:allotResource&#39;, &#39;14&#39;, &#39;6&#39;, &#39;0&#39;, &#39;1&#39;, null, &#39;2018-05-17 10:04:21&#39;, &#39;2018-05-17 10:04:21&#39;);
+INSERT INTO `sys_menu` VALUES (&#39;20&#39;, &#39;数据监控&#39;, &#39;menu&#39;, &#39;&#39;, &#39;&#39;, null, &#39;3&#39;, &#39;0&#39;, &#39;1&#39;, &#39;fa fa-heartbeat&#39;, &#39;2018-05-17 12:38:20&#39;, &#39;2018-05-17 12:53:06&#39;);
+INSERT INTO `sys_menu` VALUES (&#39;21&#39;, &#39;Druid监控&#39;, &#39;menu&#39;, &#39;/druid/index.html&#39;, &#39;druid&#39;, &#39;20&#39;, &#39;1&#39;, &#39;1&#39;, &#39;1&#39;, &#39;&#39;, &#39;2018-05-17 12:46:37&#39;, &#39;2018-05-17 12:52:33&#39;);
+
+-- ----------------------------
+-- Table structure for sys_role
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_role`;
+CREATE TABLE `sys_role` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) DEFAULT NULL COMMENT &#39;角色名&#39;,
+  `description` varchar(100) DEFAULT NULL COMMENT &#39;描述&#39;,
+  `available` tinyint(1) DEFAULT &#39;0&#39; COMMENT &#39;是否可用&#39;,
+  `create_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT &#39;添加时间&#39;,
+  `update_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT &#39;更新时间&#39;,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT = &#39;角色表&#39; ROW_FORMAT=COMPACT;
+
+INSERT INTO `sys_role` VALUES (&#39;1&#39;, &#39;role:root&#39;, &#39;超级管理员&#39;, &#39;1&#39;, &#39;2017-12-20 16:40:24&#39;, &#39;2017-12-20 16:40:26&#39;);
+INSERT INTO `sys_role` VALUES (&#39;2&#39;, &#39;role:admin&#39;, &#39;管理员&#39;, &#39;1&#39;, &#39;2017-12-22 13:56:39&#39;, &#39;2017-12-22 13:56:39&#39;);
+
+-- ----------------------------
+-- Table structure for sys_role_menu
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_role_menu`;
+CREATE TABLE `sys_role_menu`  (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `role_id` bigint(20) unsigned NOT NULL COMMENT &#39;角色ID&#39;,
+  `menu_id` bigint(20) unsigned NOT NULL COMMENT &#39;权限ID&#39;,
+  `create_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT &#39;添加时间&#39;,
+  `update_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT &#39;更新时间&#39;,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8 COMMENT = &#39;角色与权限关系表&#39; ROW_FORMAT=COMPACT;
+
+INSERT INTO `sys_role_menu` VALUES (&#39;27&#39;, &#39;1&#39;, &#39;20&#39;, &#39;2018-05-17 12:52:41&#39;, &#39;2018-05-17 12:52:41&#39;);
+INSERT INTO `sys_role_menu` VALUES (&#39;28&#39;, &#39;1&#39;, &#39;21&#39;, &#39;2018-05-17 12:52:41&#39;, &#39;2018-05-17 12:52:41&#39;);
+INSERT INTO `sys_role_menu` VALUES (&#39;29&#39;, &#39;1&#39;, &#39;1&#39;, &#39;2018-05-17 12:52:41&#39;, &#39;2018-05-17 12:52:41&#39;);
+INSERT INTO `sys_role_menu` VALUES (&#39;30&#39;, &#39;1&#39;, &#39;2&#39;, &#39;2018-05-17 12:52:41&#39;, &#39;2018-05-17 12:52:41&#39;);
+INSERT INTO `sys_role_menu` VALUES (&#39;31&#39;, &#39;1&#39;, &#39;3&#39;, &#39;2018-05-17 12:52:41&#39;, &#39;2018-05-17 12:52:41&#39;);
+INSERT INTO `sys_role_menu` VALUES (&#39;32&#39;, &#39;1&#39;, &#39;4&#39;, &#39;2018-05-17 12:52:41&#39;, &#39;2018-05-17 12:52:41&#39;);
+INSERT INTO `sys_role_menu` VALUES (&#39;33&#39;, &#39;1&#39;, &#39;5&#39;, &#39;2018-05-17 12:52:41&#39;, &#39;2018-05-17 12:52:41&#39;);
+INSERT INTO `sys_role_menu` VALUES (&#39;34&#39;, &#39;1&#39;, &#39;6&#39;, &#39;2018-05-17 12:52:41&#39;, &#39;2018-05-17 12:52:41&#39;);
+INSERT INTO `sys_role_menu` VALUES (&#39;35&#39;, &#39;1&#39;, &#39;7&#39;, &#39;2018-05-17 12:52:41&#39;, &#39;2018-05-17 12:52:41&#39;);
+INSERT INTO `sys_role_menu` VALUES (&#39;36&#39;, &#39;1&#39;, &#39;8&#39;, &#39;2018-05-17 12:52:41&#39;, &#39;2018-05-17 12:52:41&#39;);
+INSERT INTO `sys_role_menu` VALUES (&#39;37&#39;, &#39;1&#39;, &#39;9&#39;, &#39;2018-05-17 12:52:41&#39;, &#39;2018-05-17 12:52:41&#39;);
+INSERT INTO `sys_role_menu` VALUES (&#39;38&#39;, &#39;1&#39;, &#39;10&#39;, &#39;2018-05-17 12:52:41&#39;, &#39;2018-05-17 12:52:41&#39;);
+INSERT INTO `sys_role_menu` VALUES (&#39;39&#39;, &#39;1&#39;, &#39;11&#39;, &#39;2018-05-17 12:52:41&#39;, &#39;2018-05-17 12:52:41&#39;);
+INSERT INTO `sys_role_menu` VALUES (&#39;40&#39;, &#39;1&#39;, &#39;12&#39;, &#39;2018-05-17 12:52:41&#39;, &#39;2018-05-17 12:52:41&#39;);
+INSERT INTO `sys_role_menu` VALUES (&#39;41&#39;, &#39;1&#39;, &#39;13&#39;, &#39;2018-05-17 12:52:41&#39;, &#39;2018-05-17 12:52:41&#39;);
+INSERT INTO `sys_role_menu` VALUES (&#39;42&#39;, &#39;1&#39;, &#39;14&#39;, &#39;2018-05-17 12:52:41&#39;, &#39;2018-05-17 12:52:41&#39;);
+INSERT INTO `sys_role_menu` VALUES (&#39;43&#39;, &#39;1&#39;, &#39;15&#39;, &#39;2018-05-17 12:52:41&#39;, &#39;2018-05-17 12:52:41&#39;);
+INSERT INTO `sys_role_menu` VALUES (&#39;44&#39;, &#39;1&#39;, &#39;16&#39;, &#39;2018-05-17 12:52:41&#39;, &#39;2018-05-17 12:52:41&#39;);
+INSERT INTO `sys_role_menu` VALUES (&#39;45&#39;, &#39;1&#39;, &#39;17&#39;, &#39;2018-05-17 12:52:41&#39;, &#39;2018-05-17 12:52:41&#39;);
+INSERT INTO `sys_role_menu` VALUES (&#39;46&#39;, &#39;1&#39;, &#39;18&#39;, &#39;2018-05-17 12:52:41&#39;, &#39;2018-05-17 12:52:41&#39;);
+INSERT INTO `sys_role_menu` VALUES (&#39;47&#39;, &#39;1&#39;, &#39;19&#39;, &#39;2018-05-17 12:52:41&#39;, &#39;2018-05-17 12:52:41&#39;);
+INSERT INTO `sys_role_menu` VALUES (&#39;48&#39;, &#39;2&#39;, &#39;20&#39;, &#39;2018-05-17 12:52:51&#39;, &#39;2018-05-17 12:52:51&#39;);
+INSERT INTO `sys_role_menu` VALUES (&#39;49&#39;, &#39;2&#39;, &#39;21&#39;, &#39;2018-05-17 12:52:51&#39;, &#39;2018-05-17 12:52:51&#39;);
+INSERT INTO `sys_role_menu` VALUES (&#39;50&#39;, &#39;2&#39;, &#39;2&#39;, &#39;2018-05-17 12:52:51&#39;, &#39;2018-05-17 12:52:51&#39;);
+INSERT INTO `sys_role_menu` VALUES (&#39;51&#39;, &#39;2&#39;, &#39;3&#39;, &#39;2018-05-17 12:52:51&#39;, &#39;2018-05-17 12:52:51&#39;);
+INSERT INTO `sys_role_menu` VALUES (&#39;52&#39;, &#39;2&#39;, &#39;8&#39;, &#39;2018-05-17 12:52:51&#39;, &#39;2018-05-17 12:52:51&#39;);
+INSERT INTO `sys_role_menu` VALUES (&#39;53&#39;, &#39;2&#39;, &#39;9&#39;, &#39;2018-05-17 12:52:51&#39;, &#39;2018-05-17 12:52:51&#39;);
+INSERT INTO `sys_role_menu` VALUES (&#39;54&#39;, &#39;2&#39;, &#39;10&#39;, &#39;2018-05-17 12:52:51&#39;, &#39;2018-05-17 12:52:51&#39;);
+INSERT INTO `sys_role_menu` VALUES (&#39;55&#39;, &#39;2&#39;, &#39;14&#39;, &#39;2018-05-17 12:52:51&#39;, &#39;2018-05-17 12:52:51&#39;);
+INSERT INTO `sys_role_menu` VALUES (&#39;56&#39;, &#39;2&#39;, &#39;15&#39;, &#39;2018-05-17 12:52:51&#39;, &#39;2018-05-17 12:52:51&#39;);
+INSERT INTO `sys_role_menu` VALUES (&#39;57&#39;, &#39;2&#39;, &#39;1&#39;, &#39;2018-05-17 12:52:51&#39;, &#39;2018-05-17 12:52:51&#39;);
+
+-- ----------------------------
+-- Table structure for sys_user
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_user`;
+CREATE TABLE `sys_user`  (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `username` varchar(100) DEFAULT NULL COMMENT &#39;用户名称&#39;,
+  `password` varchar(100) DEFAULT NULL COMMENT &#39;登录密码&#39;,
+  `nickname` varchar(30) DEFAULT &#39;&#39; COMMENT &#39;昵称&#39;,
+  `mobile` varchar(30) DEFAULT NULL COMMENT &#39;手机号&#39;,
+  `email` varchar(100) DEFAULT NULL COMMENT &#39;邮箱地址&#39;,
+  `birthday` date DEFAULT NULL COMMENT &#39;生日&#39;,
+  `gender` tinyint(2) unsigned DEFAULT NULL COMMENT &#39;性别&#39;,
+  `avatar` varchar(255) DEFAULT NULL COMMENT &#39;头像地址&#39;,
+  `user_type` enum(&#39;ROOT&#39;,&#39;ADMIN&#39;,&#39;USER&#39;) DEFAULT &#39;ADMIN&#39; COMMENT &#39;ROOT超级管理员、ADMIN管理员、USER普通用户&#39;,
+  `reg_ip` varchar(30) DEFAULT NULL COMMENT &#39;注册IP&#39;,
+  `last_login_ip` varchar(30) DEFAULT NULL COMMENT &#39;最近登录IP&#39;,
+  `last_login_time` datetime DEFAULT NULL COMMENT &#39;最近登录时间&#39;,
+  `login_count` int(10) unsigned DEFAULT &#39;0&#39; COMMENT &#39;登录次数&#39;,
+  `remark` varchar(100) DEFAULT NULL COMMENT &#39;备注&#39;,
+  `status` int(1) unsigned DEFAULT NULL COMMENT &#39;状态  0:禁用 1:正常&#39;,
+  `create_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT &#39;注册时间&#39;,
+  `update_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT &#39;更新时间&#39;,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT = &#39;系统用户表&#39; ROW_FORMAT=DYNAMIC;
+
+INSERT INTO `sys_user` VALUES (&#39;1&#39;, &#39;root&#39;, &#39;123456&#39;, &#39;超级管理员&#39;, &#39;15151551516&#39;, &#39;123456789@qq.com&#39;, null, null, &#39;https://static.zhyd.me/static/img/favicon.ico&#39;, &#39;ROOT&#39;, null, &#39;127.0.0.1&#39;, &#39;2018-05-17 13:09:35&#39;, &#39;228&#39;, null, &#39;1&#39;, &#39;2018-01-02 09:32:15&#39;, &#39;2018-05-17 13:09:35&#39;);
+INSERT INTO `sys_user` VALUES (&#39;2&#39;, &#39;admin&#39;, &#39;123456&#39;, &#39;管理员&#39;, &#39;15151551516&#39;, &#39;123456789@qq.com&#39;, null, null, null, &#39;ADMIN&#39;, &#39;0:0:0:0:0:0:0:1&#39;, &#39;0:0:0:0:0:0:0:1&#39;, &#39;2018-05-17 13:08:30&#39;, &#39;13&#39;, null, &#39;1&#39;, &#39;2018-01-02 15:56:34&#39;, &#39;2018-05-17 13:08:30&#39;);
+
+-- ----------------------------
+-- Table structure for sys_user_role
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_user_role`;
+CREATE TABLE `sys_user_role`  (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` bigint(20) unsigned NOT NULL COMMENT &#39;用户ID&#39;,
+  `role_id` bigint(20) unsigned NOT NULL COMMENT &#39;角色ID&#39;,
+  `create_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT &#39;添加时间&#39;,
+  `update_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT &#39;更新时间&#39;,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT = &#39;用户与角色关系表&#39; ROW_FORMAT=COMPACT;
+
+INSERT INTO `sys_user_role` VALUES (&#39;1&#39;, &#39;1&#39;, &#39;1&#39;, &#39;2018-01-02 10:47:27&#39;, &#39;2018-01-02 10:47:27&#39;);
+INSERT INTO `sys_user_role` VALUES (&#39;2&#39;, &#39;2&#39;, &#39;2&#39;, &#39;2018-01-05 18:21:02&#39;, &#39;2018-01-05 18:21:02&#39;);</code></pre>
+<h3 id="entity，mapper，service，serviceImpl"><a href="#entity，mapper，service，serviceImpl" class="headerlink" title="entity，mapper，service，serviceImpl"></a>entity，mapper，service，serviceImpl</h3><p>这些类直接根据mybatis-plus-generator生成即可。mybatis-plus-generator也有对应的文章源码可直接使用。<br>不想用代码生成器我的源码也有提供。这里附录一下主要方法。<br>没有在这里写出的，说明只是用mybatis-plus自带的查询就可以。mybatis-plus QueryWrapper不能使用外联。<br>用到的手写SQL：<br><strong><em>menu</em></strong></p>
+<pre><code class="java">List&lt;SysMenu&gt; listByUserId(Integer userId);
+
+MenuMapper.xml
+&lt;!--查询用户权限--&gt;
+&lt;select id=&quot;listByUserId&quot; parameterType=&quot;Integer&quot; resultMap=&quot;BaseResultMap&quot;&gt;
+    SELECT
+        re.id,
+        re.`name`,
+        re.parent_id,
+        re.url,
+        re.permission,
+        re.icon,
+        re.sort
+    FROM
+        sys_menu re
+    INNER JOIN sys_role_menu rr ON re.id = rr.menu_id
+    INNER JOIN sys_user_role ur ON rr.role_id = ur.role_id
+    WHERE
+        ur.user_id = #{userId}
+    AND re.available = 1
+    ORDER BY
+        re.parent_id ASC,
+        re.sort ASC
+&lt;/select&gt;</code></pre>
+<p><strong><em>role</em></strong></p>
+<pre><code class="java">List&lt;SysRole&gt; listRolesByUserId(Integer userId);
+
+&lt;!--查询用户角色--&gt;
+&lt;select id=&quot;listRolesByUserId&quot; parameterType=&quot;Integer&quot; resultMap=&quot;BaseResultMap&quot;&gt;
+    SELECT
+        r.id,
+        r.name,
+        r.description
+    FROM
+        sys_role r
+    INNER JOIN sys_user_role ur ON ur.role_id = r.id
+    WHERE
+        ur.user_id = #{userId}
+    AND r.available = 1
+&lt;/select&gt;</code></pre>
+<h3 id="LoginController"><a href="#LoginController" class="headerlink" title="LoginController"></a>LoginController</h3><pre><code class="java">package com.blackcat.shiro.controller;
+
+import com.blackcat.shiro.entity.SysUser;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.authz.annotation.RequiresAuthentication;
+import org.apache.shiro.subject.Subject;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.http.HttpSession;
+
+/**
+ * &lt;p&gt; 描述 ：
+ *
+ * @author : blackcat
+ * @date : 2020/2/3 11:14
+ */
+@Controller
+public class LoginController {
+
+    /**
+     * 跳转到login页面
+     * @return
+     */
+    @RequestMapping(value = &quot;/login&quot;,method = RequestMethod.GET)
+    public String login(Model model) {
+        Subject subject = SecurityUtils.getSubject();
+        SysUser user=(SysUser) subject.getPrincipal();
+        if (user == null){
+            return &quot;login&quot;;
+        }else{
+            return &quot;redirect:index&quot;;
+        }
+    }
+
+    /**
+     * &lt;p&gt; 描述 : 用户登录
+     * @author : blackcat
+     * @date  : 2020/2/3 17:04
+     */
+    @RequestMapping(value = &quot;/login&quot;,method = RequestMethod.POST)
+    @ResponseBody
+    public String loginUser(String username, String password, boolean rememberMe) {
+        UsernamePasswordToken token = new UsernamePasswordToken(username, password, rememberMe);
+        //获取当前的Subject
+        Subject currentUser = SecurityUtils.getSubject();
+        try {
+            // 在调用了login方法后,SecurityManager会收到AuthenticationToken,并将其发送给已配置的Realm执行必须的认证检查
+            // 每个Realm都能在必要时对提交的AuthenticationTokens作出反应
+            // 所以这一步在调用login(token)方法时,它会走到xxRealm.doGetAuthenticationInfo()方法中,具体验证方式详见此方法
+            currentUser.login(token);
+            return &quot;登录成功！&quot;;
+        } catch (Exception e) {
+            token.clear();
+            return &quot;登录失败&quot;;
+        }
+    }
+
+    /**
+     * &lt;p&gt; 描述 : 访问项目根路径
+     * @author : blackcat
+     * @date  : 2020/2/3 17:02
+     */
+    @RequiresAuthentication
+    @GetMapping(value = {&quot;&quot;, &quot;/index&quot;})
+    public String home() {
+        Subject subject = SecurityUtils.getSubject();
+        SysUser user=(SysUser) subject.getPrincipal();
+        if (user == null){
+            return &quot;login&quot;;
+        }else{
+            return &quot;index&quot;;
+        }
+    }
+
+
+    /**
+     * 登出  这个方法没用到,用的是shiro默认的logout
+     * @param session
+     * @param model
+     * @return
+     */
+    @RequestMapping(&quot;/logout&quot;)
+    public String logout(HttpSession session, Model model) {
+        model.addAttribute(&quot;msg&quot;,&quot;安全退出！&quot;);
+        return &quot;login&quot;;
+    }
+
+    /**
+     * 跳转到无权限页面
+     * @param session
+     * @param model
+     * @return
+     */
+    @RequestMapping(&quot;/unauthorized&quot;)
+    public String unauthorized(HttpSession session, Model model) {
+        return &quot;unauthorized&quot;;
+    }
+}
+</code></pre>
+<h3 id="ShiroConfig"><a href="#ShiroConfig" class="headerlink" title="ShiroConfig"></a>ShiroConfig</h3><pre><code class="java">package com.blackcat.shiro.config;
+
+import org.apache.shiro.mgt.SecurityManager;
+import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
+import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
+import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
+import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.config.MethodInvokingFactoryBean;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.handler.SimpleMappingExceptionResolver;
+
+import java.util.LinkedHashMap;
+import java.util.Properties;
+
+/**
+ * &lt;p&gt; 描述 ：Shiro配置
+ * @author : blackcat
+ * @date : 2020/2/3 10:53
+ */
+@Configuration
+public class ShiroConfig {
+
+    /**
+     * 解决： 无权限页面不跳转 shiroFilterFactoryBean.setUnauthorizedUrl(&quot;/unauthorized&quot;) 无效
+     * shiro的源代码ShiroFilterFactoryBean.Java定义的filter必须满足filter instanceof AuthorizationFilter，
+     * 只有perms，roles，ssl，rest，port才是属于AuthorizationFilter，而anon，authcBasic，auchc，user是AuthenticationFilter，
+     * 所以unauthorizedUrl设置后页面不跳转 Shiro注解模式下，登录失败与没有权限都是通过抛出异常。
+     * 并且默认并没有去处理或者捕获这些异常。在SpringMVC下需要配置捕获相应异常来通知用户信息
+     * @return
+     */
+    @Bean
+    public SimpleMappingExceptionResolver simpleMappingExceptionResolver() {
+        SimpleMappingExceptionResolver simpleMappingExceptionResolver=new SimpleMappingExceptionResolver();
+        Properties properties=new Properties();
+        //这里的 /unauthorized 是页面，不是访问的路径
+        properties.setProperty(&quot;org.apache.shiro.authz.UnauthorizedException&quot;,&quot;/unauthorized&quot;);
+        properties.setProperty(&quot;org.apache.shiro.authz.UnauthenticatedException&quot;,&quot;/unauthorized&quot;);
+        simpleMappingExceptionResolver.setExceptionMappings(properties);
+        return simpleMappingExceptionResolver;
+    }
+
+    @Bean
+    public MethodInvokingFactoryBean methodInvokingFactoryBean(SecurityManager securityManager){
+        MethodInvokingFactoryBean bean = new MethodInvokingFactoryBean();
+        bean.setStaticMethod(&quot;org.apache.shiro.SecurityUtils.setSecurityManager&quot;);
+        bean.setArguments(securityManager);
+        return bean;
+    }
+
+    /**
+     * ShiroFilterFactoryBean 处理拦截资源文件问题。
+     * 注意：初始化ShiroFilterFactoryBean的时候需要注入：SecurityManager
+     * Web应用中,Shiro可控制的Web请求必须经过Shiro主过滤器的拦截
+     * @param securityManager
+     * @return
+     */
+    @Bean(name = &quot;shirFilter&quot;)
+    public ShiroFilterFactoryBean shiroFilter(@Qualifier(&quot;securityManager&quot;) SecurityManager securityManager) {
+
+        ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
+
+        //必须设置 SecurityManager,Shiro的核心安全接口
+        shiroFilterFactoryBean.setSecurityManager(securityManager);
+        //这里的/login是后台的接口名,非页面，如果不设置默认会自动寻找Web工程根目录下的&quot;/login.jsp&quot;页面
+        shiroFilterFactoryBean.setLoginUrl(&quot;/login&quot;);
+        //这里的/index是后台的接口名,非页面,登录成功后要跳转的链接
+        shiroFilterFactoryBean.setSuccessUrl(&quot;/index&quot;);
+        //未授权界面,该配置无效，并不会进行页面跳转
+        shiroFilterFactoryBean.setUnauthorizedUrl(&quot;/unauthorized&quot;);
+
+        //自定义拦截器限制并发人数,参考博客：
+        //LinkedHashMap&lt;String, Filter&gt; filtersMap = new LinkedHashMap&lt;&gt;();
+        //限制同一帐号同时在线的个数
+        //filtersMap.put(&quot;kickout&quot;, kickoutSessionControlFilter());
+        //shiroFilterFactoryBean.setFilters(filtersMap);
+
+        // 配置访问权限 必须是LinkedHashMap，因为它必须保证有序
+        // 过滤链定义，从上向下顺序执行，一般将 /**放在最为下边 一定要注意顺序,否则就不好使了
+        LinkedHashMap&lt;String, String&gt; filterChainDefinitionMap = new LinkedHashMap&lt;&gt;();
+        //配置不登录可以访问的资源，anon 表示资源都可以匿名访问
+        filterChainDefinitionMap.put(&quot;/login&quot;, &quot;anon&quot;);
+        //filterChainDefinitionMap.put(&quot;/&quot;, &quot;anon&quot;);
+        filterChainDefinitionMap.put(&quot;/bootstrap/**&quot;, &quot;anon&quot;);
+        filterChainDefinitionMap.put(&quot;/ztree/**&quot;, &quot;anon&quot;);
+        filterChainDefinitionMap.put(&quot;/jquery/**&quot;, &quot;anon&quot;);
+        filterChainDefinitionMap.put(&quot;/css/**&quot;, &quot;anon&quot;);
+        filterChainDefinitionMap.put(&quot;/js/**&quot;, &quot;anon&quot;);
+        filterChainDefinitionMap.put(&quot;/images/**&quot;, &quot;anon&quot;);
+        filterChainDefinitionMap.put(&quot;/druid/**&quot;, &quot;anon&quot;);
+        //logout是shiro提供的过滤器
+        filterChainDefinitionMap.put(&quot;/logout&quot;, &quot;logout&quot;);
+        //此时访问/userInfo/del需要del权限,在自定义Realm中为用户授权。
+        //filterChainDefinitionMap.put(&quot;/userInfo/del&quot;, &quot;perms[\&quot;userInfo:del\&quot;]&quot;);
+
+        //其他资源都需要认证  authc 表示需要认证才能进行访问
+        filterChainDefinitionMap.put(&quot;/**&quot;, &quot;user&quot;);
+
+        shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
+
+        return shiroFilterFactoryBean;
+    }
+
+    /**
+     * 配置核心安全事务管理器
+     * @param shiroRealm
+     * @return
+     */
+    @Bean(name=&quot;securityManager&quot;)
+    public SecurityManager securityManager(@Qualifier(&quot;shiroRealm&quot;) ShiroRealm shiroRealm) {
+        DefaultWebSecurityManager securityManager =  new DefaultWebSecurityManager();
+        //设置自定义realm.
+        securityManager.setRealm(shiroRealm);
+        return securityManager;
+    }
+
+    /**
+     *  身份认证realm; (这个需要自己写，账号密码校验；权限等)
+     * @return
+     */
+    @Bean
+    public ShiroRealm shiroRealm(){
+        ShiroRealm shiroRealm = new ShiroRealm();
+        return shiroRealm;
+    }
+
+    /**
+     * &lt;p&gt; 描述 : 开启Shiro的注解(如@RequiresRoles,@RequiresPermissions),需借助SpringAOP扫描使用Shiro注解的类,并在必要时进行安全逻辑验证
+     *  配置以下两个bean(DefaultAdvisorAutoProxyCreator和AuthorizationAttributeSourceAdvisor)即可实现此功能
+     * @author : blackcat
+     * @date  : 2020/2/3 16:59
+     */
+    @Bean
+    public DefaultAdvisorAutoProxyCreator advisorAutoProxyCreator(){
+        DefaultAdvisorAutoProxyCreator advisorAutoProxyCreator = new DefaultAdvisorAutoProxyCreator();
+        advisorAutoProxyCreator.setProxyTargetClass(true);
+        return advisorAutoProxyCreator;
+    }
+
+    /**
+     * &lt;p&gt; 描述 : 开启shiro aop注解支持.
+     * 可以在controller中的方法前加上注解 如 @RequiresPermissions(&quot;user:add&quot;)
+     * @author : blackcat
+     * @date  : 2020/2/2 10:21
+     */
+    @Bean
+    public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(SecurityManager securityManager) {
+        AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor = new AuthorizationAttributeSourceAdvisor();
+        authorizationAttributeSourceAdvisor.setSecurityManager(securityManager);
+        return authorizationAttributeSourceAdvisor;
+    }
+}
+</code></pre>
+<h3 id="ShiroRealm"><a href="#ShiroRealm" class="headerlink" title="ShiroRealm"></a>ShiroRealm</h3><pre><code class="java">package com.blackcat.shiro.config;
+
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.blackcat.shiro.entity.SysMenu;
+import com.blackcat.shiro.entity.SysRole;
+import com.blackcat.shiro.entity.SysUser;
+import com.blackcat.shiro.service.SysMenuService;
+import com.blackcat.shiro.service.SysRoleService;
+import com.blackcat.shiro.service.SysUserService;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.shiro.authc.*;
+import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.authz.SimpleAuthorizationInfo;
+import org.apache.shiro.realm.AuthorizingRealm;
+import org.apache.shiro.subject.PrincipalCollection;
+
+import javax.annotation.Resource;
+import java.util.List;
+
+/**
+ * &lt;p&gt; 描述 ：身份认证
+ * @author : blackcat
+ * @date : 2020/2/3 10:54
+ */
+public class ShiroRealm extends AuthorizingRealm {
+
+    @Resource
+    private SysUserService sysUserService;
+    @Resource
+    private SysRoleService sysRoleService;
+    @Resource
+    private SysMenuService sysMenuService;
+
+    @Override
+    protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
+        SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
+        // 用户信息
+        SysUser sysUser = (SysUser) principalCollection.getPrimaryPrincipal();
+        // 赋予角色
+        List&lt;SysRole&gt; roleList = sysRoleService.listRolesByUserId(sysUser.getId());
+        roleList.forEach(role -&gt; info.addRole(role.getName()));
+        // 赋予权限
+        List&lt;SysMenu&gt; menusList = sysMenuService.listByUserId(sysUser.getId());
+        menusList.forEach(menu -&gt; {
+            if (StringUtils.isNotBlank(menu.getPermission())) {
+                info.addStringPermission(menu.getPermission());
+            }
+        });
+        return info;
+    }
+
+    @Override
+    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
+        String username = (String) authenticationToken.getPrincipal();
+        String password = new String((char[]) authenticationToken.getCredentials());
+
+        SysUser user = sysUserService.getOne(new QueryWrapper&lt;SysUser&gt;().eq(&quot;username&quot;, username));
+        //可以在这里直接对用户名校验,或者调用 CredentialsMatcher 校验
+        if (user == null) {
+            throw new UnknownAccountException(&quot;用户名或密码错误！&quot;);
+        }
+        if (!password.equals(user.getPassword())) {
+            throw new IncorrectCredentialsException(&quot;用户名或密码错误！&quot;);
+        }
+        if (&quot;1&quot;.equals(user.getStatus())) {
+            throw new LockedAccountException(&quot;账号已被锁定,请联系管理员！&quot;);
+        }
+
+        SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(user,user.getPassword(), getName());
+        return info;
+    }
+}</code></pre>
+<h3 id="application-yml"><a href="#application-yml" class="headerlink" title="application.yml"></a>application.yml</h3><pre><code class="java"># Server settings
+server:
+    port: 8083
+    # HTTP请求和响应头的最大量，以字节为单位，默认值为4096字节,超过此长度的部分不予处理,一般8K。解决java.io.EOFException: null问题
+    max-http-header-size: 8192
+    # use-forward-headers: true Spring Boot 2.2中的弃用 使用下列参数
+    forward-headers-strategy: native
+    compression:
+        enabled: true
+        min-response-size: 1024
+        mime-types: text/plain,text/css,text/xml,text/javascript,application/json,application/javascript,application/xml,application/xml+rss,application/x-javascript,application/x-httpd-php,image/jpeg,image/gif,image/png
+    tomcat:
+        remote-ip-header: X-Forwarded-for
+        protocol-header: X-Forwarded-Proto
+        port-header: X-Forwarded-Port
+        uri-encoding: UTF-8
+        basedir: /var/tmp/website-app
+    #servlet:
+        #context-path: /blackcat
+# SPRING PROFILES
+spring:
+    datasource:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/blog?useUnicode=true&amp;characterEncoding=utf-8&amp;autoReconnect=true&amp;zeroDateTimeBehavior=convertToNull&amp;allowMultiQueries=true&amp;useSSL=false&amp;serverTimezone=UTC
+        username: root
+        password: 111111
+    application:
+        name: blog
+    freemarker:
+        allow-request-override: false
+        allow-session-override: false
+        cache: false #缓存配置
+        charset: UTF-8 #编码格式
+        request-context-attribute: request # 访问request名称定义
+        check-template-location: true
+        content-type: text/html # 设置Content-Type
+        enabled: true
+        expose-request-attributes: false # 设定所有request的属性在merge到模板的时候，是否要都添加到model中
+        expose-session-attributes: false # 是否在merge模板的时候，将HttpSession属性都添加到model中
+        expose-spring-macro-helpers: true # 设定是否以springMacroRequestContext的形式暴露RequestContext给Spring’s macro library使用
+        prefer-file-system-access: true
+        suffix: .ftl
+        template-loader-path: classpath:/templates/ #模板加载路径 按需配置
+        settings:
+            template_update_delay: 0
+            default_encoding: UTF-8
+            classic_compatible: true #解决前台使用${}赋值值为空的情况
+    # HTTP ENCODING
+    http:
+        multipart:
+            #max-file-size: 2MB
+            #max-request-size: 10MB
+        encoding:
+            enabled: true
+            charset: UTF-8
+            force: true
+    messages:
+        encoding: UTF-8
+    jmx:
+        enabled: true
+        default-domain: agentservice
+    resources:
+        static-locations: classpath:/static/
+        chain:
+            strategy:
+                content:
+                    enabled: true
+                    paths: /**
+    # redis缓存服务配置
+    session:
+        store-type: redis
+    # Redis数据库索引（默认为0）
+    redis:
+        database: 1
+        # Redis服务器地址
+        host: 127.0.0.1
+        # Redis服务器连接端口
+        port: 6379
+        # Redis服务器连接密码（默认为空）
+        password: 111111
+        # 连接池最大连接数（使用负值表示没有限制）
+        jedis:
+            pool:
+                max-active: 1000  # 连接池最大连接数（使用负值表示没有限制）
+                max-wait: -1      # 连接池最大阻塞等待时间（使用负值表示没有限制）
+                max-idle: 10      # 连接池中的最大空闲连接
+                min-idle: 5       # 连接池中的最小空闲连接
+        # 连接超时时间（毫秒）
+        timeout: 0
+        # 默认的数据过期时间，主要用于shiro权限管理
+        expire: 2592000
+
+# MyBatis plus
+mybatis-plus:
+    mapper-locations: classpath:/mappers/*.xml
+    #实体扫描，多个package用逗号或者分号分隔
+    typeAliasesPackage: com.blackcat.shiro.entity
+    global-config:
+        #刷新mapper 调试神器
+        db-config:
+            #主键类型  0:&quot;数据库ID自增&quot;, 1:&quot;用户输入ID&quot;,2:&quot;全局唯一ID (数字类型唯一ID)&quot;, 3:&quot;全局唯一ID UUID&quot;;
+            #idtype: 0
+            #字段策略 0:&quot;忽略判断&quot;,1:&quot;非 NULL 判断&quot;),2:&quot;非空判断&quot;
+            field-strategy: not_empty
+            #驼峰下划线转换
+            column-underline: true
+            #数据库大写下划线转换
+            capitalmode: true
+            #逻辑删除配置
+            logic-delete-value: 1
+            logic-not-delete-value: 0
+            db-type: mysql
+        refresh: true
+        #自定义填充策略接口实现
+        #metaobjecthandler: com.baomidou.springboot.xxx
+        #自定义SQL注入器
+        #sqlinjector: com.baomidou.mybatisplus.extension.injector.LogicSqlInjector
+        configuration:
+            # 这个配置会将执行的sql打印出来，在开发或测试的时候可以用
+            log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+            map-underscore-to-camel-case: true
+            cache-enabled: false
+
+banner:
+    #charset: UTF-8</code></pre>
+<h3 id="index-ftl"><a href="#index-ftl" class="headerlink" title="index.ftl"></a>index.ftl</h3><pre><code class="java">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+
+&lt;/head&gt;
+&lt;body&gt;
+&lt;shiro:hasPermission name=&quot;user:add&quot;&gt;&lt;a href=&quot;/user/add&quot;&gt;点击添加固定用户信息(后台写死,方便测试)&lt;/a&gt;&lt;/shiro:hasPermission&gt;&lt;br/&gt;
+&lt;shiro:hasPermission name=&quot;user:del&quot;&gt;&lt;a href=&quot;/user/del&quot;&gt;点击删除固定用户信息(后台写死,方便测试)&lt;/a&gt;&lt;/shiro:hasPermission&gt;&lt;br/&gt;
+&lt;shiro:hasPermission name=&quot;user:view&quot;&gt;&lt;a href=&quot;/user/view&quot;&gt;显示此内容表示拥有查看用户列表的权限&lt;/a&gt;&lt;/shiro:hasPermission&gt;&lt;br/&gt;
+
+
+
+&lt;!-- 用户没有身份验证时显示相应信息，即游客访问信息 --&gt;
+&lt;shiro:guest&gt;游客显示的信息&lt;/shiro:guest&gt;&lt;br/&gt;
+&lt;!-- 用户已经身份验证/记住我登录后显示相应的信息 --&gt;
+&lt;shiro:user&gt;用户已经登录过了&lt;/shiro:user&gt;&lt;br/&gt;
+&lt;!-- 用户已经身份验证通过，即Subject.login登录成功，不是记住我登录的 --&gt;
+&lt;shiro:authenticated&gt;不是记住我登录&lt;/shiro:authenticated&gt;&lt;br/&gt;
+&lt;!-- 显示用户身份信息，通常为登录帐号信息，默认调用Subject.getPrincipal()获取，即Primary Principal --&gt;
+&lt;shiro:principal&gt;&lt;/shiro:principal&gt;&lt;br/&gt;
+&lt;!--用户已经身份验证通过，即没有调用Subject.login进行登录，包括记住我自动登录的也属于未进行身份验证，与guest标签的区别是，该标签包含已记住用户 --&gt;
+&lt;shiro:notAuthenticated&gt;已记住用户&lt;/shiro:notAuthenticated&gt;&lt;br/&gt;
+&lt;!-- 相当于Subject.getPrincipals().oneByType(String.class) --&gt;
+&lt;shiro:principal type=&quot;java.lang.String&quot;/&gt;&lt;br/&gt;
+&lt;!-- 相当于((User)Subject.getPrincipals()).getUsername() --&gt;
+&lt;shiro:principal property=&quot;username&quot;/&gt;&lt;br/&gt;
+&lt;!-- 如果当前Subject有角色将显示body体内容 name=&quot;角色名&quot; --&gt;
+&lt;shiro:hasRole name=&quot;admin&quot;&gt;这是admin角色&lt;/shiro:hasRole&gt;&lt;br/&gt;
+&lt;!-- 如果当前Subject有任意一个角色（或的关系）将显示body体内容。 name=&quot;角色名1,角色名2...&quot; --&gt;
+&lt;shiro:hasAnyRoles name=&quot;admin,vip&quot;&gt;用户拥有admin角色 或者 vip角色&lt;/shiro:hasAnyRoles&gt;&lt;br/&gt;
+&lt;!-- 如果当前Subject没有角色将显示body体内容 --&gt;
+&lt;shiro:lacksRole name=&quot;admin&quot;&gt;如果不是admin角色,显示内容&lt;/shiro:lacksRole&gt;&lt;br/&gt;
+&lt;!-- 如果当前Subject有权限将显示body体内容 name=&quot;权限名&quot; --&gt;
+&lt;shiro:hasPermission name=&quot;user:add&quot;&gt;用户拥有添加权限&lt;/shiro:hasPermission&gt;&lt;br/&gt;
+&lt;!-- 用户同时拥有以下两种权限,显示内容 --&gt;
+&lt;shiro:hasAllPermissions name=&quot;user:add,user:view&quot;&gt;用户同时拥有列表权限和添加权限&lt;/shiro:hasAllPermissions&gt;&lt;br/&gt;
+&lt;!-- 用户拥有以下权限任意一种 --&gt;
+&lt;shiro:hasAnyPermissions name=&quot;user:view,user:delete&quot;&gt;用户拥有列表权限或者删除权限&lt;/shiro:hasAnyPermissions&gt;&lt;br/&gt;
+&lt;!-- 如果当前Subject没有权限将显示body体内容 name=&quot;权限名&quot; --&gt;
+&lt;shiro:lacksPermission name=&quot;user:add&quot;&gt;如果用户没有添加权限，显示的内容&lt;/shiro:lacksPermission&gt;&lt;br/&gt;
+
+
+
+&lt;a href=&quot;/logout&quot;&gt;点我注销&lt;/a&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h3 id="login-ftl"><a href="#login-ftl" class="headerlink" title="login.ftl"></a>login.ftl</h3><pre><code class="java">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;#assign basePath=request.contextPath /&gt;
+    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+    &lt;title&gt;后台管理&lt;/title&gt;
+    &lt;link href=&quot;${basePath}/images/favicon.ico&quot; rel=&quot;icon&quot;&gt;
+    &lt;link href=&quot;${basePath}/bootstrap/css/bootstrap.css&quot; rel=&quot;stylesheet&quot;&gt;
+    &lt;link href=&quot;${basePath}/bootstrap/css/font-awesome.css&quot; rel=&quot;stylesheet&quot;&gt;
+    &lt;link href=&quot;${basePath}/css/jquery-confirm.min.css&quot; rel=&quot;stylesheet&quot;&gt;
+    &lt;link href=&quot;${basePath}/css/nprogress2.min.css&quot; rel=&quot;stylesheet&quot;&gt;
+    &lt;link href=&quot;${basePath}/css/zhyd.core.css&quot; rel=&quot;stylesheet&quot;&gt;
+&lt;/head&gt;
+
+&lt;body class=&quot;login&quot;&gt;
+&lt;div class=&quot;modal fade&quot; id=&quot;modal&quot; tabindex=&quot;-1&quot; role=&quot;dialog&quot; aria-labelledby=&quot;myModalLabel&quot; aria-hidden=&quot;true&quot; data-backdrop=&quot;static&quot;
+     data-keyboard=&quot;false&quot;&gt;
+    &lt;div class=&quot;modal-dialog&quot; role=&quot;document&quot;&gt;
+        &lt;div class=&quot;modal-content&quot;&gt;
+            &lt;div class=&quot;modal-body&quot;&gt;
+                &lt;div class=&quot;login_wrapper&quot;&gt;
+                    &lt;div class=&quot;animate form login_form&quot; style=&quot;position: relative;&quot;&gt;
+                        &lt;section class=&quot;login_content&quot;&gt;
+                            &lt;form action=&quot;/login&quot; method=&quot;POST&quot; id=&quot;login-form&quot;&gt;
+                                &lt;h1&gt;登录管理系统&lt;/h1&gt;
+                                &lt;div&gt;
+                                    &lt;input type=&quot;text&quot; class=&quot;form-control&quot; placeholder=&quot;请输入用户名&quot; name=&quot;username&quot; required=&quot;&quot;/&gt;
+                                &lt;/div&gt;
+                                &lt;div&gt;
+                                    &lt;input type=&quot;password&quot; class=&quot;form-control&quot; placeholder=&quot;请输入密码&quot; name=&quot;password&quot; required=&quot;&quot;/&gt;
+                                &lt;/div&gt;
+                                &lt;div class=&quot;form-group&quot; style=&quot;text-align : left&quot;&gt;
+                                    &lt;label&gt;&lt;input type=&quot;checkbox&quot; id=&quot;rememberMe&quot; name=&quot;rememberMe&quot; style=&quot;width: 12px; height: 12px;margin-right: 5px;&quot;&gt;记住我&lt;/label&gt;
+                                &lt;/div&gt;
+                                &lt;div&gt;
+                                    &lt;button type=&quot;button&quot; class=&quot;btn btn-success btn-login&quot; style=&quot;width: 100%;&quot;&gt;登录&lt;/button&gt;
+                                &lt;/div&gt;
+
+                                &lt;div class=&quot;clearfix&quot;&gt;&lt;/div&gt;
+
+                                &lt;div class=&quot;separator&quot;&gt;
+                                    &lt;div class=&quot;clearfix&quot;&gt;&lt;/div&gt;
+                                    &lt;div&gt;
+                                        &lt;h1&gt;&lt;i class=&quot;fa fa-coffee&quot;&gt;&lt;/i&gt; BlackCat 博客系统&lt;/h1&gt;
+                                        &lt;p&gt;Copyright © 2019 &lt;a href=&quot;https://www.kylin-blackcat.com&quot;&gt;blackcat&lt;/a&gt;. All Rights Reserved. &lt;/p&gt;
+                                    &lt;/div&gt;
+                                &lt;/div&gt;
+                            &lt;/form&gt;
+                        &lt;/section&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+
+&lt;script src=&quot;${basePath}/jquery/jquery-2.1.4.min.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;${basePath}/js/jquery-confirm.min.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;${basePath}/bootstrap/js/bootstrap.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;${basePath}/js/blog-table-tool.js&quot;&gt;&lt;/script&gt;
+
+&lt;script&gt;
+    $(&quot;#modal&quot;).modal(&#39;show&#39;);
+    $(&quot;.btn-login&quot;).click(function () {
+        $.ajax({
+            type: &quot;POST&quot;,
+            url: &quot;/login&quot;,
+            data: $(&quot;#login-form&quot;).serialize(),
+            //dataType: &quot;json&quot;,
+            success: function (json) {
+                window.location.href = &quot;/index&quot;;
+            }
+        });
+    });
+    document.onkeydown = function (event) {
+        var e = event || window.event || arguments.callee.caller.arguments[0];
+        if (e &amp;&amp; e.keyCode === 13) {
+            $(&quot;.btn-login&quot;).click();
+        }
+    };
+&lt;/script&gt;
+&lt;/html&gt;
+</code></pre>
+<h3 id="unauthorized-ftl"><a href="#unauthorized-ftl" class="headerlink" title="unauthorized.ftl"></a>unauthorized.ftl</h3><pre><code class="java">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;对不起,您没有权限&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h2 id="记住我"><a href="#记住我" class="headerlink" title="记住我"></a>记住我</h2><h3 id="ShiroConfig-添加"><a href="#ShiroConfig-添加" class="headerlink" title="ShiroConfig 添加"></a>ShiroConfig 添加</h3><pre><code class="java">
+/**
+ * &lt;p&gt; 描述 : 配置核心安全事务管理器
+ * @author : blackcat
+ * @date  : 2020/2/4 16:37
+*/
+@Bean(name=&quot;securityManager&quot;)
+public SecurityManager securityManager(@Qualifier(&quot;shiroRealm&quot;) ShiroRealm shiroRealm) {
+    DefaultWebSecurityManager securityManager =  new DefaultWebSecurityManager();
+    //设置自定义realm.
+    securityManager.setRealm(shiroRealm);
+    //配置记住我 (加入此行代码)
+    securityManager.setRememberMeManager(rememberMeManager());
+    return securityManager;
+}
+
+加入下方两个方法
+
+/**
+ * &lt;p&gt; 描述 : cookie对象;会话Cookie模板 ,默认为: JSESSIONID 
+ * 问题: 与SERVLET容器名冲突,重新定义为sid或rememberMe，自定义
+ * @author : blackcat
+ * @date  : 2020/2/6 13:25   
+*/
+@Bean
+public SimpleCookie rememberMeCookie(){
+    //这个参数是cookie的名称，对应前端的checkbox的name = rememberMe
+    SimpleCookie simpleCookie = new SimpleCookie(&quot;rememberMe&quot;);
+    //setcookie的httponly属性如果设为true的话，会增加对xss防护的安全系数。它有以下特点：
+
+    //setcookie()的第七个参数
+    //设为true后，只能通过http访问，javascript无法访问
+    //防止xss读取cookie
+    simpleCookie.setHttpOnly(true);
+    simpleCookie.setPath(&quot;/&quot;);
+    //&lt;!-- 记住我cookie生效时间30天 ,单位秒;--&gt;
+    simpleCookie.setMaxAge(2592000);
+    return simpleCookie;
+}
+
+/**
+ * &lt;p&gt; 描述 : cookie管理对象;记住我功能,rememberMe管理器
+ * @author : blackcat
+ * @date  : 2020/2/6 13:25   
+*/
+@Bean
+public CookieRememberMeManager rememberMeManager(){
+    CookieRememberMeManager cookieRememberMeManager = new CookieRememberMeManager();
+    cookieRememberMeManager.setCookie(rememberMeCookie());
+    //rememberMe cookie加密的密钥 建议每个项目都不一样 默认AES算法 密钥长度(128 256 512 位)
+    cookieRememberMeManager.setCipherKey(Base64.decode(&quot;4AvVhmFLUs0KTA3Kprsdag==&quot;));
+    return cookieRememberMeManager;
+}</code></pre>
+<h3 id="修改访问首页访问权限"><a href="#修改访问首页访问权限" class="headerlink" title="修改访问首页访问权限"></a>修改访问首页访问权限</h3><p>如果使用@RequiresAuthentication该注释，记住我登陆关闭浏览器，重新访问项目，主页会显示无权限。<br>@RequiresUser：验证用户是否被记忆。</p>
+<pre><code class="java">/**
+ * &lt;p&gt; 描述 : 访问项目根路径
+ * @author : blackcat
+ * @date  : 2020/2/3 17:02
+ */
+@RequiresUser
+@GetMapping(value = {&quot;&quot;, &quot;/index&quot;})
+public String home() {
+    Subject subject = SecurityUtils.getSubject();
+    SysUser user=(SysUser) subject.getPrincipal();
+    if (user == null){
+        return &quot;login&quot;;
+    }else{
+        return &quot;index&quot;;
+    }
+}</code></pre>
+<h2 id="配置redis缓存管理器"><a href="#配置redis缓存管理器" class="headerlink" title="配置redis缓存管理器"></a>配置redis缓存管理器</h2><h3 id="Redis配置文件"><a href="#Redis配置文件" class="headerlink" title="Redis配置文件"></a>Redis配置文件</h3><pre><code class="java">package com.blackcat.blog.common.config;
+
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.PropertyAccessor;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.cache.CacheManager;
+import org.springframework.cache.annotation.CachingConfigurerSupport;
+import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.cache.interceptor.KeyGenerator;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.cache.RedisCacheConfiguration;
+import org.springframework.data.redis.cache.RedisCacheManager;
+import org.springframework.data.redis.cache.RedisCacheWriter;
+import org.springframework.data.redis.connection.RedisConnectionFactory;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
+import org.springframework.data.redis.serializer.StringRedisSerializer;
+
+import java.lang.reflect.Method;
+import java.time.Duration;
+
+
+/**
+ * &lt;p&gt; 描述 : Redis配置文件
+ * @author : blackcat
+ * @date  : 2020/2/8 15:58
+*/
+@Configuration
+@EnableCaching
+public class RedisConfig extends CachingConfigurerSupport {
+
+    /**
+     * 缓存数据时Key的生成器，可以依据业务和技术场景自行定制
+     *
+     * @return
+     */
+    @Bean
+    @Override
+    @Deprecated
+    public KeyGenerator keyGenerator() {
+        return new KeyGenerator() {
+            @Override
+            public Object generate(Object target, Method method, Object... params) {
+                StringBuilder sb = new StringBuilder();
+                sb.append(target.getClass().getName());
+                sb.append(method.getName());
+                for (Object obj : params) {
+                    sb.append(obj.toString());
+                }
+                return sb.toString();
+            }
+        };
+    }
+
+    /**
+     * &lt;p&gt; 描述 : 管理缓存
+     * @author : blackcat
+     * @date  : 2020/2/8 16:00
+     * 注：在springboot2.x中，RedisCacheManager已经没有了单参数的构造方法
+    */
+    @SuppressWarnings(&quot;rawtypes&quot;)
+    @Bean
+    public CacheManager cacheManager(RedisConnectionFactory redisConnectionFactory) {
+        RedisCacheConfiguration redisCacheConfiguration = RedisCacheConfiguration.defaultCacheConfig()
+                .entryTtl(Duration.ofHours(1)); // 设置缓存有效期一小时
+        return RedisCacheManager
+                .builder(RedisCacheWriter.nonLockingRedisCacheWriter(redisConnectionFactory))
+                .cacheDefaults(redisCacheConfiguration).build();
+    }
+
+    /**
+     * &lt;p&gt; 描述 : RedisTemplate配置
+     * @author : blackcat
+     * @date  : 2020/2/8 16:00
+    */
+    @Bean
+    @SuppressWarnings({&quot;rawtypes&quot;, &quot;unchecked&quot;})
+    public RedisTemplate&lt;Object,Object&gt; redisTemplate(RedisConnectionFactory connectionFactory){
+        RedisTemplate&lt;Object,Object&gt; redisTemplate=new RedisTemplate&lt;&gt;();
+        redisTemplate.setConnectionFactory(connectionFactory);
+        //使用Jackson2JsonRedisSerializer替换默认的序列化规则
+        Jackson2JsonRedisSerializer jackson2JsonRedisSerializer=new Jackson2JsonRedisSerializer(Object.class);
+        ObjectMapper objectMapper=new ObjectMapper();
+        objectMapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
+        objectMapper.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
+        jackson2JsonRedisSerializer.setObjectMapper(objectMapper);
+        //设置value的序列化规则
+        redisTemplate.setValueSerializer(jackson2JsonRedisSerializer);
+        //设置key的序列化规则
+        redisTemplate.setKeySerializer(new StringRedisSerializer());
+        redisTemplate.afterPropertiesSet();
+        return redisTemplate;
+    }
+}</code></pre>
+<h3 id="redis属性配置文件"><a href="#redis属性配置文件" class="headerlink" title="redis属性配置文件"></a>redis属性配置文件</h3><pre><code class="java">package com.blackcat.blog.common.property;
+
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.annotation.Order;
+import org.springframework.stereotype.Component;
+
+/**
+ * &lt;p&gt; 描述 : redis属性配置文件
+ * @author : blackcat
+ * @date  : 2020/2/2 11:36
+*/
+@Component
+@PropertySource(&quot;classpath:application.yml&quot;)
+@ConfigurationProperties(prefix = &quot;spring.redis&quot;)
+@Data
+@EqualsAndHashCode(callSuper = false)
+@Order(-1)
+public class RedisProperties {
+    private Integer database;
+    private String host;
+    private Integer port;
+    private String password;
+    private Integer timeout;
+    /**
+     * 默认30天 = 2592000s
+     */
+    private Integer expire = 2592000;
+
+}</code></pre>
+<h3 id="ShiroConfig-配置"><a href="#ShiroConfig-配置" class="headerlink" title="ShiroConfig 配置"></a>ShiroConfig 配置</h3><p>添加以下方法</p>
+<pre><code class="java">/**
+ * cacheManager 缓存 redis实现
+ * 使用的是shiro-redis开源插件
+ *
+ * @return
+ */
+@Bean
+public RedisCacheManager redisCacheManager() {
+    RedisCacheManager redisCacheManager = new RedisCacheManager();
+    redisCacheManager.setRedisManager(redisManager());
+    return redisCacheManager;
+}
+
+/**
+ * 配置shiro redisManager
+ * 使用的是shiro-redis开源插件
+ *
+ * @return
+ */
+public RedisManager redisManager() {
+    RedisManager redisManager = new RedisManager();
+    redisManager.setHost(redisProperties.getHost());
+    redisManager.setPort(redisProperties.getPort());
+    redisManager.setDatabase(redisProperties.getDatabase());
+    redisManager.setTimeout(redisProperties.getTimeout());
+    redisManager.setPassword(redisProperties.getPassword());
+    return redisManager;
+}
+
+/**
+ * RedisSessionDAO shiro sessionDao层的实现 通过redis
+ * 使用的是shiro-redis开源插件
+ */
+//    @Bean
+public RedisSessionDAO redisSessionDAO() {
+    RedisSessionDAO redisSessionDAO = new RedisSessionDAO();
+    redisSessionDAO.setRedisManager(redisManager());
+    return redisSessionDAO;
+}
+
+/**
+ * shiro session的管理
+ */
+@Bean
+public DefaultWebSessionManager sessionManager() {
+    DefaultWebSessionManager sessionManager = new DefaultWebSessionManager();
+    sessionManager.setGlobalSessionTimeout(redisProperties.getExpire() * 1000L);
+    sessionManager.setSessionDAO(redisSessionDAO());
+    return sessionManager;
+}
+
+/**
+ * cookie对象;
+ *
+ * @return
+ */
+public SimpleCookie rememberMeCookie() {
+    // 这个参数是cookie的名称，对应前端的checkbox的name = rememberMe
+    SimpleCookie simpleCookie = new SimpleCookie(&quot;rememberMe&quot;);
+    // 记住我cookie生效时间30天 ,单位秒。 注释掉，默认永久不过期
+    simpleCookie.setMaxAge(redisProperties.getExpire());
+    //setcookie的httponly属性如果设为true的话，会增加对xss防护的安全系数。它有以下特点：
+    //设为true后，只能通过http访问，javascript无法访问
+    //防止xss读取cookie
+    simpleCookie.setHttpOnly(true);
+    simpleCookie.setPath(&quot;/&quot;);
+    return simpleCookie;
+}</code></pre>
+<h3 id="Redis-command-timed-out-nested-exception-is-io-lettuce-core-RedisCommandTimeoutException-Command-timed-out-after-no-timeout"><a href="#Redis-command-timed-out-nested-exception-is-io-lettuce-core-RedisCommandTimeoutException-Command-timed-out-after-no-timeout" class="headerlink" title="Redis command timed out; nested exception is io.lettuce.core.RedisCommandTimeoutException: Command timed out after no timeout"></a>Redis command timed out; nested exception is io.lettuce.core.RedisCommandTimeoutException: Command timed out after no timeout</h3><p>错误原因：连接超时时间设置的过于短暂  我在配置文件中设置了0<br>解决：将<code>spring.redis.timeout</code>值修改成几秒左右差不多 改值单位为毫秒</p>
+<h2 id="密码加密及登录次数验证"><a href="#密码加密及登录次数验证" class="headerlink" title="密码加密及登录次数验证"></a>密码加密及登录次数验证</h2><h3 id="Shiro-密码凭证匹配器"><a href="#Shiro-密码凭证匹配器" class="headerlink" title="Shiro-密码凭证匹配器"></a>Shiro-密码凭证匹配器</h3><pre><code class="java">package com.blackcat.blog.common.shiro.credentials;
+
+import com.blackcat.blog.util.PasswordUtil;
+import org.apache.shiro.authc.AuthenticationInfo;
+import org.apache.shiro.authc.AuthenticationToken;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.authc.credential.SimpleCredentialsMatcher;
+
+/**
+ * &lt;p&gt; 描述 : Shiro-密码凭证匹配器
+ * @author : blackcat
+ * @date  : 2020/2/14 11:20
+*/
+public class CredentialsMatcher extends SimpleCredentialsMatcher {
+
+    @Override
+    public boolean doCredentialsMatch(AuthenticationToken token, AuthenticationInfo info) {
+        UsernamePasswordToken utoken = (UsernamePasswordToken) token;
+        //获得用户输入的密码:(可以采用加盐(salt)的方式去检验)
+        String inPassword = new String(utoken.getPassword());
+        //获得数据库中的密码
+        String dbPassword = (String) info.getCredentials();
+        try {
+            dbPassword = PasswordUtil.decrypt(dbPassword, utoken.getUsername());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        //进行密码的比对
+        return this.equals(inPassword, dbPassword);
+    }
+}</code></pre>
+<h3 id="Shiro-密码输入错误的状态下重试次数的匹配管理"><a href="#Shiro-密码输入错误的状态下重试次数的匹配管理" class="headerlink" title="Shiro-密码输入错误的状态下重试次数的匹配管理"></a>Shiro-密码输入错误的状态下重试次数的匹配管理</h3><pre><code class="java">package com.blackcat.blog.common.shiro.credentials;
+
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+import com.blackcat.blog.common.holder.RequestHolder;
+import com.blackcat.blog.core.entity.SysUser;
+import com.blackcat.blog.core.service.SysUserService;
+import com.blackcat.blog.util.IpUtil;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AccountException;
+import org.apache.shiro.authc.AuthenticationInfo;
+import org.apache.shiro.authc.AuthenticationToken;
+import org.apache.shiro.authc.ExcessiveAttemptsException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
+
+import java.time.LocalDateTime;
+import java.util.concurrent.TimeUnit;
+
+/**
+ * &lt;p&gt; 描述 : Shiro-密码输入错误的状态下重试次数的匹配管理
+ * @author : blackcat
+ * @date  : 2020/2/14 11:26
+*/
+public class RetryLimitCredentialsMatcher extends CredentialsMatcher {
+
+    public static final String USER_SESSION_KEY = &quot;user&quot;;
+
+    /**
+     * 用户登录次数计数  redisKey 前缀
+     */
+    private static final String SHIRO_LOGIN_COUNT = &quot;shiro_login_count_&quot;;
+    /**
+     * 用户登录是否被锁定    一小时 redisKey 前缀
+     */
+    private static final String SHIRO_IS_LOCK = &quot;shiro_is_lock_&quot;;
+    @Autowired
+    private RedisTemplate redisTemplate;
+    @Autowired
+    private SysUserService userService;
+
+    @Override
+    public boolean doCredentialsMatch(AuthenticationToken token, AuthenticationInfo info) {
+        SysUser shiroUser = (SysUser) info.getPrincipals().getPrimaryPrincipal();
+        SysUser user = userService.getOne(new QueryWrapper&lt;SysUser&gt;().eq(&quot;id&quot;,shiroUser.getId()));
+        String username = user.getUsername();
+        // 访问一次，计数一次
+        ValueOperations&lt;String, String&gt; opsForValue = redisTemplate.opsForValue();
+        String loginCountKey = SHIRO_LOGIN_COUNT + username;
+        String isLockKey = SHIRO_IS_LOCK + username;
+        opsForValue.increment(loginCountKey, 1);
+
+        if (redisTemplate.hasKey(isLockKey)) {
+            throw new ExcessiveAttemptsException(&quot;帐号[&quot; + username + &quot;]已被禁止登录！&quot;);
+        }
+
+        // 计数大于5时，设置用户被锁定一小时
+        String loginCount = String.valueOf(opsForValue.get(loginCountKey));
+        int retryCount = (5 - Integer.parseInt(loginCount));
+        if (retryCount &lt;= 0) {
+            opsForValue.set(isLockKey, &quot;LOCK&quot;);
+            redisTemplate.expire(isLockKey, 1, TimeUnit.HOURS);
+            redisTemplate.expire(loginCountKey, 1, TimeUnit.HOURS);
+            throw new ExcessiveAttemptsException(&quot;由于密码输入错误次数过多，帐号[&quot; + username + &quot;]已被禁止登录！&quot;);
+        }
+
+        boolean matches = super.doCredentialsMatch(token, info);
+        if (!matches) {
+            String msg = retryCount &lt;= 0 ? &quot;您的账号一小时内禁止登录！&quot; : &quot;您还剩&quot; + retryCount + &quot;次重试的机会&quot;;
+            throw new AccountException(&quot;帐号或密码不正确！&quot; + msg);
+        }
+
+        //清空登录计数
+        redisTemplate.delete(loginCountKey);
+        try {
+            SysUser sysUser= new SysUser();
+            sysUser.setLastLoginIp(IpUtil.getRealIp(RequestHolder.getRequest()));
+            sysUser.setLastLoginTime(LocalDateTime.now());
+            sysUser.setLoginCount(user.getLoginCount() + 1);
+            userService.update(user, new UpdateWrapper&lt;SysUser&gt;().eq(&quot;id&quot;, user.getId()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        // 当验证都通过后，把用户信息放在session里
+        // 注：User必须实现序列化
+        SecurityUtils.getSubject().getSession().setAttribute(USER_SESSION_KEY, user);
+        return true;
+    }
+}</code></pre>
+<h3 id="ShiroRealm-身份认证修改"><a href="#ShiroRealm-身份认证修改" class="headerlink" title="ShiroRealm 身份认证修改"></a>ShiroRealm 身份认证修改</h3><pre><code class="java">/**
+ * &lt;p&gt; 描述 : 身份认证
+ * @author : blackcat
+ * @date  : 2020/2/1 12:32
+ * @return org.apache.shiro.authc.AuthenticationInfo
+*/
+@Override
+protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
+    String username = (String) authenticationToken.getPrincipal();
+    String userPwd = new String((char[]) authenticationToken.getCredentials());
+    // 可以根据实际情况做缓存,如果不做,Shiro自己也是有时间间隔机制,2分钟内不会重复执行该方法
+    SysUser user = sysUserService.getOne(new QueryWrapper&lt;SysUser&gt;().eq(&quot;username&quot;, username));
+    if (user == null) {
+        throw new UnknownAccountException(&quot;账号不存在！&quot;);
+    }
+    if (user.getStatus() != null &amp;&amp; 0==user.getStatus()) {
+        throw new LockedAccountException(&quot;帐号已被锁定，禁止登录！&quot;);
+    }
+    // principal参数使用用户Id，方便动态刷新用户权限
+    return new SimpleAuthenticationInfo(
+            user,
+            user.getPassword(),
+            ByteSource.Util.bytes(username),
+            getName()
+    );
+}</code></pre>
+<h3 id="Shiro-配置修改"><a href="#Shiro-配置修改" class="headerlink" title="Shiro 配置修改"></a>Shiro 配置修改</h3><pre><code class="java">/**
+ * &lt;p&gt; 描述 : 身份认证realm
+ * @author : blackcat
+ * @date  : 2020/2/4 16:37
+*/
+@Bean
+public ShiroRealm shiroRealm(){
+    ShiroRealm shiroRealm = new ShiroRealm();
+    // 使用加密凭证
+    shiroRealm.setCredentialsMatcher(credentialsMatcher());
+    return shiroRealm;
+}</code></pre>
+<h3 id="修改数据库密码"><a href="#修改数据库密码" class="headerlink" title="修改数据库密码"></a>修改数据库密码</h3><p>只是修改代码没有修改数据库的密码会报：Input length must be multiple of 16 when decrypting with padded cipher<br><strong><em>root</em></strong>:CGUx1FN++xS+4wNDFeN6DA==<br><strong><em>admin</em></strong>:gXp2EbyZ+sB/A6QUMhiUJQ==</p>
+<h2 id="使用说明"><a href="#使用说明" class="headerlink" title="使用说明"></a>使用说明</h2><p>用户：root  密码：123456<br>用户：admin  密码：123456<br>访问：<a href="http://localhost:8083/login" target="_blank" rel="noopener">http://localhost:8083/login</a><br>源码：<br><a href="https://github.com/kylin-lawliet/blackcat-blog-web/tree/master/demo-shiro" target="_blank" rel="noopener">https://github.com/kylin-lawliet/blackcat-blog-web/tree/master/demo-shiro</a> 简单demo 无相关实体类数据库<br><a href="https://github.com/kylin-lawliet/blackcat-blog-web/tree/master/demo-shiro2" target="_blank" rel="noopener">https://github.com/kylin-lawliet/blackcat-blog-web/tree/master/demo-shiro2</a> 实现登陆跳转主页 附数据库</p>
+<h2 id="相关注解"><a href="#相关注解" class="headerlink" title="相关注解"></a>相关注解</h2><h3 id="RequiresAuthentication"><a href="#RequiresAuthentication" class="headerlink" title="@RequiresAuthentication"></a><strong><em>@RequiresAuthentication</em></strong></h3><p>　　验证用户是否登录，等同于方法subject.isAuthenticated() 结果为true时。</p>
+<h3 id="RequiresUser"><a href="#RequiresUser" class="headerlink" title="@RequiresUser"></a><strong><em>@RequiresUser</em></strong></h3><p>　　验证用户是否被记忆，user有两种含义：<br>　　一种是成功登录的（subject.isAuthenticated() 结果为true）；<br>　　另外一种是被记忆的（subject.isRemembered()结果为true）。</p>
+<h3 id="RequiresGuest"><a href="#RequiresGuest" class="headerlink" title="@RequiresGuest"></a><strong><em>@RequiresGuest</em></strong></h3><p>　　验证是否是一个guest的请求，与@RequiresUser完全相反。<br> 　　换言之，RequiresUser  == !RequiresGuest。<br>　　此时subject.getPrincipal() 结果为null.</p>
+<h3 id="RequiresRoles"><a href="#RequiresRoles" class="headerlink" title="@RequiresRoles"></a><strong><em>@RequiresRoles</em></strong></h3><p>　　例如：@RequiresRoles(“aRoleName”);<br> 　　void someMethod();<br>　　如果subject中有aRoleName角色才可以访问方法someMethod。如果没有这个权限则会抛出异常AuthorizationException。</p>
+<h3 id="RequiresPermissions"><a href="#RequiresPermissions" class="headerlink" title="@RequiresPermissions"></a><strong><em>@RequiresPermissions</em></strong></h3><p>　　例如： @RequiresPermissions({“file:read”, “write:aFile.txt”} )<br> 　　void someMethod();<br>　　要求subject中必须同时含有file:read和write:aFile.txt的权限才能执行方法someMethod()。否则抛出异常AuthorizationException。</p>
+<h2 id="相关文章"><a href="#相关文章" class="headerlink" title="相关文章"></a>相关文章</h2><p><a href="http://shiro.apache.org/documentation.html" target="_blank" rel="noopener">Shiro官方文档</a><br><a href="https://blog.csdn.net/qq_34021712/category_9278670.html" target="_blank" rel="noopener">Shiro 学习博客系列 SpringBoot</a><br><a href="https://www.iteye.com/blog/jinnianshilongnian-2018398" target="_blank" rel="noopener">Shiro 学习博客系列 spring</a><br><a href="https://blog.csdn.net/bicheng4769/article/details/86668209" target="_blank" rel="noopener">SpringBoot2.0 集成Shiro 基础版</a><br><a href="https://juejin.im/post/5d087d605188256de9779e64" target="_blank" rel="noopener">SpringBoot 整合Shiro实现动态权限加载更新+Session共享+单点登录 有源码</a><br><a href="https://www.jianshu.com/p/b919c0dded5a" target="_blank" rel="noopener">Springboot+shiro权限管理系统 有源码</a><br><a href="https://gitee.com/xiaobingby/bing-upms" target="_blank" rel="noopener">Spring Boot + Mybatis-Plus + Apache Shiro + FreeMarker 制作的通用权限管理</a><br><a href="http://vblog.chacode.cn/#/" target="_blank" rel="noopener">springboot2.0、mybatis-plus、shiro技术栈开发的vblog博客</a></p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 kylin_lawliet@163.com </span>
+    </div>
+</article>
+
+
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>Springboot 集成 Shiro</p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">10.5k</span></p>
+    <p><span class="copy-title">本文作者:</span><a  title="blackcat">blackcat</a></p>
+    <p><span class="copy-title">发布时间:</span>2020-02-01, 12:16:53</p>
+    <p><span class="copy-title">最后更新:</span>2020-02-21, 16:24:46</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2020/02/01/springboot-shiro/" title="Springboot 集成 Shiro">https://kylin-blackcat.com/2020/02/01/springboot-shiro/</a>
+    <p>
+        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+    </p>
+</div>
+
+
+
+    <div id="comments"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+<script type="text/javascript">
+    $.getScript('/js/gitalk.js', function () {
+        var gitalk = new Gitalk({
+            clientID: '312730c94e34ee10b19d',
+            clientSecret: '5e87bc5a90b6723fd6495ebe7ffde8e0f69caceb',
+            repo: 'gitalk-commnet',
+            owner: 'kylin-lawliet',
+            admin: ['kylin-lawliet'],
+            id: decodeURI(location.pathname),
+            distractionFreeMode: 'true',
+            language: 'zh-CN',
+            perPage: parseInt('10',10)
+        })
+        gitalk.render('comments')
+    })
+</script>
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">©2019 blackcat</p>
+<!--
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+-->
+
+    </div>
+    <div class="full-toc">
+        <button class="full"><span class="min "></span></button>
+<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
+<div class="post-toc"><span class="post-toc-title">目录</span>
+    <div class="post-toc-content">
+
+    </div>
+</div>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+<div class="acParent"></div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.0.1" ></script>
+
+<script src="/js/script.js?v=1.0.1" ></script>
+<script>
+    var img_resize = 'default';
+    /*作者、标签的自动补全*/
+    $(function () {
+        $('.search').AutoComplete({
+            'data': ['#javascript','#hexo','#Idea','#easyUI','#git，hexo','#docker','#MySQL','#web','#jquery','#spring boot','#spring','#mybatis','#postman','#SpringBoot','#Java','#VMware','#website','#MyBatis','#MySql','#Maven','#Mybatis','#lombok','#Bootstrap','#Solr','#JVM','#SQL','#生活','#redis','#Shiro','#设计模式',],
+            'itemHeight': 20,
+            'width': 418
+        }).AutoComplete('show');
+    })
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $(".post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+        .nav .hide-list.fullscreen {
+            left: 492px
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+    .post .pjax article .article-entry>ol, .post .pjax article .article-entry>ul, .post .pjax article>ol, .post .pjax article>ul{
+        border: #e2dede solid 1px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    .post .pjax article .article-entry li>ol, .post .pjax article .article-entry li>ul,.post .pjax article li>ol, .post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .post .pjax article .article-entry>ol>li, .post .pjax article .article-entry>ul>li,.post .pjax article>ol>li, .post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    .post .pjax article .article-entry li>ol>li, .post .pjax article .article-entry li>ul>li,.post .pjax article li>ol>li, .post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("https://i.loli.net/2019/07/22/5d3521411f3f169375.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+    .post .pjax article :not(pre) > code {
+        color: #24292e;
+        font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+        background-color: rgba(27,31,35,.05);
+        border-radius: 3px;
+        font-size: 85%;
+        margin: 0;
+        padding: .2em .4em;
+    }
+    
+</style>
+
+
+
+
+
+
+
+</html>

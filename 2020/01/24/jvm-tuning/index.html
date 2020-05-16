@@ -1,0 +1,1425 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JVM回收与调优 | BlackCat</title>
+  <meta name="keywords" content=" JVM ">
+  <meta name="description" content="JVM回收与调优 | BlackCat">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="strong a {         color: #747474;     }     .player {         text-align: center;         margin: .5em auto 0;         width: 100%;         max-width: 22em;     }     .player br {         displa">
+<meta property="og:type" content="website">
+<meta property="og:title" content="关于我">
+<meta property="og:url" content="https:&#x2F;&#x2F;kylin-blackcat.com&#x2F;about&#x2F;index.html">
+<meta property="og:site_name" content="BlackCat">
+<meta property="og:description" content="strong a {         color: #747474;     }     .player {         text-align: center;         margin: .5em auto 0;         width: 100%;         max-width: 22em;     }     .player br {         displa">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-12-22T03:08:52.000Z">
+<meta property="article:modified_time" content="2020-01-26T02:07:51.239Z">
+<meta property="article:author" content="blackcat">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.0.1" rel="stylesheet">
+
+<link href="/css/hl_theme/gruvbox-light.css?v=1.0.1" rel="stylesheet">
+
+<link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="/js/jquery.autocomplete.min.js?v=1.0.1" ></script>
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.0.1" ></script>
+
+<meta name="generator" content="Hexo 4.1.1"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="false">
+  <input class="theme_blog_path" value="">
+</div>
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/" class="avatar_target">
+    <img class="avatar" src="/img/avatar.jpg" />
+</a>
+<div class="author">
+    <span>blackcat</span>
+</div>
+
+<div class="icon">
+    
+        
+        <a title="github" href="https://github.com/kylin-lawliet" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-github"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="email" href="mailto:kylin_lawliet@163.com" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-email"></use>
+                </svg>
+            
+        </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li><div class="all active">全部文章<small>(32)</small></div></li>
+    
+        
+            
+            <li><div data-rel="前端"><i class="fold iconfont icon-right"></i>前端<small>(5)</small></div>
+                
+                    <ul class="sub hide">
+                        
+                        <li><div data-rel="easyUI">easyUI<small>(1)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="javascript">javascript<small>(2)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="jquery">jquery<small>(1)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="Bootstrap">Bootstrap<small>(1)</small></div>
+                            
+                        </li>
+                            
+                    </ul>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="hexo">hexo<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="工具"><i class="fold iconfont icon-right"></i>工具<small>(5)</small></div>
+                
+                    <ul class="sub hide">
+                        
+                        <li><div data-rel="Idea">Idea<small>(1)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="postman">postman<small>(1)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="docker">docker<small>(3)</small></div>
+                            
+                        </li>
+                            
+                    </ul>
+                
+            </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+            <li><div data-rel="Linux"><i class="fold iconfont icon-right"></i>Linux<small>(2)</small></div>
+                
+                    <ul class="sub hide">
+                        
+                        <li><div data-rel="docker">docker<small>(1)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="VMware">VMware<small>(1)</small></div>
+                            
+                        </li>
+                            
+                    </ul>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="数据库"><i class="fold iconfont icon-right"></i>数据库<small>(3)</small></div>
+                
+                    <ul class="sub hide">
+                        
+                        <li><div data-rel="MySQL">MySQL<small>(2)</small></div>
+                            
+                        </li>
+                            
+                    </ul>
+                
+            </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+            <li><div data-rel="Java"><i class="fold iconfont icon-right"></i>Java<small>(11)</small></div>
+                
+                    <ul class="sub hide">
+                        
+                        <li><div data-rel="ssm">ssm<small>(1)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="SpringBoot">SpringBoot<small>(3)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="MyBatis">MyBatis<small>(1)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="Maven">Maven<small>(1)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="lombok">lombok<small>(1)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="JVM">JVM<small>(1)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="问答">问答<small>(1)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="Shiro">Shiro<small>(1)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="设计模式">设计模式<small>(1)</small></div>
+                            
+                        </li>
+                            
+                    </ul>
+                
+            </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+            <li><div data-rel="网址">网址<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+            <li><div data-rel="SpringBoot">SpringBoot<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    
+    
+    
+    </div>
+    <div><a class="about  hasFriend  site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="32">
+<input type="hidden" id="yelog_site_word_count" value="141.7k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="back-title-list"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="https://yelog.org">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <form onkeydown="if(event.keyCode==13){return false;}">
+        <input class="search" type="text" placeholder="以 in: 开头进行全文搜索" autocomplete="off"id="local-search-input" >
+        <i class="cross"></i>
+        <span>
+            <label for="tagswitch">Tags:</label>
+            <input id="tagswitch" type="checkbox" style="display: none" />
+            <i id="tagsWitchIcon"></i>
+        </span>
+    </form>
+    <div class="tags-list">
+    
+    <li class="article-tag-list-item">
+        <a class="color1">javascript</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">hexo</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">Idea</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color2">easyUI</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">git，hexo</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color2">docker</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color1">MySQL</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">web</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color2">jquery</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color2">spring boot</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color2">spring</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color3">mybatis</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color3">postman</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color1">SpringBoot</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">Java</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color2">VMware</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color3">website</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color3">MyBatis</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color1">MySql</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color1">Maven</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color3">Mybatis</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color2">lombok</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">Bootstrap</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">Solr</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">JVM</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">SQL</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color3">生活</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color1">redis</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color1">Shiro</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">设计模式</a>
+    </li>
+    
+    <div class="clearfix"></div>
+</div>
+
+    
+    <div id="local-search-result">
+
+    </div>
+    
+    <nav id="title-list-nav">
+        
+        <a  class=""
+           href="/2019/12/28/freemaker/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="freemaker学习笔记">freemaker学习笔记</span>
+            <span class="post-date" title="2019-12-28 08:44:41">2019/12/28</span>
+        </a>
+        
+        <a  class="前端 javascript "
+           href="/2019/12/24/javascript/"
+           data-tag="javascript"
+           data-author="" >
+            <span class="post-title" title="javascript使用示例">javascript使用示例</span>
+            <span class="post-date" title="2019-12-24 08:52:35">2019/12/24</span>
+        </a>
+        
+        <a id="top" class="hexo "
+           href="/2019/12/23/hexo-dome/"
+           data-tag="hexo"
+           data-author="" >
+            <span class="post-title" title="hexo文章格式示例">hexo文章格式示例</span>
+            <span class="post-date" title="2019-12-23 10:24:34">2019/12/23</span>
+        </a>
+        
+        <a  class="工具 Idea "
+           href="/2019/12/25/idea/"
+           data-tag="Idea"
+           data-author="" >
+            <span class="post-title" title="Idea笔记">Idea笔记</span>
+            <span class="post-date" title="2019-12-25 08:51:24">2019/12/25</span>
+        </a>
+        
+        <a  class="前端 easyUI "
+           href="/2019/12/24/easyui/"
+           data-tag="easyUI"
+           data-author="" >
+            <span class="post-title" title="easyui记录使用过程中出现的问题">easyui记录使用过程中出现的问题</span>
+            <span class="post-date" title="2019-12-24 16:56:43">2019/12/24</span>
+        </a>
+        
+        <a  class="hexo "
+           href="/2019/12/22/hexo/"
+           data-tag="git，hexo"
+           data-author="" >
+            <span class="post-title" title="hexo建站相关">hexo建站相关</span>
+            <span class="post-date" title="2019-12-22 14:18:18">2019/12/22</span>
+        </a>
+        
+        <a  class="Linux docker "
+           href="/2020/01/03/docker/"
+           data-tag="docker"
+           data-author="" >
+            <span class="post-title" title="Linux安装docker使用及一些问题记录">Linux安装docker使用及一些问题记录</span>
+            <span class="post-date" title="2020-01-03 17:17:35">2020/01/03</span>
+        </a>
+        
+        <a  class="数据库 MySQL "
+           href="/2020/01/03/mysql-quiz/"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="mysql问答">mysql问答</span>
+            <span class="post-date" title="2020-01-03 08:04:03">2020/01/03</span>
+        </a>
+        
+        <a  class="前端 jquery "
+           href="/2019/12/24/jquery/"
+           data-tag="web,jquery"
+           data-author="" >
+            <span class="post-title" title="jquery各种函数使用示例">jquery各种函数使用示例</span>
+            <span class="post-date" title="2019-12-24 16:54:54">2019/12/24</span>
+        </a>
+        
+        <a id="top" class="Java ssm "
+           href="/2020/01/01/ssm/"
+           data-tag="spring boot,spring,mybatis"
+           data-author="" >
+            <span class="post-title" title="ssm项目搭建及后续开发记录">ssm项目搭建及后续开发记录</span>
+            <span class="post-date" title="2020-01-01 12:01:23">2020/01/01</span>
+        </a>
+        
+        <a  class="工具 postman "
+           href="/2020/01/13/postman/"
+           data-tag="postman"
+           data-author="" >
+            <span class="post-title" title="postman相关">postman相关</span>
+            <span class="post-date" title="2020-01-13 18:10:17">2020/01/13</span>
+        </a>
+        
+        <a  class="Java SpringBoot "
+           href="/2020/01/07/SpringBoot-Create/"
+           data-tag="SpringBoot,Java"
+           data-author="" >
+            <span class="post-title" title="创建SpringBoot项目">创建SpringBoot项目</span>
+            <span class="post-date" title="2020-01-07 14:50:44">2020/01/07</span>
+        </a>
+        
+        <a  class="工具 docker "
+           href="/2020/01/07/docker-command/"
+           data-tag="docker"
+           data-author="" >
+            <span class="post-title" title="docker命令">docker命令</span>
+            <span class="post-date" title="2020-01-07 15:50:15">2020/01/07</span>
+        </a>
+        
+        <a  class="Linux VMware "
+           href="/2020/01/03/VMware-CentOS/"
+           data-tag="VMware"
+           data-author="" >
+            <span class="post-title" title="win10下VMware安装Centos">win10下VMware安装Centos</span>
+            <span class="post-date" title="2020-01-03 10:13:22">2020/01/03</span>
+        </a>
+        
+        <a id="top" class="网址 "
+           href="/2020/01/06/website-official/"
+           data-tag="website"
+           data-author="" >
+            <span class="post-title" title="网站收藏（工作）">网站收藏（工作）</span>
+            <span class="post-date" title="2020-01-06 17:25:41">2020/01/06</span>
+        </a>
+        
+        <a  class="Java MyBatis "
+           href="/2020/01/07/mybatis-plus-generator/"
+           data-tag="MyBatis,MySql"
+           data-author="" >
+            <span class="post-title" title="mybatis plus mysql 代码生成器">mybatis plus mysql 代码生成器</span>
+            <span class="post-date" title="2020-01-07 14:45:10">2020/01/07</span>
+        </a>
+        
+        <a  class="Java Maven "
+           href="/2020/01/16/maven-common/"
+           data-tag="Maven"
+           data-author="" >
+            <span class="post-title" title="Maven pom.xml常用">Maven pom.xml常用</span>
+            <span class="post-date" title="2020-01-16 14:49:45">2020/01/16</span>
+        </a>
+        
+        <a  class="Java SpringBoot "
+           href="/2020/01/18/springboot-mybatis-plus/"
+           data-tag="Mybatis"
+           data-author="" >
+            <span class="post-title" title="springboot 2.2 集成mybatis-plus">springboot 2.2 集成mybatis-plus</span>
+            <span class="post-date" title="2020-01-18 13:14:46">2020/01/18</span>
+        </a>
+        
+        <a  class="工具 docker "
+           href="/2020/01/13/docker-mysql/"
+           data-tag="docker,MySql"
+           data-author="" >
+            <span class="post-title" title="docker安装MySql及相关命令">docker安装MySql及相关命令</span>
+            <span class="post-date" title="2020-01-13 13:31:12">2020/01/13</span>
+        </a>
+        
+        <a  class="Java lombok "
+           href="/2020/01/18/lombok-annotation/"
+           data-tag="lombok"
+           data-author="" >
+            <span class="post-title" title="lombok常用注解">lombok常用注解</span>
+            <span class="post-date" title="2020-01-18 13:39:18">2020/01/18</span>
+        </a>
+        
+        <a  class="前端 Bootstrap "
+           href="/2020/01/19/bootstrap/"
+           data-tag="Bootstrap"
+           data-author="" >
+            <span class="post-title" title="Bootstrap相关整理">Bootstrap相关整理</span>
+            <span class="post-date" title="2020-01-19 14:15:31">2020/01/19</span>
+        </a>
+        
+        <a  class="数据库 MySQL "
+           href="/2020/01/19/mysql-konwledge/"
+           data-tag="MySQL"
+           data-author="" >
+            <span class="post-title" title="MySQL相关命令及SQL语句整理">MySQL相关命令及SQL语句整理</span>
+            <span class="post-date" title="2020-01-19 10:43:33">2020/01/19</span>
+        </a>
+        
+        <a  class="前端 javascript "
+           href="/2020/03/05/javascript-menutree/"
+           data-tag="javascript"
+           data-author="" >
+            <span class="post-title" title="实现无限极目录树/下拉框（递归）">实现无限极目录树/下拉框（递归）</span>
+            <span class="post-date" title="2020-03-05 14:14:55">2020/03/05</span>
+        </a>
+        
+        <a  class="SpringBoot "
+           href="/2020/02/16/springboot-solr/"
+           data-tag="SpringBoot,Solr"
+           data-author="" >
+            <span class="post-title" title="springboot 集成 solr">springboot 集成 solr</span>
+            <span class="post-date" title="2020-02-16 14:49:32">2020/02/16</span>
+        </a>
+        
+        <a  class="Java JVM "
+           href="/2020/01/24/jvm-tuning/"
+           data-tag="JVM"
+           data-author="" >
+            <span class="post-title" title="JVM回收与调优">JVM回收与调优</span>
+            <span class="post-date" title="2020-01-24 13:39:18">2020/01/24</span>
+        </a>
+        
+        <a  class="Java SpringBoot "
+           href="/2020/01/16/springboot-error/"
+           data-tag="SpringBoot"
+           data-author="" >
+            <span class="post-title" title="SpringBoot问题记录">SpringBoot问题记录</span>
+            <span class="post-date" title="2020-01-16 12:49:46">2020/01/16</span>
+        </a>
+        
+        <a  class="数据库 "
+           href="/2020/03/05/sql_join/"
+           data-tag="SQL"
+           data-author="" >
+            <span class="post-title" title="SQL中left join,right join,inner join之间的区别">SQL中left join,right join,inner join之间的区别</span>
+            <span class="post-date" title="2020-03-05 16:35:10">2020/03/05</span>
+        </a>
+        
+        <a  class="网址 "
+           href="/2020/02/17/website-life/"
+           data-tag="生活"
+           data-author="" >
+            <span class="post-title" title="收藏网站（生活）">收藏网站（生活）</span>
+            <span class="post-date" title="2020-02-17 13:06:26">2020/02/17</span>
+        </a>
+        
+        <a  class="Java 问答 "
+           href="/2020/01/03/interview/"
+           data-tag="Java"
+           data-author="" >
+            <span class="post-title" title="问答">问答</span>
+            <span class="post-date" title="2020-01-03 08:00:18">2020/01/03</span>
+        </a>
+        
+        <a  class="工具 docker "
+           href="/2020/04/09/docker-redis/"
+           data-tag="redis"
+           data-author="" >
+            <span class="post-title" title="docker安装redis 及相关">docker安装redis 及相关</span>
+            <span class="post-date" title="2020-04-09 16:40:37">2020/04/09</span>
+        </a>
+        
+        <a  class="Java Shiro "
+           href="/2020/02/01/springboot-shiro/"
+           data-tag="Shiro"
+           data-author="" >
+            <span class="post-title" title="Springboot 集成 Shiro">Springboot 集成 Shiro</span>
+            <span class="post-date" title="2020-02-01 12:16:53">2020/02/01</span>
+        </a>
+        
+        <a  class="Java 设计模式 "
+           href="/2020/03/27/design_pattern/"
+           data-tag="设计模式"
+           data-author="" >
+            <span class="post-title" title="设计模式">设计模式</span>
+            <span class="post-date" title="2020-03-27 16:40:06">2020/03/27</span>
+        </a>
+        
+    </nav>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div class="post">
+    <div class="pjax">
+        <article id="post-jvm-tuning" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">JVM回收与调优</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            
+                <a  data-rel="Java">Java</a>/
+            
+                <a  data-rel="JVM">JVM</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a class="color4">JVM</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title='更新时间: 2020-01-25 13:11:27'>2020-01-24 13:39</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字数:12.7k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读:<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+        <span class="top-comment" title="跳转至评论区">
+            <a href="#comments">
+                评论:<span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </a>
+        </span>
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一些统计信息参数"><span class="toc-text">一些统计信息参数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#XX-PrintGCDetails"><span class="toc-text">-XX:+PrintGCDetails</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#XX-PrintTenuringDistribution"><span class="toc-text">-XX:+PrintTenuringDistribution</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#XX-PrintGCTimeStamps"><span class="toc-text">-XX:+PrintGCTimeStamps</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#XX-PrintGCApplicationConcurrentTime"><span class="toc-text">-XX:+PrintGCApplicationConcurrentTime</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#XX-PrintGCApplicationStoppedTime"><span class="toc-text">-XX:+PrintGCApplicationStoppedTime</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#XX-PrintHeapAtGC"><span class="toc-text">-XX:PrintHeapAtGC</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Xloggc-filename"><span class="toc-text">-Xloggc:filename</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java对象的大小"><span class="toc-text">Java对象的大小</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#引用类型"><span class="toc-text">引用类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#示例"><span class="toc-text">示例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JVM内存分配与回收"><span class="toc-text">JVM内存分配与回收</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#对象优先在Eden区分配"><span class="toc-text">对象优先在Eden区分配</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#大对象直接进入老年代"><span class="toc-text">大对象直接进入老年代</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#长期存活的对象将进入老年代"><span class="toc-text">长期存活的对象将进入老年代</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何判断对象可以被回收"><span class="toc-text">如何判断对象可以被回收</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#引用计数法"><span class="toc-text">引用计数法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#可达性分析算法"><span class="toc-text">可达性分析算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#finalize-方法最终判定对象是否存活"><span class="toc-text">finalize()方法最终判定对象是否存活</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#如何判断一个常量是废弃常量"><span class="toc-text">如何判断一个常量是废弃常量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#如何判断一个类是无用的类"><span class="toc-text">如何判断一个类是无用的类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#垃圾收集算法"><span class="toc-text">垃圾收集算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#标记-清除算法"><span class="toc-text">标记-清除算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#复制算法"><span class="toc-text">复制算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#标记-整理算法"><span class="toc-text">标记-整理算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分代收集算法"><span class="toc-text">分代收集算法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#垃圾收集器"><span class="toc-text">垃圾收集器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Serial-串行收集器"><span class="toc-text">Serial 串行收集器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ParNew-收集器"><span class="toc-text">ParNew 收集器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Parallel-Scavenge-并行收集器"><span class="toc-text">Parallel Scavenge 并行收集器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Serial-Old收集器"><span class="toc-text">Serial Old收集器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Parallel-Old收集器"><span class="toc-text">Parallel Old收集器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CMS-并发收集器-XX-UseConcMarkSweepGC-主要是old区使用"><span class="toc-text">CMS 并发收集器(-XX:+UseConcMarkSweepGC(主要是old区使用)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#G1收集器-XX-UseG1GC"><span class="toc-text">G1收集器(-XX:+UseG1GC)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实战调优"><span class="toc-text">实战调优</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#调优步骤"><span class="toc-text">调优步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1、Parallel-Scavenge收集器-默认"><span class="toc-text">1、Parallel Scavenge收集器(默认)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2、配置CMS收集器"><span class="toc-text">2、配置CMS收集器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3、配置G1收集器"><span class="toc-text">3、配置G1收集器</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何选择垃圾收集器"><span class="toc-text">如何选择垃圾收集器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#吞吐量优先的并行收集器"><span class="toc-text">吞吐量优先的并行收集器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#响应时间优先的并发收集器"><span class="toc-text">响应时间优先的并发收集器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#年轻代的设置很关键"><span class="toc-text">年轻代的设置很关键</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#G1调优相关"><span class="toc-text">G1调优相关</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#常用参数"><span class="toc-text">常用参数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#最佳实践"><span class="toc-text">最佳实践</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GC常用参数"><span class="toc-text">GC常用参数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#堆栈设置"><span class="toc-text">堆栈设置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#收集器设置"><span class="toc-text">收集器设置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#并行收集器设置"><span class="toc-text">并行收集器设置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#CMS-并发收集器设置"><span class="toc-text">CMS 并发收集器设置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#G1收集器设置"><span class="toc-text">G1收集器设置</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#调优总结"><span class="toc-text">调优总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#年轻代大小选择"><span class="toc-text">年轻代大小选择</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#年老代大小选择"><span class="toc-text">年老代大小选择</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#吞吐量优先的应用"><span class="toc-text">吞吐量优先的应用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#较小堆引起的碎片问题"><span class="toc-text">较小堆引起的碎片问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JVM调优工具"><span class="toc-text">JVM调优工具</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Jconsole"><span class="toc-text">Jconsole</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JProfiler"><span class="toc-text">JProfiler</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#VisualVM"><span class="toc-text">VisualVM</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何调优"><span class="toc-text">如何调优</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#堆信息查看"><span class="toc-text">堆信息查看</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#线程监控"><span class="toc-text">线程监控</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#热点分析"><span class="toc-text">热点分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#快照"><span class="toc-text">快照</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#内存泄漏检查"><span class="toc-text">内存泄漏检查</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#年老代堆空间被占满"><span class="toc-text">年老代堆空间被占满</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#持久代被占满"><span class="toc-text">持久代被占满</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#堆栈溢出"><span class="toc-text">堆栈溢出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#线程堆栈满"><span class="toc-text">线程堆栈满</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#系统内存被占满"><span class="toc-text">系统内存被占满</span></a></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-4 i,
+    .toc-level-4 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>JVM调优相关整理。<br>部分是我学习过程整理的笔记。<br>部分是从看过一些文章整理的。<br>应该很明显能分辨出来。</p>
+<a id="more"></a>
+
+<p><strong>分代说明</strong></p>
+<ul>
+<li><strong><em>年轻代空间（Young Generation）</em></strong> GC日志中的<code>PSYoungGen</code>（PS是指Parallel Scavenge）为Eden+FromSpace，而整个YoungGeneration为Eden+FromSpace+ToSpace。</li>
+<li><strong><em>老年代空间（Old Generation）</em></strong> <code>ParOldGen</code>表示gc回收前后老年代的内存变化</li>
+<li><strong><em>元空间（Metaspace）</em></strong> 主要用于存储类的信息、常量池、方法数据、方法代码等。元空间的本质和永久代类似，都是对JVM规范中方法区的实现。<br>不过元空间与永久代之间最大的区别在于：元空间并不在虚拟机中，而是使用本地内存。</li>
+</ul>
+<p>JDK1.8以前的HotSpot JVM有方法区，也叫<strong><em>永久代(permanent generation)</em></strong>。<br>JDK1.7开始了方法区的部分移除：符号引用<code>(Symbols)</code>移至<code>native heap</code>，字面量<code>(interned strings)</code>和静态变量<code>(class statics)</code>移至<code>java heap</code>。</p>
+<p><strong>GC说明</strong></p>
+<ul>
+<li><strong><em>新生代GC（Minor GC）</em></strong>:指发生新生代的的垃圾收集动作，Minor GC非常频繁，回收速度一般也比较快。</li>
+<li><strong><em>老年代GC（Major GC/Full GC）</em></strong>:指发生在老年代的GC，出现了Major GC经常会伴随至少一次的Minor GC（并非绝对），Major GC的速度一般会比Minor GC的慢10倍以上。</li>
+</ul>
+<p>从不同的的角度去划分垃圾回收算法</p>
+<p><strong>按照基本回收策略分</strong></p>
+<ul>
+<li>引用计数（Reference Counting）</li>
+<li>标记-清除（Mark-Sweep）</li>
+<li>复制（Copying）</li>
+<li>标记-整理（Mark-Compact）</li>
+</ul>
+<p><strong>按分区对待的方式分</strong></p>
+<ul>
+<li>增量收集（Incremental Collecting）</li>
+<li>分代收集（Generational Collecting）</li>
+</ul>
+<p><strong>按系统线程分</strong></p>
+<ul>
+<li>串行收集（Serial）</li>
+<li>并行收集（Parallel）</li>
+<li>并发收（Concurrent）</li>
+</ul>
+<h2 id="一些统计信息参数"><a href="#一些统计信息参数" class="headerlink" title="一些统计信息参数"></a>一些统计信息参数</h2><p><img src="/img/jvm/2.png" alt="设置参数"></p>
+<h3 id="XX-PrintGCDetails"><a href="#XX-PrintGCDetails" class="headerlink" title="-XX:+PrintGCDetails"></a><strong>-XX:+PrintGCDetails</strong></h3><p>输出详细GC日志模式。<br><img src="/img/jvm/1.png" alt="运行效果"></p>
+<h3 id="XX-PrintTenuringDistribution"><a href="#XX-PrintTenuringDistribution" class="headerlink" title="-XX:+PrintTenuringDistribution"></a><strong>-XX:+PrintTenuringDistribution</strong></h3><p>输出每次minor GC后新的存活周期的阈值。<br><img src="/img/jvm/4.png" alt="运行效果"></p>
+<h3 id="XX-PrintGCTimeStamps"><a href="#XX-PrintGCTimeStamps" class="headerlink" title="-XX:+PrintGCTimeStamps"></a><strong>-XX:+PrintGCTimeStamps</strong></h3><p>输出gc的触发时间<br><img src="/img/jvm/5.png" alt="运行效果"></p>
+<h3 id="XX-PrintGCApplicationConcurrentTime"><a href="#XX-PrintGCApplicationConcurrentTime" class="headerlink" title="-XX:+PrintGCApplicationConcurrentTime"></a><strong>-XX:+PrintGCApplicationConcurrentTime</strong></h3><p>打印每次垃圾回收前，程序未中断的执行时间。<br><img src="/img/jvm/34.png" alt="运行效果"></p>
+<h3 id="XX-PrintGCApplicationStoppedTime"><a href="#XX-PrintGCApplicationStoppedTime" class="headerlink" title="-XX:+PrintGCApplicationStoppedTime"></a><strong>-XX:+PrintGCApplicationStoppedTime</strong></h3><p>打印垃圾回收期间程序暂停的时间。<br><img src="/img/jvm/35.png" alt="运行效果"></p>
+<h3 id="XX-PrintHeapAtGC"><a href="#XX-PrintHeapAtGC" class="headerlink" title="-XX:PrintHeapAtGC"></a><strong>-XX:PrintHeapAtGC</strong></h3><p>打印GC前后的详细堆栈信息。</p>
+<h3 id="Xloggc-filename"><a href="#Xloggc-filename" class="headerlink" title="-Xloggc:filename"></a><strong>-Xloggc:filename</strong></h3><p>将GC日志输出到文件</p>
+<h2 id="Java对象的大小"><a href="#Java对象的大小" class="headerlink" title="Java对象的大小"></a>Java对象的大小</h2><p>基本数据的类型有：<strong><em>byte</em></strong> ,<strong><em>short</em></strong> ,<strong><em>int</em></strong> ,<strong><em>long</em></strong> ,<strong><em>char</em></strong> ,<strong><em>float</em></strong> ,<strong><em>double</em></strong> ,<strong><em>Boolean</em></strong> ,<strong><em>returnAddress</em></strong><br>基本数据的类型的大小是固定的，这里就不多说了。对于非基本类型的Java对象，其大小就值得商榷。</p>
+<h3 id="引用类型"><a href="#引用类型" class="headerlink" title="引用类型"></a><strong>引用类型</strong></h3><p>对象引用类型分为强引用、软引用、弱引用和虚引用。</p>
+<p><strong><em>强引用</em></strong>   ：就是我们一般声明对象是时虚拟机生成的引用，强引用环境下，垃圾回收时需要严格判断当前对象是否被强引用，如果被强引用，则不会被垃圾回收。<br><strong><em>软引用</em></strong>   ：软引用一般被做为缓存来使用。与强引用的区别是，软引用在垃圾回收时，虚拟机会根据当前系统的剩余内存来决定是否对软引用进行回收。<br>如果剩余内存比较紧张，则虚拟机会回收软引用所引用的空间；如果剩余内存相对富裕，则不会进行回收。换句话说，虚拟机在发生OutOfMemory时，肯定是没有软引用存在的。<br><strong><em>弱引用</em></strong>   ：弱引用与软引用类似，都是作为缓存来使用。但与软引用不同，弱引用在进行垃圾回收时，是一定会被回收掉的，因此其生命周期只存在于一个垃圾回收周期内。<br>强引用不用说，我们系统一般在使用时都是用的强引用。而“软引用”和“弱引用”比较少见。他们一般被作为缓存使用，而且一般是在内存大小比较受限的情况下做为缓存。<br>因为如果内存足够大的话，可以直接使用强引用作为缓存即可，同时可控性更高。因而，他们常见的是被使用在桌面应用系统的缓存。</p>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a><strong>示例</strong></h3><p>在<strong>Java</strong>中，一个空<code>Object</code>对象的大小是<code>8byte</code>，这个大小只是保存堆中一个没有任何属性的对象的大小。<br>看下面语句：<br><img src="/img/jvm/33.png" alt=""><br>这样在程序中完成了一个<strong>Java</strong>对象的生命，但是它所占的空间为：<code>4byte</code>+<code>8byte</code>。</p>
+<ul>
+<li><code>4byte</code>是上面部分所说的Java栈中保存引用的所需要的空间。</li>
+<li><code>8byte</code>则是<strong>Java</strong>堆中对象的信息。</li>
+</ul>
+<p>因为所有的<strong>Java</strong>非基本类型的对象都需要默认继承<code>Object</code>对象，<br>因此不论什么样的<strong>Java</strong>对象，其大小都必须是大于<code>8byte</code>。<br>有了<code>Object对象</code>的大小，我们就可以计算其他对象的大小了。<br><img src="/img/jvm/32.png" alt=""></p>
+<p><strong><em>其大小为</em></strong>：<strong><em>空对象</em></strong> 大小(<code>8byte</code>)+<strong><em>int</em></strong> 大小(<code>4byte</code>)+<strong><em>Boolean</em></strong> 大小(<code>1byte</code>)+<strong><em>空Object</em></strong> 引用的大小(<code>4byte</code>)=<code>17byte</code>。<br>但是因为<strong>Java</strong>在对对象内存分配时都是以8的整数倍来分，因此大于<code>17byte</code>的最接近8的整数倍的是24，因此此对象的大小为<code>24byte</code>。</p>
+<p>这里需要注意一下基本类型的包装类型的大小。因为这种包装类型已经成为对象了，因此需要把他们作为对象来看待。<br>包装类型的大小至少是<code>12byte</code>（声明一个<strong><em>空Object</em></strong> 至少需要的空间），而且<code>12byte</code>没有包含任何有效信息，<br>同时，因为<strong>Java</strong>对象大小是8的整数倍，因此一个基本类型包装类的大小至少是<code>16byte</code>。<br>这个内存占用是很恐怖的，它是使用基本类型的N倍（N&gt;2），有些类型的内存占用更是夸张。<br>因此，可能的话应尽量少使用包装类。在JDK5.0以后，因为加入了自动类型装换，因此，<strong>Java</strong>虚拟机会在存储方面进行相应的优化。</p>
+<h2 id="JVM内存分配与回收"><a href="#JVM内存分配与回收" class="headerlink" title="JVM内存分配与回收"></a>JVM内存分配与回收</h2><h3 id="对象优先在Eden区分配"><a href="#对象优先在Eden区分配" class="headerlink" title="对象优先在Eden区分配"></a><strong>对象优先在Eden区分配</strong></h3><p>大多数情况下，对象在新生代中 Eden 区分配。当 Eden 区没有足够空间进行分配时，虚拟机将发起一次Minor GC。<br><strong><em>对象在新生代中 Eden 区分配</em></strong>示例：<br><img src="/img/jvm/6.png" alt="运行效果"></p>
+<p>当Eden区没有足够空间进行分配时，虚拟机将发起一次Minor GC.GC期间虚拟机又发现新的对象无法存入Survior空间<br>所以只好通过<strong><em>分配担保机制</em></strong>把新生代的对象提前转移到老年代中去，老年代上的空间足够存放新的对象，所以不会出现Full GC。<br>执行Minor GC后，后面分配的对象如果能够存在eden区的话，还是会在eden区分配内存。<br><img src="/img/jvm/7.png" alt="示例"></p>
+<h3 id="大对象直接进入老年代"><a href="#大对象直接进入老年代" class="headerlink" title="大对象直接进入老年代"></a><strong>大对象直接进入老年代</strong></h3><p>大对象就是需要大量连续内存空间的对象（比如：字符串、数组）。<br>为了避免为大对象分配内存时由于分配担保机制带来的复制而降低效率。</p>
+<h3 id="长期存活的对象将进入老年代"><a href="#长期存活的对象将进入老年代" class="headerlink" title="长期存活的对象将进入老年代"></a><strong>长期存活的对象将进入老年代</strong></h3><p>既然虚拟机采用了分代收集的思想来管理内存，那么内存回收时就必须能识别那些对象应放在新生代，那些对象应放在老年代中。为了做到这一点，<br>虚拟机给每个对象一个<code>对象年龄（Age）</code>计数器。<br>如果对象在 Eden 出生并经过第一次 <code>Minor GC</code> 后仍然能够存活，并且能被 <code>Survivor</code> 容纳的话，将被移动到 <code>Survivor</code> 空间中，并将对象年龄设为1.对象在 <code>Survivor</code> 中每熬过一次 MinorGC,年龄就增加1岁，当它的年龄增加到一定程度（默认为15岁），就会被晋升到老年代中。<br>对象晋升到老年代的年龄阈值，可以通过参数 <code>-XX:MaxTenuringThreshold</code> 来设置。</p>
+<h2 id="如何判断对象可以被回收"><a href="#如何判断对象可以被回收" class="headerlink" title="如何判断对象可以被回收"></a>如何判断对象可以被回收</h2><p>堆中几乎放着所有的对象实例，对堆垃圾回收前的第一步就是要判断那些对象已经死亡（即不能再被任何途径使用的对象）。</p>
+<h3 id="引用计数法"><a href="#引用计数法" class="headerlink" title="引用计数法"></a><strong>引用计数法</strong></h3><blockquote>
+<p>给对象中添加一个引用计数器，每当有一个地方引用它，计数器就加1；当引用失效，计数器就减1；任何时候计数器为0的对象就是不可能再被使用的。</p>
+</blockquote>
+<p>这个方法实现简单，效率高，但是目前主流的虚拟机中并没有选择这个算法来管理内存，其最主要的原因是它很难解决对象之间相互循环引用的问题。<br><img src="/img/jvm/8.png" alt="示例"></p>
+<h3 id="可达性分析算法"><a href="#可达性分析算法" class="headerlink" title="可达性分析算法"></a><strong>可达性分析算法</strong></h3><p>这个算法的基本思想就是通过一系列的称为 <strong><em>GC Roots</em></strong> 的对象作为起点，从这些节点开始向下搜索，节点所走过的路径称为引用链，当一个对象到<strong><em>GC Roots</em></strong>没有任何引用链相连的话，则证明此对象是不可用的。<br><strong><em>GC Roots</em></strong>根节点：类加载器、Thread、虚拟机栈的本地变量表、static成员、常量引用、本地方法栈的变量等等。<br><img src="/img/jvm/9.png" alt="示例"></p>
+<h3 id="finalize-方法最终判定对象是否存活"><a href="#finalize-方法最终判定对象是否存活" class="headerlink" title="finalize()方法最终判定对象是否存活"></a><strong>finalize()方法最终判定对象是否存活</strong></h3><p>即使在可达性分析算法中不可达的对象，也并非是“非死不可”的，这时候它们暂时处于“缓刑”阶段，要真正宣告一个对象死亡，至少要经历再次标记过程。<br>标记的前提是对象在进行可达性分析后发现没有与GC Roots相连接的引用链。</p>
+<p><strong><em>1. 第一次标记并进行一次筛选</em></strong></p>
+<ul>
+<li>筛选的条件是此对象是否有必要执行finalize()方法。</li>
+<li>当对象没有覆盖finalize方法，或者finzlize方法已经被虚拟机调用过，虚拟机将这两种情况都视为“没有必要执行”，对象被回收。</li>
+</ul>
+<p><strong><em>2. 第二次标记</em></strong></p>
+<ul>
+<li>如果这个对象被判定为有必要执行finalize（）方法，那么这个对象将会被放置在一个名为：F-Queue的队列之中，并在稍后由一条虚拟机自动建立的、低优先级的Finalizer线程去执行。</li>
+<li>这里所谓的“执行”是指虚拟机会触发这个方法，但并不承诺会等待它运行结束。</li>
+</ul>
+<p><strong><em>这样做的原因</em></strong>:</p>
+<ul>
+<li>如果一个对象finalize（）方法中执行缓慢，或者发生死循环（更极端的情况），将很可能会导致F-Queue队列中的其他对象永久处于等待状态，甚至导致整个内存回收系统崩溃。</li>
+<li><code>finalize（）</code>方法是对象脱逃死亡命运的最后一次机会，稍后<code>GC</code>将对<code>F-Queue</code>中的对象进行第二次小规模标记</li>
+<li>对象要在<code>finalize（）</code>中成功拯救自己只要重新与引用链上的任何的一个对象建立关联即可</li>
+</ul>
+<p>譬如:</p>
+<ul>
+<li>把自己赋值给某个类变量或对象的成员变量，那在第二次标记时它将移除出“即将回收”的集合。</li>
+<li>如果对象这时候还没逃脱，那基本上它就真的被回收了。</li>
+</ul>
+<h3 id="如何判断一个常量是废弃常量"><a href="#如何判断一个常量是废弃常量" class="headerlink" title="如何判断一个常量是废弃常量"></a><strong>如何判断一个常量是废弃常量</strong></h3><blockquote>
+<p>运行时常量池主要回收的是废弃的常量。那么，我们如何判断一个常量是废弃常量呢？</p>
+</blockquote>
+<p>假如在常量池中存在字符串 “abc”，如果当前没有任何String对象引用该字符串常量的话，就说明常量 “abc” 就是废弃常量，如果这时发生内存回收的话而且有必要的话，”abc” 就会被系统清理出常量池。</p>
+<h3 id="如何判断一个类是无用的类"><a href="#如何判断一个类是无用的类" class="headerlink" title="如何判断一个类是无用的类"></a><strong>如何判断一个类是无用的类</strong></h3><blockquote>
+<p>方法区主要回收的是无用的类，那么如何判断一个类是无用的类的呢？</p>
+</blockquote>
+<p>判定一个常量是否是“废弃常量”比较简单，而要判定一个类是否是“无用的类”的条件则相对苛刻许多。<br>类需要同时满足下面3个条件才能算是 “无用的类” ：</p>
+<ul>
+<li>该类所有的实例都已经被回收，也就是 Java 堆中不存在该类的任何实例。</li>
+<li>加载该类的 ClassLoader 已经被回收。</li>
+<li>该类对应的 java.lang.Class 对象没有在任何地方被引用，无法在任何地方通过反射访问该类的方法。</li>
+</ul>
+<p>虚拟机可以对满足上述3个条件的无用类进行回收，这里说的仅仅是“可以”，而并不是和对象一样不使用了就会必然被回收。</p>
+<h2 id="垃圾收集算法"><a href="#垃圾收集算法" class="headerlink" title="垃圾收集算法"></a>垃圾收集算法</h2><h3 id="标记-清除算法"><a href="#标记-清除算法" class="headerlink" title="标记-清除算法"></a><strong>标记-清除算法</strong></h3><p>算法分为“标记”和“清除”阶段：首先标记出所有需要回收的对象，在标记完成后统一回收所有被标记的对象。它是最基础的收集算法，效率也很高，但是会带来两个明显的问题：</p>
+<ul>
+<li>效率问题</li>
+<li>空间问题（标记清除后会产生大量不连续的碎片）</li>
+</ul>
+<p><img src="/img/jvm/10.png" alt=""></p>
+<h3 id="复制算法"><a href="#复制算法" class="headerlink" title="复制算法"></a><strong>复制算法</strong></h3><p>为了解决效率问题，“复制”收集算法出现了。它可以将内存分为大小相同的两块，每次使用其中的一块。当这一块的内存使用完后，就将还存活的对象复制到另一块去，然后再把使用的空间一次清理掉。这样就使每次的内存回收都是对内存区间的一半进行回收。<br><img src="/img/jvm/11.png" alt=""></p>
+<h3 id="标记-整理算法"><a href="#标记-整理算法" class="headerlink" title="标记-整理算法"></a><strong>标记-整理算法</strong></h3><p>根据老年代的特点特出的一种标记算法，标记过程仍然与“标记-清除”算法一样，但后续步骤不是直接对可回收对象回收，而是让所有存活的对象向一段移动，然后直接清理掉端边界以外的内存。<br><img src="/img/jvm/12.png" alt=""></p>
+<h3 id="分代收集算法"><a href="#分代收集算法" class="headerlink" title="分代收集算法"></a><strong>分代收集算法</strong></h3><p>当前虚拟机的垃圾收集都采用分代收集算法，这种算法没有什么新的思想，只是根据对象存活周期的不同将内存分为几块。<br>一般将java堆分为新生代和老年代，这样我们就可以根据各个年代的特点选择合适的垃圾收集算法。<br>比如在新生代中，每次收集都会有大量对象死去，所以可以选择复制算法，只需要付出少量对象的复制成本就可以完成每次垃圾收集。<br>而老年代的对象存活几率是比较高的，而且没有额外的空间对它进行分配担保，所以我们必须选择“标记-清除”或“标记-整理”算法进行垃圾收集。</p>
+<h2 id="垃圾收集器"><a href="#垃圾收集器" class="headerlink" title="垃圾收集器"></a>垃圾收集器</h2><p>如果说收集算法是内存回收的方法论，那么垃圾收集器就是内存回收的具体实现。<br>虽然我们对各个收集器进行比较，但并非为了挑选出一个最好的收集器。<br>因为直到现在为止还没有最好的垃圾收集器出现，更加没有万能的垃圾收集器，我们能做的就是根据具体应用场景选择适合自己的垃圾收集器。<br>试想一下：如果有一种四海之内、任何场景下都适用的完美收集器存在，那么我们的HotSpot虚拟机就不会实现那么多不同的垃圾收集器了。</p>
+<h3 id="Serial-串行收集器"><a href="#Serial-串行收集器" class="headerlink" title="Serial 串行收集器"></a><strong>Serial 串行收集器</strong></h3><p>Serial（串行）收集器收集器是最基本、历史最悠久的垃圾收集器了。<br>大家看名字就知道这个收集器是一个单线程收集器了。<br>它的 “单线程” 的意义不仅仅意味着它只会使用一条垃圾收集线程去完成垃圾收集工作，更重要的是它在进行垃圾收集工作的时候必须暂停其他所有的工作线程（ “Stop The World” ），直到它收集结束。<br>新生代采用复制算法，老年代采用标记-整理算法。<br><img src="/img/jvm/21.png" alt=""><br><img src="/img/jvm/22.png" alt=""><br>用单线程处理所有垃圾回收工作，因为无需多线程交互，所以效率比较高。但是，也无法使用多处理器的优势，所以此收集器适合单处理器机器。<br>当然，此收集器也可以用在小数据量（100M左右）情况下的多处理器机器上。<br>可以使用-XX:+UseSerialGC打开。</p>
+<p><img src="/img/jvm/13.png" alt=""><br>它简单而高效（与其他收集器的单线程相比）。Serial收集器由于没有线程交互的开销，自然可以获得很高的单线程收集效率。</p>
+<p>此收集器可以进行如下配置：</p>
+<ul>
+<li>最大垃圾回收暂停:指定垃圾回收时的最长暂停时间-XX:MaxGCPauseMillis=<N><N>指定。<N><N>为毫秒.如果指定了此值的话，堆大小和垃圾回收相关参数会进行调整以达到指定值。设定此值可能会减少应用的吞吐量。</li>
+<li>吞吐量:吞吐量为垃圾回收时间与非垃圾回收时间的比值，通过-XX:GCTimeRatio=<N><N>来设定，公&gt;式为1/（1+N）。<br>例如，-XX:GCTimeRatio=19时，表示5%的时间用于垃圾回收。默认情况为99，即&gt;1%的时间用于垃圾回收。</li>
+</ul>
+<h3 id="ParNew-收集器"><a href="#ParNew-收集器" class="headerlink" title="ParNew 收集器"></a><strong>ParNew 收集器</strong></h3><p>ParNew收集器其实就是Serial收集器的多线程版本，除了使用多线程进行垃圾收集外，其余行为（控制参数、收集算法、回收策略等等）和Serial收集器完全一样。<br>新生代采用复制算法，老年代采用标记-整理算法。<br><img src="/img/jvm/15.png" alt=""><br>它是许多运行在Server模式下的虚拟机的首要选择，除了Serial收集器外，只有它能与CMS收集器（真正意义上的并发收集器，后面会介绍到）配合工作。</p>
+<h3 id="Parallel-Scavenge-并行收集器"><a href="#Parallel-Scavenge-并行收集器" class="headerlink" title="Parallel Scavenge 并行收集器"></a><strong>Parallel Scavenge 并行收集器</strong></h3><p>指多条垃圾收集线程并行工作，但此时用户线程仍然处于等待状态。适合科学计算、后台处理等弱交互场景。</p>
+<p>Parallel Scavenge 收集器类似于ParNew 收集器，是Server 模式（内存大于2G，2个cpu）下的默认收集器，那么它有什么特别之处呢？<br>Parallel Scavenge收集器关注点是吞吐量（高效率的利用CPU）。CMS等垃圾收集器的关注点更多的是用户线程的停顿时间（提高用户体验）。<br>所谓吞吐量就是CPU中用于运行用户代码的时间与CPU总消耗时间的比值。 Parallel Scavenge收集器提供了很多参数供用户找到最合适的停顿时间或最大吞吐量，如果对于收集器运作不太了解的话，可以选择把内存管理优化交给虚拟机去完成也是一个不错的选择。<br>新生代采用复制算法，老年代采用标记-整理算法。<br><img src="/img/jvm/14.png" alt=""></p>
+<h3 id="Serial-Old收集器"><a href="#Serial-Old收集器" class="headerlink" title="Serial Old收集器"></a><strong>Serial Old收集器</strong></h3><p>Serial收集器的老年代版本，它同样是一个单线程收集器。它主要有两大用途：一种用途是在JDK1.5以及以前的版本中与Parallel Scavenge收集器搭配使用，另一种用途是作为CMS收集器的后备方案。</p>
+<h3 id="Parallel-Old收集器"><a href="#Parallel-Old收集器" class="headerlink" title="Parallel Old收集器"></a><strong>Parallel Old收集器</strong></h3><p>Parallel Scavenge收集器的老年代版本。使用多线程和“标记-整理”算法。在注重吞吐量以及CPU资源的场合，都可以优先考虑 Parallel Scavenge收集器和Parallel Old收集器。</p>
+<h3 id="CMS-并发收集器-XX-UseConcMarkSweepGC-主要是old区使用"><a href="#CMS-并发收集器-XX-UseConcMarkSweepGC-主要是old区使用" class="headerlink" title="CMS 并发收集器(-XX:+UseConcMarkSweepGC(主要是old区使用)"></a><strong>CMS 并发收集器(-XX:+UseConcMarkSweepGC(主要是old区使用)</strong></h3><p><img src="/img/jvm/23.png" alt=""><br>CMS（Concurrent Mark Sweep）收集器是一种以获取最短回收停顿时间为目标的收集器。<br>指用户线程与垃圾收集线程同时执行（但不一定是并行，可能会交替执行），用户程序在继续运行，而垃圾收集器运行在另一个CPU上。适合Web应用。<br>它而非常符合在注重用户体验的应用上使用，它是HotSpot虚拟机第一款真正意义上的并发收集器，它第一次实现了让垃圾收集线程与用户线程（基本上）同时工作。<br>可以保证大部分工作都并发进行（应用不停止），垃圾回收只暂停很少的时间，此收集器适合对响应时间要求比较高的中、大规模应用。<br>使用-XX:+UseConcMarkSweepGC打开。</p>
+<p>从名字中的Mark Sweep这两个词可以看出，CMS收集器是一种 “标记-清除”算法实现的，它的运作过程相比于前面几种垃圾收集器来说更加复杂一些。</p>
+<p>整个过程分为四个步骤：</p>
+<ul>
+<li>初始标记： 暂停所有的其他线程(STW)，并记录下直接与root相连的对象，速度很快 ；</li>
+<li>并发标记： 同时开启GC和用户线程，用一个闭包结构去记录可达对象。但在这个阶段结束，这个闭包结构并不能保证包含当前所有的可达对象。<br>因为用户线程可能会不断的更新引用域，所以GC线程无法保证-可达性分析的实时性。所以这个算法里会跟踪记录这些发生引用更新的地方。</li>
+<li>重新标记： 重新标记阶段就是为了修正并发标记期间因为用户程序继续运行而导致标记产生变动的那一部分对象的标记记录，这个阶段的停顿时间一般会比初始标记阶段的时间稍长，远远比并发标记阶段时间短</li>
+<li>并发清除： 开启用户线程，同时GC线程开始对未标记的区域做清扫。<br><img src="/img/jvm/16.png" alt=""><br>从它的名字就可以看出它是一款优秀的垃圾收集器，主要优点：并发收集、低停顿。但是它有下面三个明显的缺点：<br>对CPU资源敏感（会和服务抢资源）；<br>无法处理浮动垃圾(在java业务程序线程与垃圾收集线程并发执行过程中又产生的垃圾，这种浮动垃圾只能等到下一次gc再清理了)；<br>它使用的回收算法-“标记-清除”算法会导致收集结束时会有大量空间碎片产生。</li>
+</ul>
+<h3 id="G1收集器-XX-UseG1GC"><a href="#G1收集器-XX-UseG1GC" class="headerlink" title="G1收集器(-XX:+UseG1GC)"></a><strong>G1收集器(-XX:+UseG1GC)</strong></h3><p>G1 (Garbage-First)是一款面向服务器的垃圾收集器,主要针对配备多颗处理器及大容量内存的机器. 以极高概率满足GC停顿时间要求的同时,还具备高吞吐量性能特征.<br><img src="/img/jvm/17.png" alt=""><br><img src="/img/jvm/18.png" alt=""><br>G1将Java堆划分为多个大小相等的独立区域（Region），虽保留新生代和老年代的概念，但不再是物理隔阂了，它们都是（可以不连续）Region的集合。<br>分配大对象（直接进Humongous区，专门存放短期巨型对象，不用直接进老年代，避免Full GC的大量开销）不会因为无法找到连续空间而提前触发下一次GC。<br>被视为JDK1.7中HotSpot虚拟机的一个重要进化特征。</p>
+<p>它具备以下特点：<br><strong><em>并行与并发</em></strong>：G1能充分利用CPU、多核环境下的硬件优势，使用多个CPU（CPU或者CPU核心）来缩短Stop-The-World停顿时间。部分其他收集器原本需要停顿Java线程来执行GC动作，G1收集器仍然可以通过并发的方式让java程序继续执行。<br><strong><em>分代收集</em></strong>：虽然G1可以不需要其他收集器配合就能独立管理整个GC堆，但是还是保留了分代的概念。<br><strong><em>空间整合</em></strong>：与CMS的“标记–清理”算法不同，G1从整体来看是基于“标记整理”算法实现的收集器；从局部上来看是基于“复制”算法实现的。<br><strong><em>可预测的停顿</em></strong>：这是G1相对于CMS的另一个大优势，降低停顿时间是G1 和 CMS 共同的关注点，但G1 除了追求低停顿外，还能建立可预测的停顿时间模型，能让使用者明确指定在一个长度为M毫秒的时间片段内完成垃圾收集。</p>
+<p>G1收集器的运作大致分为以下几个步骤：</p>
+<ul>
+<li>初始标记（initial mark，STW）：在此阶段，G1 GC 对根进行标记。该阶段与常规的 (STW) 年轻代垃圾回收密切相关。</li>
+<li>并发标记（Concurrent Marking）：G1 GC 在整个堆中查找可访问的（存活的）对象。</li>
+<li>最终标记（Remark，STW）：该阶段是 STW 回收，帮助完成标记周期。</li>
+<li>筛选回收（Cleanup，STW）：筛选回收阶段首先对各个Region的回收价值和成本进行排序，根据用户所期望的GC停顿时间来制定回收计划，这个阶段其实也可以做到与用户程序一起并发执行，但是因为只回收一部分Region，时间是用户可控制的，而且停顿用户线程将大幅提高收集效率。<br><img src="/img/jvm/19.png" alt=""><br>G1收集器在后台维护了一个优先列表，每次根据允许的收集时间，优先选择回收价值最大的Region(这也就是它的名字Garbage-First的由来)。这种使用Region划分内存空间以及有优先级的区域回收方式，保证了GF收集器在有限时间内可以尽可能高的收集效率。</li>
+</ul>
+<p>G1垃圾收集分类<br>YoungGC<br>新对象进入Eden区<br>存活对象拷贝到Survivor区<br>存活时间达到年龄阈值时，对象晋升到Old区<br>MixedGC<br>不是FullGC，回收所有的Young和部分Old(根据期望的GC停顿时间确定old区垃圾收集的优先顺序)<br>global concurrent marking （全局并发标记）<br>Initial marking phase:标记GC Root，STW<br>Root region scanning phase：标记存活Region<br>Concurrent marking phase：标记存活的对象<br>Remark phase :重新标记,STW<br>Cleanup phase:部分STW</p>
+<p>相关参数<br>G1MixedGCLiveThresholdPercent Old区的region被回收的时候的存活对象占比<br>G1MixedGCCountTarget：一次global concurrent marking之后，最多执行Mixed GC的次数<br>G1OldCSetRegionThresholdPercent  一次Mixed GC中能被选入CSet的最多old区的region数量</p>
+<p>触发的时机<br>InitiatingHeapOccupancyPercent:堆占有率达到这个值则触发global concurrent marking，默认45%<br>G1HeapWastePercent:在global concurrent marking结束之后，可以知道区有多少空间要被回收，在每次YGC之后和再次发生Mixed GC之前，会检查垃圾占比是否达到了此参数，只有达到了，下次才会发生Mixed GC</p>
+<p>从设计目标看G1完全是为了大型应用而准备的。<br>支持很大的堆<br>高吞吐量<br>  –支持多CPU和垃圾回收线程<br>  –在主线程暂停的情况下，使用并行收集<br>  –在主线程运行的情况下，使用并发收集<br>实时目标：可配置在N毫秒内最多只占用M毫秒的时间进行垃圾回收</p>
+<p>算法详解<br><img src="/img/jvm/24.png" alt=""></p>
+<p>回收步骤：<br><strong><em>初始标记（Initial Marking）</em></strong></p>
+<p>G1对于每个region都保存了两个标识用的bitmap，一个为previous marking bitmap，一个为next marking bitmap，bitmap中包含了一个bit的地址信息来指向对象的起始点。<br>开始Initial Marking之前，首先并发的清空next marking bitmap，然后停止所有应用线程，并扫描标识出每个region中root可直接访问到的对象，将region中top的值放入next top at mark start（TAMS）中，之后恢复所有应用线程。</p>
+<p>触发这个步骤执行的条件为：<br>G1定义了一个JVM Heap大小的百分比的阀值，称为h，另外还有一个H，H的值为(1-h)<em>Heap Size，目前这个h的值是固定的，后续G1也许会将其改为动态的，根据jvm的运行情况来动态的调整，在分代方式下，G1还定义了一个u以及soft limit，soft limit的值为H-u</em>Heap Size，当Heap中使用的内存超过了soft limit值时，就会在一次clean up执行完毕后在应用允许的GC暂停时间范围内尽快的执行此步骤；</p>
+<p>在pure方式下，G1将marking与clean up组成一个环，以便clean up能充分的使用marking的信息，当clean up开始回收时，首先回收能够带来最多内存空间的regions，当经过多次的clean up，回收到没多少空间的regions时，G1重新初始化一个新的marking与clean up构成的环。</p>
+<p><strong><em>并发标记（Concurrent Marking）</em></strong></p>
+<p>按照之前Initial Marking扫描到的对象进行遍历，以识别这些对象的下层对象的活跃状态，对于在此期间应用线程并发修改的对象的以来关系则记录到remembered set logs中，新创建的对象则放入比top值更高的地址区间中，这些新创建的对象默认状态即为活跃的，同时修改top值。</p>
+<p><strong><em>最终标记暂停（Final Marking Pause）</em></strong></p>
+<p>当应用线程的remembered set logs未满时，是不会放入filled RS buffers中的，在这样的情况下，这些remebered set logs中记录的card的修改就会被更新了，因此需要这一步，这一步要做的就是把应用线程中存在的remembered set logs的内容进行处理，并相应的修改remembered sets，这一步需要暂停应用，并行的运行。</p>
+<p><strong><em>存活对象计算及清除（Live Data Counting and Cleanup）</em></strong></p>
+<p>值得注意的是，在G1中，并不是说Final Marking Pause执行完了，就肯定执行Cleanup这步的，由于这步需要暂停应用，G1为了能够达到准实时的要求，需要根据用户指定的最大的GC造成的暂停时间来合理的规划什么时候执行Cleanup，另外还有几种情况也是会触发这个步骤的执行的：</p>
+<p>G1采用的是复制方法来进行收集，必须保证每次的”to space”的空间都是够的，因此G1采取的策略是当已经使用的内存空间达到了H时，就执行Cleanup这个步骤；</p>
+<p>对于full-young和partially-young的分代模式的G1而言，则还有情况会触发Cleanup的执行，full-young模式下，G1根据应用可接受的暂停时间、回收young regions需要消耗的时间来估算出一个yound regions的数量值，当JVM中分配对象的young regions的数量达到此值时，Cleanup就会执行；partially-young模式下，则会尽量频繁的在应用可接受的暂停时间范围内执行Cleanup，并最大限度的去执行non-young regions的Cleanup。</p>
+<h2 id="实战调优"><a href="#实战调优" class="headerlink" title="实战调优"></a><strong>实战调优</strong></h2><p>JVM调优主要就是调整下面两个指标<br><strong><em>停顿时间</em></strong>:  垃圾收集器做垃圾回收中断应用执行的时间。-XX:MaxGCPauseMillis<br><strong><em>吞吐量</em></strong>：花在垃圾收集的时间和花在应用时间的占比 -XX:GCTimeRatio=<n>,垃圾收集时间占比：1/(1+n)</p>
+<h3 id="调优步骤"><a href="#调优步骤" class="headerlink" title="调优步骤"></a><strong>调优步骤</strong></h3><p>打印GC日志<br>-XX:+PrintGCDetails  -XX:+PrintGCTimeStamps  -XX:+PrintGCDateStamps  -Xloggc:./gc.log<br>分析日志得到关键性指标<br>分析GC原因，调优JVM参数</p>
+<h4 id="1、Parallel-Scavenge收集器-默认"><a href="#1、Parallel-Scavenge收集器-默认" class="headerlink" title="1、Parallel Scavenge收集器(默认)"></a><strong>1、Parallel Scavenge收集器(默认)</strong></h4><p>分析parallel-gc.log<br><strong><em>第一次调优</em></strong>设置Metaspace大小：增大元空间大小-XX:MetaspaceSize=64M  -XX:MaxMetaspaceSize=64M<br><strong><em>第二次调优</em></strong>添加吞吐量和停顿时间参数：-XX:MaxGCPauseMillis=100   -XX:GCTimeRatio=99<br><strong><em>第三次调优</em></strong>修改动态扩容增量：-XX:YoungGenerationSizeIncrement=30</p>
+<h4 id="2、配置CMS收集器"><a href="#2、配置CMS收集器" class="headerlink" title="2、配置CMS收集器"></a><strong>2、配置CMS收集器</strong></h4><p> -XX:+UseConcMarkSweepGC<br>分析cms-gc.log</p>
+<h4 id="3、配置G1收集器"><a href="#3、配置G1收集器" class="headerlink" title="3、配置G1收集器"></a><strong>3、配置G1收集器</strong></h4><p>-XX:+UseG1GC<br>分析g1-gc.log </p>
+<p><strong><em>查看发生MixedGC的阈值</em></strong>：jinfo -flag InitiatingHeapOccupancyPercent 进程id<br><strong><em>分析工具</em></strong>：gceasy，GCViewer </p>
+<h2 id="如何选择垃圾收集器"><a href="#如何选择垃圾收集器" class="headerlink" title="如何选择垃圾收集器"></a><strong>如何选择垃圾收集器</strong></h2><p>优先调整堆的大小让服务器自己来选择</p>
+<ul>
+<li>如果内存小于100M，使用串行收集器</li>
+<li>如果是单核，并且没有停顿时间的要求，串行或JVM自己选择</li>
+<li>如果允许停顿时间超过1秒，选择并行或者JVM自己选</li>
+<li>如果响应时间最重要，并且不能超过1秒，使用并发收集器</li>
+</ul>
+<p>下图有连线的可以搭配使用，官方推荐使用G1，因为性能高<br><img src="/img/jvm/20.png" alt=""></p>
+<p>串行处理器：</p>
+<ul>
+<li><strong><em>适用情况</em></strong>：数据量比较小（100M左右）；单处理器下并且对响应时间无要求的应用。</li>
+<li><strong><em>缺点</em></strong>：只能用于小型应用</li>
+</ul>
+<p>并行处理器：</p>
+<ul>
+<li><strong><em>适用情况</em></strong>：“对吞吐量有高要求”，多CPU、对应用响应时间无要求的中、大型应用。举例：后台处理、科学计算。</li>
+<li><strong><em>缺点</em></strong>：垃圾收集过程中应用响应时间可能加长</li>
+</ul>
+<p>并发处理器：</p>
+<ul>
+<li><strong><em>适用情况</em></strong>：“对响应时间有高要求”，多CPU、对应用响应时间有较高要求的中、大型应用。</li>
+<li><strong><em>举例</em></strong>：Web服务器/应用服务器、电信交换、集成开发环境。</li>
+</ul>
+<h3 id="吞吐量优先的并行收集器"><a href="#吞吐量优先的并行收集器" class="headerlink" title="吞吐量优先的并行收集器"></a>吞吐量优先的并行收集器</h3><p>如上文所述，并行收集器主要以到达一定的吞吐量为目标，适用于科学技术和后台处理等。<br>典型设置：<br>java -Xmx3800m -Xms3800m -Xmn2g -Xss128k -XX:+UseParallelGC -XX:ParallelGCThreads=20</p>
+<ul>
+<li>-XX:+UseParallelGC：选择垃圾收集器为并行收集器。此配置仅对年轻代有效。即上述配置下，年轻代使用并发收集，而年老代仍旧使用串行收集。</li>
+<li>-XX:ParallelGCThreads=20：配置并行收集器的线程数，即：同时多少个线程一起进行垃圾回收。此值最好配置与处理器数目相等。<br>java -Xmx3550m -Xms3550m -Xmn2g -Xss128k -XX:+UseParallelGC -XX:ParallelGCThreads=20 -XX:+UseParallelOldGC</li>
+<li>-XX:+UseParallelOldGC：配置年老代垃圾收集方式为并行收集。JDK6.0支持对年老代并行收集。<br>java -Xmx3550m -Xms3550m -Xmn2g -Xss128k -XX:+UseParallelGC  -XX:MaxGCPauseMillis=100</li>
+<li>-XX:MaxGCPauseMillis=100:设置每次年轻代垃圾回收的最长时间，如果无法满足此时间，JVM会自动调整年轻代大小，以满足此值。<br>n java -Xmx3550m -Xms3550m -Xmn2g -Xss128k -XX:+UseParallelGC  -XX:MaxGCPauseMillis=100 -XX:+UseAdaptiveSizePolicy</li>
+<li>-XX:+UseAdaptiveSizePolicy：设置此选项后，并行收集器会自动选择年轻代区大小和相应的Survivor区比例，以达到目标系统规定的最低相应时间或者收集频率等，此值建议使用并行收集器时，一直打开。</li>
+</ul>
+<h3 id="响应时间优先的并发收集器"><a href="#响应时间优先的并发收集器" class="headerlink" title="响应时间优先的并发收集器"></a>响应时间优先的并发收集器</h3><p>如上文所述，并发收集器主要是保证系统的响应时间，减少垃圾收集时的停顿时间。适用于应用服务器、电信领域等。<br>典型设置：</p>
+<ul>
+<li>java -Xmx3550m -Xms3550m -Xmn2g -Xss128k -XX:ParallelGCThreads=20 -XX:+UseConcMarkSweepGC -XX:+UseParNewGC</li>
+<li>-XX:+UseConcMarkSweepGC：设置年老代为并发收集。测试中配置这个以后，-XX:NewRatio=4的配置失效了，原因不明。所以，此时年轻代大小最好用-Xmn设置。</li>
+<li>-XX:+UseParNewGC: 设置年轻代为并行收集。可与CMS收集同时使用。JDK5.0以上，JVM会根据系统配置自行设置，所以无需再设置此值。</li>
+</ul>
+<p>java -Xmx3550m -Xms3550m -Xmn2g -Xss128k -XX:+UseConcMarkSweepGC -XX:CMSFullGCsBeforeCompaction=5 -XX:+UseCMSCompactAtFullCollection</p>
+<ul>
+<li>-XX:CMSFullGCsBeforeCompaction：由于并发收集器不对内存空间进行压缩、整理，所以运行一段时间以后会产生“碎片”，使得运行效率降低。此值设置运行多少次GC以后对内存空间进行压缩、整理。</li>
+<li>-XX:+UseCMSCompactAtFullCollection：打开对年老代的压缩。可能会影响性能，但是可以消除碎片</li>
+</ul>
+<h3 id="年轻代的设置很关键"><a href="#年轻代的设置很关键" class="headerlink" title="年轻代的设置很关键"></a>年轻代的设置很关键</h3><p>JVM中最大堆大小有三方面限制：相关操作系统的数据模型（32-bt还是64-bit）限制；系统的可用虚拟内存限制；系统的可用物理内存限制。32位系统下，一般限制在1.5G~2G；64为操作系统对内存无限制。在Windows Server 2003 系统，3.5G物理内存，JDK5.0下测试，最大可设置为1478m。<br>典型设置：<br>java -Xmx3550m -Xms3550m -Xmn2g –Xss128k</p>
+<ul>
+<li>-Xmx3550m：设置JVM最大可用内存为3550M。</li>
+<li>-Xms3550m：设置JVM促使内存为3550m。此值可以设置与-Xmx相同，以避免每次垃圾回收完成后JVM重新分配内存。</li>
+<li>-Xmn2g：设置年轻代大小为2G。整个堆大小=年轻代大小 + 年老代大小 + 持久代大小。持久代一般固定大小为64m，所以增大年轻代后，将会减小年老代大小。此值对系统性能影响较大，Sun官方推荐配置为整个堆的3/8。</li>
+<li>-Xss128k：设置每个线程的堆栈大小。JDK5.0以后每个线程堆栈大小为1M，以前每个线程堆栈大小为256K。<br>更具应用的线程所需内存大小进行调整。在相同物理内存下，减小这个值能生成更多的线程。<br>但是操作系统对一个进程内的线程数还是有限制的，不能无限生成，经验值在3000~5000左右。</li>
+</ul>
+<p>java -Xmx3550m -Xms3550m -Xss128k -XX:NewRatio=4 -XX:SurvivorRatio=4 -XX:MaxPermSize=16m -XX:MaxTenuringThreshold=0</p>
+<ul>
+<li>-XX:NewRatio=4:设置年轻代（包括Eden和两个Survivor区）与年老代的比值（除去持久代）。设置为4，则年轻代与年老代所占比值为1：4，年轻代占整个堆栈的1/5</li>
+<li>-XX:SurvivorRatio=4：设置年轻代中Eden区与Survivor区的大小比值。设置为4，则两个Survivor区与一个Eden区的比值为2:4，一个Survivor区占整个年轻代的1/6</li>
+<li>-XX:MaxPermSize=16m:设置持久代大小为16m。</li>
+<li>-XX:MaxTenuringThreshold=0：设置垃圾最大年龄。如果设置为0的话，则年轻代对象不经过Survivor区，直接进入年老代。<br>对于年老代比较多的应用，可以提高效率。如果将此值设置为一个较大值，则年轻代对象会在Survivor区进行多次复制，这样可以增加对象再年轻代的存活时间，增加在年轻代即被回收的概论。</li>
+</ul>
+<h3 id="G1调优相关"><a href="#G1调优相关" class="headerlink" title="G1调优相关"></a>G1调优相关</h3><h4 id="常用参数"><a href="#常用参数" class="headerlink" title="常用参数"></a><strong>常用参数</strong></h4><ul>
+<li>-XX:+UseG1GC 开启G1</li>
+<li>-XX:G1HeapRegionSize=n,region的大小，1-32M，2048个</li>
+<li>-XX:MaxGCPauseMillis=200 最大停顿时间</li>
+<li>-XX:G1NewSizePercent   -XX:G1MaxNewSizePercent</li>
+<li>-XX:G1ReservePercent=10 保留防止to space溢出（）</li>
+<li>-XX:ParallelGCThreads=n SWT线程数（停止应用程序）</li>
+<li>-XX:ConcGCThreads=n 并发线程数=1/4*并行</li>
+</ul>
+<h4 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a><strong>最佳实践</strong></h4><p><strong><em>年轻代大小</em></strong>：避免使用-Xmn、-XX:NewRatio等显示设置Young区大小，会覆盖暂停时间目标（常用参数3）<br><strong><em>暂停时间目标</em></strong>：暂停时间不要太严苛，其吞吐量目标是90%的应用程序时间和10%的垃圾回收时间，太严苛会直接影响到吞吐量</p>
+<p>是否需要切换到G1</p>
+<ul>
+<li>50%以上的堆被存活对象占用</li>
+<li>对象分配和晋升的速度变化非常大</li>
+<li>垃圾回收时间特别长，超过1秒</li>
+</ul>
+<p>G1调优目标</p>
+<ul>
+<li>6GB以上内存</li>
+<li>停顿时间是500ms以内</li>
+<li>吞吐量是90%以上</li>
+</ul>
+<h3 id="GC常用参数"><a href="#GC常用参数" class="headerlink" title="GC常用参数"></a>GC常用参数</h3><h4 id="堆栈设置"><a href="#堆栈设置" class="headerlink" title="堆栈设置"></a><strong>堆栈设置</strong></h4><ul>
+<li><code>-Xss</code>:每个线程的栈大小</li>
+<li><code>-Xms</code>:初始堆大小，默认物理内存的1/64</li>
+<li><code>-Xmx</code>:最大堆大小，默认物理内存的1/4</li>
+<li><code>-Xmn</code>:新生代大小</li>
+<li><code>-XX:NewSize</code>:设置新生代初始大小</li>
+<li><code>-XX:NewRatio</code>:默认2表示新生代占年老代的1/2，占整个堆内存的1/3。</li>
+<li><code>-XX:SurvivorRatio</code>:默认8表示一个survivor区占用1/8的Eden内存，即1/10的新生代内存。</li>
+<li><code>-XX:MetaspaceSize</code>:设置元空间大小</li>
+<li><code>-XX:MaxMetaspaceSize</code>:设置元空间最大允许大小，默认不受限制，JVM Metaspace会进行动态扩展。</li>
+</ul>
+<h4 id="收集器设置"><a href="#收集器设置" class="headerlink" title="收集器设置"></a><strong>收集器设置</strong></h4><ul>
+<li><code>-XX:+UseSerialGC</code>:设置串行收集器</li>
+<li><code>-XX:+UseParallelGC</code>:设置并行收集器</li>
+<li><code>-XX:+UseParallelOldGC</code>:老年代使用并行回收收集器</li>
+<li><code>-XX:+UseParNewGC</code>:在新生代使用并行收集器</li>
+<li><code>-XX:+UseParalledlOldGC</code>:设置并行老年代收集器</li>
+<li><code>-XX:+UseConcMarkSweepGC</code>:设置CMS并发收集器</li>
+<li><code>-XX:+UseG1GC</code>:设置G1收集器</li>
+<li><code>-XX:ParallelGCThreads</code>:设置用于垃圾回收的线程数</li>
+</ul>
+<h4 id="并行收集器设置"><a href="#并行收集器设置" class="headerlink" title="并行收集器设置"></a><strong>并行收集器设置</strong></h4><ul>
+<li><code>-XX:ParallelGCThreads</code>:设置并行收集器收集时使用的CPU数。并行收集线程数。</li>
+<li><code>-XX:MaxGCPauseMillis</code>:设置并行收集最大暂停时间</li>
+<li><code>-XX:GCTimeRatio</code>:设置垃圾回收时间占程序运行时间的百分比。公式为1/(1+n)</li>
+</ul>
+<h4 id="CMS-并发收集器设置"><a href="#CMS-并发收集器设置" class="headerlink" title="CMS 并发收集器设置"></a><strong>CMS 并发收集器设置</strong></h4><ul>
+<li><code>-XX:+UseConcMarkSweepGC</code>:设置CMS并发收集器</li>
+<li><code>-XX:+CMSIncrementalMode</code>:设置为增量模式。适用于单CPU情况。</li>
+<li><code>-XX:ParallelGCThreads</code>:设置并发收集器新生代收集方式为并行收集时，并发的GC线程数（并非STW时间，而是和服务一起执行的线程数）</li>
+<li><code>-XX:CMSFullGCsBeforeCompaction</code>:设定进行多少次CMS垃圾回收后，进行一次内存压缩（因压缩非常的消耗时间，所以不能每次FullGC都做）</li>
+<li><code>-XX:+CMSClassUnloadingEnabled</code>:允许对类元数据进行回收。启用回收Perm区（jdk1.7及以前）</li>
+<li><code>-XX:UseCMSInitiatingOccupancyOnly</code>:表示只在到达阀值的时候，才进行CMS回收</li>
+<li><code>-XX:+CMSIncrementalMode</code>:设置为增量模式。适用于单CPU情况</li>
+<li><code>-XX:ParallelCMSThreads</code>:设定CMS的线程数量</li>
+<li><code>-XX:CMSInitiatingOccupancyFraction</code>:设置CMS收集器在老年代空间被使用多少后触发（默认是92）</li>
+<li><code>-XX:+UseCMSCompactAtFullCollection</code>:设置CMS收集器在完成垃圾收集后是否要进行一次内存碎片的整理    </li>
+<li><code>-XX:+CMSScavengeBeforeRemark</code>:FullGC之前先做YGC（一般这个参数是打开的）</li>
+</ul>
+<h4 id="G1收集器设置"><a href="#G1收集器设置" class="headerlink" title="G1收集器设置"></a><strong>G1收集器设置</strong></h4><ul>
+<li><code>-XX:+UseG1GC</code>:使用G1收集器</li>
+<li><code>-XX:ParallelGCThreads</code>:指定GC工作的线程数量</li>
+<li><code>-XX:G1HeapRegionSize</code>:指定分区大小(1MB~32MB，且必须是2的幂)，默认将整堆划分为2048个分区</li>
+<li><code>-XX:GCTimeRatio</code>:吞吐量大小，0-100的整数(默认9)，值为n则系统将花费不超过1/(1+n)的时间用于垃圾收集</li>
+<li><code>-XX:MaxGCPauseMillis</code>:目标暂停时间(默认200ms)</li>
+<li><code>-XX:G1NewSizePercent</code>:新生代内存初始空间(默认整堆5%)</li>
+<li><code>-XX:G1MaxNewSizePercent</code>:新生代内存最大空间</li>
+<li><code>-XX:TargetSurvivorRatio</code>:<code>Survivor</code>填充容量(默认50%)</li>
+<li><code>-XX:MaxTenuringThreshold</code>:最大任期阈值(默认15)</li>
+<li><code>-XX:InitiatingHeapOccupancyPercen</code>:老年代占用空间超过整堆比IHOP阈值(默认45%),超过则执行混合收集</li>
+<li><code>-XX:G1HeapWastePercent</code>:堆废物百分比(默认5%)</li>
+<li><code>-XX:G1MixedGCCountTarget</code>:参数混合周期的最大总次数(默认8)</li>
+</ul>
+<h2 id="调优总结"><a href="#调优总结" class="headerlink" title="调优总结"></a>调优总结</h2><h3 id="年轻代大小选择"><a href="#年轻代大小选择" class="headerlink" title="年轻代大小选择"></a><strong>年轻代大小选择</strong></h3><p><strong><em>响应时间优先的应用</em></strong>：尽可能设大，直到接近系统的最低响应时间限制（根据实际情况选择）。在此种情况下，年轻代收集发生的频率也是最小的。同时，减少到达年老代的对象。<br><strong><em>吞吐量优先的应用</em></strong>：尽可能的设置大，可能到达Gbit的程度。因为对响应时间没有要求，垃圾收集可以并行进行，一般适合8CPU以上的应用。</p>
+<h3 id="年老代大小选择"><a href="#年老代大小选择" class="headerlink" title="年老代大小选择"></a><strong>年老代大小选择</strong></h3><p><strong><em>响应时间优先的应用</em></strong>：年老代使用并发收集器，所以其大小需要小心设置，一般要考虑并发会话率和会话持续时间等一些参数。如果堆设置小了，可以会造成内存碎片、高回收频率以及应用暂停而使用传统的标记清除方式；<br>如果堆大了，则需要较长的收集时间。最优化的方案，一般需要参考以下数据获得：</p>
+<ul>
+<li>并发垃圾收集信息</li>
+<li>持久代并发收集次数</li>
+<li>传统GC信息</li>
+<li>花在年轻代和年老代回收上的时间比例<br>减少年轻代和年老代花费的时间，一般会提高应用的效率</li>
+</ul>
+<h3 id="吞吐量优先的应用"><a href="#吞吐量优先的应用" class="headerlink" title="吞吐量优先的应用"></a><strong>吞吐量优先的应用</strong></h3><p>一般吞吐量优先的应用都有一个很大的年轻代和一个较小的年老代。原因是，这样可以尽可能回收掉大部分短期对象，减少中期的对象，而年老代尽存放长期存活对象。</p>
+<h3 id="较小堆引起的碎片问题"><a href="#较小堆引起的碎片问题" class="headerlink" title="较小堆引起的碎片问题"></a><strong>较小堆引起的碎片问题</strong></h3><p>因为年老代的并发收集器使用标记、清除算法，所以不会对堆进行压缩。当收集器回收时，他会把相邻的空间进行合并，这样可以分配给较大的对象。<br>但是，当堆空间较小时，运行一段时间以后，就会出现“碎片”，<br>如果并发收集器找不到足够的空间，那么并发收集器将会停止，然后使用传统的标记、清除方式进行回收。<br>如果出现“碎片”，可能需要进行如下配置：</p>
+<ul>
+<li>-XX:+UseCMSCompactAtFullCollection：使用并发收集器时，开启对年老代的压缩。</li>
+<li>-XX:CMSFullGCsBeforeCompaction=0：上面配置开启的情况下，这里设置多少次Full GC后，对年老代进行压缩</li>
+</ul>
+<h2 id="JVM调优工具"><a href="#JVM调优工具" class="headerlink" title="JVM调优工具"></a>JVM调优工具</h2><h3 id="Jconsole"><a href="#Jconsole" class="headerlink" title="Jconsole"></a><strong>Jconsole</strong></h3><p>jdk自带，功能简单，但是可以在系统有一定负荷的情况下使用。对垃圾回收算法有很详细的跟踪。</p>
+<h3 id="JProfiler"><a href="#JProfiler" class="headerlink" title="JProfiler"></a><strong>JProfiler</strong></h3><p>商业软件，需要付费。功能强大。</p>
+<h3 id="VisualVM"><a href="#VisualVM" class="headerlink" title="VisualVM"></a><strong>VisualVM</strong></h3><p>DK自带，功能强大，与JProfiler类似。推荐。</p>
+<h2 id="如何调优"><a href="#如何调优" class="headerlink" title="如何调优"></a>如何调优</h2><p>观察内存释放情况、集合类检查、对象树<br>上面这些调优工具都提供了强大的功能，但是总的来说一般分为以下几类功能</p>
+<h3 id="堆信息查看"><a href="#堆信息查看" class="headerlink" title="堆信息查看"></a><strong>堆信息查看</strong></h3><p><img src="/img/jvm/25.png" alt=""><br>可查看堆空间大小分配（年轻代、年老代、持久代分配）<br>提供即时的垃圾回收功能<br>垃圾监控（长时间监控回收情况）<br><img src="/img/jvm/26.png" alt=""><br>查看堆内类、对象信息查看：数量、类型等<br><img src="/img/jvm/27.png" alt=""><br>对象引用情况查看<br>有了堆信息查看方面的功能，我们一般可以顺利解决以下问题：<br>年老代年轻代大小划分是否合理<br>内存泄漏<br>垃圾回收算法设置是否合理</p>
+<h3 id="线程监控"><a href="#线程监控" class="headerlink" title="线程监控"></a><strong>线程监控</strong></h3><p><img src="/img/jvm/28.png" alt=""><br><strong><em>线程信息监控</em></strong>：系统线程数量。<br><strong><em>线程状态监控</em></strong>：各个线程都处在什么样的状态下</p>
+<p><img src="/img/jvm/29.png" alt=""><br><strong><em>Dump线程详细信息</em></strong>：查看线程内部运行情况<br>死锁检查</p>
+<h3 id="热点分析"><a href="#热点分析" class="headerlink" title="热点分析"></a><strong>热点分析</strong></h3><p><img src="/img/jvm/30.png" alt=""><br><strong><em>CPU热点</em></strong>：检查系统哪些方法占用的大量CPU时间<br><strong><em>内存热点</em></strong>：检查哪些对象在系统中数量最大（一定时间内存活对象和销毁对象一起统计）<br>这两个东西对于系统优化很有帮助。我们可以根据找到的热点，有针对性的进行系统的瓶颈查找和进行系统优化，而不是漫无目的的进行所有代码的优化。</p>
+<h3 id="快照"><a href="#快照" class="headerlink" title="快照"></a><strong>快照</strong></h3><p>快照是系统运行到某一时刻的一个定格。<br>在我们进行调优的时候，不可能用眼睛去跟踪所有系统变化，依赖快照功能，我们就可以进行系统两个不同运行时刻，对象（或类、线程等）的不同，以便快速找到问题<br>举例说，我要检查系统进行垃圾回收以后，是否还有该收回的对象被遗漏下来的了。那么，我可以在进行垃圾回收前后，分别进行一次堆情况的快照，然后对比两次快照的对象情况。</p>
+<h2 id="内存泄漏检查"><a href="#内存泄漏检查" class="headerlink" title="内存泄漏检查"></a>内存泄漏检查</h2><p>内存泄漏是比较常见的问题，而且解决方法也比较通用，这里可以重点说一下，而线程、热点方面的问题则是具体问题具体分析了。<br>内存泄漏一般可以理解为系统资源（各方面的资源，堆、栈、线程等）在错误使用的情况下，导致使用完毕的资源无法回收（或没有回收），从而导致新的资源分配请求无法完成，引起系统错误。<br>内存泄漏对系统危害比较大，因为他可以直接导致系统的崩溃。<br>需要区别一下，内存泄漏和系统超负荷两者是有区别的，虽然可能导致的最终结果是一样的。内存泄漏是用完的资源没有回收引起错误，而系统超负荷则是系统确实没有那么多资源可以分配了（其他的资源都在使用）。</p>
+<h3 id="年老代堆空间被占满"><a href="#年老代堆空间被占满" class="headerlink" title="年老代堆空间被占满"></a><strong>年老代堆空间被占满</strong></h3><p><img src="/img/jvm/31.png" alt=""><br><strong><em>异常</em></strong>： java.lang.OutOfMemoryError: Java heap space<br><strong><em>说明</em></strong>：<br>这是最典型的内存泄漏方式，简单说就是所有堆空间都被无法回收的垃圾对象占满，虚拟机无法再在分配新空间。<br>如上图所示，这是非常典型的内存泄漏的垃圾回收情况图。所有峰值部分都是一次垃圾回收点，所有谷底部分表示是一次垃圾回收后剩余的内存。连接所有谷底的点，可以发现一条由底到高的线，这说明，随时间的推移，系统的堆空间被不断占满，最终会占满整个堆空间。因此可以初步认为系统内部可能有内存泄漏。（上面的图仅供示例，在实际情况下收集数据的时间需要更长，比如几个小时或者几天）<br>解决：<br>这种方式解决起来也比较容易，一般就是根据垃圾回收前后情况对比，同时根据对象引用情况（常见的集合对象引用）分析，基本都可以找到泄漏点。</p>
+<h3 id="持久代被占满"><a href="#持久代被占满" class="headerlink" title="持久代被占满"></a><strong>持久代被占满</strong></h3><p><strong><em>异常</em></strong>：java.lang.OutOfMemoryError: PermGen space<br><strong><em>说明</em></strong>：<br>Perm空间被占满。无法为新的class分配存储空间而引发的异常。这个异常以前是没有的，但是在Java反射大量使用的今天这个异常比较常见了。主要原因就是大量动态反射生成的类不断被加载，最终导致Perm区被占满。<br>更可怕的是，不同的classLoader即便使用了相同的类，但是都会对其进行加载，相当于同一个东西，如果有N个classLoader那么他将会被加载N次。因此，某些情况下，这个问题基本视为无解。当然，存在大量classLoader和大量反射类的情况其实也不多。<br>解决：<br>-XX:MaxPermSize=16m<br>换用JDK。比如JRocket。</p>
+<h3 id="堆栈溢出"><a href="#堆栈溢出" class="headerlink" title="堆栈溢出"></a><strong>堆栈溢出</strong></h3><p><strong><em>异常</em></strong>：java.lang.StackOverflowError<br><strong><em>说明</em></strong>：这个就不多说了，一般就是递归没返回，或者循环调用造成</p>
+<h3 id="线程堆栈满"><a href="#线程堆栈满" class="headerlink" title="线程堆栈满"></a><strong>线程堆栈满</strong></h3><p><strong><em>异常</em></strong>：Fatal: Stack size too small<br><strong><em>说明</em></strong>：java中一个线程的空间大小是有限制的。JDK5.0以后这个值是1M。与这个线程相关的数据将会保存在其中。但是当线程空间满了以后，将会出现上面异常。<br><strong><em>解决</em></strong>：增加线程栈大小。-Xss2m。但这个配置无法解决根本问题，还要看代码部分是否有造成泄漏的部分。</p>
+<h3 id="系统内存被占满"><a href="#系统内存被占满" class="headerlink" title="系统内存被占满"></a><strong>系统内存被占满</strong></h3><p><strong><em>异常</em></strong>：java.lang.OutOfMemoryError: unable to create new native thread<br><strong><em>说明</em></strong>：<br>这个异常是由于操作系统没有足够的资源来产生这个线程造成的。系统创建线程时，除了要在Java堆中分配内存外，操作系统本身也需要分配资源来创建线程。因此，当线程数量大到一定程度以后，堆中或许还有空间，但是操作系统分配不出资源来了，就出现这个异常了。<br>分配给Java虚拟机的内存愈多，系统剩余的资源就越少，因此，当系统内存固定时，分配给Java虚拟机的内存越多，那么，系统总共能够产生的线程也就越少，两者成反比的关系。同时，可以通过修改-Xss来减少分配给单个线程的空间，也可以增加系统总共内生产的线程数。<br><strong><em>解决</em></strong>：<br>1.重新设计系统减少线程数量。<br>2.线程数量不能减少的情况下，通过-Xss减小单个线程大小。以便能生产更多的线程。</p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 kylin_lawliet@163.com </span>
+    </div>
+</article>
+
+
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>JVM回收与调优</p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">12.7k</span></p>
+    <p><span class="copy-title">本文作者:</span><a  title="blackcat">blackcat</a></p>
+    <p><span class="copy-title">发布时间:</span>2020-01-24, 13:39:18</p>
+    <p><span class="copy-title">最后更新:</span>2020-01-25, 13:11:27</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2020/01/24/jvm-tuning/" title="JVM回收与调优">https://kylin-blackcat.com/2020/01/24/jvm-tuning/</a>
+    <p>
+        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+    </p>
+</div>
+
+
+
+    <div id="comments"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+<script type="text/javascript">
+    $.getScript('/js/gitalk.js', function () {
+        var gitalk = new Gitalk({
+            clientID: '312730c94e34ee10b19d',
+            clientSecret: '5e87bc5a90b6723fd6495ebe7ffde8e0f69caceb',
+            repo: 'gitalk-commnet',
+            owner: 'kylin-lawliet',
+            admin: ['kylin-lawliet'],
+            id: decodeURI(location.pathname),
+            distractionFreeMode: 'true',
+            language: 'zh-CN',
+            perPage: parseInt('10',10)
+        })
+        gitalk.render('comments')
+    })
+</script>
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">©2019 blackcat</p>
+<!--
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+-->
+
+    </div>
+    <div class="full-toc">
+        <button class="full"><span class="min "></span></button>
+<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
+<div class="post-toc"><span class="post-toc-title">目录</span>
+    <div class="post-toc-content">
+
+    </div>
+</div>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+<div class="acParent"></div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.0.1" ></script>
+
+<script src="/js/script.js?v=1.0.1" ></script>
+<script>
+    var img_resize = 'default';
+    /*作者、标签的自动补全*/
+    $(function () {
+        $('.search').AutoComplete({
+            'data': ['#javascript','#hexo','#Idea','#easyUI','#git，hexo','#docker','#MySQL','#web','#jquery','#spring boot','#spring','#mybatis','#postman','#SpringBoot','#Java','#VMware','#website','#MyBatis','#MySql','#Maven','#Mybatis','#lombok','#Bootstrap','#Solr','#JVM','#SQL','#生活','#redis','#Shiro','#设计模式',],
+            'itemHeight': 20,
+            'width': 418
+        }).AutoComplete('show');
+    })
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $(".post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+        .nav .hide-list.fullscreen {
+            left: 492px
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+    .post .pjax article .article-entry>ol, .post .pjax article .article-entry>ul, .post .pjax article>ol, .post .pjax article>ul{
+        border: #e2dede solid 1px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    .post .pjax article .article-entry li>ol, .post .pjax article .article-entry li>ul,.post .pjax article li>ol, .post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .post .pjax article .article-entry>ol>li, .post .pjax article .article-entry>ul>li,.post .pjax article>ol>li, .post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    .post .pjax article .article-entry li>ol>li, .post .pjax article .article-entry li>ul>li,.post .pjax article li>ol>li, .post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("https://i.loli.net/2019/07/22/5d3521411f3f169375.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+    .post .pjax article :not(pre) > code {
+        color: #24292e;
+        font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+        background-color: rgba(27,31,35,.05);
+        border-radius: 3px;
+        font-size: 85%;
+        margin: 0;
+        padding: .2em .4em;
+    }
+    
+</style>
+
+
+
+
+
+
+
+</html>
